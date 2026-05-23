@@ -219,24 +219,6 @@
             color: #000000;
         }
 
-        .breakdown-box {
-            background-color: #12161a;
-            border: 1px dashed var(--border-color);
-            border-radius: 6px;
-            padding: 12px;
-            margin-top: 15px;
-            font-size: 0.85rem;
-            color: #cbd5e1;
-            line-height: 1.5;
-        }
-
-        .breakdown-title {
-            font-weight: 700;
-            color: #6366f1;
-            margin-bottom: 6px;
-            font-size: 0.9rem;
-        }
-
         .modal-close {
             position: absolute;
             top: 20px;
@@ -288,7 +270,6 @@
         <div class="modal-header" id="modalPlayerName">Player Details</div>
         <div class="modal-subheader" id="modalPlayerMeta">Device / Region</div>
         <div id="modalKitsContainer"></div>
-        <div class="breakdown-box" id="modalBreakdownBox"></div>
     </div>
 </div>
 
@@ -300,7 +281,7 @@
         "Husky_Multicraft": {
             "device": "PC",
             "region": "NA",
-            "overallPoints": 300, 
+            "overallPoints": 300,
             "kits": {
                 "Emerald": "LT2",
                 "Diamond": "HT3",
@@ -309,7 +290,7 @@
                 "Emerald kb": "LT3"
             }
         },
-        "Server_PvP": {
+        "Server_pvp": {
             "device": "Mobile",
             "region": "NA",
             "overallPoints": 140,
@@ -327,8 +308,8 @@
             "overallPoints": 150,
             "kits": {
                 "Emerald": "LT3",
-                "Diamond": "HT4",
                 "Dragonhide": "LT4",
+                "Diamond": "HT4",
                 "Dragonhide KB": "LT4"
             }
         }
@@ -348,3 +329,17 @@
 
     function switchView(view, element) {
         currentView = view;
+        document.querySelectorAll('.nav-buttons .btn').forEach(btn => btn.classList.remove('active'));
+        element.classList.add('active');
+        render();
+    }
+
+    function getTierFromPoints(points) {
+        return TIER_ORDER.reduce((prev, curr) => {
+            return Math.abs(POINT_MAP[curr] - points) < Math.abs(POINT_MAP[prev] - points) ? curr : prev;
+        });
+    }
+
+    function openPlayerModal(name) {
+        const p = playerData[name];
+        const displayScore = p.overallPoints !== undefined ? p.overallPoints : 0;
