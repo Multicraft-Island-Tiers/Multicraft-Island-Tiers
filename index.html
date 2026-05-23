@@ -320,11 +320,19 @@
        ========================================================== */
     const TIER_ORDER = ['HT1', 'LT1', 'HT2', 'LT2', 'HT3', 'LT3', 'HT4', 'LT4', 'HT5', 'LT5'];
     
-    const POINT_MAP = {
-        'HT1': 100, 'LT1': 90, 'HT2': 80, 'LT2': 70, 'HT3': 60,
-        'LT3': 50, 'HT4': 40, 'LT4': 30, 'HT5': 20, 'LT5': 10
-    };
-    
+    function getTierFromPoints(points) {
+        if (points >= 450) return 'HT1';
+        if (points >= 400) return 'LT1';
+        if (points >= 350) return 'HT2';
+        if (points >= 300) return 'LT2';
+        if (points >= 250) return 'HT3';
+        if (points >= 200) return 'LT3';
+        if (points >= 150) return 'HT4';
+        if (points >= 100) return 'LT4';
+        if (points >= 50)  return 'HT5';
+        return 'LT5';
+    }
+
     let currentView = 'overall';
 
     function switchView(view, element) {
@@ -334,12 +342,7 @@
         render();
     }
 
-    function getTierFromPoints(points) {
-        let normalizedPoints = points;
-        if (points > 100) {
-            if (points >= 300) return 'HT1';
-            if (points >= 200) return 'HT2';
-            normalizedPoints = points / 3; 
-        }
-        return TIER_ORDER.reduce((prev, curr) => {
+    function openPlayerModal(name) {
+        const p = playerData[name];
+
 
