@@ -277,7 +277,6 @@
     /* ==========================================================
        MANAGE PLAYERS HERE (ADD, DELETE, OR UPDATE DIRECTLY VIA CODE)
        ========================================================= */
-    // All player database keys are now fully lowercase to prevent any red outline bugs!
     const playerData = {
         "husky_multicraft": {
             "device": "PC",
@@ -344,6 +343,8 @@
         render();
     }
 
+    function formatDisplayName(name) {
+        if (name === "husky_multicraft") return "Husky_Multicraft";
 
 
 
