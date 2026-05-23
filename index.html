@@ -41,7 +41,6 @@
             text-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
         }
 
-        /* Kit Navigation Buttons */
         .nav-buttons {
             display: flex;
             justify-content: center;
@@ -70,7 +69,6 @@
             box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
         }
 
-        /* Tier Grid Matrix Rows */
         .tier-list {
             display: flex;
             flex-direction: column;
@@ -86,7 +84,6 @@
             border: 1px solid var(--border-color);
         }
 
-        /* Visual Left Bracket Color Labels */
         .tier-label {
             width: 120px;
             min-width: 120px;
@@ -99,7 +96,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* Content Player Slots Area */
         .tier-players {
             display: flex;
             flex-wrap: wrap;
@@ -109,7 +105,6 @@
             flex-grow: 1;
         }
 
-        /* Interactive Clickable Player Tags */
         .player-tag {
             background-color: #1c232b;
             color: #ffffff;
@@ -151,7 +146,6 @@
             margin-top: 2px;
         }
 
-        /* Modal Pop-up Structure Overlay */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -172,7 +166,6 @@
             opacity: 1;
         }
 
-        /* Modal Inner Display Profile Box */
         .modal-card {
             background-color: var(--modal-bg);
             border: 1px solid var(--border-color);
@@ -201,7 +194,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* Individual Modal Kit Rows */
         .kit-row {
             display: flex;
             justify-content: space-between;
@@ -227,6 +219,24 @@
             color: #000000;
         }
 
+        .breakdown-box {
+            background-color: #12161a;
+            border: 1px dashed var(--border-color);
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+
+        .breakdown-title {
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+
         .modal-close {
             position: absolute;
             top: 20px;
@@ -242,7 +252,6 @@
             color: #ffffff;
         }
 
-        /* Mctiers Colors */
         .ht1 { background-color: #ff4d4d; }
         .lt1 { background-color: #ff8533; }
         .ht2 { background-color: #ffb31a; }
@@ -273,13 +282,13 @@
     <div class="tier-list" id="tierListStructure"></div>
 </div>
 
-<!-- Modal Dialog Box Structure -->
 <div class="modal-overlay" id="playerModal" onclick="closeModal(event)">
     <div class="modal-card" onclick="event.stopPropagation()">
         <button class="modal-close" onclick="closeModal(null)">&times;</button>
         <div class="modal-header" id="modalPlayerName">Player Details</div>
         <div class="modal-subheader" id="modalPlayerMeta">Device / Region</div>
         <div id="modalKitsContainer"></div>
+        <div class="breakdown-box" id="modalBreakdownBox"></div>
     </div>
 </div>
 
@@ -287,13 +296,11 @@
     /* ==========================================================
        MANAGE PLAYERS HERE (ADD, DELETE, OR UPDATE DIRECTLY VIA CODE)
        ========================================================= */
-    // Note: The "reason" field has been completely removed. 
-    // Just configure your player names, devices, regions, points, and kit tiers below using straight quotes.
     const playerData = {
         "Husky_Multicraft": {
             "device": "PC",
             "region": "NA",
-            "overallPoints": 300, 
+            "overallPoints": 370, 
             "kits": {
                 "Emerald": "LT2",
                 "Diamond": "HT3",
@@ -319,11 +326,10 @@
             "region": "NA",
             "overallPoints": 150,
             "kits": {
-              "Emerald": "LT3",
+                "Emerald": "LT3",
                 "Diamond": "HT4",
                 "Dragonhide": "LT4",
-                "Dragonhide KB": "LT4",
-           
+                "Dragonhide KB": "LT4"
             }
         }
     };
@@ -342,3 +348,4 @@
 
     function switchView(view, element) {
         currentView = view;
+
