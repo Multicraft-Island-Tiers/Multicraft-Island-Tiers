@@ -278,10 +278,9 @@
        MANAGE PLAYERS HERE (ADD, DELETE, OR UPDATE DIRECTLY VIA CODE)
        ========================================================= */
     const playerData = {
-                "Husky_Multicraft": {
+        "Husky_Multicraft": {
             "device": "PC",
             "region": "NA",
-            "overallPoints": 300,
             "kits": {
                 "Emerald": "LT2",
                 "Diamond": "HT3",
@@ -290,29 +289,26 @@
                 "Emerald kb": "LT3"
             }
         },
-
-        },
-        "server_pvp": {
-            "device": "PC",
+        "Server_pvp": {
+            "device": "Mobile",
             "region": "NA",
-            "overallPoints": 140,
             "kits": {
                 "Emerald": "HT5",
-                "Emerald kb": "LT4",
-                "Dragonhide": "LT3",
-                "Dragonhide KB": "HT4",
-                "Diamond": "HT5"
-            }
-        },
-        "prologozrock": {
-            "device": "PC",
-            "region": "NA",
-            "overallPoints": 150,
-            "kits": {
-                "Emerald": "LT3",
                 "Diamond": "HT4",
                 "Dragonhide": "LT4",
-                "Dragonhide KB": "HT4"
+                "Dragonhide KB": "LT4",
+                "Emerald kb": "HT5"
+            }
+        },
+        "PlayerThree_Example": {
+            "device": "Console",
+            "region": "AS",
+            "kits": {
+                "Emerald": "HT1",
+                "Diamond": "LT1",
+                "Dragonhide": "LT5",
+                "Dragonhide KB": "LT5",
+                "Emerald kb": "LT5"
             }
         }
     };
@@ -322,20 +318,11 @@
        ========================================================== */
     const TIER_ORDER = ['HT1', 'LT1', 'HT2', 'LT2', 'HT3', 'LT3', 'HT4', 'LT4', 'HT5', 'LT5'];
     
-    function getTierFromPoints(points) {
-        var num = Number(points);
-        if (num >= 450) return 'HT1';
-        if (num >= 400) return 'LT1';
-        if (num >= 350) return 'HT2';
-        if (num >= 300) return 'LT2';
-        if (num >= 250) return 'HT3';
-        if (num >= 200) return 'LT3';
-        if (num >= 150) return 'HT4';
-        if (num >= 100) return 'LT4';
-        if (num >= 50)  return 'HT5';
-        return 'LT5';
-    }
-
+    const POINT_MAP = {
+        'HT1': 100, 'LT1': 90, 'HT2': 80, 'LT2': 70, 'HT3': 60,
+        'LT3': 50, 'HT4': 40, 'LT4': 30, 'HT5': 20, 'LT5': 10
+    };
+    
     let currentView = 'overall';
 
     function switchView(view, element) {
@@ -345,8 +332,16 @@
         render();
     }
 
-    function formatDisplayName(name) {
-        if (name === "husky_multicraft") return "Husky_Multicraft";
+    // Computes overall score by adding together the points of all 5 kits
+    function calculateTotalPoints(playerObj) {
+        let total = 0;
+        const kitsList = ["Emerald", "Diamond", "Dragonhide", "Dragonhide KB", "Emerald kb"];
+        kitsList.forEach(kit => {
+            const tier = playerObj.kits[kit];
+            if (tier && POINT_MAP[tier]) {
+                total += POINT_MAP[tier];
+            }
+        });
 
 
 
