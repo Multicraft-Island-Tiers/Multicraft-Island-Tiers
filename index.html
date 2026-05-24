@@ -275,6 +275,15 @@
 </div>
 
 <script>
+    // Tier rankings and their mathematical weight for overall calculation
+    const tierWeights = {
+        "HT1": 10, "LT1": 9, "HT2": 8, "LT2": 7, "HT3": 6,
+        "LT3": 5, "HT4": 4, "LT4": 3, "HT5": 2, "LT5": 1
+    };
+
+    const orderedTiers = ["HT1", "LT1", "HT2", "LT2", "HT3", "LT3", "HT4", "LT4", "HT5", "LT5"];
+
+    // Player Database
     const playerData = {
         "Husky_Multicraft": {
             "device": "PC",
@@ -287,97 +296,48 @@
                 "Emerald kb": "LT3"
             }
         },
-        "Prologozrock": {
-            "device": "PC",
-            "region": "NA",
+        "Prologozroc": {
+            "device": "PE",
+            "region": "EU",
             "kits": {
-                "Emerald": "LT3",
-                "Diamond": "HT4",
-                "Dragonhide": "LT4",
-                "Dragonhide KB": "LT4",
-                "Emerald kb": ""
-            }
-        },
-        "Server_pvp": {
-            "device": "Mobile",
-            "region": "NA",
-            "kits": {
-                "Emerald": "HT5",
-                "Diamond": "HT4",
-                "Dragonhide": "LT4",
-                "Dragonhide KB": "LT4",
-                "Emerald kb": "HT5"
+                "Emerald": "HT2",
+                "Diamond": "LT2",
+                "Dragonhide": "HT2",
+                "Dragonhide KB": "LT2",
+                "Emerald kb": "HT3"
             }
         }
+        // Add more players here following the same structure
     };
 
-    const TIER_ORDER = ['HT1', 'LT1', 'HT2', 'LT2', 'HT3', 'LT3', 'HT4', 'LT4', 'HT5', 'LT5'];
-    
-    const POINT_MAP = {
-        'HT1': 100, 'LT1': 90, 'HT2': 80, 'LT2': 70, 'HT3': 60,
-        'LT3': 50, 'HT4': 40, 'LT4': 30, 'HT5': 20, 'LT5': 10
-    };
-    
-    let currentView = 'overall';
-
-    function switchView(view, element) {
-        currentView = view;
-        document.querySelectorAll('.nav-buttons .btn').forEach(btn => btn.classList.remove('active'));
-        element.classList.add('active');
-        render();
-    }
-
-    function calculateTotalPoints(playerObj) {
-        let total = 0;
-        const kitsList = ["Emerald", "Diamond", "Dragonhide", "Dragonhide KB", "Emerald kb"];
-        kitsList.forEach(kit => {
-            const tier = playerObj.kits[kit];
-            if (tier && POINT_MAP[tier]) {
-                total += POINT_MAP[tier];
+    // Helper to calculate a player's average overall tier
+    function getOverallTier(kits) {
+        let totalScore = 0;
+        let count = 0;
+        for (let kit in kits) {
+            if (tierWeights[kits[kit]]) {
+                totalScore += tierWeights[kits[kit]];
+                count++;
             }
-        });
-        return total;
+        }
+        if (count === 0) return "LT5";
+        const avgScore = Math.round(totalScore / count);
+        
+        // Find tier code matching the average score
+        for (let tier in tierWeights) {
+            if (tierWeights[tier] === avgScore) return tier;
+        }
+        return "LT5";
     }
 
-    function getOverallTier(totalPoints) {
-        const averagePoints = totalPoints / 5;
-        return TIER_ORDER.reduce((prev, curr) => {
-            return Math.abs(POINT_MAP[curr] - averagePoints) < Math.abs(POINT_MAP[prev] - averagePoints) ? curr : prev;
-        });
+    // Renders the leaderboard structure based on selection
+    function renderTiers(viewType) {
+        const container = document.getElementById('tierListStructure');
+        container.innerHTML = '';
 
-        });
-    <!-- Example of how your top navigation buttons should look -->
-<button id="overall">Overall</button>
-<button id="dragonhide">Dragonhide</button>
-<button id="kb dragonhide">KB Dragonhide</button>
-<button id="emerald">Emerald</button>
-<button id="emerald kb">Emerald KB</button><!-- ... Your existing website layout code is up here ... -->
-
-<!-- =================================================== -->
-<!-- PASTE THE NEW MATERIAL HERE (AT THE VERY BOTTOM)   -->
-<!-- =================================================== -->
-
-<!-- 1. The Popup Window Container -->
-<div id="player-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; align-items: center; justify-content: center; font-family: sans-serif;">
-  <div id="modal-content" style="background: #1e272e; padding: 25px; border-radius: 8px; width: 90%; max-width: 400px; border-top: 5px solid #ff4757; position: relative; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
-    <button id="close-modal" style="position: absolute; top: 10px; right: 15px; background: none; border: none; color: #a4b0be; font-size: 1.5em; cursor: pointer;">&times;</button>
-    <h2 id="modal-username" style="color: #ffffff; margin-top: 0; margin-bottom: 5px;">Username</h2>
-    <p id="modal-meta" style="color: #a4b0be; font-size: 0.9em; margin-bottom: 20px;">Region • Device</p>
-    <div id="modal-kits-list"></div>
-  </div>
-</div>
-
-<!-- 2. The Logic Script Running the Tabs and Data -->
-<script>
-  // Complete master player data array and tab filtering functions go here...
-  // (This is the rest of the long block from our previous message)
-</script>
-
-<!-- =================================================== -->
-<!-- THE ACTUAL FINAL TWO LINES OF YOUR INDEX.HTML FILE  -->
-<!-- =================================================== -->
-  </body>
-</html>
-
-<button id="diamond">Diamond</button>
-
+        // Create rows for each tier
+        orderedTiers.forEach(tierCode => {
+            const row = document.createElement('div');
+            row.className = 'tier-row';
+            
+            const label = document.createElement('div');
