@@ -261,7 +261,6 @@
     </div>
 
     <script>
-        // Your custom point values system mapping rules
         const tierPointsMapping = {
             "HT1": 100, "LT1": 90,
             "HT2": 80,  "LT2": 70,
@@ -271,17 +270,19 @@
             "TBD": 0
         };
 
-        // =========================================================================
-        // CENTRAL DATABASE (ONLY ADD / EDIT PLAYERS HERE)
-        // =========================================================================
+        // CENTRAL DATABASE (Fixed Dragonhide KB to HT5)
         const playersDatabase = {
             "Husky_Multicraft": {
                 name: "Husky_Multicraft", region: "NA", device: "PC",
                 tiers: { "Dragonhide": "HT3", "Dragonhide KB": "HT3", "Emerald": "LT2", "Diamond": "HT3", "Emerald KB": "LT3" }
             },
             "Prologozrock": {
-                name: "prologozrock", region: "NA", device: "PC",
+                name: "Prologozrock", region: "NA", device: "PC",
                 tiers: { "Dragonhide": "LT4", "Dragonhide KB": "LT4", "Emerald": "LT3", "Diamond": "HT4", "Emerald KB": "TBD" }
+            },
+            "Parrot": {
+                name: "Parrot", region: "NA", device: "Mobile",
+                tiers: { "Dragonhide": "HT4", "Dragonhide KB": "HT5", "Emerald": "HT5", "Diamond": "HT4", "Emerald KB": "LT4" }
             },
             "Server_pvp": {
                 name: "Server_pvp", region: "NA", device: "Mobile",
@@ -291,15 +292,8 @@
                 name: "Taxbird", region: "NA", device: "Mobile",
                 tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "LT5", "Emerald KB": "LT5" }
             }
-            "Parrot": {
-                name: "Parrot", region: "NA", device: "Mobile",
-                tiers: { "Dragonhide": "HT4", "Dragonhide KB": "HT4", "Emerald": "HT5", "Diamond": "LT4", "Emerald KB": "HT5" }
-            }
-            // Future players paste here!
         };
-        // =========================================================================
 
-        // Automatically calculates points for any player based on their listed kit tiers
         function getPlayerTotalPoints(player) {
             let total = 0;
             for (const kit in player.tiers) {
@@ -310,7 +304,6 @@
         }
 
         function buildOverallLeaderboard() {
-            // Get all players and inject their calculated point totals dynamically
             const playersWithCalculatedPoints = Object.values(playersDatabase).map(player => {
                 return {
                     ...player,
@@ -318,5 +311,11 @@
                 };
             });
 
-            // Sort purely by auto-calculated score highest to lowest
+            playersWithCalculatedPoints.sort((a, b) => b.calculatedPoints - a.calculatedPoints);
+            
+            let tableHTML = '';
+            playersWithCalculatedPoints.forEach((player, index) => {
+                tableHTML += `
+                    <tr class="clickable-row" onclick="showPlayerCard('\${player.name}')">
+                        <td>#\${index + 1}</td>
 
