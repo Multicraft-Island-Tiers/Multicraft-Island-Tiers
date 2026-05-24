@@ -278,6 +278,7 @@
        MANAGE PLAYERS HERE (ADD, DELETE, OR UPDATE DIRECTLY VIA CODE)
        ========================================================= */
     const playerData = {
+           const playerData = {
         "Husky_Multicraft": {
             "device": "PC",
             "region": "NA",
@@ -288,7 +289,7 @@
                 "Dragonhide KB": "HT3",
                 "Emerald kb": "LT3"
             }
-        },
+        }, // <--- Check for this comma between players!
         "Prologozrock": {
             "device": "PC",
             "region": "NA",
@@ -299,7 +300,7 @@
                 "Dragonhide KB": "LT4",
                 "Emerald kb": ""
             }
-        },
+        }, // <--- Check for this comma between players!
         "Server_pvp": {
             "device": "Mobile",
             "region": "NA",
@@ -311,7 +312,7 @@
                 "Emerald kb": "HT5"
             }
         }
-    };
+    }; // <--- Ensure it ends with a closing brace and semicolon!
 
     /* ==========================================================
        SYSTEM AUTOMATION LOGIC
