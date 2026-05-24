@@ -229,10 +229,10 @@
         <button class="nav-btn" onclick="switchKitView('Emerald KB')">Emerald KB</button>
     </div>
 
-    <!-- 1. OVERALL LEADERBOARD VIEW -->
+    <!-- 1. OVERALL VIEW -->
     <div id="overall-view" class="view-section active">
         <h2>Overall Rankings</h2>
-        <p>Click any row or player's name to view their complete Player Card and Tiers.</p>
+        <p>Click any player's row to view their complete Player Card and Tiers.</p>
         <table class="leaderboard-table">
             <thead>
                 <tr>
@@ -243,68 +243,80 @@
                     <th>Points</th>
                 </tr>
             </thead>
-            <tbody id="leaderboard-data-rows">
-                <!-- Filled completely automatically by JavaScript -->
-            </tbody>
+            <tbody id="leaderboard-data-rows"></tbody>
         </table>
     </div>
 
-    <!-- 2. INDIVIDUAL PLAYER CARD VIEW -->
+    <!-- 2. PLAYER PROFILE CARD VIEW -->
     <div id="player-view" class="view-section">
         <button class="back-btn" onclick="switchView('overall-view')">← Back to Leaderboard</button>
         <div id="player-card-container"></div>
     </div>
 
-    <!-- 3. DYNAMIC KITS TIER VIEW -->
+    <!-- 3. KITS HIERARCHY VIEW -->
     <div id="kit-view" class="view-section">
+        <button class="back-btn" onclick="switchView('overall-view')">← Back to Leaderboard</button>
         <h2 id="kit-view-title">Kit Tiers</h2>
         <div id="tier-groups-container"></div>
     </div>
 
     <script>
+        // Your custom point values system mapping rules
+        const tierPointsMapping = {
+            "HT1": 100, "LT1": 90,
+            "HT2": 80,  "LT2": 70,
+            "HT3": 60,  "LT3": 50,
+            "HT4": 40,  "LT4": 30,
+            "HT5": 20,  "LT5": 10,
+            "TBD": 0
+        };
+
         // =========================================================================
-        // CENTRAL MASTER DATABASE (ONLY EDIT THIS REGION TO ADD/UPDATE PLAYERS)
+        // CENTRAL DATABASE (ONLY ADD / EDIT PLAYERS HERE)
         // =========================================================================
         const playersDatabase = {
             "Husky_Multicraft": {
-                name: "Husky_Multicraft", region: "NA", device: "PC", points: 300,
+                name: "Husky_Multicraft", region: "NA", device: "PC",
                 tiers: { "Dragonhide": "HT3", "Dragonhide KB": "HT3", "Emerald": "LT2", "Diamond": "HT3", "Emerald KB": "LT3" }
             },
-            "prologozrock": {
-                name: "prologozrock", region: "NA", device: "PC", points: 150,
+            "Prologozrock": {
+                name: "prologozrock", region: "NA", device: "PC",
                 tiers: { "Dragonhide": "LT4", "Dragonhide KB": "LT4", "Emerald": "LT3", "Diamond": "HT4", "Emerald KB": "TBD" }
             },
             "Server_pvp": {
-                name: "Server_pvp", region: "NA", device: "Mobile", points: 140,
+                name: "Server_pvp", region: "NA", device: "Mobile",
                 tiers: { "Dragonhide": "LT4", "Dragonhide KB": "LT4", "Emerald": "HT5", "Diamond": "HT4", "Emerald KB": "HT5" }
             },
-            "taxbird": {
-                name: "Taxbird", region: "NA", device: "Mobile", points: 50,
+            "Taxbird": {
+                name: "Taxbird", region: "NA", device: "Mobile",
                 tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "LT5", "Emerald KB": "LT5" }
             }
-            //"Parrot": {
-                name: "Parrot", region: "NA", device: "Mobile", points: 150,
-                tiers: { "Dragonhide": "HT4", "Dragonhide KB": "HT4", "Emerald": "HT5", "Diamond": "LT4", "Emerald KB": "HT5" } <-- Paste new players right here in the future!
+            "Parrot": {
+                name: "Parrot", region: "NA", device: "Mobile",
+                tiers: { "Dragonhide": "HT4", "Dragonhide KB": "HT4", "Emerald": "HT5", "Diamond": "LT4", "Emerald KB": "HT5" }
+            }
+            // Future players paste here!
         };
         // =========================================================================
 
-        // Automatically build and sort the leaderboard on page startup
-        function buildOverallLeaderboard() {
-            const sortedPlayers = Object.values(playersDatabase).sort((a, b) => b.points - a.points);
-            let tableHTML = '';
-            
-            sortedPlayers.forEach((player, index) => {
-                tableHTML += `
-                    <tr class="clickable-row" onclick="showPlayerCard('${player.name}')">
-                        <td>#${index + 1}</td>
-                        <td><span class="clickable-name">${player.name}</span></td>
-                        <td>${player.region}</td>
-                        <td>${player.device}</td>
-                        <td><strong>${player.points}</strong></td>
-                    </tr>`;
-            });
-            document.getElementById('leaderboard-data-rows').innerHTML = tableHTML;
+        // Automatically calculates points for any player based on their listed kit tiers
+        function getPlayerTotalPoints(player) {
+            let total = 0;
+            for (const kit in player.tiers) {
+                const tierCode = player.tiers[kit];
+                total += tierPointsMapping[tierCode] || 0;
+            }
+            return total;
         }
 
-        function switchView(viewId) {
-            document.querySelectorAll('.view-section').forEach(section => section.classList.remove('active'));
+        function buildOverallLeaderboard() {
+            // Get all players and inject their calculated point totals dynamically
+            const playersWithCalculatedPoints = Object.values(playersDatabase).map(player => {
+                return {
+                    ...player,
+                    calculatedPoints: getPlayerTotalPoints(player)
+                };
+            });
+
+            // Sort purely by auto-calculated score highest to lowest
+
