@@ -53,7 +53,7 @@
         <table class="leaderboard-table">
             <thead><tr><th>Rank</th><th>Name</th><th>Region</th><th>Device</th><th>Points</th></tr></thead>
             <tbody id="leaderboard-body">
-                <!-- Sorted dynamically by script -->
+                <!-- Sorted automatically by JavaScript -->
             </tbody>
         </table>
     </div>
@@ -74,13 +74,11 @@
             "Marwan": { name: "Marwan", region: "NA", device: "Mobile", points: 9, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "TBD", "Diamond": "TBD", "Emerald KB": "LT5" } },
             "New_guy": { name: "New_guy", region: "NA", device: "Mobile", points: 9, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "TBD", "Emerald KB": "TBD" } },
             "grant": { name: "grant", region: "NA", device: "Mobile", points: 9, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "TBD", "Emerald KB": "TBD" } },
-            "LATAMM": { name: "LATAMM", region: "NA", device: "Mobile", points: 9, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "TBD", "Emerald": "LT5", "Diamond": "LT5", "Emerald KB": "TBD" } },
             "COCO-_": { name: "COCO-_", region: "NA", device: "Mobile", points: 8, tiers: { "Dragonhide": "HT5", "Dragonhide KB": "TBD", "Emerald": "TBD", "Diamond": "TBD", "Emerald KB": "TBD" } }
         };
 
         function renderLeaderboard() {
-            // Strict number sorting calculation logic fix
-            const sortedPlayers = Object.values(playersDatabase).sort((a, b) => Number(b.points) - Number(a.points));
+            const sortedPlayers = Object.values(playersDatabase).sort((a, b) => b.points - a.points);
             let tbodyHTML = '';
             sortedPlayers.forEach((p, index) => {
                 tbodyHTML += `
@@ -92,10 +90,7 @@
                         <td><strong>${p.points}</strong></td>
                     </tr>`;
             });
-            const target = document.getElementById('leaderboard-body');
-            if (target) {
-                target.innerHTML = tbodyHTML;
-            }
+            document.getElementById('leaderboard-body').innerHTML = tbodyHTML;
         }
 
         function switchView(viewId) {
