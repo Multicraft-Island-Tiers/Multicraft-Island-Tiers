@@ -13,7 +13,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            color: #fff; /* White text to pop out on dark sky */
+            color: #fff; 
             min-height: 100vh;
             box-sizing: border-box;
             background-color: #0b1d28; 
@@ -83,13 +83,13 @@
             background-color: #d35400;
         }
 
-        /* Views Container - White box removed, now transparent with white outline */
+        /* Views Container */
         .view-section {
             display: none;
             width: 100%;
             max-width: 800px;
-            background: rgba(0, 0, 0, 0.4); /* Dark translucent tint for readability */
-            border: 2px solid #ffffff;       /* Pure white outline request */
+            background: rgba(0, 0, 0, 0.4); 
+            border: 2px solid #ffffff;       
             border-radius: 12px;
             padding: 20px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.5);
@@ -106,7 +106,7 @@
             color: #64f3e5;
         }
 
-        /* Overall Table Styling with white borders */
+        /* Table Styling with white borders */
         .leaderboard-table {
             width: 100%;
             border-collapse: collapse;
@@ -116,7 +116,7 @@
         .leaderboard-table th, .leaderboard-table td {
             padding: 12px;
             text-align: left;
-            border: 1px solid #ffffff; /* White grid outlines */
+            border: 1px solid #ffffff; 
         }
 
         .leaderboard-table th {
@@ -171,7 +171,7 @@
         .tier-group {
             margin-bottom: 20px;
             border-radius: 6px;
-            border: 2px solid #ffffff; /* White border outline for tier groups */
+            border: 2px solid #ffffff; 
             overflow: hidden;
             background: rgba(0,0,0,0.2);
         }
@@ -269,18 +269,25 @@
                     <td><strong>150</strong></td>
                 </tr>
                 <tr class="clickable-row" onclick="showPlayerCard('Server_pvp')">
-                    <td>#3</td>
+                    <td>#4</td>
                     <td><span class="clickable-name">Server_pvp</span></td>
                     <td>NA</td>
                     <td>Mobile</td>
                     <td><strong>140</strong></td>
                 </tr>
                 <tr class="clickable-row" onclick="showPlayerCard('taxbird')">
-                    <td>#4</td>
-                    <td><span class="clickable-name">taxbird</span></td>
+                    <td>#5</td>
+                    <td><span class="clickable-name">Taxbird</span></td>
                     <td>NA</td>
                     <td>Mobile</td>
-                    <td><strong>0</strong></td>
+                    <td><strong>50</strong></td>
+                </tr>
+                <tr class="clickable-row" onclick="showPlayerCard('Parrot')">
+                    <td>#3</td>
+                    <td><span class="clickable-name">Parrot</span></td>
+                    <td>NA</td>
+                    <td>Mobile</td>
+                    <td><strong>150</strong></td>
                 </tr>
             </tbody>
         </table>
@@ -310,21 +317,18 @@
                 name: "Husky_Multicraft", region: "NA", device: "PC", points: 300,
                 tiers: { "Dragonhide": "HT3", "Dragonhide KB": "HT3", "Emerald": "LT2", "Diamond": "HT3", "Emerald KB": "LT3" }
             },
-            "prologozrock": {
-                name: "prologozrock", region: "NA", device: "PC", points: 150,
+            "Prologozrock": {
+                name: "Prologozrock", region: "NA", device: "PC", points: 150,
                 tiers: { "Dragonhide": "LT4", "Dragonhide KB": "LT4", "Emerald": "LT3", "Diamond": "HT4", "Emerald KB": "TBD" }
-            },
-            "Parrot": {
-                name: "Parrot", region: "NA", device: "Mobile", points: 150,
-                tiers: { "Dragonhide": "HT4", "Dragonhide KB": "LT4", "Emerald": "HT5", "Diamond": "HT4", "Emerald KB": "HT5" }
-         },     
-                "Taxbird": {
-                name: "Taxbird", region: "NA", device: "Mobile", points: 50,
-                tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "LT5", "Emerald KB": "LT5" }
             },
             "Server_pvp": {
                 name: "Server_pvp", region: "NA", device: "Mobile", points: 140,
-                tiers: { "Dragonhide": "LT4", "Dragonhide KB": "LT4", "Emerald": "HT5", "Diamond": "HT4", "Emerald KB": "HT5" }
-            },
-            },
-
+                tiers: { "Dragonhide": "LT4", "Dragonhide KB": "LT4", "Emerald": "HT5", "Diamond": "LT4", "Emerald KB": "HT5" }
+             },
+            "Taxbird": {
+                name: "Taxbird", region: "NA", device: "Mobile", points: 50,
+                tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "LT5", "Emerald KB": "LT5" }   
+             },
+            "Parrot": {
+                name: "Parrot", region: "NA", device: "Mobile", points: 150,
+                tiers: { "Dragonhide": "HT4", "Dragonhide KB": "HT4", "Emerald": "HT5", "Diamond": "LT4", "Emerald KB": "HT5" }   
