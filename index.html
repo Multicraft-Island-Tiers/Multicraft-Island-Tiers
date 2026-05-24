@@ -91,7 +91,10 @@
                         <td><strong>${p.points}</strong></td>
                     </tr>`;
             });
-            document.getElementById('leaderboard-body').innerHTML = tbodyHTML;
+            const target = document.getElementById('leaderboard-body');
+            if (target) {
+                target.innerHTML = tbodyHTML;
+            }
         }
 
         function switchView(viewId) {
