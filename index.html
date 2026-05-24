@@ -52,21 +52,8 @@
         <h2>Overall Rankings</h2>
         <table class="leaderboard-table">
             <thead><tr><th>Rank</th><th>Name</th><th>Region</th><th>Device</th><th>Points</th></tr></thead>
-            <tbody>
-                <tr class="clickable-row" onclick="showPlayerCard('Husky_Multicraft')"><td>#1</td><td><span class="clickable-name">Husky_Multicraft</span></td><td>NA</td><td>PC</td><td><strong>180</strong></td></tr>
-                <tr class="clickable-row" onclick="showPlayerCard('Parrot')"><td>#2</td><td><span class="clickable-name">Parrot</span></td><td>NA</td><td>Mobile</td><td><strong>73</strong></td></tr>
-                <tr class="clickable-row" onclick="showPlayerCard('Herobrine')"><td>#3</td><td><span class="clickable-name">Herobrine</span></td><td>NA</td><td>Controller</td><td><strong>70</strong></td></tr>
-                <tr class="clickable-row" onclick="showPlayerCard('vort3xYT')"><td>#4</td><td><span class="clickable-name">vort3xYT</span></td><td>EU</td><td>PC</td><td><strong>75</strong></td></tr>
-                <tr class="clickable-row" onclick="showPlayerCard('Server_pvp')"><td>#5</td><td><span class="clickable-name">Server_pvp</span></td><td>NA</td><td>Mobile</td><td><strong>66</strong></td></tr>
-                <tr class="clickable-row" onclick="showPlayerCard('Prologozrock')"><td>#6</td><td><span class="clickable-name">Prologozrock</span></td><td>NA</td><td>PC</td><td><strong>63</strong></td></tr>
-                <tr class="clickable-row" onclick="showPlayerCard('kylaz9')"><td>#7</td><td><span class="clickable-name">kylaz9</span></td><td>EU</td><td>Mobile</td><td><strong>20</strong></td></tr>
-                <tr class="clickable-row" onclick="showPlayerCard('aaa666')"><td>#8</td><td><span class="clickable-name">aaa666</span></td><td>NA</td><td>Mobile</td><td><strong>15</strong></td></tr>
-                <tr class="clickable-row" onclick="showPlayerCard('Taxbird')"><td>#9</td><td><span class="clickable-name">Taxbird</span></td><td>NA</td><td>Mobile</td><td><strong>15</strong></td></tr>
-                <tr class="clickable-row" onclick="showPlayerCard('Jamier1235')"><td>#10</td><td><span class="clickable-name">Jamier1235</span></td><td>NA</td><td>Mobile</td><td><strong>17</strong></td></tr>
-                <tr class="clickable-row" onclick="showPlayerCard('Marwan')"><td>#11</td><td><span class="clickable-name">Marwan</span></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
-                <tr class="clickable-row" onclick="showPlayerCard('New_guy')"><td>#12</td><td><span class="clickable-name">New_guy</span></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
-                <tr class="clickable-row" onclick="showPlayerCard('grant')"><td>#13</td><td><span class="clickable-name">grant</span></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
-                <tr class="clickable-row" onclick="showPlayerCard('COCO-_')"><td>#14</td><td><span class="clickable-name">COCO-_</span></td><td>NA</td><td>Mobile</td><td><strong>8</strong></td></tr>
+            <tbody id="leaderboard-body">
+                <!-- Sorted dynamically by script -->
             </tbody>
         </table>
     </div>
@@ -84,3 +71,41 @@
             "aaa666": { name: "aaa666", region: "NA", device: "Mobile", points: 15, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "LT5", "Emerald KB": "LT5" } },
             "Taxbird": { name: "Taxbird", region: "NA", device: "Mobile", points: 15, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "LT5", "Emerald KB": "LT5" } },
             "Jamier1235": { name: "Jamier1235", region: "NA", device: "Mobile", points: 17, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "TBD", "Emerald KB": "HT5" } },
+            "Marwan": { name: "Marwan", region: "NA", device: "Mobile", points: 9, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "TBD", "Diamond": "TBD", "Emerald KB": "LT5" } },
+            "New_guy": { name: "New_guy", region: "NA", device: "Mobile", points: 9, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "TBD", "Emerald KB": "TBD" } },
+            "grant": { name: "grant", region: "NA", device: "Mobile", points: 9, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "TBD", "Emerald KB": "TBD" } },
+            "LATAMM": { name: "LATAMM", region: "NA", device: "Mobile", points: 9, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "TBD", "Emerald": "LT5", "Diamond": "LT5", "Emerald KB": "TBD" } },
+            "COCO-_": { name: "COCO-_", region: "NA", device: "Mobile", points: 8, tiers: { "Dragonhide": "HT5", "Dragonhide KB": "TBD", "Emerald": "TBD", "Diamond": "TBD", "Emerald KB": "TBD" } }
+        };
+
+        function renderLeaderboard() {
+            // Strict number sorting calculation logic fix
+            const sortedPlayers = Object.values(playersDatabase).sort((a, b) => Number(b.points) - Number(a.points));
+            let tbodyHTML = '';
+            sortedPlayers.forEach((p, index) => {
+                tbodyHTML += `
+                    <tr class="clickable-row" onclick="showPlayerCard('${p.name}')">
+                        <td>#${index + 1}</td>
+                        <td><span class="clickable-name">${p.name}</span></td>
+                        <td>${p.region}</td>
+                        <td>${p.device}</td>
+                        <td><strong>${p.points}</strong></td>
+                    </tr>`;
+            });
+            const target = document.getElementById('leaderboard-body');
+            if (target) {
+                target.innerHTML = tbodyHTML;
+            }
+        }
+
+        function switchView(viewId) {
+            document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(viewId).classList.add('active');
+            if(viewId === 'overall-view') document.querySelector('.overall-btn').classList.add('active');
+        }
+        function showPlayerCard(pName) {
+            const p = playersDatabase[pName];
+            if (!p) return;
+            let kitsHTML = '';
+            for (const [k, t] of Object.entries(p.tiers)) kitsHTML += `<div style="background: rgba(255,255,255,0.1); padding:10px; border-radius:5px; border: 1px solid #ffffff; margin-bottom:5px;"><strong>${k}:</strong> <span style="font-weight:bold; color:#64f3e5;">${t}</span></div>`;
