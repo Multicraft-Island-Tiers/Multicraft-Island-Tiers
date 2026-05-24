@@ -5,361 +5,302 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multicraft Island Tiers</title>
     <style>
-        :root {
-            --bg-color: #0c0f12;
-            --card-bg: #14181c;
-            --modal-bg: #1b2228;
-            --text-color: #f0f2f5;
-            --accent-color: #6366f1;
-            --border-color: #242b35;
-        }
-
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: #64f3e5;
             margin: 0;
             padding: 20px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        h1 {
-            color: #ffffff;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 2.2rem;
-            text-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
-        }
-
-        .nav-buttons {
             display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 35px;
+            flex-direction: column;
+            align-items: center;
+            color: #333;
         }
 
-        .btn {
-            background-color: var(--card-bg);
-            color: var(--text-color);
-            border: 1px solid var(--border-color);
-            padding: 12px 24px;
+        .logo-container {
+            max-width: 600px;
+            width: 100%;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .logo-container img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        /* Navigation Menu Buttons */
+        .navigation-menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 25px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .nav-btn {
+            background-color: #1a4d47;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            font-weight: bold;
             border-radius: 6px;
             cursor: pointer;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 0.5px;
-            transition: all 0.2s ease;
+            transition: background 0.2s;
+            font-size: 0.9rem;
         }
 
-        .btn:hover, .btn.active {
-            background-color: var(--accent-color);
-            border-color: var(--accent-color);
-            box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+        .nav-btn:hover, .nav-btn.active {
+            background-color: #2b7a71;
+            box-shadow: 0 0 8px rgba(0,0,0,0.2);
         }
+
+        .nav-btn.overall-btn {
+            background-color: #e67e22;
+        }
+        .nav-btn.overall-btn:hover, .nav-btn.overall-btn.active {
+            background-color: #d35400;
+        }
+
+        /* Views Container */
+        .view-section {
+            display: none;
+            width: 100%;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+        }
+
+        .view-section.active {
+            display: block;
+        }
+
+        /* Overall Table Styling */
+        .leaderboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .leaderboard-table th, .leaderboard-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .leaderboard-table th {
+            background-color: #2b7a71;
+            color: white;
+        }
+
+        .clickable-name {
+            color: #2b7a71;
+            font-weight: bold;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .clickable-name:hover {
+            color: #1a4d47;
+        }
+
+        /* Player Card Individual View */
+        .player-card-detail {
+            background: white;
+            border: 2px solid #2b7a71;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+
+        .player-card-title {
+            font-size: 1.8rem;
+            color: #1a4d47;
+            margin-top: 0;
+            border-bottom: 3px solid #64f3e5;
+            padding-bottom: 5px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+            background: #f7f9f9;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        /* Kit View Tiers Layout */
+        .tier-group {
+            margin-bottom: 20px;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            overflow: hidden;
+        }
+
+        .tier-header {
+            background: #2b7a71;
+            color: white;
+            padding: 8px 15px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .tier-header.ht { background: #b23b3b; }
+        .tier-header.lt { background: #3b7bb2; }
 
         .tier-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+            padding: 10px 15px;
+            list-style: none;
+            margin: 0;
         }
 
-        .tier-row {
-            display: flex;
-            background-color: var(--card-bg);
-            border-radius: 8px;
-            overflow: hidden;
-            min-height: 75px;
-            border: 1px solid var(--border-color);
+        .tier-list li {
+            padding: 6px 0;
+            border-bottom: 1px solid #eee;
         }
-
-        .tier-label {
-            width: 120px;
-            min-width: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            color: #000000;
-            font-size: 1.3rem;
-            letter-spacing: 0.5px;
-        }
-
-        .tier-players {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            padding: 10px 20px;
-            gap: 12px;
-            flex-grow: 1;
-        }
-
-        .player-tag {
-            background-color: #1c232b;
-            color: #ffffff;
-            padding: 10px 18px;
-            border-radius: 6px;
-            font-size: 0.95rem;
-            border: 1px solid var(--border-color);
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            min-width: 150px;
-            font-style: normal !important;
-            white-space: nowrap;
-        }
-
-        .player-tag:hover {
-            background-color: #252f3a;
-            border-color: var(--accent-color);
-            transform: translateY(-2px);
-        }
-
-        .player-name {
-            font-weight: 700;
-        }
-
-        .player-meta {
-            font-size: 0.75rem;
-            color: #a0aec0;
-            display: flex;
-            gap: 6px;
-        }
-
-        .player-pts-label {
-            font-size: 0.8rem;
-            font-weight: bold;
-            color: #6366f1;
-            margin-top: 2px;
-        }
-
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            opacity: 0;
-            transition: opacity 0.2s ease;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-            opacity: 1;
-        }
-
-        .modal-card {
-            background-color: var(--modal-bg);
-            border: 1px solid var(--border-color);
-            width: 90%;
-            max-width: 500px;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            position: relative;
-        }
-
-        .modal-header {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: #ffffff;
-            margin-bottom: 5px;
-        }
-
-        .modal-subheader {
-            font-size: 0.85rem;
-            color: #a0aec0;
-            margin-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .kit-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #242b35;
-        }
-
-        .kit-row:last-child {
+        .tier-list li:last-child {
             border-bottom: none;
         }
 
-        .kit-name {
-            font-weight: 600;
-            color: #e2e8f0;
-        }
-
-        .kit-badge {
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-weight: 800;
-            font-size: 0.85rem;
-            color: #000000;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: none;
+        .back-btn {
+            background: #7f8c8d;
+            color: white;
             border: none;
-            color: #a0aec0;
-            font-size: 1.5rem;
+            padding: 8px 15px;
+            border-radius: 4px;
             cursor: pointer;
+            margin-bottom: 15px;
         }
-
-        .modal-close:hover {
-            color: #ffffff;
-        }
-
-        .ht1 { background-color: #ff4d4d; }
-        .lt1 { background-color: #ff8533; }
-        .ht2 { background-color: #ffb31a; }
-        .lt2 { background-color: #ffd633; }
-        .ht3 { background-color: #a3e635; }
-        .lt3 { background-color: #4ade80; }
-        .ht4 { background-color: #2dd4bf; }
-        .lt4 { background-color: #38bdf8; }
-        .ht5 { background-color: #60a5fa; }
-        .lt5 { background-color: #818cf8; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <header>
-        <img src="logo.png" alt="Multicraft Island Logo" style="max-width: 250px; height: auto; margin-bottom: 15px; filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.3));">
-        <h1>Multicraft Island Tiers</h1>
-        <div class="nav-buttons">
-            <button class="btn active" onclick="switchView('overall', this)">Overall</button>
-            <button class="btn" onclick="switchView('Emerald', this)">Emerald</button>
-            <button class="btn" onclick="switchView('Diamond', this)">Diamond</button>
-            <button class="btn" onclick="switchView('Dragonhide', this)">Dragonhide</button>
-            <button class="btn" onclick="switchView('Dragonhide KB', this)">Dragonhide KB</button>
-            <button class="btn" onclick="switchView('Emerald kb', this)">Emerald KB</button>
-        </div>
-    </header>
-
-    <div class="tier-list" id="tierListStructure"></div>
-</div>
-
-<div class="modal-overlay" id="playerModal" onclick="closeModal(event)">
-    <div class="modal-card" onclick="event.stopPropagation()">
-        <button class="modal-close" onclick="closeModal(null)">&times;</button>
-        <div class="modal-header" id="modalPlayerName">Player Details</div>
-        <div class="modal-subheader" id="modalPlayerMeta">Device / Region</div>
-        <div id="modalKitsContainer"></div>
+    <!-- Logo -->
+    <div class="logo-container">
+        <img src="logo.png" alt="Multicraft Island Tiers Logo">
     </div>
-</div>
 
-<script>
-    // Tier rankings and their mathematical weight for overall calculation
-    const tierWeights = {
-        "HT1": 10, "LT1": 9, "HT2": 8, "LT2": 7, "HT3": 6,
-        "LT3": 5, "HT4": 4, "LT4": 3, "HT5": 2, "LT5": 1
-    };
+    <!-- Navigation Buttons Menu -->
+    <div class="navigation-menu">
+        <button class="nav-btn overall-btn active" onclick="switchView('overall-view')">Overall Leaderboard</button>
+        <button class="nav-btn" onclick="switchKitView('Dragonhide')">Dragonhide</button>
+        <button class="nav-btn" onclick="switchKitView('Dragonhide KB')">Dragonhide KB</button>
+        <button class="nav-btn" onclick="switchKitView('Emerald')">Emerald</button>
+        <button class="nav-btn" onclick="switchKitView('Diamond')">Diamond</button>
+        <button class="nav-btn" onclick="switchKitView('Emerald KB')">Emerald KB</button>
+    </div>
 
-    const orderedTiers = ["HT1", "LT1", "HT2", "LT2", "HT3", "LT3", "HT4", "LT4", "HT5", "LT5"];
+    <!-- 1. OVERALL LEADERBOARD VIEW -->
+    <div id="overall-view" class="view-section active">
+        <h2>Overall Rankings</h2>
+        <p>Click a player's name to view their complete Player Card and Tiers.</p>
+        <table class="leaderboard-table">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Name</th>
+                    <th>Region</th>
+                    <th>Device</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>#1</td>
+                    <td><span class="clickable-name" onclick="showPlayerCard('Husky_Multicraft')">Husky_Multicraft</span></td>
+                    <td>NA</td>
+                    <td>PC</td>
+                    <td><strong>300</strong></td>
+                </tr>
+                <tr>
+                    <td>#2</td>
+                    <td><span class="clickable-name" onclick="showPlayerCard('prologozrock')">prologozrock</span></td>
+                    <td>NA</td>
+                    <td>PC</td>
+                    <td><strong>150</strong></td>
+                </tr>
+                <tr>
+                    <td>#3</td>
+                    <td><span class="clickable-name" onclick="showPlayerCard('Server_pvp')">Server_pvp</span></td>
+                    <td>NA</td>
+                    <td>Mobile</td>
+                    <td><strong>140</strong></td>
+                </tr>
+                <tr>
+                    <td>#4</td>
+                    <td><span class="clickable-name" onclick="showPlayerCard('taxbird')">taxbird</span></td>
+                    <td>NA</td>
+                    <td>Mobile</td>
+                    <td><strong>0</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-    // Player Database
-    const playerData = {
-     # --- MANUAL SCORE LEADERBOARD ---
-# Type the total points yourself in the "Total Points" field.
+    <!-- 2. INDIVIDUAL PLAYER CARD VIEW -->
+    <div id="player-view" class="view-section">
+        <button class="back-btn" onclick="switchView('overall-view')">← Back to Leaderboard</button>
+        <div id="player-card-container">
+            <!-- Filled out dynamically by JavaScript -->
+        </div>
+    </div>
 
-players = {
-    "Husky_Multicraft": {
-        "Region": "NA", 
-        "Device": "PC",
-        "Total Points": 300,  # <-- Type your calculated score here
-        "Kits": {"Dragonhide": "HT3", "Dragonhide KB": "HT3", "Emerald": "LT2", "Diamond": "HT3", "Emerald KB": "LT3"}
-    },
-    "Prologozrock": {
-        "Region": "NA", 
-        "Device": "PC",
-        "Total Points": 150,  # <-- Type your calculated score here
-        "Kits": {"Dragonhide": "LT4", "Dragonhide KB": "LT4", "Emerald": "LT3", "Diamond": "HT4", "Emerald KB": "TBD"}
-    },
-    "Parrot": {
-        "Region": "NA", 
-        "Device": "Mobile",
-        "Total Points": 160,  
-        "Kits": {"Dragonhide": "HT4", "Dragonhide KB": "HT4", "Emerald": "HT5", "Diamond": "HT4", "Emerald KB": "HT5"}
-    },
-    "Server_pvp": {
-        "Region": "NA", 
-        "Device": "Mobile",
-        "Total Points": 140,  
-        "Kits": {"Dragonhide": "LT4", "Dragonhide KB": "LT4", "Emerald": "HT5", "Diamond": "HT4", "Emerald KB": "HT5"}
-    },
-    "TaxBird": {
-        "Region": "NA", 
-        "Device": "Mobile",
-        "Total Points": 50,   
-        "Kits": {"Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald KB": "LT5", "Emerald": "LT5", "Diamond": "LT5"}
-    }
-}
+    <!-- 3. DYNAMIC KITS TIER VIEW -->
+    <div id="kit-view" class="view-section">
+        <h2 id="kit-view-title">Kit Tiers</h2>
+        <div id="tier-groups-container">
+            <!-- Tier buckets filled dynamically by JavaScript -->
+        </div>
+    </div>
 
-# Sorts the players based on the "Total Points" number you typed
-leaderboard = sorted(players.items(), key=lambda x: x["Total Points"], reverse=True)
+    <!-- JAVASCRIPT LOGIC CONTROLLER -->
+    <script>
+        // Central Player Database
+        const playersDatabase = {
+            "Husky_Multicraft": {
+                name: "Husky_Multicraft", region: "NA", device: "PC", points: 300,
+                tiers: { "Dragonhide": "HT3", "Dragonhide KB": "HT3", "Emerald": "LT2", "Diamond": "HT3", "Emerald KB": "LT3" }
+            },
+            "prologozrock": {
+                name: "prologozrock", region: "NA", device: "PC", points: 150,
+                tiers: { "Dragonhide": "LT4", "Dragonhide KB": "LT4", "Emerald": "LT3", "Diamond": "HT4", "Emerald KB": "TBD" }
+            },
+            "Server_pvp": {
+                name: "Server_pvp", region: "NA", device: "Mobile", points: 140,
+                tiers: { "Dragonhide": "LT4", "Dragonhide KB": "LT4", "Emerald": "HT5", "Diamond": "HT4", "Emerald KB": "HT5" }
+            },
+            "taxbird": {
+                name: "taxbird", region: "NA", device: "Mobile", points: 0,
+                tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "LT5", "Emerald KB": "LT5" }
+            }
+        };
 
-# Prints the leaderboard
-print("=== LEADERBOARD ===")
-for rank, (name, data) in enumerate(leaderboard, start=1):
-    print(f"{rank}. {name} - {data['Total Points']} Points")
-
-        // Add more players here following the same structure
-    };
-
-    // Helper to calculate a player's average overall tier
-    function getOverallTier(kits) {
-        let totalScore = 0;
-        let count = 0;
-        for (let kit in kits) {
-            if (tierWeights[kits[kit]]) {
-                totalScore += tierWeights[kits[kit]];
-                count++;
+        // Screen swapper helper function
+        function switchView(viewId) {
+            document.querySelectorAll('.view-section').forEach(section => section.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(viewId).classList.add('active');
+            if(viewId === 'overall-view') {
+                document.querySelector('.overall-btn').classList.add('active');
             }
         }
-        if (count === 0) return "LT5";
-        const avgScore = Math.round(totalScore / count);
-        
-        // Find tier code matching the average score
-        for (let tier in tierWeights) {
-            if (tierWeights[tier] === avgScore) return tier;
-        }
-        return "LT5";
-    }
 
-    // Renders the leaderboard structure based on selection
-    function renderTiers(viewType) {
-        const container = document.getElementById('tierListStructure');
-        container.innerHTML = '';
+        // Render dynamic Player Profile Card
+        function showPlayerCard(playerName) {
+            const player = playersDatabase[playerName];
+            if (!player) return;
 
-        // Create rows for each tier
-        orderedTiers.forEach(tierCode => {
-            const row = document.createElement('div');
-            row.className = 'tier-row';
-            
-            const label = document.createElement('div');
+            let kitsHTML = '';
+            for (const [kit, tier] of Object.entries(player.tiers)) {
+                kitsHTML += `
+                    <div style="background:#f1f2f6; padding:10px; border-radius:5px; border-left:4px solid #2b7a71;">
