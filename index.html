@@ -285,28 +285,50 @@
 
     // Player Database
     const playerData = {
-        "Husky_Multicraft": {
-            "device": "PC",
-            "region": "NA",
-            "kits": {
-                "Emerald": "LT2",
-                "Diamond": "HT3",
-                "Dragonhide": "HT3",
-                "Dragonhide KB": "HT3",
-                "Emerald kb": "LT3"
-            }
-        },
-        "Prologozrock": {
-            "device": "PE",
-            "region": "NA",
-            "kits": {
-                "Emerald": "LT3",
-                "Diamond": "HT4",
-                "Dragonhide": "LT4",
-                "Dragonhide KB": "LT4",
-                "Emerald kb": ""
-            }
-        }
+     # --- MANUAL SCORE LEADERBOARD ---
+# Type the total points yourself in the "Total Points" field.
+
+players = {
+    "Husky_Multicraft": {
+        "Region": "NA", 
+        "Device": "PC",
+        "Total Points": 0,  # <-- Type your calculated score here
+        "Kits": {"Dragonhide": "TBD", "Dragonhide KB": "TBD", "Emerald": "TBD", "Diamond": "TBD", "Emerald KB": "TBD"}
+    },
+    "Prologozrock": {
+        "Region": "NA", 
+        "Device": "PC",
+        "Total Points": 0,  # <-- Type your calculated score here
+        "Kits": {"Dragonhide": "TBD", "Dragonhide KB": "TBD", "Emerald": "TBD", "Diamond": "TBD", "Emerald KB": "TBD"}
+    },
+    "Parrot": {
+        "Region": "NA", 
+        "Device": "Mobile",
+        "Total Points": 340,  
+        "Kits": {"Dragonhide": "HT4", "Dragonhide KB": "HT4", "Emerald": "HT5", "Diamond": "HT4", "Emerald KB": "HT5"}
+    },
+    "Server_pvp": {
+        "Region": "NA", 
+        "Device": "Mobile",
+        "Total Points": 240,  
+        "Kits": {"Dragonhide": "LT4", "Dragonhide KB": "LT4", "Emerald": "HT5", "Diamond": "HT4", "Emerald KB": "HT5"}
+    },
+    "TaxBird": {
+        "Region": "NA", 
+        "Device": "Mobile",
+        "Total Points": 50,   
+        "Kits": {"Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald KB": "LT5", "Emerald": "LT5", "Diamond": "LT5"}
+    }
+}
+
+# Sorts the players based on the "Total Points" number you typed
+leaderboard = sorted(players.items(), key=lambda x: x["Total Points"], reverse=True)
+
+# Prints the leaderboard
+print("=== LEADERBOARD ===")
+for rank, (name, data) in enumerate(leaderboard, start=1):
+    print(f"{rank}. {name} - {data['Total Points']} Points")
+
         // Add more players here following the same structure
     };
 
