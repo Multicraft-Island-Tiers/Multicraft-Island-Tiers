@@ -6,230 +6,40 @@
     <title>Multicraft Island Tiers</title>
     <style>
         /* Base page layout */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: #fff; 
-            min-height: 100vh;
-            box-sizing: border-box;
-            background-color: #0b1d28; 
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* Fullscreen falling stars background canvas */
-        #starfall-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .logo-container {
-            max-width: 600px;
-            width: 100%;
-            margin-bottom: 20px;
-            text-align: center;
-            z-index: 1;
-        }
-
-        .logo-container img {
-            width: 100%;
-            max-width: 600px;
-            height: auto;
-            border-radius: 8px;
-        }
-
-        /* Navigation Menu Buttons */
-        .navigation-menu {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            margin-bottom: 25px;
-            width: 100%;
-            max-width: 800px;
-            z-index: 1;
-        }
-
-        .nav-btn {
-            background-color: #1a4d47;
-            color: white;
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 10px 18px;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background 0.2s;
-            font-size: 0.9rem;
-        }
-
-        .nav-btn:hover, .nav-btn.active {
-            background-color: #2b7a71;
-            box-shadow: 0 0 8px rgba(100, 243, 229, 0.4);
-        }
-
-        .nav-btn.overall-btn {
-            background-color: #e67e22;
-        }
-        .nav-btn.overall-btn:hover, .nav-btn.overall-btn.active {
-            background-color: #d35400;
-        }
-
-        /* Views Container */
-        .view-section {
-            display: none;
-            width: 100%;
-            max-width: 800px;
-            background: rgba(0, 0, 0, 0.4); 
-            border: 2px solid #ffffff;       
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-            box-sizing: border-box;
-            z-index: 1;
-        }
-
-        .view-section.active {
-            display: block;
-        }
-
-        .view-section h2 {
-            margin-top: 0;
-            color: #64f3e5;
-        }
-
-        /* Table Styling with white borders */
-        .leaderboard-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-
-        .leaderboard-table th, .leaderboard-table td {
-            padding: 12px;
-            text-align: left;
-            border: 1px solid #ffffff; 
-        }
-
-        .leaderboard-table th {
-            background-color: rgba(43, 122, 113, 0.8);
-            color: white;
-        }
-
-        .clickable-row {
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .clickable-row:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-        }
-
-        .clickable-name {
-            color: #64f3e5;
-            font-weight: bold;
-            text-decoration: underline;
-        }
-
-        /* Player Card View with white outlines */
-        .player-card-detail {
-            border: 2px solid #ffffff;
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 15px;
-            background: rgba(0,0,0,0.3);
-        }
-
-        .player-card-title {
-            font-size: 1.8rem;
-            color: #64f3e5;
-            margin-top: 0;
-            border-bottom: 2px solid #ffffff;
-            padding-bottom: 5px;
-        }
-
-        .meta-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 10px;
-            margin-bottom: 20px;
-            background: rgba(255,255,255,0.1);
-            padding: 10px;
-            border-radius: 6px;
-            border: 1px solid #ffffff;
-        }
-
-        /* Kit View Tiers Layout */
-        .tier-group {
-            margin-bottom: 20px;
-            border-radius: 6px;
-            border: 2px solid #ffffff; 
-            overflow: hidden;
-            background: rgba(0,0,0,0.2);
-        }
-
-        .tier-header {
-            color: white;
-            padding: 8px 15px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            border-bottom: 1px solid #ffffff;
-        }
-
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; color: #fff; min-height: 100vh; box-sizing: border-box; background-color: #0b1d28; overflow-x: hidden; }
+        #starfall-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; }
+        .logo-container { max-width: 600px; width: 100%; margin-bottom: 20px; text-align: center; z-index: 1; }
+        .logo-container img { width: 100%; max-width: 600px; height: auto; border-radius: 8px; }
+        .navigation-menu { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 25px; width: 100%; max-width: 800px; z-index: 1; }
+        .nav-btn { background-color: #1a4d47; color: white; border: 1px solid rgba(255,255,255,0.2); padding: 10px 18px; font-weight: bold; border-radius: 6px; cursor: pointer; transition: background 0.2s; font-size: 0.9rem; }
+        .nav-btn:hover, .nav-btn.active { background-color: #2b7a71; box-shadow: 0 0 8px rgba(100, 243, 229, 0.4); }
+        .nav-btn.overall-btn { background-color: #e67e22; }
+        .nav-btn.overall-btn:hover, .nav-btn.overall-btn.active { background-color: #d35400; }
+        .view-section { display: none; width: 100%; max-width: 800px; background: rgba(0, 0, 0, 0.4); border: 2px solid #ffffff; border-radius: 12px; padding: 20px; box-sizing: border-box; z-index: 1; }
+        .view-section.active { display: block; }
+        .view-section h2 { margin-top: 0; color: #64f3e5; }
+        .leaderboard-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        .leaderboard-table th, .leaderboard-table td { padding: 12px; text-align: left; border: 1px solid #ffffff; }
+        .leaderboard-table th { background-color: rgba(43, 122, 113, 0.8); }
+        .clickable-row { cursor: pointer; }
+        .clickable-row:hover { background-color: rgba(255, 255, 255, 0.15); }
+        .clickable-name { color: #64f3e5; font-weight: bold; text-decoration: underline; }
+        .player-card-detail { border: 2px solid #ffffff; border-radius: 8px; padding: 20px; margin-top: 15px; background: rgba(0,0,0,0.3); }
+        .player-card-title { font-size: 1.8rem; color: #64f3e5; margin-top: 0; border-bottom: 2px solid #ffffff; padding-bottom: 5px; }
+        .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 20px; background: rgba(255,255,255,0.1); padding: 10px; border-radius: 6px; border: 1px solid #ffffff; }
+        .tier-group { margin-bottom: 20px; border-radius: 6px; border: 2px solid #ffffff; overflow: hidden; background: rgba(0,0,0,0.2); }
+        .tier-header { color: white; padding: 8px 15px; font-weight: bold; font-size: 1.1rem; border-bottom: 1px solid #ffffff; }
         .tier-header.ht { background: rgba(178, 59, 59, 0.85); }
         .tier-header.lt { background: rgba(59, 123, 178, 0.85); }
         .tier-header.tbd { background: rgba(127, 140, 141, 0.85); }
-
-        .tier-list {
-            padding: 10px 15px;
-            list-style: none;
-            margin: 0;
-        }
-
-        .tier-list li {
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-        }
-        
-        .tier-list li:last-child {
-            border-bottom: none;
-        }
-
-        .back-btn {
-            background: #7f8c8d;
-            color: white;
-            border: 1px solid #fff;
-            padding: 8px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-bottom: 15px;
-            font-weight: bold;
-        }
-        
-        .back-btn:hover {
-            background: #95a5a6;
-        }
+        .tier-list { padding: 10px 15px; list-style: none; margin: 0; }
+        .tier-list li { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.2); }
+        .back-btn { background: #7f8c8d; color: white; border: 1px solid #fff; padding: 8px 15px; border-radius: 4px; cursor: pointer; margin-bottom: 15px; font-weight: bold; }
     </style>
 </head>
 <body>
-
-    <!-- Animated Canvas Layer -->
     <canvas id="starfall-canvas"></canvas>
-
-    <!-- Logo -->
-    <div class="logo-container">
-        <img src="logo.png" alt="Multicraft Island Tiers Logo">
-    </div>
-
-    <!-- Navigation Buttons Menu -->
+    <div class="logo-container"><img src="logo.png" alt="Multicraft Island Tiers Logo"></div>
     <div class="navigation-menu">
         <button class="nav-btn overall-btn active" onclick="switchView('overall-view')">Overall Leaderboard</button>
         <button class="nav-btn" onclick="switchKitView('Dragonhide')">Dragonhide</button>
@@ -238,78 +48,45 @@
         <button class="nav-btn" onclick="switchKitView('Diamond')">Diamond</button>
         <button class="nav-btn" onclick="switchKitView('Emerald KB')">Emerald KB</button>
     </div>
-
-    <!-- 1. OVERALL LEADERBOARD VIEW -->
     <div id="overall-view" class="view-section active">
         <h2>Overall Rankings</h2>
-        <p>Click any row or player's name to view their complete Player Card and Tiers.</p>
         <table class="leaderboard-table">
-            <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>Name</th>
-                    <th>Region</th>
-                    <th>Device</th>
-                    <th>Points</th>
-                </tr>
-            </thead>
+            <thead><tr><th>Rank</th><th>Name</th><th>Region</th><th>Device</th><th>Points</th></tr></thead>
             <tbody>
-                <tr class="clickable-row" onclick="showPlayerCard('Husky_Multicraft')">
-                    <td>#1</td>
-                    <td><span class="clickable-name">Husky_Multicraft</span></td>
-                    <td>NA</td>
-                    <td>PC</td>
-                    <td><strong>300</strong></td>
-                </tr>
-                <tr class="clickable-row" onclick="showPlayerCard('Parrot')">
-                    <td>#2</td>
-                    <td><span class="clickable-name">Parrot</span></td>
-                    <td>NA</td>
-                    <td>Mobile</td>
-                    <td><strong>150</strong></td>
-                </tr>
-                <tr class="clickable-row" onclick="showPlayerCard('Prologozrock')">
-                    <td>#3</td>
-                    <td><span class="clickable-name">Prologozrock</span></td>
-                    <td>NA</td>
-                    <td>PC</td>
-                    <td><strong>150</strong></td>
-                </tr>
-                <tr class="clickable-row" onclick="showPlayerCard('Server_pvp')">
-                    <td>#4</td>
-                    <td><span class="clickable-name">Server_pvp</span></td>
-                    <td>NA</td>
-                    <td>Mobile</td>
-                    <td><strong>140</strong></td>
-                </tr>
-                <tr class="clickable-row" onclick="showPlayerCard('Taxbird')">
-                    <td>#5</td>
-                    <td><span class="clickable-name">Taxbird</span></td>
-                    <td>NA</td>
-                    <td>Mobile</td>
-                    <td><strong>50</strong></td>
-                </tr>
-                <tr class="clickable-row" onclick="showPlayerCard('New_guy')">
-                    <td>#6</td>
-                    <td><span class="clickable-name">New_guy</span></td>
-                    <td>NA</td>
-                    <td>Mobile</td>
-                    <td><strong>30</strong></td>
-                </tr>
-                <tr class="clickable-row" onclick="showPlayerCard('grant')">
-                    <td>#7</td>
-                    <td><span class="clickable-name">grant</span></td>
-                    <td>NA</td>
-                    <td>Mobile</td>
-                    <td><strong>30</strong></td>
-                </tr>
-                <tr class="clickable-row" onclick="showPlayerCard('COCO-_')">
-                    <td>#8</td>
-                    <td><span class="clickable-name">COCO-_</span></td>
-                    <td>NA</td>
-                    <td>Mobile</td>
-                    <td><strong>20</strong></td>
-                </tr>
-                <tr class="clickable-row" onclick="showPlayerCard('kylaz9')">
-                    <td>#9</td>
-
+                <tr class="clickable-row" onclick="showPlayerCard('Husky_Multicraft')"><td>#1</td><td><span class="clickable-name">Husky_Multicraft</span></td><td>NA</td><td>PC</td><td><strong>300</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('Parrot')"><td>#2</td><td><span class="clickable-name">Parrot</span></td><td>NA</td><td>Mobile</td><td><strong>150</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('Prologozrock')"><td>#3</td><td><span class="clickable-name">Prologozrock</span></td><td>NA</td><td>PC</td><td><strong>150</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('Server_pvp')"><td>#4</td><td><span class="clickable-name">Server_pvp</span></td><td>NA</td><td>Mobile</td><td><strong>140</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('Taxbird')"><td>#5</td><td><span class="clickable-name">Taxbird</span></td><td>NA</td><td>Mobile</td><td><strong>50</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('New_guy')"><td>#6</td><td><span class="clickable-name">New_guy</span></td><td>NA</td><td>Mobile</td><td><strong>30</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('grant')"><td>#7</td><td><span class="clickable-name">grant</span></td><td>NA</td><td>Mobile</td><td><strong>30</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('COCO-_')"><td>#8</td><td><span class="clickable-name">COCO-_</span></td><td>NA</td><td>Mobile</td><td><strong>20</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('kylaz9')"><td>#9</td><td><span class="clickable-name">kylaz9</span></td><td>NA</td><td>Mobile</td><td><strong>10</strong></td></tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="player-view" class="view-section"><button class="back-btn" onclick="switchView('overall-view')">← Back</button><div id="player-card-container"></div></div>
+    <div id="kit-view" class="view-section"><button class="back-btn" onclick="switchView('overall-view')">← Back</button><h2 id="kit-view-title"></h2><div id="tier-groups-container"></div></div>
+    <script>
+        const playersDatabase = {
+            "Husky_Multicraft": { name: "Husky_Multicraft", region: "NA", device: "PC", points: 300, tiers: { "Dragonhide": "HT3", "Dragonhide KB": "HT3", "Emerald": "LT2", "Diamond": "HT3", "Emerald KB": "LT3" } },
+            "Parrot": { name: "Parrot", region: "NA", device: "Mobile", points: 150, tiers: { "Dragonhide": "HT4", "Dragonhide KB": "HT4", "Emerald": "HT5", "Diamond": "LT4", "Emerald KB": "HT5" } },
+            "Prologozrock": { name: "Prologozrock", region: "NA", device: "PC", points: 150, tiers: { "Dragonhide": "LT4", "Dragonhide KB": "LT4", "Emerald": "LT3", "Diamond": "HT4", "Emerald KB": "TBD" } },
+            "Server_pvp": { name: "Server_pvp", region: "NA", device: "Mobile", points: 140, tiers: { "Dragonhide": "LT4", "Dragonhide KB": "LT4", "Emerald": "HT5", "Diamond": "HT4", "Emerald KB": "HT5" } },
+            "Taxbird": { name: "Taxbird", region: "NA", device: "Mobile", points: 50, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "LT5", "Emerald KB": "LT5" } },
+            "New_guy": { name: "New_guy", region: "NA", device: "Mobile", points: 30, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "TBD", "Emerald KB": "TBD" } },
+            "grant": { name: "grant", region: "NA", device: "Mobile", points: 30, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "TBD", "Emerald KB": "TBD" } },
+            "COCO-_": { name: "COCO-_", region: "NA", device: "Mobile", points: 20, tiers: { "Dragonhide": "HT5", "Dragonhide KB": "TBD", "Emerald": "TBD", "Diamond": "TBD", "Emerald KB": "TBD" } },
+            "kylaz9": { name: "kylaz9", region: "NA", device: "Mobile", points: 10, tiers: { "Dragonhide": "TBD", "Dragonhide KB": "LT5", "Emerald": "TBD", "Diamond": "TBD", "Emerald KB": "TBD" } }
+        };
+        function switchView(viewId) {
+            document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(viewId).classList.add('active');
+            if(viewId === 'overall-view') document.querySelector('.overall-btn').classList.add('active');
+        }
+        function showPlayerCard(pName) {
+            const p = playersDatabase[pName];
+            if (!p) return;
+            let kitsHTML = '';
+            for (const [k, t] of Object.entries(p.tiers)) kitsHTML += `<div style="background: rgba(255,255,255,0.1); padding:10px; border-radius:5px; border: 1px solid #ffffff; margin-bottom:5px;"><strong>${k}:</strong> <span style="font-weight:bold; color:#64f3e5;">${t}</span></div>`;
