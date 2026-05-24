@@ -1,19 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en)
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multicraft Island Tiers</title>
     <style>
+        /* Base page layout */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #64f3e5;
             margin: 0;
             padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             color: #333;
+            min-height: 100vh;
+            box-sizing: border-box;
+            background-color: #0b1d28; /* Dark night sky backdrop */
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Fullscreen falling stars background canvas */
+        #starfall-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
         }
 
         .logo-container {
@@ -21,6 +37,7 @@
             width: 100%;
             margin-bottom: 20px;
             text-align: center;
+            z-index: 1;
         }
 
         .logo-container img {
@@ -39,6 +56,7 @@
             margin-bottom: 25px;
             width: 100%;
             max-width: 800px;
+            z-index: 1;
         }
 
         .nav-btn {
@@ -73,8 +91,9 @@
             background: rgba(255, 255, 255, 0.95);
             border-radius: 12px;
             padding: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             box-sizing: border-box;
+            z-index: 1;
         }
 
         .view-section.active {
@@ -147,7 +166,6 @@
         }
 
         .tier-header {
-            background: #2b7a71;
             color: white;
             padding: 8px 15px;
             font-weight: bold;
@@ -156,6 +174,7 @@
 
         .tier-header.ht { background: #b23b3b; }
         .tier-header.lt { background: #3b7bb2; }
+        .tier-header.tbd { background: #7f8c8d; }
 
         .tier-list {
             padding: 10px 15px;
@@ -183,6 +202,9 @@
     </style>
 </head>
 <body>
+
+    <!-- Animated Canvas Layer -->
+    <canvas id="starfall-canvas"></canvas>
 
     <!-- Logo -->
     <div class="logo-container">
@@ -262,7 +284,7 @@
         </div>
     </div>
 
-    <!-- JAVASCRIPT LOGIC CONTROLLER -->
+    <!-- JAVASCRIPT CONTROLLERS -->
     <script>
         // Central Player Database
         const playersDatabase = {
@@ -279,7 +301,7 @@
                 tiers: { "Dragonhide": "LT4", "Dragonhide KB": "LT4", "Emerald": "HT5", "Diamond": "HT4", "Emerald KB": "HT5" }
             },
             "taxbird": {
-                name: "taxbird", region: "NA", device: "Mobile", points: 0,
+                name: "taxbird", region: "NA", device: "Mobile", points: 50,
                 tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "LT5", "Emerald KB": "LT5" }
             }
         };
@@ -290,17 +312,4 @@
             document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
             
             document.getElementById(viewId).classList.add('active');
-            if(viewId === 'overall-view') {
-                document.querySelector('.overall-btn').classList.add('active');
-            }
-        }
 
-        // Render dynamic Player Profile Card
-        function showPlayerCard(playerName) {
-            const player = playersDatabase[playerName];
-            if (!player) return;
-
-            let kitsHTML = '';
-            for (const [kit, tier] of Object.entries(player.tiers)) {
-                kitsHTML += `
-                    <div style="background:#f1f2f6; padding:10px; border-radius:5px; border-left:4px solid #2b7a71;">
