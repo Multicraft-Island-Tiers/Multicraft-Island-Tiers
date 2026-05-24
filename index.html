@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multicraft Island Tiers</title>
     <style>
+        /* Base page layout */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -20,6 +21,7 @@
             overflow-x: hidden;
         }
 
+        /* Fullscreen falling stars background canvas */
         #starfall-canvas {
             position: fixed;
             top: 0;
@@ -45,6 +47,7 @@
             border-radius: 8px;
         }
 
+        /* Navigation Menu Buttons */
         .navigation-menu {
             display: flex;
             flex-wrap: wrap;
@@ -80,6 +83,7 @@
             background-color: #d35400;
         }
 
+        /* Views Container */
         .view-section {
             display: none;
             width: 100%;
@@ -102,6 +106,7 @@
             color: #64f3e5;
         }
 
+        /* Table Styling with white borders */
         .leaderboard-table {
             width: 100%;
             border-collapse: collapse;
@@ -134,6 +139,7 @@
             text-decoration: underline;
         }
 
+        /* Player Card View with white outlines */
         .player-card-detail {
             border: 2px solid #ffffff;
             border-radius: 8px;
@@ -161,6 +167,7 @@
             border: 1px solid #ffffff;
         }
 
+        /* Kit View Tiers Layout */
         .tier-group {
             margin-bottom: 20px;
             border-radius: 6px;
@@ -214,12 +221,15 @@
 </head>
 <body>
 
+    <!-- Animated Canvas Layer -->
     <canvas id="starfall-canvas"></canvas>
 
+    <!-- Logo -->
     <div class="logo-container">
         <img src="logo.png" alt="Multicraft Island Tiers Logo">
     </div>
 
+    <!-- Navigation Buttons Menu -->
     <div class="navigation-menu">
         <button class="nav-btn overall-btn active" onclick="switchView('overall-view')">Overall Leaderboard</button>
         <button class="nav-btn" onclick="switchKitView('Dragonhide')">Dragonhide</button>
@@ -229,10 +239,10 @@
         <button class="nav-btn" onclick="switchKitView('Emerald KB')">Emerald KB</button>
     </div>
 
-    <!-- 1. OVERALL VIEW -->
+    <!-- 1. OVERALL LEADERBOARD VIEW -->
     <div id="overall-view" class="view-section active">
         <h2>Overall Rankings</h2>
-        <p>Click any player's row to view their complete Player Card and Tiers.</p>
+        <p>Click any row or player's name to view their complete Player Card and Tiers.</p>
         <table class="leaderboard-table">
             <thead>
                 <tr>
@@ -243,78 +253,67 @@
                     <th>Points</th>
                 </tr>
             </thead>
-            <tbody id="leaderboard-data-rows"></tbody>
+            <tbody>
+                <tr class="clickable-row" onclick="showPlayerCard('Husky_Multicraft')">
+                    <td>#1</td>
+                    <td><span class="clickable-name">Husky_Multicraft</span></td>
+                    <td>NA</td>
+                    <td>PC</td>
+                    <td><strong>300</strong></td>
+                </tr>
+                <tr class="clickable-row" onclick="showPlayerCard('Parrot')">
+                    <td>#2</td>
+                    <td><span class="clickable-name">Parrot</span></td>
+                    <td>NA</td>
+                    <td>Mobile</td>
+                    <td><strong>150</strong></td>
+                </tr>
+                <tr class="clickable-row" onclick="showPlayerCard('Prologozrock')">
+                    <td>#3</td>
+                    <td><span class="clickable-name">Prologozrock</span></td>
+                    <td>NA</td>
+                    <td>PC</td>
+                    <td><strong>150</strong></td>
+                </tr>
+                <tr class="clickable-row" onclick="showPlayerCard('Server_pvp')">
+                    <td>#4</td>
+                    <td><span class="clickable-name">Server_pvp</span></td>
+                    <td>NA</td>
+                    <td>Mobile</td>
+                    <td><strong>140</strong></td>
+                </tr>
+                <tr class="clickable-row" onclick="showPlayerCard('Taxbird')">
+                    <td>#5</td>
+                    <td><span class="clickable-name">Taxbird</span></td>
+                    <td>NA</td>
+                    <td>Mobile</td>
+                    <td><strong>50</strong></td>
+                </tr>
+                <tr class="clickable-row" onclick="showPlayerCard('New_guy')">
+                    <td>#6</td>
+                    <td><span class="clickable-name">New_guy</span></td>
+                    <td>NA</td>
+                    <td>Mobile</td>
+                    <td><strong>20</strong></td>
+                </tr>
+                <tr class="clickable-row" onclick="showPlayerCard('grant')">
+                    <td>#7</td>
+                    <td><span class="clickable-name">grant</span></td>
+                    <td>NA</td>
+                    <td>Mobile</td>
+                    <td><strong>20</strong></td>
+                </tr>
+                <tr class="clickable-row" onclick="showPlayerCard('kylaz9')">
+                    <td>#8</td>
+                    <td><span class="clickable-name">kylaz9</span></td>
+                    <td>NA</td>
+                    <td>Mobile</td>
+                    <td><strong>10</strong></td>
+                </tr>
+            </tbody>
         </table>
     </div>
 
-    <!-- 2. PLAYER PROFILE CARD VIEW -->
+    <!-- 2. INDIVIDUAL PLAYER CARD VIEW -->
     <div id="player-view" class="view-section">
-        <button class="back-btn" onclick="switchView('overall-view')">← Back to Leaderboard</button>
-        <div id="player-card-container"></div>
-    </div>
 
-    <!-- 3. KITS HIERARCHY VIEW -->
-    <div id="kit-view" class="view-section">
-        <button class="back-btn" onclick="switchView('overall-view')">← Back to Leaderboard</button>
-        <h2 id="kit-view-title">Kit Tiers</h2>
-        <div id="tier-groups-container"></div>
-    </div>
-
-    <script>
-        const tierPointsMapping = {
-            "HT1": 100, "LT1": 90,
-            "HT2": 80,  "LT2": 70,
-            "HT3": 60,  "LT3": 50,
-            "HT4": 40,  "LT4": 30,
-            "HT5": 20,  "LT5": 10,
-            "TBD": 0
-        };
-
-        // CENTRAL DATABASE (Usernames Capitalized)
-        const playersDatabase = {
-            "Husky_Multicraft": {
-                name: "Husky_Multicraft", region: "NA", device: "PC",
-                tiers: { "Dragonhide": "HT3", "Dragonhide KB": "HT3", "Emerald": "LT2", "Diamond": "HT3", "Emerald KB": "LT3" }
-            },
-            "Prologozrock": {
-                name: "Prologozrock", region: "NA", device: "PC",
-                tiers: { "Dragonhide": "LT4", "Dragonhide KB": "LT4", "Emerald": "LT3", "Diamond": "HT4", "Emerald KB": "TBD" }
-            },
-            "Parrot": {
-                name: "Parrot", region: "NA", device: "Mobile",
-                tiers: { "Dragonhide": "HT4", "Dragonhide KB": "HT5", "Emerald": "HT5", "Diamond": "HT4", "Emerald KB": "LT4" }
-            },
-            "Server_pvp": {
-                name: "Server_pvp", region: "NA", device: "Mobile",
-                tiers: { "Dragonhide": "LT4", "Dragonhide KB": "LT4", "Emerald": "HT5", "Diamond": "HT4", "Emerald KB": "HT5" }
-            },
-            "Taxbird": {
-                name: "Taxbird", region: "NA", device: "Mobile",
-                tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "LT5", "Emerald KB": "LT5" }
-            }
-        };
-
-        function getPlayerTotalPoints(player) {
-            let total = 0;
-            for (const kit in player.tiers) {
-                const tierCode = player.tiers[kit];
-                total += tierPointsMapping[tierCode] || 0;
-            }
-            return total;
-        }
-
-        function buildOverallLeaderboard() {
-            const playersWithCalculatedPoints = Object.values(playersDatabase).map(player => {
-                return {
-                    ...player,
-                    calculatedPoints: getPlayerTotalPoints(player)
-                };
-            });
-
-            playersWithCalculatedPoints.sort((a, b) => b.calculatedPoints - a.calculatedPoints);
-            
-            let tableHTML = '';
-            playersWithCalculatedPoints.forEach((player, index) => {
-                tableHTML += `
-                    <tr class="clickable-row" onclick="showPlayerCard('\${player.name}')">
-                        <td>#\${index + 1}</td>
