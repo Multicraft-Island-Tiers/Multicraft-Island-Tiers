@@ -53,7 +53,7 @@
         <table class="leaderboard-table">
             <thead><tr><th>Rank</th><th>Name</th><th>Region</th><th>Device</th><th>Points</th></tr></thead>
             <tbody id="leaderboard-body">
-                <!-- Sorted automatically by JavaScript -->
+                <!-- Sorted perfectly via script -->
             </tbody>
         </table>
     </div>
@@ -62,18 +62,19 @@
     <script>
         const playersDatabase = {
             "Husky_Multicraft": { name: "Husky_Multicraft", region: "NA", device: "PC", points: 180, tiers: { "Dragonhide": "HT3", "Dragonhide KB": "HT3", "Emerald": "LT2", "Diamond": "HT3", "Emerald KB": "LT3" } },
+            "vort3xYT": { name: "vort3xYT", region: "EU", device: "PC", points: 70, tiers: { "Dragonhide": "TBD", "Dragonhide KB": "HT2", "Emerald": "TBD", "Diamond": "TBD", "Emerald KB": "TBD" } },
             "Parrot": { name: "Parrot", region: "NA", device: "Mobile", points: 73, tiers: { "Dragonhide": "HT4", "Dragonhide KB": "HT4", "Emerald": "HT5", "Diamond": "LT4", "Emerald KB": "HT5" } },
-            "Prologozrock": { name: "Prologozrock", region: "NA", device: "PC", points: 63, tiers: { "Dragonhide": "LT4", "Dragonhide KB": "LT4", "Emerald": "LT3", "Diamond": "HT4", "Emerald KB": "TBD" } },
-            "Server_pvp": { name: "Server_pvp", region: "NA", device: "Mobile", points: 66, tiers: { "Dragonhide": "LT4", "Dragonhide KB": "LT4", "Emerald": "HT5", "Diamond": "HT4", "Emerald KB": "HT5" } },
             "Herobrine": { name: "Herobrine", region: "NA", device: "Controller", points: 70, tiers: { "Dragonhide": "HT4", "Dragonhide KB": "LT3", "Emerald": "HT4", "Diamond": "TBD", "Emerald KB": "TBD" } },
-            "vort3xYT": { name: "vort3xYT", region: "EU", device: "PC", points: 75, tiers: { "Dragonhide": "TBD", "Dragonhide KB": "HT2", "Emerald": "TBD", "Diamond": "TBD", "Emerald KB": "TBD" } },
+            "Server_pvp": { name: "Server_pvp", region: "NA", device: "Mobile", points: 66, tiers: { "Dragonhide": "LT4", "Dragonhide KB": "LT4", "Emerald": "HT5", "Diamond": "HT4", "Emerald KB": "HT5" } },
+            "Prologozrock": { name: "Prologozrock", region: "NA", device: "PC", points: 63, tiers: { "Dragonhide": "LT4", "Dragonhide KB": "LT4", "Emerald": "LT3", "Diamond": "HT4", "Emerald KB": "TBD" } },
             "kylaz9": { name: "kylaz9", region: "EU", device: "Mobile", points: 20, tiers: { "Dragonhide": "HT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "LT5", "Emerald KB": "LT5" } },
+            "Jamier1235": { name: "Jamier1235", region: "NA", device: "Mobile", points: 17, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "TBD", "Emerald KB": "HT5" } },
             "aaa666": { name: "aaa666", region: "NA", device: "Mobile", points: 15, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "LT5", "Emerald KB": "LT5" } },
             "Taxbird": { name: "Taxbird", region: "NA", device: "Mobile", points: 15, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "LT5", "Emerald KB": "LT5" } },
-            "Jamier1235": { name: "Jamier1235", region: "NA", device: "Mobile", points: 17, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "TBD", "Emerald KB": "HT5" } },
             "Marwan": { name: "Marwan", region: "NA", device: "Mobile", points: 9, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "TBD", "Diamond": "TBD", "Emerald KB": "LT5" } },
             "New_guy": { name: "New_guy", region: "NA", device: "Mobile", points: 9, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "TBD", "Emerald KB": "TBD" } },
             "grant": { name: "grant", region: "NA", device: "Mobile", points: 9, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "TBD", "Emerald KB": "TBD" } },
+            "LATAMM": { name: "LATAMM", region: "NA", device: "Mobile", points: 9, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "TBD", "Emerald": "LT5", "Diamond": "LT5", "Emerald KB": "TBD" } },
             "COCO-_": { name: "COCO-_", region: "NA", device: "Mobile", points: 8, tiers: { "Dragonhide": "HT5", "Dragonhide KB": "TBD", "Emerald": "TBD", "Diamond": "TBD", "Emerald KB": "TBD" } }
         };
 
@@ -99,6 +100,7 @@
             document.getElementById(viewId).classList.add('active');
             if(viewId === 'overall-view') document.querySelector('.overall-btn').classList.add('active');
         }
+
         function showPlayerCard(pName) {
             const p = playersDatabase[pName];
             if (!p) return;
