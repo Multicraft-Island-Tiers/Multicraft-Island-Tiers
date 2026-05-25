@@ -4,19 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multicraft Island Tiers | Competitive Hub</title>
-    <!-- PREVENTS FONT STALLS: Preloads your exact uppercase font asset natively -->
-    <link rel="preload" href="MultiCraftFont.tff" as="font" type="font/truetype" crossorigin>
     <style>
-        /* Connects your uploaded custom server game font asset natively */
+        /* CONNECTED TO YOUR EXACT FILENAME SENSE: Loads .ttf from repo natively */
         @font-face {
             font-family: 'MulticraftCustom';
-            src: url('MultiCraftFont.tff') format('truetype');
+            src: url('MultiCraftFont.ttf') format('truetype');
             font-weight: normal;
             font-style: normal;
-            font-display: swap; /* Forces fallback font to render instantly to avoid dark screens */
+            font-display: swap; /* Forces system text backup to load instead of freezing up on dark screen */
         }
 
-        /* Base Application Framework Styles - High-Fidelity Space Canvas */
+        /* Base Application Framework Styles - High-Fidelity Space Canvas Theme */
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             margin: 0; 
@@ -64,7 +62,11 @@
         .filter-reset-btn:hover { background: rgba(255,255,255,0.1); color: #ffffff; }
 
         /* Layout Layer Viewport Visibility Elements definition */
-        .tab-panel-node { display: block; width: 100%; max-width: 1100px; margin: 0 auto; }
+        .tab-panel-node { width: 100%; max-width: 1100px; margin: 0 auto; }
+        
+        /* UNBREAKABLE RE-RENDER RULE: Forces your layout container to remain active */
+        #view-layer-overall { display: block !important; }
+        
         .dashboard-layout-wrapper { display: flex; flex-direction: row; gap: 20px; width: 100%; position: relative; }
         .main-content-panel { flex: 3.2; display: flex; flex-direction: column; gap: 8px; box-sizing: border-box; }
         .sidebar-wrapper { flex: 1; display: flex; flex-direction: column; gap: 15px; }
@@ -113,6 +115,7 @@
 
         /* Sidebar points legend box configuration framework */
         .sidebar-panel { background: rgba(4, 15, 25, 0.75); border: 1px solid rgba(86, 239, 170, 0.12); border-radius: 12px; padding: 18px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4); box-sizing: border-box; }
+        .sidebar-panel h3 { font-family: 'MulticraftCustom', monospace !important; color: #e67e22; font-size: 0.75rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 10px; margin: 0 0 10px 0; text-align: center; text-transform: uppercase; }
             <!-- Right-Side Structural Columns Layout Wrapper Pane -->
             <div class="sidebar-wrapper">
                 
@@ -281,9 +284,9 @@
                         '<span class="table-pill ' + devicePill + '">' + player.device.substring(0,3) + '</span>' +
                     '</div>' +
                     '<div class="row-mini-kits-matrix">' +
-                        '<div class="row-mini-kit-slot ' + (eVal === '-' ? 'empty-matrix-slot' : '') + '"><img src="https://emerald-sword-url.png" onerror="this.src=\'https://minecraft.wiki\'" class="row-mini-kit-icon"><span class="row-mini-kit-tier">' + eVal + '</span></div>' +
-                        '<div class="row-mini-kit-slot ' + (dVal === '-' ? 'empty-matrix-slot' : '') + '"><img src="https://shield-url.png" onerror="this.src=\'https://minecraft.wiki\'" class="row-mini-kit-icon"><span class="row-mini-kit-tier">' + dVal + '</span></div>' +
-                        '<div class="row-mini-kit-slot ' + (mVal === '-' ? 'empty-matrix-slot' : '') + '"><img src="https://diamond-sword-url.png" onerror="this.src=\'https://minecraft.wiki\'" class="row-mini-kit-icon"><span class="row-mini-kit-tier">' + mVal + '</span></div>' +
+                        '<div class="row-mini-kit-slot ' + (eVal === '-' ? 'empty-matrix-slot' : '') + '"><img src="https://minecraft.wiki" class="row-mini-kit-icon"><span class="row-mini-kit-tier">' + eVal + '</span></div>' +
+                        '<div class="row-mini-kit-slot ' + (dVal === '-' ? 'empty-matrix-slot' : '') + '"><img src="https://minecraft.wiki" class="row-mini-kit-icon"><span class="row-mini-kit-tier">' + dVal + '</span></div>' +
+                        '<div class="row-mini-kit-slot ' + (mVal === '-' ? 'empty-matrix-slot' : '') + '"><img src="https://minecraft.wiki" class="row-mini-kit-icon"><span class="row-mini-kit-tier">' + mVal + '</span></div>' +
                     '</div>' +
                     '<div class="row-score-block">' +
                         '<div class="row-points-total">' + player.points + '<span>PTS</span></div>' +
@@ -295,169 +298,7 @@
         }
 
         // Live Sub-Screen Generator: Populates 3D Medalist Podiums & 5-Column Division Grids
-        function rebuildKitBoardMatrix(columnKey, formattedTitle) {
-            const targetCell = document.getElementById('overall-players-list-target');
-            const podiumSpot = document.getElementById('podium-arena-injection-spot');
-            if (!targetCell || !podiumSpot) return;
-
-            const activeDataset = getFilteredCollection('kit');
-            const stacks = { "T1": [], "T2": [], "T3": [], "T4": [], "T5": [] };
-            let eligibleList = [];
-
-            activeDataset.forEach(player => {
-                const rawTier = player[columnKey];
-                if (!rawTier || rawTier === 'TBD') return;
-                
-                const tierNumber = rawTier.substring(2); 
-                const targetStackKey = 'T' + tierNumber;
-                
-                if (stacks[targetStackKey]) {
-                    const regionPill = player.region.toLowerCase() === 'na' ? 'pill-na' : 'pill-eu';
-                    let devicePill = 'pill-pc';
-                    if (player.device.toLowerCase() === 'mobile') devicePill = 'pill-mob';
-                    if (player.device.toLowerCase() === 'controller') devicePill = 'pill-con';
-
-                    const layoutHtml = '<div class="mini-kit-card" onclick="setActivePlayerParam(\'' + player.name + '\')">' +
-                        '<div class="mini-card-name">' + player.name + '</div>' +
-                        '<div class="mini-card-row">' +
-                            '<div>' +
-                                '<span class="table-pill ' + regionPill + '" style="font-size:0.5rem; padding:1px 4px; margin-right:4px;">' + player.region + '</span>' +
-                                '<span class="table-pill ' + devicePill + '" style="font-size:0.5rem; padding:1px 4px;">' + player.device.substring(0,3) + '</span>' +
-                            '</div>' +
-                            '<div class="mini-card-tier">' + rawTier + '</div>' +
-                        '</div>' +
-                    '</div>';
-                    
-                    const playerPayload = { html: layoutHtml, tier: rawTier, name: player.name };
-                    stacks[targetStackKey].push(playerPayload);
-                    eligibleList.push(playerPayload);
-                }
-            });
-
-            const globalTierWeightSystem = ["HT1", "LT1", "HT2", "LT2", "HT3", "LT3", "HT4", "LT4", "HT5", "LT5"];
-            eligibleList.sort((a, b) => globalTierWeightSystem.indexOf(a.tier) - globalTierWeightSystem.indexOf(b.tier));
-
-            let p1 = { name: "Empty", tier: "-" }, p2 = { name: "Empty", tier: "-" }, p3 = { name: "Empty", tier: "-" };
-            let o1 = "", o2 = "", o3 = "";
-            let s1 = "none", s2 = "none", s3 = "none";
-            let op1 = "0.25", op2 = "0.25", op3 = "0.25";
-
-            if (eligibleList.length > 0) { p1 = eligibleList[0]; o1 = "onclick=\"setActivePlayerParam('" + p1.name + "')\""; s1 = "block"; op1 = "1"; }
-    <script>
-        // Multi-Layer Collection Filter - Calculates search queries, regions, and device modules concurrently
-        function getFilteredCollection(viewMode) {
-            const searchTerms = document.getElementById('global-search-input-field').value.toLowerCase().trim();
-            const filterRegion = document.getElementById('region-filter-select-node').value;
-            const filterDevice = document.getElementById('device-filter-select-node').value;
-            const filterKitDropdown = document.getElementById('kit-filter-select-node').value;
-
-            return Object.values(globalCompetitiveDatabase).filter(player => {
-                if (searchTerms && !player.name.toLowerCase().includes(searchTerms)) return false;
-                if (filterRegion !== 'all' && player.region.toLowerCase() !== filterRegion) return false;
-                if (filterDevice !== 'all' && player.device.toLowerCase() !== filterDevice) return false;
-                
-                if (viewMode === 'overall' && filterKitDropdown !== 'all') {
-                    const rawVal = player[filterKitDropdown];
-                    if (!rawVal || rawVal === 'TBD') return false;
-                }
-                return true;
-            });
-        }
-
-        // Window Screen Routing Switcher - Controls layout panels dynamically across screens
-        function toggleLeaderboardScreen(targetViewId, controlButton) {
-            currentActiveView = targetViewId.toLowerCase().trim();
-            
-            document.querySelectorAll('.nav-tab-trigger').forEach(btn => btn.classList.remove('active-trigger'));
-            if (controlButton) controlButton.classList.add('active-trigger');
-            
-            const cardOverlay = document.getElementById('player-profile-view-container');
-            if (cardOverlay) cardOverlay.classList.remove('active-modal');
-
-            const kitDropdown = document.getElementById('kit-filter-select-node');
-            if (kitDropdown) {
-                if (kitColumnMap[currentActiveView]) {
-                    kitDropdown.value = currentActiveView;
-                    kitDropdown.disabled = true;
-                } else {
-                    kitDropdown.value = 'all';
-                    kitDropdown.disabled = false;
-                }
-            }
-
-            evaluateViewRefreshRouter();
-        }
-
-        function applyAdvancedMatrixFilters() { evaluateViewRefreshRouter(); }
-        function evaluateLiveSearchFilters() { evaluateViewRefreshRouter(); }
-
-        function evaluateViewRefreshRouter() {
-            const headerNode = document.getElementById('board-display-header-title');
-            const podiumSpot = document.getElementById('podium-arena-injection-spot');
-
-            if (currentActiveView === 'overall') {
-                if (headerNode) headerNode.innerText = "Overall Rankings Menu";
-                if (podiumSpot) podiumSpot.innerHTML = "";
-                renderOverallStandardBoard();
-            } else if (kitColumnMap[currentActiveView]) {
-                if (headerNode) headerNode.innerText = currentActiveView.toUpperCase() + " Board";
-                rebuildKitBoardMatrix(kitColumnMap[currentActiveView]);
-            }
-        }
-
-        // Standard Home List Board Layout Generator (Rows feature miniature weapon kit columns)
-        function renderOverallStandardBoard() {
-            const targetCell = document.getElementById('overall-players-list-target');
-            if (!targetCell) return;
-
-            const activeDataset = getFilteredCollection('overall');
-            const sortedRoster = activeDataset.sort((a, b) => b.points - a.points);
-
-            if (sortedRoster.length === 0) {
-                targetCell.innerHTML = '<div style="text-align:center; padding:40px; font-family:\'MulticraftCustom\', monospace; color:rgba(255,255,255,0.25); font-size:0.75rem;">NO COMPETITORS FOUND MATCHING CRITERIA</div>';
-                return;
-            }
-
-            let htmlString = '';
-            sortedRoster.forEach((player, index) => {
-                const regionPill = player.region.toLowerCase() === 'na' ? 'pill-na' : 'pill-eu';
-                let devicePill = 'pill-pc';
-                if (player.device.toLowerCase() === 'mobile') devicePill = 'pill-mob';
-                if (player.device.toLowerCase() === 'controller') devicePill = 'pill-con';
-
-                const eVal = player.emerald === 'TBD' ? '-' : player.emerald;
-                const dVal = player.dragonhide === 'TBD' ? '-' : player.dragonhide;
-                const mVal = player.diamond === 'TBD' ? '-' : player.diamond;
-
-                htmlString += '<div class="roster-card-row" onclick="setActivePlayerParam(\'' + player.name + '\')">' +
-                    '<div class="row-rank-num">#' + (index + 1) + '</div>' +
-                    '<div class="row-avatar-box">' +
-                        '<img src="https://mc-heads.net' + player.name + '/32" alt="Face" onerror="this.src=\'https://mc-heads.netSteve/32\'">' +
-                    '</div>' +
-                    '' +
-                        '<div class="row-player-name">' + player.name + '</div>' +
-                        '<div class="row-custom-title">' + player.rankTitle + '</div>' +
-                    '</div>' +
-                    '<div class="row-capsules-block">' +
-                        '<span class="table-pill ' + regionPill + '">' + player.region + '</span>' +
-                        '<span class="table-pill ' + devicePill + '">' + player.device.substring(0,3) + '</span>' +
-                    '</div>' +
-                    '<div class="row-mini-kits-matrix">' +
-                        '<div class="row-mini-kit-slot ' + (eVal === '-' ? 'empty-matrix-slot' : '') + '"><img src="https://emerald-sword-url.png" onerror="this.src=\'https://minecraft.wiki\'" class="row-mini-kit-icon"><span class="row-mini-kit-tier">' + eVal + '</span></div>' +
-                        '<div class="row-mini-kit-slot ' + (dVal === '-' ? 'empty-matrix-slot' : '') + '"><img src="https://shield-url.png" onerror="this.src=\'https://minecraft.wiki\'" class="row-mini-kit-icon"><span class="row-mini-kit-tier">' + dVal + '</span></div>' +
-                        '<div class="row-mini-kit-slot ' + (mVal === '-' ? 'empty-matrix-slot' : '') + '"><img src="https://diamond-sword-url.png" onerror="this.src=\'https://minecraft.wiki\'" class="row-mini-kit-icon"><span class="row-mini-kit-tier">' + mVal + '</span></div>' +
-                    '</div>' +
-                    '<div class="row-score-block">' +
-                        '<div class="row-points-total">' + player.points + '<span>PTS</span></div>' +
-                    '</div>' +
-                '</div>';
-            });
-            
-            targetCell.innerHTML = htmlString;
-        }
-
-        // Live Sub-Screen Generator: Populates 3D Medalist Podiums & 5-Column Division Grids
-        function rebuildKitBoardMatrix(columnKey, formattedTitle) {
+        function rebuildKitBoardMatrix(columnKey) {
             const targetCell = document.getElementById('overall-players-list-target');
             const podiumSpot = document.getElementById('podium-arena-injection-spot');
             if (!targetCell || !podiumSpot) return;
