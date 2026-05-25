@@ -3,320 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multicraft Island Tiers | Competitive Leaderboard</title>
-    <!-- Premium pixel font for headers and tier slots -->
-    <link href="https://googleapis.com" rel="stylesheet">
+    <title>Multicraft Island Tiers</title>
     <style>
         /* Base page layout */
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            margin: 0; 
-            padding: 30px 20px; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            color: #ffffff; 
-            min-height: 100vh; 
-            box-sizing: border-box; 
-            background-color: #0b1d28; 
-            overflow-x: hidden; 
-        }
-        
-        .logo-container { 
-            max-width: 600px; 
-            width: 100%; 
-            margin-bottom: 25px; 
-            text-align: center; 
-            z-index: 10; 
-        }
-        .logo-container img { 
-            width: 100%; 
-            height: auto; 
-            border-radius: 10px; 
-            border: 1px solid rgba(100, 243, 229, 0.25);
-            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.65);
-        }
-        
-        .dashboard-layout-wrapper {
-            display: flex;
-            flex-direction: row;
-            gap: 25px;
-            width: 100%;
-            max-width: 1100px;
-            z-index: 10;
-        }
-        
-        .main-content-panel { 
-            flex: 3;
-            background: rgba(0, 0, 0, 0.6); 
-            border: 2px solid #ffffff; 
-            border-radius: 14px; 
-            padding: 25px; 
-            box-sizing: border-box; 
-            backdrop-filter: blur(8px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-        }
-        
-        .main-content-panel h2, .sidebar-panel h3 { 
-            font-family: 'Press Start 2P', monospace;
-            line-height: 1.5;
-            margin-top: 0; 
-            color: #64f3e5; 
-            font-size: 1.25rem;
-            border-bottom: 2px solid #ffffff; 
-            padding-bottom: 12px; 
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px rgba(100, 243, 229, 0.2);
-        }
-        
-        .sidebar-panel {
-            flex: 1;
-            background: rgba(14, 39, 53, 0.8);
-            border: 2px solid #64f3e5;
-            border-radius: 14px;
-            padding: 20px;
-            box-sizing: border-box;
-            backdrop-filter: blur(8px);
-            height: fit-content;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-        }
-        .sidebar-panel h3 {
-            color: #e67e22;
-            font-size: 1.05rem;
-        }
-        
-        .leaderboard-table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            margin-top: 10px; 
-        }
-        .leaderboard-table th, .leaderboard-table td { 
-            padding: 14px 12px; 
-            border: 1px solid #ffffff; 
-            text-align: left; 
-        }
-        .leaderboard-table th { 
-            font-family: 'Press Start 2P', monospace;
-            font-size: 0.7rem;
-            background-color: rgba(43, 122, 113, 0.9); 
-        }
-        .leaderboard-table tbody tr:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-        }
-        
-        .player-link-btn { 
-            background: none; 
-            border: none; 
-            color: #64f3e5; 
-            font-weight: bold; 
-            text-decoration: underline; 
-            font-size: 1rem; 
-            cursor: pointer; 
-            padding: 0; 
-            font-family: inherit; 
-            text-align: left;
-        }
-        .player-link-btn:hover { 
-            color: #ffffff; 
-            text-shadow: 0 0 8px #64f3e5; 
-        }
-        
-        /* 100% Stable CSS-Driven Overlay System */
-        .profile-overlay-container {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(5, 12, 17, 0.95);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        
-        /* The CSS Target Rule: Tells the site exactly when to show a card */
-        .profile-overlay-container:target {
-            display: flex;
-        }
-        
-        .premium-profile-card {
-            display: flex;
-            flex-direction: row;
-            width: 100%;
-            max-width: 820px;
-            background: #06131c;
-            border: 2px solid rgba(100, 243, 229, 0.3);
-            border-radius: 12px;
-            box-shadow: 0 0 30px rgba(100, 243, 229, 0.15);
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .close-x-trigger {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.6);
-            border: none;
-            font-family: 'Press Start 2P', monospace;
-            font-size: 0.8rem;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: background 0.2s;
-        }
-        .close-x-trigger:hover {
-            background: rgba(192, 57, 43, 0.8);
-            color: #fff;
-        }
-        
-        /* Left Column Structure */
-        .card-left-column {
-            flex: 1;
-            padding: 35px;
-            display: flex;
-            flex-direction: column;
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
-            box-sizing: border-box;
-        }
-        .rank-badge {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 0.65rem;
-            color: #ffd700;
-            border: 1.5px solid #ffd700;
-            padding: 4px 10px;
-            border-radius: 20px;
-            width: fit-content;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-        .card-player-title {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 1.6rem;
-            color: #ffffff;
-            margin: 0 0 15px 0;
-            word-break: break-all;
-        }
-        .tags-row {
-            display: flex;
-            gap: 8px;
-            margin-bottom: auto;
-        }
-        .meta-pill {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 0.6rem;
-            color: #ef5350;
-            border: 1px solid #ef5350;
-            padding: 3px 8px;
-            border-radius: 4px;
-            text-transform: uppercase;
-        }
-        .meta-pill.device-pill {
-            color: #ab47bc;
-            border-color: #ab47bc;
-        }
-        .score-display-node {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 1.75rem;
-            color: #ffd700;
-            margin-top: 30px;
-        }
-        .score-display-node span {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.4);
-            margin-left: 5px;
-        }
-        
-        /* Right Column Grid Structure matching your layout image */
-        .card-right-column {
-            flex: 1.2;
-            padding: 35px;
-            box-sizing: border-box;
-        }
-        .right-column-header {
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            color: rgba(255, 255, 255, 0.4);
-            margin: 0 0 25px 0;
-        }
-        .kits-display-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-        .kit-slot-circle {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-        .circle-frame {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            border: 2px solid #64f3e5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 8px;
-            background: rgba(255, 255, 255, 0.02);
-            font-family: 'Press Start 2P', monospace;
-            font-size: 0.75rem;
-            color: #ffffff;
-            box-shadow: 0 0 12px rgba(100, 243, 229, 0.1);
-        }
-        .circle-frame.empty-frame {
-            border-color: rgba(255, 255, 255, 0.05);
-            color: rgba(255, 255, 255, 0.15);
-            box-shadow: none;
-        }
-        .kit-slot-name {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.6);
-            white-space: nowrap;
-        }
-        
-        .points-legend-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .points-legend-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 11px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            font-size: 0.95rem;
-        }
-        .points-legend-item:last-child {
-            border-bottom: none;
-        }
-        .points-legend-item span.tier-id-tag {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 0.65rem;
-            font-weight: bold;
-            color: #64f3e5;
-        }
-        .points-legend-item span.points-weight-tag {
-            color: #e67e22;
-            font-weight: 600;
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; color: #fff; min-height: 100vh; box-sizing: border-box; background-color: #0b1d28; overflow-x: hidden; }
+        #starfall-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; }
+        .logo-container { max-width: 600px; width: 100%; margin-bottom: 20px; text-align: center; z-index: 1; }
+        .logo-container img { width: 100%; max-width: 600px; height: auto; border-radius: 8px; }
+        .navigation-menu { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 25px; width: 100%; max-width: 800px; z-index: 1; }
+        .nav-btn { background-color: #1a4d47; color: white; border: 1px solid rgba(255,255,255,0.2); padding: 10px 18px; font-weight: bold; border-radius: 6px; cursor: pointer; transition: background 0.2s; font-size: 0.9rem; }
+        .nav-btn:hover, .nav-btn.active { background-color: #2b7a71; box-shadow: 0 0 8px rgba(100, 243, 229, 0.4); }
+        .nav-btn.overall-btn { background-color: #e67e22; }
+        .nav-btn.overall-btn:hover, .nav-btn.overall-btn.active { background-color: #d35400; }
+        .view-section { display: none; width: 100%; max-width: 800px; background: rgba(0, 0, 0, 0.4); border: 2px solid #ffffff; border-radius: 12px; padding: 20px; box-sizing: border-box; z-index: 1; }
+        .view-section.active { display: block; }
+        .view-section h2 { margin-top: 0; color: #64f3e5; }
+        .leaderboard-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        .leaderboard-table th, .leaderboard-table td { padding: 12px; text-align: left; border: 1px solid #ffffff; }
+        .leaderboard-table th { background-color: rgba(43, 122, 113, 0.8); }
+        .clickable-row { cursor: pointer; }
+        .clickable-row:hover { background-color: rgba(255, 255, 255, 0.15); }
+        .clickable-name { color: #64f3e5; font-weight: bold; text-decoration: underline; }
+        .player-card-detail { border: 2px solid #ffffff; border-radius: 8px; padding: 20px; margin-top: 15px; background: rgba(0,0,0,0.3); }
+        .player-card-title { font-size: 1.8rem; color: #64f3e5; margin-top: 0; border-bottom: 2px solid #ffffff; padding-bottom: 5px; }
+        .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 20px; background: rgba(255,255,255,0.1); padding: 10px; border-radius: 6px; border: 1px solid #ffffff; }
+        .tier-group { margin-bottom: 20px; border-radius: 6px; border: 2px solid #ffffff; overflow: hidden; background: rgba(0,0,0,0.2); }
+        .tier-header { color: white; padding: 8px 15px; font-weight: bold; font-size: 1.1rem; border-bottom: 1px solid #ffffff; }
+        .tier-header.ht { background: rgba(178, 59, 59, 0.85); }
+        .tier-header.lt { background: rgba(59, 123, 178, 0.85); }
+        .tier-header.tbd { background: rgba(127, 140, 141, 0.85); }
+        .tier-list { padding: 10px 15px; list-style: none; margin: 0; }
+        .tier-list li { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.2); }
+        .back-btn { background: #7f8c8d; color: white; border: 1px solid #fff; padding: 8px 15px; border-radius: 4px; cursor: pointer; margin-bottom: 15px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <canvas id="starfall-canvas"></canvas>
+    <div class="logo-container"><img src="logo.png" alt="Multicraft Island Tiers Logo"></div>
+    <div class="navigation-menu">
+        <button class="nav-btn overall-btn active" onclick="showOverallView()">Overall Leaderboard</button>
+        <button class="nav-btn" onclick="switchKitView('Dragonhide')">Dragonhide</button>
+        <button class="nav-btn" onclick="switchKitView('Dragonhide KB')">Dragonhide KB</button>
+        <button class="nav-btn" onclick="switchKitView('Emerald')">Emerald</button>
+        <button class="nav-btn" onclick="switchKitView('Diamond')">Diamond</button>
+        <button class="nav-btn" onclick="switchKitView('Emerald KB')">Emerald KB</button>
+    </div>
+    
+    <!-- Overall Leaderboard View Section -->
+    <div id="overall-view" class="view-section active">
+        <h2>Overall Rankings</h2>
+        <table class="leaderboard-table">
+            <thead><tr><th>Rank</th><th>Name</th><th>Region</th><th>Device</th><th>Points</th></tr></thead>
+            <tbody>
+                <tr class="clickable-row" onclick="showPlayerCard('Husky_Multicraft')"><td>#1</td><td><span class="clickable-name">Husky_Multicraft</span></td><td>NA</td><td>PC</td><td><strong>180</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('Prologozrock')"><td>#2</td><td><span class="clickable-name">Prologozrock</span></td><td>NA</td><td>PC</td><td><strong>85</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('Parrot')"><td>#3</td><td><span class="clickable-name">Parrot</span></td><td>NA</td><td>Mobile</td><td><strong>81</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('Herobrine')"><td>#4</td><td><span class="clickable-name">Herobrine</span></td><td>NA</td><td>Controller</td><td><strong>80</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('vort3xYT')"><td>#5</td><td><span class="clickable-name">vort3xYT</span></td><td>EU</td><td>PC</td><td><strong>75</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('Server_pvp')"><td>#6</td><td><span class="clickable-name">Server_pvp</span></td><td>NA</td><td>Mobile</td><td><strong>71</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('kylaz9')"><td>#7</td><td><span class="clickable-name">kylaz9</span></td><td>EU</td><td>Mobile</td><td><strong>20</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('Jamier1235')"><td>#8</td><td><span class="clickable-name">Jamier1235</span></td><td>NA</td><td>Mobile</td><td><strong>17</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('aaa666')"><td>#9</td><td><span class="clickable-name">aaa666</span></td><td>NA</td><td>Mobile</td><td><strong>15</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('Benjamin')"><td>#10</td><td><span class="clickable-name">Benjamin</span></td><td>NA</td><td>Mobile</td><td><strong>15</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('Booky')"><td>#11</td><td><span class="clickable-name">Booky</span></td><td>NA</td><td>Mobile</td><td><strong>15</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('Taxbird')"><td>#12</td><td><span class="clickable-name">Taxbird</span></td><td>NA</td><td>Mobile</td><td><strong>15</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('Marwan')"><td>#13</td><td><span class="clickable-name">Marwan</span></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('New_guy')"><td>#14</td><td><span class="clickable-name">New_guy</span></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('grant')"><td>#15</td><td><span class="clickable-name">grant</span></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('LATAMM')"><td>#16</td><td><span class="clickable-name">LATAMM</span></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('COCO-_')"><td>#17</td><td><span class="clickable-name">COCO-_</span></td><td>NA</td><td>Mobile</td><td><strong>8</strong></td></tr>
+            </tbody>
+        </table>
+    </div>
 
-        @media (max-width: 800px) {
-            .dashboard-layout-wrapper, .premium-profile-card {
-                flex-direction: column;
-                align-items: center;
-            }
-            .sidebar-panel, .card-left-column {
+    <!-- Player Card Details Section -->
+    <div id="player-view" class="view-section">
+        <button class="back-btn" onclick="showOverallView()">← Back</button>
+        <div id="player-card-container"></div>
+    </div>
+
+    <!-- Kit Tier Hierarchy Section -->
+    <div id="kit-view" class="view-section">
+        <button class="back-btn" onclick="showOverallView()">← Back</button>
+        <h2 id="kit-view-title"></h2>
+        <div id="tier-groups-container"></div>
+    </div>
+
+    <script>
+        const playersDatabase = {
+            "Husky_Multicraft": { name: "Husky_Multicraft", region: "NA", device: "PC", points: 180, tiers: { "Dragonhide": "HT3", "Dragonhide KB": "HT3", "Emerald": "LT2", "Diamond": "HT3", "Emerald KB": "LT3" } },
+            "Prologozrock": { name: "Prologozrock", region: "NA", device: "PC", points: 85, tiers: { "Dragonhide": "LT4", "Dragonhide KB": "LT4", "Emerald": "LT3", "Diamond": "HT4", "Emerald KB": "TBD" } },
+            "Parrot": { name: "Parrot", region: "NA", device: "Mobile", points: 81, tiers: { "Dragonhide": "HT4", "Dragonhide KB": "HT4", "Emerald": "HT5", "Diamond": "LT4", "Emerald KB": "HT5" } },
+            "Herobrine": { name: "Herobrine", region: "NA", device: "Controller", points: 80, tiers: { "Dragonhide": "HT4", "Dragonhide KB": "LT3", "Emerald": "HT4", "Diamond": "TBD", "Emerald KB": "TBD" } },
+            "vort3xYT": { name: "vort3xYT", region: "EU", device: "PC", points: 75, tiers: { "Dragonhide": "TBD", "Dragonhide KB": "HT2", "Emerald": "TBD", "Diamond": "TBD", "Emerald KB": "TBD" } },
+            "Server_pvp": { name: "Server_pvp", region: "NA", device: "Mobile", points: 71, tiers: { "Dragonhide": "LT4", "Dragonhide KB": "LT4", "Emerald": "HT5", "Diamond": "HT4", "Emerald KB": "HT5" } },
