@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multicraft Island Tiers | Competitive Hub</title>
     <style>
-        /* FIXED RULE: Loads your exact file name natively from repository files */
+        /* FIXED ENGINE RULE: Loads your exact capitalization filename natively from your repo */
         @font-face {
             font-family: 'MulticraftCustom';
-            src: url('MultiCraftfont.tff') format('truetype');
+            src: url('MultiCraftFont.tff') format('truetype');
             font-weight: normal;
             font-style: normal;
         }
@@ -50,7 +50,7 @@
         .nav-tab-trigger:hover, .nav-tab-trigger.active-trigger { color: #56efaa; border-color: #56efaa; background: rgba(86, 239, 170, 0.04); box-shadow: 0 0 10px rgba(86, 239, 170, 0.15); }
         
         /* Layout Layer Viewport Visibility Elements definition */
-        .tab-panel-node { display: none; width: 100%; max-width: 1200px; }
+        .tab-panel-node { width: 100%; max-width: 1200px; }
         
         /* CRITICAL MASTER CONFIG: Forces layout element blocks to open 100% visible on launch */
         #view-layer-overall { display: block !important; }
@@ -113,9 +113,10 @@
         
         /* High-fidelity square block player profiles matching template geometry layout */
         .mini-kit-card { 
-            background: rgba(4, 12, 20, 0.9); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 6px; padding: 10px; 
+                </div> <!-- Closes #overall-players-list-target securely -->
+            </div> <!-- Closes .main-content-panel securely -->
 
-            <!-- Right-Side Structural Sidebar Panel Grid Columns Layout Wrapper -->
+            <!-- Right-Side Structural Sidebar Panel Layout Column -->
             <div style="flex: 1; display: flex; flex-direction: column; gap: 15px;">
                 
                 <!-- Pinned Corner Side Box Custom Invite Code Box -->
@@ -124,7 +125,7 @@
                     <div class="invite-string">80B4K0DX</div>
                 </div>
 
-                <!-- Points Token System Calculation Weights Legend Component -->
+                <!-- Points Token System Calculation Weights Dashboard Menu Legend -->
                 <div class="sidebar-panel" style="width: 100%;">
                     <h3>Tier Points System</h3>
                     <ul class="points-legend-list">
@@ -144,6 +145,12 @@
 
         </div> <!-- Closes .dashboard-layout-wrapper securely -->
     </div> <!-- Closes #view-layer-overall securely -->
+
+    <!-- EXTRA MATRIX WRAPPER ANCHOR CELL FOR DATA INJECTION HOOKS -->
+    <div id="view-layer-emerald" class="tab-panel-node" style="width: 100%; max-width: 1200px; display: none; margin: 0 auto;">
+        <div id="podium-arena-injection-spot"></div>
+        <div id="unified-matrix-injection-target" style="width: 100%; box-sizing: border-box;"></div>
+    </div>
 
     <!-- Profile Details Box Floating Window Overlay Target Node Anchor -->
     <div id="player-profile-view-container" class="profile-view-box">
