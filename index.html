@@ -4,10 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multicraft Island Tiers | Competitive Hub</title>
-    <!-- Web-safe Google Fonts for a premium pixel-gaming layout look -->
+    <!-- Web-safe Google Fonts fallback readability backup -->
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
-        /* Base page layout - Dark outer space gaming atmosphere */
+        /* Secure font streaming architecture pulling directly from the exact file target you provided */
+        @font-face {
+            font-family: 'MultiCraftCustomFont';
+            src: url('https://jsdelivr.net') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* Base page layout - Dark gaming cosmic atmosphere */
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             margin: 0; 
@@ -47,16 +55,17 @@
         }
 
         .menu-title {
-            font-family: 'Press Start 2P', monospace;
+            font-family: 'MultiCraftCustomFont', monospace;
             color: #64f3e5;
-            font-size: 1.15rem;
+            font-size: 1.5rem;
             margin: 0 0 10px 0;
             text-shadow: 0 0 10px rgba(100, 243, 229, 0.3);
             border-bottom: 2px solid #ffffff;
             padding-bottom: 12px;
+            line-height: 1.4;
         }
         
-        /* Premium horizontal rows configuration architecture layout */
+        /* Premium horizontal rows setup layout specs */
         .roster-card-row {
             display: flex;
             align-items: center;
@@ -69,8 +78,8 @@
         }
         
         .row-rank-num {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 0.85rem;
+            font-family: 'MultiCraftCustomFont', monospace;
+            font-size: 1.2rem;
             color: rgba(255, 255, 255, 0.4);
             width: 45px;
             text-align: center;
@@ -109,13 +118,14 @@
             align-items: center;
         }
         .row-mini-kit-tag {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 0.55rem;
+            font-family: 'MultiCraftCustomFont', monospace;
+            font-size: 0.85rem;
             color: #0b1d28;
             background: #64f3e5;
             padding: 4px 6px;
             border-radius: 4px;
             border: 1px solid #ffffff;
+            line-height: 1;
         }
         .row-mini-kit-tag.tbd-tag {
             background: rgba(255, 255, 255, 0.04);
@@ -124,10 +134,10 @@
         }
 
         .row-points-total {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 0.85rem;
+            font-family: 'MultiCraftCustomFont', monospace;
+            font-size: 1.1rem;
             color: #ffd700;
-            min-width: 100px;
+            min-width: 110px;
             text-align: right;
         }
         
@@ -143,7 +153,13 @@
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
         }
         .sidebar-panel h3 {
+            font-family: 'MultiCraftCustomFont', monospace;
             color: #e67e22;
+            font-size: 1.1rem;
+            border-bottom: 2px solid #ffffff;
+            padding-bottom: 12px;
+            margin-top: 0;
+            margin-bottom: 15px;
         }
         
         .points-legend-list {
@@ -162,7 +178,8 @@
             border-bottom: none;
         }
         .points-legend-item span.tier-id-tag {
-            font-weight: bold;
+            font-family: 'MultiCraftCustomFont', monospace;
+            font-size: 0.9rem;
             color: #64f3e5;
         }
         .points-legend-item span.points-weight-tag {
@@ -181,13 +198,12 @@
     <div class="logo-container"><img src="logo.png" alt="Multicraft Island Tiers Logo Banner"></div>
     
     <div class="dashboard-layout-wrapper">
-        <!-- Main Content Panel Open Frame -->
         <div class="main-content-panel" style="flex: 3; background: rgba(0, 0, 0, 0.45); border: 2px solid #ffffff; border-radius: 16px; padding: 25px; box-sizing: border-box; backdrop-filter: blur(10px); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);">
             <h2 class="menu-title">Overall Rankings Menu</h2>
             
             <!-- #1 Husky_Multicraft -->
             <div class="roster-card-row">
-                <div class="row-rank-num">#1</div>
+                <div class="row-rank-num">1</div>
                 <div class="row-player-name">Husky_Multicraft</div>
                 <span class="badge-pill pill-na">NA</span><span class="badge-pill pill-pc">PC</span>
                 <div class="row-kits-summary-strip"><span class="row-mini-kit-tag">HT3</span><span class="row-mini-kit-tag">HT3</span><span class="row-mini-kit-tag">LT2</span><span class="row-mini-kit-tag">HT3</span><span class="row-mini-kit-tag">LT3</span></div>
@@ -196,7 +212,7 @@
 
             <!-- #2 Prologozrock -->
             <div class="roster-card-row">
-                <div class="row-rank-num">#2</div>
+                <div class="row-rank-num">2</div>
                 <div class="row-player-name">Prologozrock</div>
                 <span class="badge-pill pill-na">NA</span><span class="badge-pill pill-pc">PC</span>
                 <div class="row-kits-summary-strip"><span class="row-mini-kit-tag">LT4</span><span class="row-mini-kit-tag">LT4</span><span class="row-mini-kit-tag">LT3</span><span class="row-mini-kit-tag">HT4</span><span class="row-mini-kit-tag tbd-tag">-</span></div>
@@ -205,7 +221,7 @@
 
             <!-- #3 Parrot -->
             <div class="roster-card-row">
-                <div class="row-rank-num">#3</div>
+                <div class="row-rank-num">3</div>
                 <div class="row-player-name">Parrot</div>
                 <span class="badge-pill pill-na">NA</span><span class="badge-pill pill-mob">Mobile</span>
                 <div class="row-kits-summary-strip"><span class="row-mini-kit-tag">HT4</span><span class="row-mini-kit-tag">HT4</span><span class="row-mini-kit-tag">HT5</span><span class="row-mini-kit-tag">LT4</span><span class="row-mini-kit-tag">HT5</span></div>
@@ -214,24 +230,25 @@
 
             <!-- #4 Herobrine -->
             <div class="roster-card-row">
-                <div class="row-rank-num">#4</div>
+                <div class="row-rank-num">4</div>
                 <div class="row-player-name">Herobrine</div>
                 <span class="badge-pill pill-na">NA</span><span class="badge-pill pill-con">Controller</span>
                 <div class="row-kits-summary-strip"><span class="row-mini-kit-tag">HT4</span><span class="row-mini-kit-tag">LT3</span><span class="row-mini-kit-tag">HT4</span><span class="row-mini-kit-tag tbd-tag">-</span><span class="row-mini-kit-tag tbd-tag">-</span></div>
                 <div class="row-points-total">80 PTS</div>
             </div>
 
-            <!-- #5 vort3xYT -->
+                        <!-- #5 vort3xYT -->
             <div class="roster-card-row">
-                <div class="row-rank-num">#5</div>
+                <div class="row-rank-num">5</div>
                 <div class="row-player-name">vort3xYT</div>
                 <span class="badge-pill pill-eu">EU</span><span class="badge-pill pill-pc">PC</span>
                 <div class="row-kits-summary-strip"><span class="row-mini-kit-tag tbd-tag">-</span><span class="row-mini-kit-tag">HT2</span><span class="row-mini-kit-tag tbd-tag">-</span><span class="row-mini-kit-tag tbd-tag">-</span><span class="row-mini-kit-tag tbd-tag">-</span></div>
                 <div class="row-points-total">75 PTS</div>
             </div>
-                        <!-- #6 Server_pvp -->
+
+            <!-- #6 Server_pvp -->
             <div class="roster-card-row">
-                <div class="row-rank-num">#6</div>
+                <div class="row-rank-num">6</div>
                 <div class="row-player-name">Server_pvp</div>
                 <span class="badge-pill pill-na">NA</span><span class="badge-pill pill-mob">Mobile</span>
                 <div class="row-kits-summary-strip"><span class="row-mini-kit-tag">LT4</span><span class="row-mini-kit-tag">LT4</span><span class="row-mini-kit-tag">HT5</span><span class="row-mini-kit-tag">HT4</span><span class="row-mini-kit-tag">HT5</span></div>
@@ -240,7 +257,7 @@
 
             <!-- #7 kylaz9 -->
             <div class="roster-card-row">
-                <div class="row-rank-num">#7</div>
+                <div class="row-rank-num">7</div>
                 <div class="row-player-name">kylaz9</div>
                 <span class="badge-pill pill-eu">EU</span><span class="badge-pill pill-mob">Mobile</span>
                 <div class="row-kits-summary-strip"><span class="row-mini-kit-tag">HT5</span><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag">HT5</span></div>
@@ -249,7 +266,7 @@
 
             <!-- #8 Jamier1235 -->
             <div class="roster-card-row">
-                <div class="row-rank-num">#8</div>
+                <div class="row-rank-num">8</div>
                 <div class="row-player-name">Jamier1235</div>
                 <span class="badge-pill pill-na">NA</span><span class="badge-pill pill-mob">Mobile</span>
                 <div class="row-kits-summary-strip"><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag tbd-tag">-</span><span class="row-mini-kit-tag">HT5</span></div>
@@ -258,7 +275,7 @@
 
             <!-- #9 aaa666 -->
             <div class="roster-card-row">
-                <div class="row-rank-num">#9</div>
+                <div class="row-rank-num">9</div>
                 <div class="row-player-name">aaa666</div>
                 <span class="badge-pill pill-na">NA</span><span class="badge-pill pill-mob">Mobile</span>
                 <div class="row-kits-summary-strip"><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag">LT5</span></div>
@@ -267,7 +284,7 @@
 
             <!-- #10 Benjamin -->
             <div class="roster-card-row">
-                <div class="row-rank-num">#10</div>
+                <div class="row-rank-num">10</div>
                 <div class="row-player-name">Benjamin</div>
                 <span class="badge-pill pill-na">NA</span><span class="badge-pill pill-mob">Mobile</span>
                 <div class="row-kits-summary-strip"><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag">LT5</span></div>
@@ -276,24 +293,24 @@
 
             <!-- #11 Booky -->
             <div class="roster-card-row">
-                <div class="row-rank-num">#11</div>
+                <div class="row-rank-num">11</div>
                 <div class="row-player-name">Booky</div>
                 <span class="badge-pill pill-na">NA</span><span class="badge-pill pill-mob">Mobile</span>
                 <div class="row-kits-summary-strip"><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag">LT5</span></div>
                 <div class="row-points-total">15 PTS</div>
             </div>
-
-            <!-- #12 Taxbird -->
+                        <!-- #12 Taxbird -->
             <div class="roster-card-row">
-                <div class="row-rank-num">#12</div>
+                <div class="row-rank-num">12</div>
                 <div class="row-player-name">Taxbird</div>
                 <span class="badge-pill pill-na">NA</span><span class="badge-pill pill-mob">Mobile</span>
                 <div class="row-kits-summary-strip"><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag">LT5</span></div>
                 <div class="row-points-total">15 PTS</div>
             </div>
-                        <!-- #13 Halo117 -->
+
+            <!-- #13 Halo117 -->
             <div class="roster-card-row">
-                <div class="row-rank-num">#13</div>
+                <div class="row-rank-num">13</div>
                 <div class="row-player-name">Halo117</div>
                 <span class="badge-pill pill-na">NA</span><span class="badge-pill pill-mob">Mobile</span>
                 <div class="row-kits-summary-strip"><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag tbd-tag">-</span></div>
@@ -302,7 +319,7 @@
 
             <!-- #14 Marwan -->
             <div class="roster-card-row">
-                <div class="row-rank-num">#14</div>
+                <div class="row-rank-num">14</div>
                 <div class="row-player-name">Marwan</div>
                 <span class="badge-pill pill-na">NA</span><span class="badge-pill pill-mob">Mobile</span>
                 <div class="row-kits-summary-strip"><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag tbd-tag">-</span><span class="row-mini-kit-tag tbd-tag">-</span><span class="row-mini-kit-tag">LT5</span></div>
@@ -311,7 +328,7 @@
 
             <!-- #15 New_guy -->
             <div class="roster-card-row">
-                <div class="row-rank-num">#15</div>
+                <div class="row-rank-num">15</div>
                 <div class="row-player-name">New_guy</div>
                 <span class="badge-pill pill-na">NA</span><span class="badge-pill pill-mob">Mobile</span>
                 <div class="row-kits-summary-strip"><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag tbd-tag">-</span><span class="row-mini-kit-tag tbd-tag">-</span></div>
@@ -320,7 +337,7 @@
 
             <!-- #16 grant -->
             <div class="roster-card-row">
-                <div class="row-rank-num">#16</div>
+                <div class="row-rank-num">16</div>
                 <div class="row-player-name">grant</div>
                 <span class="badge-pill pill-na">NA</span><span class="badge-pill pill-mob">Mobile</span>
                 <div class="row-kits-summary-strip"><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag tbd-tag">-</span><span class="row-mini-kit-tag tbd-tag">-</span></div>
@@ -329,7 +346,7 @@
 
             <!-- #17 LATAMM -->
             <div class="roster-card-row">
-                <div class="row-rank-num">#17</div>
+                <div class="row-rank-num">17</div>
                 <div class="row-player-name">LATAMM</div>
                 <span class="badge-pill pill-na">NA</span><span class="badge-pill pill-mob">Mobile</span>
                 <div class="row-kits-summary-strip"><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag tbd-tag">-</span><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag">LT5</span><span class="row-mini-kit-tag tbd-tag">-</span></div>
@@ -338,7 +355,7 @@
 
             <!-- #18 COCO-_ -->
             <div class="roster-card-row">
-                <div class="row-rank-num">#18</div>
+                <div class="row-rank-num">18</div>
                 <div class="row-player-name">COCO-_</div>
                 <span class="badge-pill pill-na">NA</span><span class="badge-pill pill-mob">Mobile</span>
                 <div class="row-kits-summary-strip"><span class="row-mini-kit-tag">HT5</span><span class="row-mini-kit-tag tbd-tag">-</span><span class="row-mini-kit-tag tbd-tag">-</span><span class="row-mini-kit-tag tbd-tag">-</span><span class="row-mini-kit-tag tbd-tag">-</span></div>
@@ -365,5 +382,3 @@
     </div>
 </body>
 </html>
-
-
