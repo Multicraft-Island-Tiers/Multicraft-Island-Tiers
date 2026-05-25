@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multicraft Island Tiers | Competitive Leaderboard</title>
     <style>
-        /* Unbreakable, standard system font layout */
+        /* Base page layout */
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             margin: 0; 
@@ -98,12 +98,19 @@
             background-color: rgba(255, 255, 255, 0.05);
         }
         
-        .player-name-text { 
+        /* High-visibility active player path anchors */
+        .player-anchor-link { 
             color: #64f3e5; 
             font-weight: bold; 
-            font-size: 1rem; 
+            font-size: 1rem;
+            text-decoration: underline;
+        }
+        .player-anchor-link:hover {
+            color: #ffffff;
+            text-shadow: 0 0 8px #64f3e5;
         }
         
+        /* Points Breakdown text structure */
         .points-legend-list {
             list-style: none;
             padding: 0;
@@ -128,6 +135,170 @@
             font-weight: 600;
         }
 
+        /* --- STABLE CSS FLOATING PLAYER MODAL SYSTEM --- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        /* Active route interceptor rule */
+        .modal-overlay:target {
+            display: flex;
+        }
+
+        .sample-player-card {
+            width: 100%;
+            max-width: 680px;
+            background: #061520;
+            border: 2px solid #1ba5b8;
+            border-radius: 12px;
+            box-shadow: 0 0 25px rgba(27, 165, 184, 0.4);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 30px;
+            box-sizing: border-box;
+            position: relative;
+            gap: 20px;
+        }
+
+        /* Premium X Close Target Anchor Button */
+        .close-x-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: background 0.2s;
+        }
+        .close-x-btn:hover {
+            background: #c0392b;
+            border-color: #ffffff;
+        }
+
+        /* Left Column Structure */
+        .card-left-pane {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .badges-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        .pill-badge {
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+        .pill-rank { background: transparent; border: 1px solid #f1c40f; color: #f1c40f; }
+        .pill-meta { background: transparent; border: 1px solid #9b59b6; color: #9b59b6; }
+        
+        .card-player-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 0 0 15px 0;
+            color: #ffffff;
+            word-break: break-all;
+        }
+        .avatar-placeholder-box {
+            width: 100%;
+            height: 180px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.9rem;
+        }
+        .points-large-text {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #f1c40f;
+            margin-top: 15px;
+        }
+        .points-large-text span {
+            font-size: 1rem;
+            color: #ffffff;
+            margin-left: 5px;
+        }
+
+        /* Right Column Kit Matrix Grid */
+        .card-right-pane h4 {
+            margin: 0 0 20px 0;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .kit-slots-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            row-gap: 20px;
+        }
+        .kit-slot-cell {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .circle-frame {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            border: 2px solid #f1c40f;
+            background: rgba(0, 0, 0, 0.4);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        .circle-frame.tbd-frame {
+            border-color: rgba(255, 255, 255, 0.15);
+            opacity: 0.3;
+        }
+        .kit-slot-cell span {
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #f1c40f;
+        }
+        .kit-slot-cell span.tbd-text {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 700px) {
+            .sample-player-card {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+        }
+
         @media (max-width: 900px) {
             .dashboard-layout-wrapper {
                 flex-direction: column;
@@ -143,7 +314,7 @@
     <div class="logo-container"><img src="logo.png" alt="Multicraft Island Tiers Banner"></div>
     
     <div class="dashboard-layout-wrapper">
-        <!-- Main Board Panel -->
+        <!-- Main Board Panel Component -->
         <div class="main-content-panel">
             <h2>Overall Rankings</h2>
             <table class="leaderboard-table">
@@ -157,43 +328,4 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>#1</td><td><span class="player-name-text">Husky_Multicraft</span></td><td>NA</td><td>PC</td><td><strong>180</strong></td></tr>
-                    <tr><td>#2</td><td><span class="player-name-text">Prologozrock</span></td><td>NA</td><td>PC</td><td><strong>85</strong></td></tr>
-                    <tr><td>#3</td><td><span class="player-name-text">Parrot</span></td><td>NA</td><td>Mobile</td><td><strong>81</strong></td></tr>
-                    <tr><td>#4</td><td><span class="player-name-text">Herobrine</span></td><td>NA</td><td>Controller</td><td><strong>80</strong></td></tr>
-                    <tr><td>#5</td><td><span class="player-name-text">vort3xYT</span></td><td>EU</td><td>PC</td><td><strong>75</strong></td></tr>
-                    <tr><td>#6</td><td><span class="player-name-text">Server_pvp</span></td><td>NA</td><td>Mobile</td><td><strong>71</strong></td></tr>
-                    <tr><td>#7</td><td><span class="player-name-text">kylaz9</span></td><td>EU</td><td>Mobile</td><td><strong>20</strong></td></tr>
-                    <tr><td>#8</td><td><span class="player-name-text">Jamier1235</span></td><td>NA</td><td>Mobile</td><td><strong>17</strong></td></tr>
-                    <tr><td>#9</td><td><span class="player-name-text">aaa666</span></td><td>NA</td><td>Mobile</td><td><strong>15</strong></td></tr>
-                    <tr><td>#10</td><td><span class="player-name-text">Benjamin</span></td><td>NA</td><td>Mobile</td><td><strong>15</strong></td></tr>
-                    <tr><td>#11</td><td><span class="player-name-text">Booky</span></td><td>NA</td><td>Mobile</td><td><strong>15</strong></td></tr>
-                    <tr><td>#12</td><td><span class="player-name-text">Taxbird</span></td><td>NA</td><td>Mobile</td><td><strong>15</strong></td></tr>
-                    <tr><td>#13</td><td><span class="player-name-text">Marwan</span></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
-                    <tr><td>#14</td><td><span class="player-name-text">New_guy</span></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
-                    <tr><td>#15</td><td><span class="player-name-text">grant</span></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
-                    <tr><td>#16</td><td><span class="player-name-text">LATAMM</span></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
-                    <tr><td>#17</td><td><span class="player-name-text">COCO-_</span></td><td>NA</td><td>Mobile</td><td><strong>8</strong></td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Fully Restored Points Legend Sidebar -->
-        <div class="sidebar-panel">
-            <h3>Tier Points System</h3>
-            <ul class="points-legend-list">
-                <li class="points-legend-item"><span class="tier-id-tag">HT1</span><span class="points-weight-tag">100 Pts</span></li>
-                <li class="points-legend-item"><span class="tier-id-tag">LT1</span><span class="points-weight-tag">85 Pts</span></li>
-                <li class="points-legend-item"><span class="tier-id-tag">HT2</span><span class="points-weight-tag">75 Pts</span></li>
-                <li class="points-legend-item"><span class="tier-id-tag">LT2</span><span class="points-weight-tag">60 Pts</span></li>
-                <li class="points-legend-item"><span class="tier-id-tag">HT3</span><span class="points-weight-tag">40 Pts</span></li>
-                <li class="points-legend-item"><span class="tier-id-tag">LT3</span><span class="points-weight-tag">30 Pts</span></li>
-                <li class="points-legend-item"><span class="tier-id-tag">HT4</span><span class="points-weight-tag">25 Pts</span></li>
-                <li class="points-legend-item"><span class="tier-id-tag">LT4</span><span class="points-weight-tag">15 Pts</span></li>
-                <li class="points-legend-item"><span class="tier-id-tag">HT5</span><span class="points-weight-tag">8 Pts</span></li>
-                <li class="points-legend-item"><span class="tier-id-tag">LT5</span><span class="points-weight-tag">3 Pts</span></li>
-            </ul>
-        </div>
-    </div>
-</body>
-</html>
+                    <tr><td>#1</td><td><a href="#p-Husky" class="player-anchor-link">Husky_Multicraft</a></td><td>NA</td><td>PC</td><td><strong>180</strong></td></tr>
