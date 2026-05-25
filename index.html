@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multicraft Island Tiers | Competitive Hub</title>
-    <!-- Web-safe gaming text engine backup styling sheets -->
+    <!-- Web-safe Fallback Gaming Fonts -->
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
         /* Base page layout framework - Deep cosmic gaming atmosphere */
@@ -228,7 +228,7 @@
             text-align: right;
         }
 
-        /* FIXED OVERLAY MODAL: Centered popup card layout matching your click reference screen exactly */
+        /* FIXED OVERLAY MODAL: Centered popup card container matching your click reference screen precisely */
         .profile-view-box {
             position: fixed;
             top: 0;
@@ -274,6 +274,9 @@
             border-radius: 50%;
             cursor: pointer;
             transition: all 0.15s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             <!-- #1 Husky_Multicraft -->
             <div class="roster-card-row" onclick="setActivePlayerParam('Husky_Multicraft')">
                 <div class="row-rank-num">#1</div>
@@ -529,7 +532,7 @@
         <div id="live-profile-injection-target"></div>
     </div>
     <script>
-        // Clean master ledger tracking 100% of your 18 real server portfolios
+        // Secure database master node holding your 18 real server portfolio matrices
         const globalCompetitiveDatabase = {
             "Husky_Multicraft": { name: "Husky_Multicraft", points: 180, region: "NA", device: "PC", rankTitle: "Combat Specialist", rankNum: 1, c1:"HT3", c2:"HT3", c3:"LT2", c4:"HT3", c5:"LT3" },
             "Prologozrock": { name: "Prologozrock", points: 85, region: "NA", device: "PC", rankTitle: "Combat Specialist", rankNum: 2, c1:"LT4", c2:"LT4", c3:"LT3", c4:"HT4", c5:"TBD" },
@@ -551,81 +554,80 @@
             "COCO-_": { name: "COCO-_", points: 8, region: "NA", device: "Mobile", rankTitle: "Rookie", rankNum: 18, c1:"HT5", c2:"TBD", c3:"TBD", c4:"TBD", c5:"TBD" }
         };
 
-        // Navigation Tab Controller Switcher Logic
+        // Navigation Controller Switcher Logic
         function toggleLeaderboardScreen(targetViewId, controlButton) {
             document.querySelectorAll('.tab-panel-node').forEach(node => node.style.display = 'none');
             const selectedScreenNode = document.getElementById('view-layer-' + targetViewId);
             if (selectedScreenNode) selectedScreenNode.style.display = 'block';
             document.querySelectorAll('.nav-tab-trigger').forEach(btn => btn.classList.remove('active-trigger'));
             if (controlButton) controlButton.classList.add('active-trigger');
-            
-            const cardOverlay = document.getElementById('player-profile-view-container');
-            if (cardOverlay) cardOverlay.classList.remove('active-modal');
+            clearActivePlayerParam();
         }
 
+        // FIXED DIRECT TOGGLE ENGINE: Fires modal layouts via pure layout styles bypassing window alterations completely
         function setActivePlayerParam(targetName) {
-            window.history.pushState({}, '', '?player=' + targetName);
-            evaluateAddressPathParameters();
+            const overlayContainer = document.getElementById('player-profile-view-container');
+            if (!overlayContainer || !globalCompetitiveDatabase[targetName]) return;
+            
+            const activePlayer = globalCompetitiveDatabase[targetName];
+            const regPill = activePlayer.region.toLowerCase() === 'na' ? 'pill-na' : 'pill-eu';
+            let devPill = 'pill-pc';
+            if(activePlayer.device.toLowerCase() === 'mobile') devPill = 'pill-mob';
+            if(activePlayer.device.toLowerCase() === 'controller') devPill = 'pill-con';
+
+            const f1 = activePlayer.c1 === 'TBD' ? 'circle-frame empty-frame' : 'circle-frame';
+            const f2 = activePlayer.c2 === 'TBD' ? 'circle-frame empty-frame' : 'circle-frame';
+            const f3 = activePlayer.c3 === 'TBD' ? 'circle-frame empty-frame' : 'circle-frame';
+            const f4 = activePlayer.c4 === 'TBD' ? 'circle-frame empty-frame' : 'circle-frame';
+            const f5 = activePlayer.c5 === 'TBD' ? 'circle-frame empty-frame' : 'circle-frame';
+
+            const v1 = activePlayer.c1 === 'TBD' ? '-' : activePlayer.c1;
+            const v2 = activePlayer.c2 === 'TBD' ? '-' : activePlayer.c2;
+            const v3 = activePlayer.c3 === 'TBD' ? '-' : activePlayer.c3;
+            const v4 = activePlayer.c4 === 'TBD' ? '-' : activePlayer.c4;
+            const v5 = activePlayer.c5 === 'TBD' ? '-' : activePlayer.c5;
+
+            const s1 = activePlayer.c1 === 'TBD' ? 'color:rgba(255,255,255,0.25);' : 'color:#ffd700;';
+            const s2 = activePlayer.c2 === 'TBD' ? 'color:rgba(255,255,255,0.25);' : 'color:#ffd700;';
+            const s3 = activePlayer.c3 === 'TBD' ? 'color:rgba(255,255,255,0.25);' : 'color:#ffd700;';
+            const s4 = activePlayer.c4 === 'TBD' ? 'color:rgba(255,255,255,0.25);' : 'color:#ffd700;';
+            const s5 = activePlayer.c5 === 'TBD' ? 'color:rgba(255,255,255,0.25);' : 'color:#ffd700;';
+
+            document.getElementById('live-profile-injection-target').innerHTML = 
+                '<div class="premium-profile-card">' +
+                    '<div class="card-left-column">' +
+                        '<div class="rank-badge">RANK #' + activePlayer.rankNum + '</div>' +
+                        '<h3 class="card-player-title" style="font-family:\'Press Start 2P\', monospace; font-size:1rem; color:#ffffff; margin:0 0 15px 0;">' + activePlayer.name + '</h3>' +
+                        '<div class="tags-row">' +
+                            '<span class="table-pill ' + regPill + '">' + activePlayer.region + '</span>' +
+                            '<span class="table-pill ' + devPill + '">' + activePlayer.device + '</span>' +
+                            '<span class="table-pill" style="border:1px solid #ba68c8; color:#ba68c8; font-family:\'Press Start 2P\',monospace; font-size:0.55rem; padding:5px 8px;">' + activePlayer.rankTitle + '</span>' +
+                        '</div>' +
+                        '<div style="width:140px; height:180px; margin:25px auto auto auto; background:rgba(255,255,255,0.02); border:1px dashed rgba(255,255,255,0.1); border-radius:8px; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.2); font-family:\'Press Start 2P\',monospace; font-size:0.55rem; font-weight:600;">[ Skin ]</div>' +
+                        '<div class="score-display-node" style="font-family:\'Press Start 2P\',monospace; font-size:1.6rem; color:#ffd700; margin-top:30px; letter-spacing:0.5px;">' + activePlayer.points + '<span style="font-size:0.7rem; color:rgba(255,255,255,0.4); margin-left:5px;">PTS</span></div>' +
+                    '</div>' +
+                    '<div class="card-right-column">' +
+                        '<h4 class="right-column-header">Tested Kit Rankings</h4>' +
+                        '<div class="kits-display-grid">' +
+                            '<div class="kit-slot-circle"><div class="' + f1 + '">' + v1 + '</div><span class="kit-slot-name" style="' + s1 + '">Emerald</span></div>' +
+                            '<div class="kit-slot-circle"><div class="' + f2 + '">' + v2 + '</div><span class="kit-slot-name" style="' + s2 + '">Dragonhide</span></div>' +
+                            '<div class="kit-slot-circle"><div class="' + f3 + '">' + v3 + '</div><span class="kit-slot-name" style="' + s3 + '">Dragonhide KB</span></div>' +
+                            '<div class="kit-slot-circle"><div class="' + f4 + '">' + v4 + '</div><span class="kit-slot-name" style="' + s4 + '">Diamond</span></div>' +
+                            '<div class="kit-slot-circle"><div class="' + f5 + '">' + v5 + '</div><span class="kit-slot-name" style="' + s5 + '">Emerald KB</span></div>' +
+                            '<div class="kit-slot-circle"><div class="circle-frame empty-frame">-</div><span class="kit-slot-name" style="color:rgba(255,255,255,0.25);">Future Kit</span></div>' +
+                            '<div class="kit-slot-circle"><div class="circle-frame empty-frame">-</div><span class="kit-slot-name" style="color:rgba(255,255,255,0.25);">Future Kit</span></div>' +
+                            '<div class="kit-slot-circle"><div class="circle-frame empty-frame">-</div><span class="kit-slot-name" style="color:rgba(255,255,255,0.25);">Future Kit</span></div>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>';
+            
+            overlayContainer.classList.add('active-modal');
         }
 
         function clearActivePlayerParam() {
-            window.history.pushState({}, '', window.location.pathname);
-            evaluateAddressPathParameters();
-        }
-
-        function evaluateAddressPathParameters() {
             const overlayContainer = document.getElementById('player-profile-view-container');
-            if (!overlayContainer) return;
-            overlayContainer.classList.remove('active-modal');
-            
-            const routerSearchParams = new URLSearchParams(window.location.search);
-            const verifiedPlayerKey = routerSearchParams.get('player');
-            
-            if (verifiedPlayerKey && globalCompetitiveDatabase[verifiedPlayerKey]) {
-                const activePlayer = globalCompetitiveDatabase[verifiedPlayerKey];
-
-                const regPill = activePlayer.region.toLowerCase() === 'na' ? 'pill-na' : 'pill-eu';
-                let devPill = 'pill-pc';
-                if(activePlayer.device.toLowerCase() === 'mobile') devPill = 'pill-mob';
-                if(activePlayer.device.toLowerCase() === 'controller') devPill = 'pill-con';
-
-                const f1 = activePlayer.c1 === 'TBD' ? 'circle-frame empty-frame' : 'circle-frame';
-                const f2 = activePlayer.c2 === 'TBD' ? 'circle-frame empty-frame' : 'circle-frame';
-                const f3 = activePlayer.c3 === 'TBD' ? 'circle-frame empty-frame' : 'circle-frame';
-                const f4 = activePlayer.c4 === 'TBD' ? 'circle-frame empty-frame' : 'circle-frame';
-                const f5 = activePlayer.c5 === 'TBD' ? 'circle-frame empty-frame' : 'circle-frame';
-
-                const v1 = activePlayer.c1 === 'TBD' ? '-' : activePlayer.c1;
-                const v2 = activePlayer.c2 === 'TBD' ? '-' : activePlayer.c2;
-                const v3 = activePlayer.c3 === 'TBD' ? '-' : activePlayer.c3;
-                const v4 = activePlayer.c4 === 'TBD' ? '-' : activePlayer.c4;
-                const v5 = activePlayer.c5 === 'TBD' ? '-' : activePlayer.c5;
-
-                const s1 = activePlayer.c1 === 'TBD' ? 'color:rgba(255,255,255,0.25);' : 'color:#ffd700;';
-                const s2 = activePlayer.c2 === 'TBD' ? 'color:rgba(255,255,255,0.25);' : 'color:#ffd700;';
-                const s3 = activePlayer.c3 === 'TBD' ? 'color:rgba(255,255,255,0.25);' : 'color:#ffd700;';
-                const s4 = activePlayer.c4 === 'TBD' ? 'color:rgba(255,255,255,0.25);' : 'color:#ffd700;';
-                const s5 = activePlayer.c5 === 'TBD' ? 'color:rgba(255,255,255,0.25);' : 'color:#ffd700;';
-
-                document.getElementById('live-profile-injection-target').innerHTML = 
-                    '<div class="premium-profile-card">' +
-                        '<div class="card-left-column">' +
-                            '<div class="rank-badge">RANK #' + activePlayer.rankNum + '</div>' +
-                            '<h3 class="card-player-title" style="font-family:\'Press Start 2P\', monospace; font-size:1rem; color:#ffffff; margin:0 0 15px 0;">' + activePlayer.name + '</h3>' +
-                            '<div class="tags-row">' +
-                                '<span class="table-pill ' + regPill + '">' + activePlayer.region + '</span>' +
-                                '<span class="table-pill ' + devPill + '">' + activePlayer.device + '</span>' +
-                                '<span class="table-pill" style="border:1px solid #ba68c8; color:#ba68c8; font-family:\'Press Start 2P\',monospace; font-size:0.55rem; padding:5px 8px;">' + activePlayer.rankTitle + '</span>' +
-                            '</div>' +
-                            '<div style="width:140px; height:180px; margin:25px auto auto auto; background:rgba(255,255,255,0.02); border:1px dashed rgba(255,255,255,0.1); border-radius:8px; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.2); font-family:\'Press Start 2P\',monospace; font-size:0.55rem; font-weight:600;">[ Skin ]</div>' +
-                            '<div class="score-display-node" style="font-family:\'Press Start 2P\',monospace; font-size:1.6rem; color:#ffd700; margin-top:30px; letter-spacing:0.5px;">' + activePlayer.points + '<span style="font-size:0.7rem; color:rgba(255,255,255,0.4); margin-left:5px;">PTS</span></div>' +
-                        '</div>' +
-                        '<div class="card-right-column">' +
-                            '<h4 class="right-column-header">Tested Kit Rankings</h4>' +
-                            '<div class="kits-display-grid">' +
-                                '<div class="kit-slot-circle"><div class="' + f1 + '">' + v1 + '</div><span class="kit-slot-name" style="' + s1 + '">Emerald</span></div>' +
-                                '<div class="kit-slot-circle"><div class="' + f2 + '">' + v2 + '</div><span class="kit-slot-name" style="' + s2 + '">Dragonhide</span></div>' +
-                                '<div class="kit-slot-circle"><div class="' + f3 + '">' + v3 + '</div><span class="kit-slot-name" style="' + s3 + '">Dragonhide KB</span></div>' +
-                                '<div class="kit-slot-circle"><div class="' + f4 + '">' + v4 + '</div><span class="kit-slot-name" style="' + s4 + '">Diamond</span></div>' +
-                                '<div class="kit-slot-circle"><div class="' + f5 + '">' + v5 + '</div><span class="kit-slot-name" style="' + s5 + '">Emerald KB</span></div>' +
-                                '<div class="kit-slot-circle"><div class="circle-frame empty-frame">-</div><span class="kit-slot-name" style="color:rgba(255,255,255,0.25);">Future Kit</span></div>' +
+            if (overlayContainer) overlayContainer.classList.remove('active-modal');
+        }
+    </script>
+</body>
+</html>
