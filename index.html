@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multicraft Island Tiers | Competitive Leaderboard</title>
-    <!-- Web-safe Google Fonts for the authentic Multicraft Pixel Style -->
-    <link href="https://googleapis.com" rel="stylesheet">
     <style>
-        /* Base page layout */
+        /* Unbreakable, standard system font layout */
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             margin: 0; 
@@ -71,13 +69,10 @@
             display: block; 
         }
         
-        /* Pixel font applied safely to headings */
         .main-content-panel h2, .sidebar-panel h3 { 
-            font-family: 'Press Start 2P', monospace;
-            line-height: 1.5;
             margin-top: 0; 
             color: #64f3e5; 
-            font-size: 1.25rem;
+            font-size: 1.6rem;
             border-bottom: 2px solid #ffffff; 
             padding-bottom: 12px; 
             margin-bottom: 20px;
@@ -97,10 +92,6 @@
         }
         .sidebar-panel h3 {
             color: #e67e22;
-            font-size: 1.05rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-            padding-bottom: 12px;
-            margin-bottom: 15px;
         }
         
         .leaderboard-table { 
@@ -114,9 +105,8 @@
             text-align: left; 
         }
         .leaderboard-table th { 
-            font-family: 'Press Start 2P', monospace;
-            font-size: 0.7rem;
             background-color: rgba(43, 122, 113, 0.9); 
+            font-weight: 600;
         }
         .leaderboard-table tbody tr:hover {
             background-color: rgba(255, 255, 255, 0.05);
@@ -158,8 +148,7 @@
         }
         
         .profile-card-header-title { 
-            font-family: 'Press Start 2P', monospace;
-            font-size: 1.4rem; 
+            font-size: 2rem; 
             color: #64f3e5; 
             margin: 0 0 20px 0; 
             border-bottom: 2px solid #ffffff; 
@@ -212,13 +201,12 @@
         }
         
         .profile-kit-metric-row span.tier-badge-node { 
-            font-family: 'Press Start 2P', monospace;
-            font-size: 0.7rem;
             font-weight: bold; 
             color: #0b1d28; 
             background: #64f3e5; 
-            padding: 6px 12px; 
+            padding: 4px 12px; 
             border-radius: 6px; 
+            font-size: 0.95rem;
             box-shadow: 0 0 10px rgba(100, 243, 229, 0.25);
             border: 1px solid #ffffff;
         }
@@ -239,8 +227,6 @@
             border-bottom: none;
         }
         .points-legend-item span.tier-id-tag {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 0.65rem;
             font-weight: bold;
             color: #64f3e5;
         }
@@ -279,7 +265,7 @@
                     </tr>
                 </thead>
                 <tbody id="live-leaderboard-rows-target">
-                    <!-- Script dynamically renders all rows here smoothly -->
+                    <!-- Dynamic player entries are safely injected here -->
                 </tbody>
             </table>
         </div>
@@ -290,7 +276,7 @@
             <div id="live-profile-injection-target" class="profile-container-box"></div>
         </div>
 
-        <!-- Points Legend Sidebar -->
+        <!-- Fully Restored Points Legend Sidebar -->
         <div class="sidebar-panel">
             <h3>Tier Points System</h3>
             <ul class="points-legend-list">
@@ -298,3 +284,8 @@
                 <li class="points-legend-item"><span class="tier-id-tag">LT1</span><span class="points-weight-tag">85 Pts</span></li>
                 <li class="points-legend-item"><span class="tier-id-tag">HT2</span><span class="points-weight-tag">75 Pts</span></li>
                 <li class="points-legend-item"><span class="tier-id-tag">LT2</span><span class="points-weight-tag">60 Pts</span></li>
+                <li class="points-legend-item"><span class="tier-id-tag">HT3</span><span class="points-weight-tag">40 Pts</span></li>
+                <li class="points-legend-item"><span class="tier-id-tag">LT3</span><span class="points-weight-tag">30 Pts</span></li>
+                <li class="points-legend-item"><span class="tier-id-tag">HT4</span><span class="points-weight-tag">25 Pts</span></li>
+                <li class="points-legend-item"><span class="tier-id-tag">LT4</span><span class="points-weight-tag">15 Pts</span></li>
+                <li class="points-legend-item"><span class="tier-id-tag">HT5</span><span class="points-weight-tag">8 Pts</span></li>
