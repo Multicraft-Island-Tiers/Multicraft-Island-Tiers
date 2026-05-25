@@ -18,6 +18,7 @@
             font-family: 'MulticraftCustom', monospace !important;
             font-weight: normal !important;
             text-transform: uppercase;
+            box-sizing: border-box;
         }
 
         body { 
@@ -30,14 +31,13 @@
             background-image: radial-gradient(circle at 50% 50%, rgba(10, 24, 38, 0.75) 0%, rgba(2, 7, 12, 1) 100%);
             color: #ffffff;
             min-height: 100vh; 
-            box-sizing: border-box;
         }
         
         .logo-container { max-width: 500px; width: 100%; margin-bottom: 25px; text-align: center; }
         .logo-container img { width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(100, 243, 229, 0.15); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6); }
         
         /* Premium Filter Navigation Bar horizontal menu options row */
-        .top-nav-bar { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 25px; width: 100%; max-width: 1100px; }
+        .top-nav-bar { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 25px; width: 100%; max-width: 1200px; }
         .nav-tab-trigger {
             background: rgba(4, 15, 24, 0.65); border: 1.5px solid rgba(255, 255, 255, 0.08); color: rgba(255, 255, 255, 0.4);
             font-size: 0.58rem; padding: 6px 12px; border-radius: 6px; 
@@ -50,21 +50,22 @@
             width: 18px; height: 18px; border-radius: 4px; overflow: hidden; display: flex; align-items: center; justify-content: center;
             background: #030a10; border: 1px solid rgba(255,255,255,0.1); position: relative;
         }
-        .tab-weapon-icon-frame img { width: 16px; height: 16px; image-rendering: pixelated; mix-blend-mode: screen; }
+        .tab-weapon-icon-frame img { width: 16px; height: 16px; image-rendering: pixelated; }
 
-        /* FIXED WORKSPACE ROW LAYOUT: Locks your columns securely side-by-side with zero wrapping */
-        .dashboard-layout-wrapper { display: flex; flex-direction: row; gap: 20px; width: 100%; max-width: 1100px; align-items: flex-start; }
-        .main-content-panel { flex: 3; background: rgba(4, 11, 18, 0.45); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 14px; padding: 22px; box-sizing: border-box; backdrop-filter: blur(12px); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); display: flex; flex-direction: column; }
+        /* FIXED WORKSPACE GRID: Strictly pins your columns side-by-side with zero alignment slips */
+        .dashboard-layout-wrapper { display: flex; flex-direction: row; gap: 20px; width: 100%; max-width: 1200px; align-items: flex-start; }
+        
+        /* FORCE LONG vertical LINE: Ensures the leaderboard content panel stays in a straight down vertical track */
+        .main-content-panel { flex: 3; background: rgba(4, 11, 18, 0.45); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 14px; padding: 22px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); display: flex; flex-direction: column; }
         .menu-title { color: #64f3e5; font-size: 1.2rem; margin: 0 0 20px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 14px; text-align: center; }
 
         /* Permanent Flat Leaderboard Rows */
-        .roster-card-row { display: flex; align-items: center; background: rgba(4, 13, 22, 0.75); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 12px 16px; margin-bottom: 8px; box-sizing: border-box; gap: 14px; }
+        .roster-card-row { display: flex; align-items: center; background: rgba(4, 13, 22, 0.75); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 12px 16px; margin-bottom: 8px; gap: 14px; width: 100%; }
         .row-rank-num { font-size: 0.8rem; color: rgba(255, 255, 255, 0.25); width: 35px; text-align: center; }
         .roster-card-row:nth-child(1) .row-rank-num { color: #ffd700; }
         .roster-card-row:nth-child(2) .row-rank-num { color: #c0c0c0; }
         .roster-card-row:nth-child(3) .row-rank-num { color: #cd7f32; }
         
-        /* Lowercase title lock removed to enforce exact database case characters mapping */
         .row-player-name { font-size: 0.9rem; color: #ffffff; flex: 1; text-transform: none !important; }
         .row-points-total { font-size: 0.75rem; color: #ffd700; min-width: 85px; text-align: right; }
 
@@ -75,51 +76,59 @@
         .pill-mob { color: #52be80; border: 1px solid rgba(82, 190, 128, 0.25); background: rgba(82, 190, 128, 0.04); }
         .pill-con { color: #e59866; border: 1px solid rgba(229, 152, 102, 0.25); background: rgba(229, 152, 102, 0.04); }
 
-        /* Sidebar Elements Aligned to Right Frame Window bounds precisely */
-        .right-sidebar-column-wrapper { flex: 1; display: flex; flex-direction: column; gap: 15px; box-sizing: border-box; min-width: 240px; }
-        .sidebar-panel { background: rgba(4, 15, 25, 0.75); border: 1px solid rgba(86, 239, 170, 0.12); border-radius: 12px; padding: 18px; height: fit-content; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4); }
+        /* SIDE-TO-SIDE SIDEBAR: Locked perfectly to the right side of your down line leaderboard layout column */
+        .right-sidebar-column-wrapper { flex: 1; display: flex; flex-direction: column; gap: 15px; min-width: 260px; }
+        .sidebar-panel { background: rgba(4, 15, 25, 0.75); border: 1px solid rgba(86, 239, 170, 0.12); border-radius: 12px; padding: 18px; height: fit-content; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4); width: 100%; }
         .sidebar-panel h3 { color: #e67e22; font-size: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 10px; margin: 0 0 10px 0; text-align: center; }
         .points-legend-list { list-style: none; padding: 0; margin: 0; }
         .points-legend-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.04); font-size: 0.82rem; }
         .points-legend-item span.tier-id-tag { font-size: 0.65rem; color: #56efaa; }
         .points-legend-item span.points-weight-tag { color: #e67e22; }
 
-        /* GREEN BOX UPGRADE: Reconfigured with a solid neon green border structure in the top side panel position */
-        .invite-badge-box { background: rgba(4, 15, 25, 0.9); border: 2px solid #56efaa; border-radius: 8px; padding: 12px 14px; text-align: center; box-shadow: 0 0 15px rgba(86, 239, 170, 0.2); width: 100%; box-sizing: border-box; }
+        /* SOLID GREEN BOX: Positioned securely right ON TOP of the points system panel */
+        .invite-badge-box { background: rgba(4, 15, 25, 0.9); border: 2px solid #56efaa; border-radius: 8px; padding: 12px 14px; text-align: center; box-shadow: 0 0 15px rgba(86, 239, 170, 0.2); width: 100%; }
         .invite-title { font-size: 0.6rem; color: rgba(255, 255, 255, 0.4); margin-bottom: 4px; }
         .invite-string { font-size: 0.95rem; color: #56efaa; letter-spacing: 0.5px; }
 
-        @media (max-width: 850px) { .dashboard-layout-wrapper { flex-direction: column; } .right-sidebar-column-wrapper { width: 100%; } }
+        @media (max-width: 900px) { .dashboard-layout-wrapper { flex-direction: column; } .right-sidebar-column-wrapper { width: 100%; } }
     </style>
 </head>
 <body>
 
-    <!-- Centered Server Banner Logo -->
+    <!-- Centered Server Banner Image -->
     <div class="logo-container">
         <img src="logo.png" alt="Multicraft Server Banner">
     </div>
     
-    <!-- Top Horizontal Filter Navigation Bar Menu featuring globally certified live images -->
+    <!-- Top Horizontal Filter Navigation Bar Menu featuring stable global cdn web icon files -->
     <div class="top-nav-bar">
         <button class="nav-tab-trigger active-trigger">Overall</button>
         <button class="nav-tab-trigger">
-            <div class="tab-weapon-icon-frame"><img src="https://minecraft.wiki" alt="Icon"></div>
+            <div class="tab-weapon-icon-frame"><img src="https://githubusercontent.com" alt="Icon"></div>
             Emerald
         </button>
-        <button class="nav-tab-trigger">Emerald KB</button>
         <button class="nav-tab-trigger">
-            <div class="tab-weapon-icon-frame"><img src="https://minecraft.wiki" alt="Icon"></div>
+            <div class="tab-weapon-icon-frame"><img src="https://githubusercontent.com" alt="Icon"></div>
+            Emerald KB
+        </button>
+        <button class="nav-tab-trigger">
+            <div class="tab-weapon-icon-frame"><img src="https://githubusercontent.com" alt="Icon"></div>
             Dragonhide
         </button>
-        <button class="nav-tab-trigger">Dragonhide KB</button>
         <button class="nav-tab-trigger">
-            <div class="tab-weapon-icon-frame"><img src="https://minecraft.wiki" alt="Icon"></div>
+            <div class="tab-weapon-icon-frame"><img src="https://githubusercontent.com" alt="Icon"></div>
+            Dragonhide KB
+        </button>
+        <button class="nav-tab-trigger">
+            <div class="tab-weapon-icon-frame"><img src="https://githubusercontent.com" alt="Icon"></div>
             Diamond
         </button>
     </div>
     
+    <!-- Unified Container Grid layout mapping -->
     <div class="dashboard-layout-wrapper">
-        <!-- Main Column Leaderboard Layout Box Panel -->
+        
+        <!-- Main Content panel tracking all 19 players strictly down a single vertical track line -->
         <div class="main-content-panel">
             <h2 class="menu-title">Overall Leaderboard</h2>
             
@@ -148,126 +157,3 @@
                 <div class="row-rank-num">#4</div>
                 <div class="row-player-name">Herobrine</div>
                 <span class="table-pill pill-na">NA</span><span class="table-pill pill-con">Controller</span>
-                <div class="row-points-total">80 PTS</div>
-            </div>
-
-            <div class="roster-card-row">
-                <div class="row-rank-num">#5</div>
-                <div class="row-player-name">vort3xYT</div>
-                <span class="table-pill pill-eu">EU</span><span class="table-pill pill-pc">PC</span>
-                <div class="row-points-total">75 PTS</div>
-            </div>
-
-            <div class="roster-card-row">
-                <div class="row-rank-num">#6</div>
-            <!-- Remaining Player Roster Entries Slots -->
-            <div class="roster-card-row">
-                <div class="row-rank-num">#11</div>
-                <div class="row-player-name">Booky</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">15 PTS</div>
-            </div>
-
-            <div class="roster-card-row">
-                <div class="row-rank-num">#12</div>
-                <div class="row-player-name">Taxbird</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">15 PTS</div>
-            </div>
-
-            <div class="roster-card-row">
-                <div class="row-rank-num">#13</div>
-                <div class="row-player-name">Halo117</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">12 PTS</div>
-            </div>
-
-            <div class="roster-card-row">
-                <div class="row-rank-num">#14</div>
-                <div class="row-player-name">Marwan</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">9 PTS</div>
-            </div>
-
-            <div class="roster-card-row">
-                <div class="row-rank-num">#15</div>
-                <div class="row-player-name">New_guy</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">9 PTS</div>
-            </div>
-
-            <div class="roster-card-row">
-                <div class="row-rank-num">#16</div>
-                <div class="row-player-name">grant</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">9 PTS</div>
-            </div>
-
-            <div class="roster-card-row">
-                <div class="row-rank-num">#17</div>
-                <div class="row-player-name">LATAMM</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">9 PTS</div>
-            </div>
-
-            <div class="roster-card-row">
-                <div class="row-rank-num">#18</div>
-                <div class="row-player-name">COCO-_</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">8 PTS</div>
-            </div>
-
-            <div class="roster-card-row">
-                <div class="row-rank-num">#19</div>
-                <div class="row-player-name">Hamude_VIP</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-pc">PC</span>
-                <div class="row-points-total">8 PTS</div>
-            </div>
-        </div> <!-- Closes .main-content-panel box column securely -->
-
-        <!-- Right Side Sidebar Framework Wrapper Column -->
-        <div class="right-sidebar-column-wrapper">
-            
-            <!-- Invite Code Box Component Box with Solid Green Border -->
-            <div class="invite-badge-box">
-                <div class="invite-title">Invite Code</div>
-                <div class="invite-string">80B4K0DX</div>
-            </div>
-
-            <!-- Complete 10-Tier Points Value Legend Panel in full Multicraft typography -->
-            <div class="sidebar-panel">
-                <h3>Tier Points System</h3>
-                <ul class="points-legend-list">
-                    <li class="points-legend-item"><span class="tier-id-tag">HT1</span><span class="points-weight-tag">100 Pts</span></li>
-                    <li class="points-legend-item"><span class="tier-id-tag">LT1</span><span class="points-weight-tag">85 Pts</span></li>
-                    <li class="points-legend-item"><span class="tier-id-tag">HT2</span><span class="points-weight-tag">75 Pts</span></li>
-                    <li class="points-legend-item"><span class="tier-id-tag">LT2</span><span class="points-weight-tag">60 Pts</span></li>
-                    <li class="points-legend-item"><span class="tier-id-tag">HT3</span><span class="points-weight-tag">40 Pts</span></li>
-                    <li class="points-legend-item"><span class="tier-id-tag">LT3</span><span class="points-weight-tag">30 Pts</span></li>
-                    <li class="points-legend-item"><span class="tier-id-tag">HT4</span><span class="points-weight-tag">25 Pts</span></li>
-                    <li class="points-legend-item"><span class="tier-id-tag">LT4</span><span class="points-weight-tag">15 Pts</span></li>
-                    <li class="points-legend-item"><span class="tier-id-tag">HT5</span><span class="points-weight-tag">8 Pts</span></li>
-                    <li class="points-legend-item"><span class="tier-id-tag">LT5</span><span class="points-weight-tag">3 Pts</span></li>
-                </ul>
-            </div>
-        </div> <!-- Closes sidebar column wrapper safely -->
-    </div> <!-- Closes .dashboard-layout-wrapper securely -->
-
-    <!-- BACKGROUND ENGINE FIX: Automatically patches your blue sword links into the tab bar nodes -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const tabs = document.querySelectorAll('.top-nav-bar button');
-            
-            // Map the blue sword to Emerald KB button frame natively
-            if (tabs.length >= 3) {
-                tabs[2].innerHTML = '<div class="tab-weapon-icon-frame"><img src="https://minecraft.wiki" alt="Icon"></div> Emerald KB';
-            }
-            
-            // Map the blue sword to Dragonhide KB button frame natively
-            if (tabs.length >= 5) {
-                tabs[4].innerHTML = '<div class="tab-weapon-icon-frame"><img src="https://minecraft.wiki" alt="Icon"></div> Dragonhide KB';
-            }
-        });
-    </script>
-</body>
-</html>
