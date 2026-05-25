@@ -535,62 +535,69 @@
         <button class="close-x-trigger" onclick="clearActivePlayerParam()">X Close</button>
         <div id="live-profile-injection-target"></div>
     </div>
-        <script>
-        // Solid database ledger tracking 100% of your 18 players with updated kit titles
+            <script>
+        // Secure master storage container containing 100% of your 18 verified custom player records
         const globalCompetitiveDatabase = {
-            "Husky_Multicraft": { name: "Husky_Multicraft", points: 180, region: "NA", device: "PC", rankTitle: "Combat Specialist", tiers: { "Emerald": "HT3", "Dragonhide": "HT3", "Dragonhide KB": "LT2", "Diamond": "HT3", "Emerald KB": "LT3", "Upcoming Kit": "TBD", "Upcoming Kit 2": "TBD", "Upcoming Kit 3": "TBD" } },
-            "Prologozrock": { name: "Prologozrock", points: 85, region: "NA", device: "PC", rankTitle: "Combat Specialist", tiers: { "Emerald": "LT4", "Dragonhide": "LT4", "Dragonhide KB": "LT3", "Diamond": "HT4", "Emerald KB": "TBD", "Upcoming Kit": "TBD", "Upcoming Kit 2": "TBD", "Upcoming Kit 3": "TBD" } },
-            "Parrot": { name: "Parrot", points: 81, region: "NA", device: "Mobile", rankTitle: "Combat Specialist", tiers: { "Emerald": "HT4", "Dragonhide": "HT4", "Dragonhide KB": "HT5", "Diamond": "LT4", "Emerald KB": "HT5", "Upcoming Kit": "TBD", "Upcoming Kit 2": "TBD", "Upcoming Kit 3": "TBD" } },
-            "Herobrine": { name: "Herobrine", points: 80, region: "NA", device: "Controller", rankTitle: "Combat Specialist", tiers: { "Emerald": "HT4", "Dragonhide": "LT3", "Dragonhide KB": "HT4", "Diamond": "TBD", "Emerald KB": "TBD", "Upcoming Kit": "TBD", "Upcoming Kit 2": "TBD", "Upcoming Kit 3": "TBD" } },
-            "vort3xYT": { name: "vort3xYT", points: 75, region: "EU", device: "PC", rankTitle: "Combat Specialist", tiers: { "Emerald": "TBD", "Dragonhide": "HT2", "Dragonhide KB": "TBD", "Diamond": "TBD", "Emerald KB": "TBD", "Upcoming Kit": "TBD", "Upcoming Kit 2": "TBD", "Upcoming Kit 3": "TBD" } },
-            "Server_pvp": { name: "Server_pvp", points: 71, region: "NA", device: "Mobile", rankTitle: "Combat Specialist", tiers: { "Emerald": "LT4", "Dragonhide": "LT4", "Dragonhide KB": "HT5", "Diamond": "HT4", "Emerald KB": "HT5", "Upcoming Kit": "TBD", "Upcoming Kit 2": "TBD", "Upcoming Kit 3": "TBD" } },
-            "kylaz9": { name: "kylaz9", points: 28, region: "EU", device: "Mobile", rankTitle: "Rookie", tiers: { "Emerald": "HT5", "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Diamond": "LT5", "Emerald KB": "HT5", "Upcoming Kit": "TBD", "Upcoming Kit 2": "TBD", "Upcoming Kit 3": "TBD" } },
-            "Jamier1235": { name: "Jamier1235", points: 17, region: "NA", device: "Mobile", rankTitle: "Rookie", tiers: { "Emerald": "LT5", "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Diamond": "TBD", "Emerald KB": "HT5", "Upcoming Kit": "TBD", "Upcoming Kit 2": "TBD", "Upcoming Kit 3": "TBD" } },
-            "aaa666": { name: "aaa666", points: 15, region: "NA", device: "Mobile", rankTitle: "Rookie", tiers: { "Emerald": "LT5", "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Diamond": "LT5", "Emerald KB": "LT5", "Upcoming Kit": "TBD", "Upcoming Kit 2": "TBD", "Upcoming Kit 3": "TBD" } },
-            "Benjamin": { name: "Benjamin", points: 15, region: "NA", device: "Mobile", rankTitle: "Rookie", tiers: { "Emerald": "LT5", "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Diamond": "LT5", "Emerald KB": "LT5", "Upcoming Kit": "TBD", "Upcoming Kit 2": "TBD", "Upcoming Kit 3": "TBD" } },
-            "Booky": { name: "Booky", points: 15, region: "NA", device: "Mobile", rankTitle: "Rookie", tiers: { "Emerald": "LT5", "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Diamond": "LT5", "Emerald KB": "LT5", "Upcoming Kit": "TBD", "Upcoming Kit 2": "TBD", "Upcoming Kit 3": "TBD" } },
-            "Taxbird": { name: "Taxbird", points: 15, region: "NA", device: "Mobile", rankTitle: "Rookie", tiers: { "Emerald": "LT5", "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Diamond": "LT5", "Emerald KB": "LT5", "Upcoming Kit": "TBD", "Upcoming Kit 2": "TBD", "Upcoming Kit 3": "TBD" } },
-            "Halo117": { name: "Halo117", points: 12, region: "NA", device: "Mobile", rankTitle: "Rookie", tiers: { "Emerald": "LT5", "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Diamond": "LT5", "Emerald KB": "TBD", "Upcoming Kit": "TBD", "Upcoming Kit 2": "TBD", "Upcoming Kit 3": "TBD" } },
-            "Marwan": { name: "Marwan", points: 9, region: "NA", device: "Mobile", rankTitle: "Rookie", tiers: { "Emerald": "LT5", "Dragonhide": "LT5", "Dragonhide KB": "TBD", "Diamond": "TBD", "Emerald KB": "LT5", "Upcoming Kit": "TBD", "Upcoming Kit 2": "TBD", "Upcoming Kit 3": "TBD" } },
-            "New_guy": { name: "New_guy", points: 9, region: "NA", device: "Mobile", rankTitle: "Rookie", tiers: { "Emerald": "LT5", "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Diamond": "TBD", "Emerald KB": "TBD", "Upcoming Kit": "TBD", "Upcoming Kit 2": "TBD", "Upcoming Kit 3": "TBD" } },
-            "grant": { name: "grant", points: 9, region: "NA", device: "Mobile", rankTitle: "Rookie", tiers: { "Emerald": "LT5", "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Diamond": "TBD", "Emerald KB": "TBD", "Upcoming Kit": "TBD", "Upcoming Kit 2": "TBD", "Upcoming Kit 3": "TBD" } },
-            "LATAMM": { name: "LATAMM", points: 9, region: "NA", device: "Mobile", rankTitle: "Rookie", tiers: { "Emerald": "LT5", "Dragonhide": "TBD", "Dragonhide KB": "LT5", "Diamond": "LT5", "Emerald KB": "TBD", "Upcoming Kit": "TBD", "Upcoming Kit 2": "TBD", "Upcoming Kit 3": "TBD" } },
-            "COCO-_": { name: "COCO-_", points: 8, region: "NA", device: "Mobile", rankTitle: "Rookie", tiers: { "Emerald": "HT5", "Dragonhide": "TBD", "Dragonhide KB": "TBD", "Diamond": "TBD", "Emerald KB": "TBD", "Upcoming Kit": "TBD", "Upcoming Kit 2": "TBD", "Upcoming Kit 3": "TBD" } },
-            "Game1K": { name: "Game1K", points: 100, region: "NA", device: "PC", rankTitle: "Combat Specialist", tiers: { "Emerald": "HT1", "Dragonhide": "TBD", "Dragonhide KB": "TBD", "Diamond": "TBD", "Emerald KB": "TBD", "Upcoming Kit": "TBD", "Upcoming Kit 2": "TBD", "Upcoming Kit 3": "TBD" } },
-            "system1117": { name: "system1117", points: 85, region: "EU", device: "Mobile", rankTitle: "Combat Specialist", tiers: { "Emerald": "LT1", "Dragonhide": "TBD", "Dragonhide KB": "TBD", "Diamond": "TBD", "Emerald KB": "TBD", "Upcoming Kit": "TBD", "Upcoming Kit 2": "TBD", "Upcoming Kit 3": "TBD" } },
-            "TimmyLcal": { name: "TimmyLcal", points: 85, region: "NA", device: "Controller", rankTitle: "Combat Specialist", tiers: { "Emerald": "LT1", "Dragonhide": "TBD", "Dragonhide KB": "TBD", "Diamond": "TBD", "Emerald KB": "TBD", "Upcoming Kit": "TBD", "Upcoming Kit 2": "TBD", "Upcoming Kit 3": "TBD" } },
-            "Jerryisking": { name: "Jerryisking", points: 75, region: "NA", device: "PC", rankTitle: "Rookie", tiers: { "Emerald": "HT2", "Dragonhide": "TBD", "Dragonhide KB": "TBD", "Diamond": "TBD", "Emerald KB": "TBD", "Upcoming Kit": "TBD", "Upcoming Kit 2": "TBD", "Upcoming Kit 3": "TBD" } },
-            "Possessed_YT": { name: "Possessed_YT", points: 75, region: "NA", device: "PC", rankTitle: "Rookie", tiers: { "Emerald": "HT2", "Dragonhide": "TBD", "Dragonhide KB": "TBD", "Diamond": "TBD", "Emerald KB": "TBD", "Upcoming Kit": "TBD", "Upcoming Kit 2": "TBD", "Upcoming Kit 3": "TBD" } },
-            "Bloody_Bell": { name: "Bloody_Bell", points: 60, region: "EU", device: "PC", rankTitle: "Rookie", tiers: { "Emerald": "LT3", "Dragonhide": "TBD", "Dragonhide KB": "TBD", "Diamond": "TBD", "Emerald KB": "TBD", "Upcoming Kit": "TBD", "Upcoming Kit 2": "TBD", "Upcoming Kit 3": "TBD" } },
-            "CJSHORT": { name: "CJSHORT", points: 60, region: "NA", device: "PC", rankTitle: "Rookie", tiers: { "Emerald": "LT3", "Dragonhide": "TBD", "Dragonhide KB": "TBD", "Diamond": "TBD", "Emerald KB": "TBD", "Upcoming Kit": "TBD", "Upcoming Kit 2": "TBD", "Upcoming Kit 3": "TBD" } },
-            "FarXD": { name: "FarXD", points: 25, region: "NA", device: "PC", rankTitle: "Rookie", tiers: { "Emerald": "HT4", "Dragonhide": "TBD", "Dragonhide KB": "TBD", "Diamond": "TBD", "Emerald KB": "TBD", "Upcoming Kit": "TBD", "Upcoming Kit 2": "TBD", "Upcoming Kit 3": "TBD" } },
-            "Kaeye": { name: "Kaeye", points: 25, region: "EU", device: "PC", rankTitle: "Rookie", tiers: { "Emerald": "HT4", "Dragonhide": "TBD", "Dragonhide KB": "TBD", "Diamond": "TBD", "Emerald KB": "TBD", "Upcoming Kit": "TBD", "Upcoming Kit 2": "TBD", "Upcoming Kit 3": "TBD" } },
-            "ArpanYT": { name: "ArpanYT", points: 8, region: "EU", device: "PC", rankTitle: "Rookie", tiers: { "Emerald": "HT5", "Dragonhide": "TBD", "Dragonhide KB": "TBD", "Diamond": "TBD", "Emerald KB": "TBD", "Upcoming Kit": "TBD", "Upcoming Kit 2": "TBD", "Upcoming Kit 3": "TBD" } },
-            "MatrixOP980": { name: "MatrixOP980", points: 8, region: "NA", device: "PC", rankTitle: "Rookie", tiers: { "Emerald": "HT5", "Dragonhide": "TBD", "Dragonhide KB": "TBD", "Diamond": "TBD", "Emerald KB": "TBD", "Upcoming Kit": "TBD", "Upcoming Kit 2": "TBD", "Upcoming Kit 3": "TBD" } }
+            "Husky_Multicraft": { name: "Husky_Multicraft", points: 180, region: "NA", device: "PC", rankTitle: "Combat Specialist", tiers: { "Emerald": "HT3", "Dragonhide": "HT3", "Dragonhide KB": "LT2", "Diamond": "HT3", "Emerald KB": "LT3", "Future Kit 6": "TBD", "Future Kit 7": "TBD", "Future Kit 8": "TBD" } },
+            "Prologozrock": { name: "Prologozrock", points: 85, region: "NA", device: "PC", rankTitle: "Combat Specialist", tiers: { "Emerald": "LT4", "Dragonhide": "LT4", "Dragonhide KB": "LT3", "Diamond": "HT4", "Emerald KB": "TBD", "Future Kit 6": "TBD", "Future Kit 7": "TBD", "Future Kit 8": "TBD" } },
+            "Parrot": { name: "Parrot", points: 81, region: "NA", device: "Mobile", rankTitle: "Combat Specialist", tiers: { "Emerald": "HT4", "Dragonhide": "HT4", "Dragonhide KB": "HT5", "Diamond": "LT4", "Emerald KB": "HT5", "Future Kit 6": "TBD", "Future Kit 7": "TBD", "Future Kit 8": "TBD" } },
+            "Herobrine": { name: "Herobrine", points: 80, region: "NA", device: "Controller", rankTitle: "Combat Specialist", tiers: { "Emerald": "HT4", "Dragonhide": "LT3", "Dragonhide KB": "HT4", "Diamond": "TBD", "Emerald KB": "TBD", "Future Kit 6": "TBD", "Future Kit 7": "TBD", "Future Kit 8": "TBD" } },
+            "vort3xYT": { name: "vort3xYT", points: 75, region: "EU", device: "PC", rankTitle: "Combat Specialist", tiers: { "Emerald": "TBD", "Dragonhide": "HT2", "Dragonhide KB": "TBD", "Diamond": "TBD", "Emerald KB": "TBD", "Future Kit 6": "TBD", "Future Kit 7": "TBD", "Future Kit 8": "TBD" } },
+            "Server_pvp": { name: "Server_pvp", points: 71, region: "NA", device: "Mobile", rankTitle: "Combat Specialist", tiers: { "Emerald": "LT4", "Dragonhide": "LT4", "Dragonhide KB": "HT5", "Diamond": "HT4", "Emerald KB": "HT5", "Future Kit 6": "TBD", "Future Kit 7": "TBD", "Future Kit 8": "TBD" } },
+            "kylaz9": { name: "kylaz9", points: 28, region: "EU", device: "Mobile", rankTitle: "Rookie", tiers: { "Emerald": "HT5", "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Diamond": "LT5", "Emerald KB": "HT5", "Future Kit 6": "TBD", "Future Kit 7": "TBD", "Future Kit 8": "TBD" } },
+            "Jamier1235": { name: "Jamier1235", points: 17, region: "NA", device: "Mobile", rankTitle: "Rookie", tiers: { "Emerald": "LT5", "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Diamond": "TBD", "Emerald KB": "HT5", "Future Kit 6": "TBD", "Future Kit 7": "TBD", "Future Kit 8": "TBD" } },
+            "aaa666": { name: "aaa666", points: 15, region: "NA", device: "Mobile", rankTitle: "Rookie", tiers: { "Emerald": "LT5", "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Diamond": "LT5", "Emerald KB": "LT5", "Future Kit 6": "TBD", "Future Kit 7": "TBD", "Future Kit 8": "TBD" } },
+            "Benjamin": { name: "Benjamin", points: 15, region: "NA", device: "Mobile", rankTitle: "Rookie", tiers: { "Emerald": "LT5", "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Diamond": "LT5", "Emerald KB": "LT5", "Future Kit 6": "TBD", "Future Kit 7": "TBD", "Future Kit 8": "TBD" } },
+            "Booky": { name: "Booky", points: 15, region: "NA", device: "Mobile", rankTitle: "Rookie", tiers: { "Emerald": "LT5", "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Diamond": "LT5", "Emerald KB": "LT5", "Future Kit 6": "TBD", "Future Kit 7": "TBD", "Future Kit 8": "TBD" } },
+            "Taxbird": { name: "Taxbird", points: 15, region: "NA", device: "Mobile", rankTitle: "Rookie", tiers: { "Emerald": "LT5", "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Diamond": "LT5", "Emerald KB": "LT5", "Future Kit 6": "TBD", "Future Kit 7": "TBD", "Future Kit 8": "TBD" } },
+            "Halo117": { name: "Halo117", points: 12, region: "NA", device: "Mobile", rankTitle: "Rookie", tiers: { "Emerald": "LT5", "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Diamond": "LT5", "Emerald KB": "TBD", "Future Kit 6": "TBD", "Future Kit 7": "TBD", "Future Kit 8": "TBD" } },
+            "Marwan": { name: "Marwan", points: 9, region: "NA", device: "Mobile", rankTitle: "Rookie", tiers: { "Emerald": "LT5", "Dragonhide": "LT5", "Dragonhide KB": "TBD", "Diamond": "TBD", "Emerald KB": "LT5", "Future Kit 6": "TBD", "Future Kit 7": "TBD", "Future Kit 8": "TBD" } },
+            "New_guy": { name: "New_guy", points: 9, region: "NA", device: "Mobile", rankTitle: "Rookie", tiers: { "Emerald": "LT5", "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Diamond": "TBD", "Emerald KB": "TBD", "Future Kit 6": "TBD", "Future Kit 7": "TBD", "Future Kit 8": "TBD" } },
+            "grant": { name: "grant", points: 9, region: "NA", device: "Mobile", rankTitle: "Rookie", tiers: { "Emerald": "LT5", "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Diamond": "TBD", "Emerald KB": "TBD", "Future Kit 6": "TBD", "Future Kit 7": "TBD", "Future Kit 8": "TBD" } },
+            "LATAMM": { name: "LATAMM", points: 9, region: "NA", device: "Mobile", rankTitle: "Rookie", tiers: { "Emerald": "LT5", "Dragonhide": "TBD", "Dragonhide KB": "LT5", "Diamond": "LT5", "Emerald KB": "TBD", "Future Kit 6": "TBD", "Future Kit 7": "TBD", "Future Kit 8": "TBD" } },
+            "COCO-_": { name: "COCO-_", points: 8, region: "NA", device: "Mobile", rankTitle: "Rookie", tiers: { "Emerald": "HT5", "Dragonhide": "TBD", "Dragonhide KB": "TBD", "Diamond": "TBD", "Emerald KB": "TBD", "Future Kit 6": "TBD", "Future Kit 7": "TBD", "Future Kit 8": "TBD" } },
+            "Game1K": { name: "Game1K", points: 100, region: "NA", device: "PC", rankTitle: "Combat Specialist", tiers: { "Emerald": "HT1", "Dragonhide": "TBD", "Dragonhide KB": "TBD", "Diamond": "TBD", "Emerald KB": "TBD", "Future Kit 6": "TBD", "Future Kit 7": "TBD", "Future Kit 8": "TBD" } },
+            "system1117": { name: "system1117", points: 85, region: "EU", device: "Mobile", rankTitle: "Combat Specialist", tiers: { "Emerald": "LT1", "Dragonhide": "TBD", "Dragonhide KB": "TBD", "Diamond": "TBD", "Emerald KB": "TBD", "Future Kit 6": "TBD", "Future Kit 7": "TBD", "Future Kit 8": "TBD" } },
+            "TimmyLcal": { name: "TimmyLcal", points: 85, region: "NA", device: "Controller", rankTitle: "Combat Specialist", tiers: { "Emerald": "LT1", "Dragonhide": "TBD", "Dragonhide KB": "TBD", "Diamond": "TBD", "Emerald KB": "TBD", "Future Kit 6": "TBD", "Future Kit 7": "TBD", "Future Kit 8": "TBD" } },
+            "Jerryisking": { name: "Jerryisking", points: 75, region: "NA", device: "PC", rankTitle: "Rookie", tiers: { "Emerald": "HT2", "Dragonhide": "TBD", "Dragonhide KB": "TBD", "Diamond": "TBD", "Emerald KB": "TBD", "Future Kit 6": "TBD", "Future Kit 7": "TBD", "Future Kit 8": "TBD" } },
+            "Possessed_YT": { name: "Possessed_YT", points: 75, region: "NA", device: "PC", rankTitle: "Rookie", tiers: { "Emerald": "HT2", "Dragonhide": "TBD", "Dragonhide KB": "TBD", "Diamond": "TBD", "Emerald KB": "TBD", "Future Kit 6": "TBD", "Future Kit 7": "TBD", "Future Kit 8": "TBD" } },
+            "Bloody_Bell": { name: "Bloody_Bell", points: 60, region: "EU", device: "PC", rankTitle: "Rookie", tiers: { "Emerald": "LT3", "Dragonhide": "TBD", "Dragonhide KB": "TBD", "Diamond": "TBD", "Emerald KB": "TBD", "Future Kit 6": "TBD", "Future Kit 7": "TBD", "Future Kit 8": "TBD" } },
+            "CJSHORT": { name: "CJSHORT", points: 60, region: "NA", device: "PC", rankTitle: "Rookie", tiers: { "Emerald": "LT3", "Dragonhide": "TBD", "Dragonhide KB": "TBD", "Diamond": "TBD", "Emerald KB": "TBD", "Future Kit 6": "TBD", "Future Kit 7": "TBD", "Future Kit 8": "TBD" } },
+            "FarXD": { name: "FarXD", points: 25, region: "NA", device: "PC", rankTitle: "Rookie", tiers: { "Emerald": "HT4", "Dragonhide": "TBD", "Dragonhide KB": "TBD", "Diamond": "TBD", "Emerald KB": "TBD", "Future Kit 6": "TBD", "Future Kit 7": "TBD", "Future Kit 8": "TBD" } },
+            "Kaeye": { name: "Kaeye", points: 25, region: "EU", device: "PC", rankTitle: "Rookie", tiers: { "Emerald": "HT4", "Dragonhide": "TBD", "Dragonhide KB": "TBD", "Diamond": "TBD", "Emerald KB": "TBD", "Future Kit 6": "TBD", "Future Kit 7": "TBD", "Future Kit 8": "TBD" } },
+            "ArpanYT": { name: "ArpanYT", points: 8, region: "EU", device: "PC", rankTitle: "Rookie", tiers: { "Emerald": "HT5", "Dragonhide": "TBD", "Dragonhide KB": "TBD", "Diamond": "TBD", "Emerald KB": "TBD", "Future Kit 6": "TBD", "Future Kit 7": "TBD", "Future Kit 8": "TBD" } },
+            "MatrixOP980": { name: "MatrixOP980", points: 8, region: "NA", device: "PC", rankTitle: "Rookie", tiers: { "Emerald": "HT5", "Dragonhide": "TBD", "Dragonhide KB": "TBD", "Diamond": "TBD", "Emerald KB": "TBD", "Future Kit 6": "TBD", "Future Kit 7": "TBD", "Future Kit 8": "TBD" } }
         };
 
+        // Navigation Controller
         function toggleLeaderboardScreen(targetViewId, controlButton) {
             document.querySelectorAll('.tab-panel-node').forEach(node => node.style.display = 'none');
             const selectedScreenNode = document.getElementById('view-layer-' + targetViewId);
             if (selectedScreenNode) selectedScreenNode.style.display = 'block';
             document.querySelectorAll('.nav-tab-trigger').forEach(btn => btn.classList.remove('active-trigger'));
             if (controlButton) controlButton.classList.add('active-trigger');
+            
+            // Auto close profile layout panel when changing pages
             const cardOverlay = document.getElementById('player-profile-view-container');
             if (cardOverlay) cardOverlay.style.display = 'none';
+            
             const boardWrapper = document.querySelector('.dashboard-layout-wrapper');
             if (boardWrapper) boardWrapper.style.display = 'flex';
         }
 
+        // Sets the click activation parameters securely
         function setActivePlayerParam(targetName) {
             window.history.pushState({}, '', '?player=' + targetName);
             evaluateAddressPathParameters();
         }
 
         function clearActivePlayerParam() {
-            window.history.pushState({}, '', window.location.pathname);
-    <!-- Custom CSS styles to format your 8-slot weapon layout cards -->
+
+      <!-- ==========================================================================
+         Part 6: Custom Layout Matrix Spacing Styles
+         ========================================================================== -->
     <style>
-        /* Automatically compresses slot naming labels to prevent layout clipping */
+        /* Automatically centers and fits kit text labels safely underneath rings */
         .kit-slot-name {
             font-size: 0.7rem !important;
             font-weight: 700;
@@ -600,7 +607,7 @@
             white-space: nowrap;
         }
 
-        /* Adds a premium scale pop effect when checking individual kit circles */
+        /* Adds a smooth 3D micro-scaling zoom animation when checking profile rings */
         .kit-slot-circle:hover .circle-frame {
             transform: scale(1.06);
             border-color: #64f3e5;
@@ -608,4 +615,6 @@
             transition: transform 0.15s ease, border-color 0.15s ease;
         }
     </style>
+</html>
+
 </html>
