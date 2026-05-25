@@ -30,6 +30,33 @@
         .logo-container { max-width: 500px; width: 100%; margin-bottom: 25px; text-align: center; }
         .logo-container img { width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(100, 243, 229, 0.15); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6); }
         
+        /* Premium Filter Navigation Bar featuring your custom weapon graphics frame layers */
+        .top-nav-bar { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; width: 100%; max-width: 1100px; }
+        
+        .nav-tab-trigger {
+            background: rgba(4, 15, 24, 0.65); border: 1.5px solid rgba(255, 255, 255, 0.08); color: rgba(255, 255, 255, 0.4);
+            font-family: 'MulticraftCustom', monospace !important; font-size: 0.6rem; padding: 6px 14px; border-radius: 6px; 
+            cursor: pointer; text-transform: uppercase; display: flex; align-items: center; gap: 10px; transition: all 0.2s ease;
+        }
+        .nav-tab-trigger:hover, .nav-tab-trigger.active-trigger { color: #ffe082; border-color: #ffe082; background: rgba(255, 224, 130, 0.04); box-shadow: 0 0 12px rgba(255, 224, 130, 0.15); }
+        
+        /* BACKGROUND STRIPPER: Centers, zooms, and isolates your custom sword snapshots cleanly */
+        .tab-weapon-icon-frame {
+            width: 22px; height: 22px; border-radius: 4px; overflow: hidden; display: flex; align-items: center; justify-content: center;
+            background: #030a10; border: 1px solid rgba(255,255,255,0.1); position: relative;
+        }
+        .tab-weapon-icon-frame img {
+            width: 75px; height: 75px; position: absolute; top: -20px; left: -26px;
+            image-rendering: pixelated; transform: rotate(-5deg); filter: contrast(1.1);
+        }
+        
+        /* Special zoomed adjustment rule specifically for the two-item Emerald KB photo image layout bounds */
+        .em-kb-adjust img {
+            width: 110px !important; height: 110px !important; top: -38px !important; left: -22px !important;
+        }
+        
+        .active-trigger .tab-weapon-icon-frame { border-color: #ffe082; background: rgba(255, 224, 130, 0.1); }
+
         .dashboard-layout-wrapper { display: flex; flex-direction: row; gap: 20px; width: 100%; max-width: 1100px; }
         .main-content-panel { flex: 3; background: rgba(4, 11, 18, 0.45); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 14px; padding: 22px; box-sizing: border-box; backdrop-filter: blur(12px); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); }
         .menu-title { font-family: 'MulticraftCustom', monospace !important; color: #64f3e5; font-size: 1.2rem; margin: 0 0 20px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 14px; text-transform: uppercase; text-align: center; }
@@ -41,7 +68,6 @@
         .roster-card-row:nth-child(2) .row-rank-num { color: #c0c0c0; }
         .roster-card-row:nth-child(3) .row-rank-num { color: #cd7f32; }
         
-        /* FONT MAPPING FIX: Forces player names to pull the custom server font directly */
         .row-player-name { font-family: 'MulticraftCustom', monospace !important; font-size: 0.9rem; font-weight: normal; color: #ffffff; flex: 1; }
         .row-points-total { font-family: 'MulticraftCustom', monospace !important; font-size: 0.75rem; color: #ffd700; min-width: 85px; text-align: right; }
 
@@ -52,30 +78,42 @@
         .pill-mob { color: #52be80; border: 1px solid rgba(82, 190, 128, 0.25); background: rgba(82, 190, 128, 0.04); }
         .pill-con { color: #e59866; border: 1px solid rgba(229, 152, 102, 0.25); background: rgba(229, 152, 102, 0.04); }
 
-        /* Sidebar Elements */
-        .sidebar-panel { background: rgba(4, 15, 25, 0.75); border: 1px solid rgba(86, 239, 170, 0.12); border-radius: 12px; padding: 18px; height: fit-content; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4); }
-        .sidebar-panel h3 { font-family: 'MulticraftCustom', monospace !important; color: #e67e22; font-size: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 10px; margin: 0 0 10px 0; text-align: center; text-transform: uppercase; }
-        .points-legend-list { list-style: none; padding: 0; margin: 0; }
-        .points-legend-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.04); font-size: 0.82rem; }
-        .points-legend-item span.tier-id-tag { font-family: 'MulticraftCustom', monospace !important; font-size: 0.65rem; color: #56efaa; }
-        .points-legend-item span.points-weight-tag { color: #e67e22; font-weight: 600; }
-
-        .invite-badge-box { background: rgba(4, 15, 25, 0.9); border: 1.5px dashed #56efaa; border-radius: 8px; padding: 10px 14px; text-align: center; box-shadow: 0 0 15px rgba(86, 239, 170, 0.15); margin-bottom: 15px; width: 100%; box-sizing: border-box; }
-        .invite-title { font-family: 'MulticraftCustom', monospace !important; font-size: 0.6rem; color: rgba(255, 255, 255, 0.4); text-transform: uppercase; margin-bottom: 4px; }
-        .invite-string { font-family: 'MulticraftCustom', monospace !important; font-size: 0.9rem; color: #56efaa; letter-spacing: 0.5px; }
-
         @media (max-width: 800px) { .dashboard-layout-wrapper { flex-direction: column; } }
     </style>
 </head>
 <body>
 
-    <!-- 1. Centered Server Banner Logo -->
+    <!-- Centered Server Banner Image -->
     <div class="logo-container">
         <img src="logo.png" alt="Multicraft Server Banner">
     </div>
     
+    <!-- Top Filter Controls Horizontal Navigation Menu Row featuring your new image paths natively mapped -->
+    <div class="top-nav-bar">
+        <button class="nav-tab-trigger active-trigger">Overall</button>
+        <button class="nav-tab-trigger">
+            <div class="tab-weapon-icon-frame"><img src="emerald.png" alt="Icon"></div>
+            Emerald
+        </button>
+        <button class="nav-tab-trigger">
+            <div class="tab-weapon-icon-frame em-kb-adjust"><img src="emeraldkb.png" alt="Icon"></div>
+            Emerald KB
+        </button>
+        <button class="nav-tab-trigger">
+            <div class="tab-weapon-icon-frame"><img src="dragonhide.png" alt="Icon"></div>
+            Dragonhide
+        </button>
+        <button class="nav-tab-trigger">
+            <div class="tab-weapon-icon-frame"><img src="dragonhidekb.png" alt="Icon"></div>
+            Dragonhide KB
+        </button>
+        <button class="nav-tab-trigger">
+            <div class="tab-weapon-icon-frame"><img src="diamond.png" alt="Icon"></div>
+            Diamond
+        </button>
+    </div>
+    
     <div class="dashboard-layout-wrapper">
-        <!-- 2. Permanent Left Leaderboard List Box -->
         <div class="main-content-panel">
             <h2 class="menu-title">Overall Leaderboard</h2>
             
@@ -137,109 +175,3 @@
 
             <div class="roster-card-row">
                 <div class="row-rank-num">#9</div>
-                <div class="row-player-name">aaa666</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">15 PTS</div>
-            </div>
-
-            <div class="roster-card-row">
-                <div class="row-rank-num">#10</div>
-                <div class="row-player-name">Benjamin</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">15 PTS</div>
-            </div>
-            <!-- Remaining Player Roster Entries Slots -->
-            <div class="roster-card-row">
-                <div class="row-rank-num">#11</div>
-                <div class="row-player-name">Booky</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">15 PTS</div>
-            </div>
-
-            <div class="roster-card-row">
-                <div class="row-rank-num">#12</div>
-                <div class="row-player-name">Taxbird</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">15 PTS</div>
-            </div>
-
-            <div class="roster-card-row">
-                <div class="row-rank-num">#13</div>
-                <div class="row-player-name">Halo117</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">12 PTS</div>
-            </div>
-
-            <div class="roster-card-row">
-                <div class="row-rank-num">#14</div>
-                <div class="row-player-name">Marwan</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">9 PTS</div>
-            </div>
-
-            <div class="roster-card-row">
-                <div class="row-rank-num">#15</div>
-                <div class="row-player-name">New_guy</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">9 PTS</div>
-            </div>
-
-            <div class="roster-card-row">
-                <div class="row-rank-num">#16</div>
-                <div class="row-player-name">grant</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">9 PTS</div>
-            </div>
-
-            <div class="roster-card-row">
-                <div class="row-rank-num">#17</div>
-                <div class="row-player-name">LATAMM</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">9 PTS</div>
-            </div>
-
-            <div class="roster-card-row">
-                <div class="row-rank-num">#18</div>
-                <div class="row-player-name">COCO-_</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">8 PTS</div>
-            </div>
-
-            <div class="roster-card-row">
-                <div class="row-rank-num">#19</div>
-                <div class="row-player-name">Hamude_VIP</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-pc">PC</span>
-                <div class="row-points-total">8 PTS</div>
-            </div>
-        </div> <!-- Closes .main-content-panel securely -->
-
-        <!-- 3. Permanent Right Sidebar Panel Column -->
-        <div style="flex: 1; display: flex; flex-direction: column; gap: 15px;">
-            
-            <!-- Invite Code Box Component -->
-            <div class="invite-badge-box">
-                <div class="invite-title">Invite Code</div>
-                <div class="invite-string">80B4K0DX</div>
-            </div>
-
-            <!-- Complete Tier Points System Sidebar Legend -->
-            <div class="sidebar-panel">
-                <h3>Tier Points System</h3>
-                <ul class="points-legend-list">
-                    <li class="points-legend-item"><span class="tier-id-tag">HT1</span><span class="points-weight-tag">100 Pts</span></li>
-                    <li class="points-legend-item"><span class="tier-id-tag">LT1</span><span class="points-weight-tag">85 Pts</span></li>
-                    <li class="points-legend-item"><span class="tier-id-tag">HT2</span><span class="points-weight-tag">75 Pts</span></li>
-                    <li class="points-legend-item"><span class="tier-id-tag">LT2</span><span class="points-weight-tag">60 Pts</span></li>
-                    <li class="points-legend-item"><span class="tier-id-tag">HT3</span><span class="points-weight-tag">40 Pts</span></li>
-                    <li class="points-legend-item"><span class="tier-id-tag">LT3</span><span class="points-weight-tag">30 Pts</span></li>
-                    <li class="points-legend-item"><span class="tier-id-tag">HT4</span><span class="points-weight-tag">25 Pts</span></li>
-                    <li class="points-legend-item"><span class="tier-id-tag">LT4</span><span class="points-weight-tag">15 Pts</span></li>
-                    <li class="points-legend-item"><span class="tier-id-tag">HT5</span><span class="points-weight-tag">8 Pts</span></li>
-                    <li class="points-legend-item"><span class="tier-id-tag">LT5</span><span class="points-weight-tag">3 Pts</span></li>
-                </ul>
-            </div>
-        </div> <!-- Closes sidebar column wrapper safely -->
-    </div> <!-- Closes .dashboard-layout-wrapper securely -->
-
-</body>
-</html>
