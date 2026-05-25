@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multicraft Island Tiers | Competitive Leaderboard</title>
+    <title>Multicraft Island Tiers | Competitive Hub</title>
     <style>
-        /* Unbreakable, standard system layout */
+        /* Base page layout - Dark outer space gaming atmosphere */
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             margin: 0; 
@@ -34,167 +34,244 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
         }
         
-        .dashboard-layout-wrapper {
+        .dashboard-wrapper {
             display: flex;
-            flex-direction: row;
-            gap: 30px;
+            flex-direction: column;
+            gap: 12px;
             width: 100%;
-            max-width: 1150px;
+            max-width: 1050px;
+            margin-bottom: 40px;
         }
-        
-        .main-content-panel { 
-            flex: 3;
-            background: rgba(0, 0, 0, 0.45); 
-            border: 2px solid #ffffff; 
-            border-radius: 16px; 
-            padding: 25px; 
-            box-sizing: border-box; 
-            backdrop-filter: blur(10px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
-            display: block;
-        }
-        
-        .main-content-panel h2, .sidebar-panel h3 { 
-            margin-top: 0; 
-            color: #64f3e5; 
-            font-size: 1.75rem;
-            border-bottom: 2px solid #ffffff; 
-            padding-bottom: 12px; 
-            margin-bottom: 25px;
+
+        .menu-title {
+            color: #64f3e5;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin: 0 0 10px 0;
             text-shadow: 0 0 10px rgba(100, 243, 229, 0.3);
         }
         
-        .sidebar-panel {
-            flex: 1;
-            background: rgba(14, 39, 53, 0.8);
-            border: 2px solid #64f3e5;
-            border-radius: 16px;
-            padding: 20px;
+        /* Premium horizontal rows custom architecture layout */
+        .roster-card-row {
+            display: flex;
+            align-items: center;
+            background: rgba(10, 22, 31, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 14px 20px;
             box-sizing: border-box;
-            backdrop-filter: blur(10px);
-            height: fit-content;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-        }
-        .sidebar-panel h3 {
-            color: #e67e22;
+            gap: 15px;
+            text-decoration: none;
+            color: #ffffff;
         }
         
-        /* Table Layout Styles */
-        .leaderboard-table { 
-            width: 100%; 
-            border-collapse: collapse; 
+        .row-rank-num {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.4);
+            width: 35px;
+            text-align: center;
         }
-        .leaderboard-table th, .leaderboard-table td { 
-            padding: 16px 14px; 
-            border: 1px solid #ffffff; 
-            text-align: left; 
-        }
-        .leaderboard-table th { 
-            background-color: rgba(43, 122, 113, 0.9); 
+        .roster-card-row:nth-child(2) .row-rank-num { color: #ffd700; }
+        .roster-card-row:nth-child(3) .row-rank-num { color: #c0c0c0; }
+        .roster-card-row:nth-child(4) .row-rank-num { color: #cd7f32; }
+
+        .row-player-name {
+            font-size: 1.15rem;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            color: #ffffff;
+            flex: 1;
         }
         
-        .player-table-name { 
-            color: #64f3e5; 
-            font-weight: bold; 
-            font-size: 1.1rem; 
-        }
-        
-        /* Micro Pill Badges for Table Rows */
-        .table-pill {
+        /* Badge pill layout styles */
+        .badge-pill {
             font-size: 0.75rem;
             font-weight: bold;
-            padding: 3px 8px;
-            border-radius: 4px;
+            padding: 4px 10px;
+            border-radius: 5px;
             text-transform: uppercase;
-            margin-right: 5px;
+            letter-spacing: 0.5px;
+            text-align: center;
             display: inline-block;
         }
-        .pill-na { color: #5dade2; border: 1px solid #5dade2; }
-        .pill-eu { color: #f4d03f; border: 1px solid #f4d03f; }
-        .pill-pc { color: #af7ac5; border: 1px solid #af7ac5; }
-        .pill-mob { color: #52be80; border: 1px solid #52be80; }
-        .pill-con { color: #e59866; border: 1px solid #e59866; }
-        
-        .points-legend-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .points-legend-item {
+        .pill-na { color: #4fc3f7; border: 1px solid #4fc3f7; background: rgba(79, 195, 247, 0.05); }
+        .pill-eu { color: #fff176; border: 1px solid #fff176; background: rgba(255, 241, 118, 0.05); }
+        .pill-pc { color: #ba68c8; border: 1px solid #ba68c8; background: rgba(186, 104, 200, 0.05); }
+        .pill-mob { color: #81c784; border: 1px solid #81c784; background: rgba(129, 199, 132, 0.05); }
+        .pill-con { color: #ffb74d; border: 1px solid #ffb74d; background: rgba(255, 183, 77, 0.05); }
+
+        .row-kits-summary-strip {
             display: flex;
-            justify-content: space-between;
-            padding: 11px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            font-size: 0.95rem;
+            gap: 6px;
+            align-items: center;
         }
-        .points-legend-item:last-child {
-            border-bottom: none;
+        .row-mini-kit-tag {
+            font-size: 0.7rem;
+            font-weight: 800;
+            color: #0b1d28;
+            background: #64f3e5;
+            padding: 3px 7px;
+            border-radius: 4px;
+            border: 1px solid #ffffff;
         }
-        .points-legend-item span.tier-id-tag {
-            font-weight: bold;
-            color: #64f3e5;
-        }
-        .points-legend-item span.points-weight-tag {
-            color: #e67e22;
-            font-weight: 600;
+        .row-mini-kit-tag.tbd-tag {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.2);
         }
 
-        @media (max-width: 900px) {
-            .dashboard-layout-wrapper {
-                flex-direction: column;
-                align-items: center;
-            }
-            .sidebar-panel {
-                width: 100%;
-            }
+        .row-points-total-tag {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #ffd700;
+            min-width: 90px;
+            text-align: right;
+        }
+
+        /* Premium Split-Column Profile Cards Display Layout */
+        .premium-split-profile-card {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            max-width: 1050px;
+            background: #06131c;
+            border: 2px solid rgba(100, 243, 229, 0.25);
+            border-radius: 14px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        .profile-left-column {
+            flex: 1;
+            padding: 35px;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            box-sizing: border-box;
+            background: linear-gradient(135deg, rgba(14, 36, 48, 0.3) 0%, rgba(5, 13, 18, 0.3) 100%);
+        }
+        .profile-rank-pill-badge {
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: #ffd700;
+            border: 1.5px solid #ffd700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            width: fit-content;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        .profile-player-header-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0 0 15px 0;
+            word-break: break-all;
+        }
+        .profile-meta-tags-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: auto;
+        }
+        .profile-points-readout-node {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: #ffd700;
+            margin-top: 30px;
+        }
+        .profile-points-readout-node span {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.4);
+            margin-left: 6px;
+        }
+        
+        .profile-right-column {
+            flex: 1.4;
+            padding: 35px;
+            box-sizing: border-box;
+        }
+        .profile-right-column-title {
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.4);
+            margin: 0 0 25px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding-bottom: 8px;
+        }
+        .profile-kits-display-circle-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .kit-circle-slot-node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .circle-badge-frame {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 2px solid #64f3e5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.02);
+            font-weight: 800;
+            color: #ffffff;
+            font-size: 1.1rem;
+            box-shadow: 0 0 15px rgba(100, 243, 229, 0.15);
+        }
+        .circle-badge-frame.tbd-circle-frame {
+            border-color: rgba(255, 255, 255, 0.07);
+            color: rgba(255, 255, 255, 0.2);
+            box-shadow: none;
+        }
+        .kit-circle-slot-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        @media (max-width: 850px) {
+            .premium-split-profile-card { flex-direction: column; }
+            .profile-left-column { border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.1); width: 100%; }
+            .row-kits-summary-strip { display: none; }
         }
     </style>
 </head>
 <body>
-    <div class="logo-container"><img src="logo.png" alt="Multicraft Island Tiers Banner"></div>
+    <div class="logo-container"><img src="logo.png" alt="Multicraft Island Tiers Logo Banner"></div>
     
-    <div class="dashboard-layout-wrapper">
-        <!-- Main Content Panel -->
-        <div class="main-content-panel">
-            <h2>Overall Leaderboard Rankings</h2>
-            <table class="leaderboard-table">
-                <thead>
-                    <tr>
-                        <th>Rank</th>
-                        <th>Name</th>
-                        <th>Region</th>
-                        <th>Device</th>
-                        <th>Points</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>#1</td><td><span class="player-table-name">Husky_Multicraft</span></td><td><span class="table-pill pill-na">NA</span></td><td><span class="table-pill pill-pc">PC</span></td><td><strong>180</strong></td></tr>
-                    <tr><td>#2</td><td><span class="player-table-name">Prologozrock</span></td><td><span class="table-pill pill-na">NA</span></td><td><span class="table-pill pill-pc">PC</span></td><td><strong>85</strong></td></tr>
-                    <tr><td>#3</td><td><span class="player-table-name">Parrot</span></td><td><span class="table-pill pill-na">NA</span></td><td><span class="table-pill pill-mob">Mobile</span></td><td><strong>81</strong></td></tr>
-                    <tr><td>#4</td><td><span class="player-table-name">Herobrine</span></td><td><span class="table-pill pill-na">NA</span></td><td><span class="table-pill pill-con">Controller</span></td><td><strong>80</strong></td></tr>
-                    <tr><td>#5</td><td><span class="player-table-name">vort3xYT</span></td><td><span class="table-pill pill-eu">EU</span></td><td><span class="table-pill pill-pc">PC</span></td><td><strong>75</strong></td></tr>
-                    <tr><td>#6</td><td><span class="player-table-name">Server_pvp</span></td><td><span class="table-pill pill-na">NA</span></td><td><span class="table-pill pill-mob">Mobile</span></td><td><strong>71</strong></td></tr>
-                    <tr><td>#7</td><td><span class="player-table-name">kylaz9</span></td><td><span class="table-pill pill-eu">EU</span></td><td><span class="table-pill pill-mob">Mobile</span></td><td><strong>28</strong></td></tr>
-                    <tr><td>#8</td><td><span class="player-table-name">Jamier1235</span></td><td><span class="table-pill pill-na">NA</span></td><td><span class="table-pill pill-mob">Mobile</span></td><td><strong>17</strong></td></tr>
-                    <tr><td>#9</td><td><span class="player-table-name">aaa666</span></td><td><span class="table-pill pill-na">NA</span></td><td><span class="table-pill pill-mob">Mobile</span></td><td><strong>15</strong></td></tr>
-                    <tr><td>#10</td><td><span class="player-table-name">Benjamin</span></td><td><span class="table-pill pill-na">NA</span></td><td><span class="table-pill pill-mob">Mobile</span></td><td><strong>15</strong></td></tr>
-                    <tr><td>#11</td><td><span class="player-table-name">Booky</span></td><td><span class="table-pill pill-na">NA</span></td><td><span class="table-pill pill-mob">Mobile</span></td><td><strong>15</strong></td></tr>
-                    <tr><td>#12</td><td><span class="player-table-name">Taxbird</span></td><td><span class="table-pill pill-na">NA</span></td><td><span class="table-pill pill-mob">Mobile</span></td><td><strong>15</strong></td></tr>
-                    <tr><td>#13</td><td><span class="player-table-name">Halo117</span></td><td><span class="table-pill pill-na">NA</span></td><td><span class="table-pill pill-mob">Mobile</span></td><td><strong>12</strong></td></tr>
-                    <tr><td>#14</td><td><span class="player-table-name">Marwan</span></td><td><span class="table-pill pill-na">NA</span></td><td><span class="table-pill pill-mob">Mobile</span></td><td><strong>9</strong></td></tr>
-                    <tr><td>#15</td><td><span class="player-table-name">New_guy</span></td><td><span class="table-pill pill-na">NA</span></td><td><span class="table-pill pill-mob">Mobile</span></td><td><strong>9</strong></td></tr>
-                    <tr><td>#16</td><td><span class="player-table-name">grant</span></td><td><span class="table-pill pill-na">NA</span></td><td><span class="table-pill pill-mob">Mobile</span></td><td><strong>9</strong></td></tr>
-                    <tr><td>#17</td><td><span class="player-table-name">LATAMM</span></td><td><span class="table-pill pill-na">NA</span></td><td><span class="table-pill pill-mob">Mobile</span></td><td><strong>9</strong></td></tr>
-                    <tr><td>#18</td><td><span class="player-table-name">COCO-_</span></td><td><span class="table-pill pill-na">NA</span></td><td><span class="table-pill pill-mob">Mobile</span></td><td><strong>8</strong></td></tr>
-                </tbody>
-            </table>
+    <!-- Main Leaderboard Roster Menu Layout (Forced 100% open with player names plain as day) -->
+    <div class="dashboard-wrapper">
+        <h2 class="menu-title">Overall Rankings Menu</h2>
+        
+        <!-- #1 Husky_Multicraft -->
+        <div class="roster-card-row">
+            <div class="row-rank-num">#1</div>
+            <div class="row-player-name">Husky_Multicraft</div>
+            <span class="badge-pill pill-na">NA</span><span class="badge-pill pill-pc">PC</span>
+            <div class="row-kits-summary-strip"><span class="row-mini-kit-tag">HT3</span><span class="row-mini-kit-tag">HT3</span><span class="row-mini-kit-tag">LT2</span><span class="row-mini-kit-tag">HT3</span><span class="row-mini-kit-tag">LT3</span></div>
+            <div class="row-points-total-tag">180 PTS</div>
         </div>
 
-        <!-- Points Legend Sidebar -->
-        <div class="sidebar-panel">
-            <h3>Tier Points System</h3>
-            <ul class="points-legend-list">
-                <li class="points-legend-item"><span class="tier-id-tag">HT1</span><span class="points-weight-tag">100 Pts</span></li>
+        <!-- #2 Prologozrock -->
+        <div class="roster-card-row">
+            <div class="row-rank-num">#2</div>
+            <div class="row-player-name">Prologozrock</div>
+            <span class="badge-pill pill-na">NA</span><span class="badge-pill pill-pc">PC</span>
+            <div class="row-kits-summary-strip"><span class="row-mini-kit-tag">LT4</span><span class="row-mini-kit-tag">LT4</span><span class="row-mini-kit-tag">LT3</span><span class="row-mini-kit-tag">HT4</span><span class="row-mini-kit-tag tbd-tag">-</span></div>
+            <div class="row-points-total-tag">85 PTS</div>
+        </div>
+
+        <!-- #3 Parrot -->
+        <div class="roster-card-row">
+            <div class="row-rank-num">#3</div>
+            <div class="row-player-name">Parrot</div>
+            <span class="badge-pill pill-na">NA</span><span class="badge-pill pill-mob">Mobile</span>
