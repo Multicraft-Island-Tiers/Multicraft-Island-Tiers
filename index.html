@@ -91,30 +91,23 @@
         .tier-board-matrix { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; width: 100%; }
         .tier-column-stack { display: flex; flex-direction: column; gap: 8px; background: rgba(3, 10, 16, 0.4); padding: 10px 8px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.04); min-height: 250px; }
         .column-header-node { font-family: 'Press Start 2P', monospace; font-size: 0.65rem; color: #56efaa; text-align: center; margin-bottom: 6px; border-bottom: 1px solid rgba(86, 239, 170, 0.15); padding-bottom: 6px; }
-        .mini-kit-card { background: rgba(4, 13, 22, 0.9); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 6px; padding: 8px; display: flex; flex-direction: column; gap: 6px; box-sizing: border-box; text-align: left; }
+        .mini-kit-card { background: rgba(4, 13, 22, 0.9); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 6px; padding: 8px; display: flex; flex-direction: column; gap: 6px; box-sizing: border-box; text-align: left; cursor: pointer; }
+        .mini-kit-card:hover { border-color: #64f3e5; background: rgba(7, 22, 36, 0.95); }
         .mini-card-name { font-size: 0.85rem; font-weight: 700; color: #ffffff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .mini-card-row { display: flex; justify-content: space-between; align-items: center; }
         .mini-card-tier { font-family: 'Press Start 2P', monospace; font-size: 0.45rem; color: #ffd700; }
 
-        @media (max-width: 900px) { .dashboard-layout-wrapper { flex-direction: column; } .tier-board-matrix { grid-template-columns: 1fr; } }
-    </style>
-</head>
-<body>
-    <div class="logo-container"><img src="logo.png" alt="Multicraft Island Tiers Banner"></div>
-    
-    <!-- Top Filter Controls Horizontal Navigation Bar Menu matching screenshot -->
-    <div class="top-nav-bar">
-        <button class="nav-tab-trigger active-trigger" onclick="toggleLeaderboardScreen('overall', this)">Overall</button>
-        <button class="nav-tab-trigger" onclick="toggleLeaderboardScreen('emerald', this)">Emerald</button>
-        <button class="nav-tab-trigger" onclick="toggleLeaderboardScreen('emerald kb', this)">Emerald KB</button>
-        <button class="nav-tab-trigger" onclick="toggleLeaderboardScreen('dragonhide kb', this)">Dragonhide KB</button>
-        <button class="nav-tab-trigger" onclick="toggleLeaderboardScreen('diamond', this)">Diamond</button>
-    </div>
-    <!-- VIEW CONTAINER: OVERALL HOME VIEWS -->
+        /* FIXED PROFILE DETAILS MODAL PANEL OVERLAY */
+        .profile-view-box { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(2, 6, 10, 0.85); backdrop-filter: blur(12px); z-index: 1000; display: none; overflow-y: auto; padding: 80px 20px; box-sizing: border-box; align-items: center; justify-content: center; }
+        .profile-view-box.active-modal { display: flex; }
+        .premium-profile-card { display: flex; flex-direction: row; width: 100%; max-width: 950px; background: #030e16; border: 1px solid #1c2d3a; border-radius: 12px; box-shadow: 0 0 40px rgba(86, 239, 170, 0.15); overflow: hidden; position: relative; }
+        .close-x-trigger { position: absolute; top: 15px; right: 20px; background: rgba(255, 255, 255, 0.03); color: rgba(255, 255, 255, 0.4); border: 1px solid rgba(255, 255, 255, 0.1); font-size: 1rem; font-weight: bold; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 1100; }
+        .close-x-trigger:hover { background: #c0392b; color: white; border-color: #ffffff; }
+    <!-- VIEW CONTAINER 1: OVERALL DASHBOARD LEADERBOARD HOME LAYER -->
     <div id="view-layer-overall" class="tab-panel-node active-panel">
         <div class="dashboard-layout-wrapper">
             
-            <!-- Main Scoreboard List Grid Cell Block -->
+            <!-- Left Side: Main Roster Content Panel -->
             <div class="main-content-panel">
                 <h2 class="menu-title">Overall Rankings Menu</h2>
                 <div id="overall-players-list-target">
@@ -274,7 +267,7 @@
                 </div>
             </div>
 
-            <!-- Right Column Sidebar Panel Points Weight Engine Module -->
+            <!-- Right Side: Clean Sidebar Points Legend Panel -->
             <div class="sidebar-panel">
                 <h3>Tier Points System</h3>
                 <ul class="points-legend-list">
@@ -356,7 +349,7 @@
         <div id="live-profile-injection-target"></div>
     </div>
     <script>
-        // Verified master player data ledger map tracking your 19 competitors
+        // Certified master portfolio map tracking your 19 competitors
         const globalCompetitiveDatabase = {
             "Husky_Multicraft": { name: "Husky_Multicraft", points: 180, region: "NA", device: "PC", rankTitle: "Combat Specialist", rankNum: 1, emerald:"HT3", dragonhide:"HT3", dragonhidekb:"LT2", diamond:"HT3", emeraldkb:"LT3" },
             "Prologozrock": { name: "Prologozrock", points: 85, region: "NA", device: "PC", rankTitle: "Combat Specialist", rankNum: 2, emerald:"LT4", dragonhide:"LT4", dragonhidekb:"LT3", diamond:"HT4", emeraldkb:"TBD" },
@@ -386,7 +379,7 @@
             "diamond": "diamond"
         };
 
-        // Navigation Controller Engine - Handles Layout Panel Flipping
+        // Navigation Switcher Engine
         function toggleLeaderboardScreen(targetViewId, controlButton) {
             const cleanTarget = targetViewId.toLowerCase().trim();
             
@@ -413,12 +406,11 @@
             }
         }
 
-        // Live Grid Sorter Engine - Shuffles player arrays down into T1-T5 stacks dynamically
+        // Grid Redistribution Shuffling Engine
         function rebuildKitBoardMatrix(columnKey) {
             const stacks = { "T1": [], "T2": [], "T3": [], "T4": [], "T5": [] };
             let eligibleList = [];
 
-            // Sort active elements out into tier queues
             Object.values(globalCompetitiveDatabase).forEach(player => {
                 const rawTier = player[columnKey];
                 if (!rawTier || rawTier === 'TBD') return;
@@ -432,7 +424,6 @@
                     if (player.device.toLowerCase() === 'mobile') devicePill = 'pill-mob';
                     if (player.device.toLowerCase() === 'controller') devicePill = 'pill-con';
 
-                    // Premium mini compact card blueprint matching screenshot layouts
                     const layoutHtml = '<div class="mini-kit-card" onclick="setActivePlayerParam(\'' + player.name + '\')">' +
                         '<div class="mini-card-name">' + player.name + '</div>' +
                         '<div class="mini-card-row">' +
@@ -450,11 +441,9 @@
                 }
             });
 
-            // Master weight index filter used to process 3D pedestal layouts (HT1 -> LT5)
             const globalTierWeightSystem = ["HT1", "LT1", "HT2", "LT2", "HT3", "LT3", "HT4", "LT4", "HT5", "LT5"];
             eligibleList.sort((a, b) => globalTierWeightSystem.indexOf(a.tier) - globalTierWeightSystem.indexOf(b.tier));
 
-            // Write HTML down into cells safely
             for (let i = 1; i <= 5; i++) {
                 const clearCell = document.getElementById('stack-injection-cell-T' + i);
                 if (!clearCell) continue;
@@ -467,7 +456,6 @@
                 }
             }
 
-            // Repopulate 3D Pedestal Slots with Active Leaders
             const placements = [
                 { id: 1, rankIndex: 0, nodeClass: '.first-place' },
                 { id: 2, rankIndex: 1, nodeClass: '.second-place' },
@@ -484,3 +472,11 @@
                     targetPedestal.setAttribute('onclick', "setActivePlayerParam('" + match.name + "')");
                     document.getElementById('podium-rank-' + p.id).innerText = match.tier;
                     document.getElementById('podium-name-' + p.id).innerText = match.name;
+                    targetPedestal.querySelector('.podium-skin-slot').style.display = 'flex';
+                } else {
+                    targetPedestal.style.opacity = "0.25";
+                    targetPedestal.setAttribute('onclick', '');
+                    document.getElementById('podium-rank-' + p.id).innerText = "-";
+                    document.getElementById('podium-name-' + p.id).innerText = "Empty";
+                    targetPedestal.querySelector('.podium-skin-slot').style.display = 'none';
+                }
