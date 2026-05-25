@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multicraft Island Tiers | Competitive Hub</title>
+    <!-- PREVENTS FONT STALLS: Preloads your exact uppercase font asset natively -->
+    <link rel="preload" href="MultiCraftFont.tff" as="font" type="font/truetype" crossorigin>
     <style>
-        /* FIXED ENGINE RULE: Loads your exact capitalization filename natively from your repo */
+        /* Connects your uploaded custom server game font asset natively */
         @font-face {
             font-family: 'MulticraftCustom';
             src: url('MultiCraftFont.tff') format('truetype');
             font-weight: normal;
             font-style: normal;
+            font-display: swap; /* Forces fallback font to render instantly to avoid dark screens */
         }
 
-        /* Base Page Canvas Layout Framework - Deep Cosmic Theme Matrix */
+        /* Base Application Framework Styles - High-Fidelity Space Canvas */
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             margin: 0; 
@@ -30,7 +33,7 @@
             position: relative;
         }
 
-        /* Subtle starry background loop particles overlay */
+        /* Ambient cosmic space background loop particles overlay */
         body::before {
             content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
             background-image: radial-gradient(white, rgba(255,255,255,.18) 1.5px, transparent 35px),
@@ -45,7 +48,7 @@
         .header-left-links span:hover, .header-left-links span.active-global-tab { color: #ffffff; }
         .header-right-search { font-family: 'MulticraftCustom', monospace !important; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 6px 12px; color: #ffffff; font-size: 0.6rem; max-width: 180px; width: 100%; text-transform: uppercase; }
 
-        /* Navigation Weapon Controls Horizontal Row */
+        /* Navigation Weapon Controls Horizontal Row Filter bar */
         .top-nav-bar { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin-bottom: 15px; width: 100%; max-width: 1200px; }
         .nav-tab-trigger {
             background: rgba(4, 15, 24, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); color: rgba(255, 255, 255, 0.35);
@@ -58,19 +61,15 @@
         .filter-label-tag { font-family: 'MulticraftCustom', monospace !important; font-size: 0.5rem; color: rgba(255,255,255,0.3); text-transform: uppercase; margin-right: 4px; }
         .custom-select-box { background: rgba(3, 10, 18, 0.85); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 6px 10px; color: #ffffff; font-family: 'MulticraftCustom', monospace !important; font-size: 0.55rem; cursor: pointer; text-transform: uppercase; }
         .filter-reset-btn { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; color: rgba(255,255,255,0.6); font-family: 'MulticraftCustom', monospace !important; font-size: 0.52rem; padding: 6px 10px; cursor: pointer; text-transform: uppercase; }
-        .filter-reset-btn:hover { background: rgba(255,255,255,1); color: #ffffff; }
+        .filter-reset-btn:hover { background: rgba(255,255,255,0.1); color: #ffffff; }
 
         /* Layout Layer Viewport Visibility Elements definition */
-        .tab-panel-node { width: 100%; max-width: 1100px; margin: 0 auto; }
-        
-        /* CRITICAL MASTER CONFIG: Forces layout element blocks to open 100% visible on launch */
-        #view-layer-overall { display: block !important; }
-        
+        .tab-panel-node { display: block; width: 100%; max-width: 1100px; margin: 0 auto; }
         .dashboard-layout-wrapper { display: flex; flex-direction: row; gap: 20px; width: 100%; position: relative; }
         .main-content-panel { flex: 3.2; display: flex; flex-direction: column; gap: 8px; box-sizing: border-box; }
         .sidebar-wrapper { flex: 1; display: flex; flex-direction: column; gap: 15px; }
 
-        /* Leaderboard standard flat list rows configuration styles blueprint */
+        /* High-fidelity custom roster row structures mirroring your overall reference image matrix */
         .roster-card-row { 
             display: flex; align-items: center; background: rgba(6, 15, 24, 0.65); border: 1px solid #101c26; 
             border-radius: 8px; padding: 10px 16px; box-sizing: border-box; transition: all 0.15s ease; cursor: pointer; position: relative;
@@ -92,7 +91,7 @@
         .roster-card-row:nth-child(1) .row-custom-title { color: #ffca28; border-color: rgba(255,202,40,0.25); background: rgba(255,202,40,0.06); }
 
         /* Universal Data Capsule Pills Specs layout rules */
-        .table-pill { font-size: 0.55rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; text-transform: uppercase; display: inline-block; font-family: 'Segoe UI', sans-serif; letter-spacing: 0.2px; min-width: 22px; text-align: center; }
+        .table-pill { font-size: 0.52rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; text-transform: uppercase; display: inline-block; font-family: 'Segoe UI', sans-serif; letter-spacing: 0.2px; min-width: 22px; text-align: center; }
         .pill-na { color: #4fc3f7; border: 1px solid rgba(79,195,247,0.25); background: rgba(79,195,247,0.04); }
         .pill-eu { color: #fff176; border: 1px solid rgba(255,241,118,0.25); background: rgba(255,241,118,0.04); }
         .pill-pc { color: #ba68c8; border: 1px solid rgba(186,104,200,0.25); background: rgba(186,104,200,0.04); }
@@ -114,8 +113,7 @@
 
         /* Sidebar points legend box configuration framework */
         .sidebar-panel { background: rgba(4, 15, 25, 0.75); border: 1px solid rgba(86, 239, 170, 0.12); border-radius: 12px; padding: 18px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4); box-sizing: border-box; }
-        .sidebar-panel h3 { font-family: 'MulticraftCustom', monospace !important; color: #e67e22; font-size: 0.75rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 10px; margin: 0 0 10px 0; text-align: center; text-transform: uppercase; }
-            <!-- Right-Side Structural Sidebar Panel Columns Layout Wrapper -->
+            <!-- Right-Side Structural Columns Layout Wrapper Pane -->
             <div class="sidebar-wrapper">
                 
                 <!-- permanent Corner Side Box Custom Invite Code Box -->
@@ -124,7 +122,7 @@
                     <div class="invite-string">80B4K0DX</div>
                 </div>
 
-                <!-- Points Token System Calculation Weights Dashboard Menu Legend -->
+                <!-- Points Token System Calculation Weights Dashboard Panel -->
                 <div class="sidebar-panel">
                     <h3>Tier Points System</h3>
                     <ul class="points-legend-list">
@@ -140,7 +138,7 @@
                         <li class="points-legend-item"><span class="tier-id-tag">LT5</span><span class="points-weight-tag">3 Pts</span></li>
                     </ul>
                 </div>
-            </div> <!-- Closes column sidebar panels safely -->
+            </div> <!-- Closes .sidebar-wrapper securely -->
 
         </div> <!-- Closes .dashboard-layout-wrapper securely -->
     </div> <!-- Closes #view-layer-overall securely -->
@@ -184,7 +182,7 @@
         let currentActiveView = 'overall';
     </script>
     <script>
-        // Universal Filter Core Logic - Sorts region, device, and active searches concurrently
+        // Multi-Layer Collection Filter - Calculates search queries, regions, and device modules concurrently
         function getFilteredCollection(viewMode) {
             const searchTerms = document.getElementById('global-search-input-field').value.toLowerCase().trim();
             const filterRegion = document.getElementById('region-filter-select-node').value;
@@ -204,7 +202,7 @@
             });
         }
 
-        // View Handler Patcher - Controls smooth layout switching
+        // Window Screen Routing Switcher - Controls layout panels dynamically across screens
         function toggleLeaderboardScreen(targetViewId, controlButton) {
             currentActiveView = targetViewId.toLowerCase().trim();
             
@@ -283,9 +281,9 @@
                         '<span class="table-pill ' + devicePill + '">' + player.device.substring(0,3) + '</span>' +
                     '</div>' +
                     '<div class="row-mini-kits-matrix">' +
-                        '<div class="row-mini-kit-slot ' + (eVal === '-' ? 'empty-matrix-slot' : '') + '"><img src="https://minecraft.wiki" class="row-mini-kit-icon"><span class="row-mini-kit-tier">' + eVal + '</span></div>' +
-                        '<div class="row-mini-kit-slot ' + (dVal === '-' ? 'empty-matrix-slot' : '') + '"><img src="https://minecraft.wiki" class="row-mini-kit-icon"><span class="row-mini-kit-tier">' + dVal + '</span></div>' +
-                        '<div class="row-mini-kit-slot ' + (mVal === '-' ? 'empty-matrix-slot' : '') + '"><img src="https://minecraft.wiki" class="row-mini-kit-icon"><span class="row-mini-kit-tier">' + mVal + '</span></div>' +
+                        '<div class="row-mini-kit-slot ' + (eVal === '-' ? 'empty-matrix-slot' : '') + '"><img src="https://emerald-sword-url.png" onerror="this.src=\'https://minecraft.wiki\'" class="row-mini-kit-icon"><span class="row-mini-kit-tier">' + eVal + '</span></div>' +
+                        '<div class="row-mini-kit-slot ' + (dVal === '-' ? 'empty-matrix-slot' : '') + '"><img src="https://shield-url.png" onerror="this.src=\'https://minecraft.wiki\'" class="row-mini-kit-icon"><span class="row-mini-kit-tier">' + dVal + '</span></div>' +
+                        '<div class="row-mini-kit-slot ' + (mVal === '-' ? 'empty-matrix-slot' : '') + '"><img src="https://diamond-sword-url.png" onerror="this.src=\'https://minecraft.wiki\'" class="row-mini-kit-icon"><span class="row-mini-kit-tier">' + mVal + '</span></div>' +
                     '</div>' +
                     '<div class="row-score-block">' +
                         '<div class="row-points-total">' + player.points + '<span>PTS</span></div>' +
@@ -297,7 +295,7 @@
         }
 
         // Live Sub-Screen Generator: Populates 3D Medalist Podiums & 5-Column Division Grids
-        function rebuildKitBoardMatrix(columnKey) {
+        function rebuildKitBoardMatrix(columnKey, formattedTitle) {
             const targetCell = document.getElementById('overall-players-list-target');
             const podiumSpot = document.getElementById('podium-arena-injection-spot');
             if (!targetCell || !podiumSpot) return;
@@ -345,4 +343,3 @@
             let op1 = "0.25", op2 = "0.25", op3 = "0.25";
 
             if (eligibleList.length > 0) { p1 = eligibleList[0]; o1 = "onclick=\"setActivePlayerParam('" + p1.name + "')\""; s1 = "block"; op1 = "1"; }
-            if (eligibleList.length > 1) { p2 = eligibleList[1]; o2 = "onclick=\"setActivePlayerParam('" + p2.name + "')\""; s2 = "block"; op2 = "1"; }
