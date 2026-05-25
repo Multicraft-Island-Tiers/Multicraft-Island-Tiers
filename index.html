@@ -24,11 +24,11 @@
         .leaderboard-table th, .leaderboard-table td { padding: 12px; text-align: left; border: 1px solid #ffffff; }
         .leaderboard-table th { background-color: rgba(43, 122, 113, 0.8); }
         
-        /* High-visibility clickable text buttons */
+        /* High-visibility parameter click targets */
         .player-link-btn { background: none; border: none; color: #64f3e5; font-weight: bold; text-decoration: underline; font-size: 1rem; cursor: pointer; padding: 0; font-family: inherit; }
         .player-link-btn:hover { color: #ffffff; text-shadow: 0 0 5px #64f3e5; }
         
-        /* Floating Popup Modal Overlay Design */
+        /* Premium Parameter Floating Popup Overlay */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: 1000; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; }
         .player-modal-card { width: 100%; max-width: 450px; background: #0e2735; border: 3px solid #64f3e5; border-radius: 12px; padding: 25px; box-sizing: border-box; position: relative; box-shadow: 0 0 25px rgba(100, 243, 229, 0.5); z-index: 1001; }
         .close-modal-btn { position: absolute; top: 15px; right: 15px; background: #c0392b; color: white; border: 1px solid #fff; border-radius: 4px; padding: 5px 12px; font-weight: bold; cursor: pointer; }
@@ -67,23 +67,23 @@
         <table class="leaderboard-table">
             <thead><tr><th>Rank</th><th>Name</th><th>Region</th><th>Device</th><th>Points</th></tr></thead>
             <tbody>
-                <tr><td>#1</td><td><button class="player-link-btn" onclick="showPlayerCard('Husky_Multicraft')">Husky_Multicraft</button></td><td>NA</td><td>PC</td><td><strong>180</strong></td></tr>
-                <tr><td>#2</td><td><button class="player-link-btn" onclick="showPlayerCard('Prologozrock')">Prologozrock</button></td><td>NA</td><td>PC</td><td><strong>85</strong></td></tr>
-                <tr><td>#3</td><td><button class="player-link-btn" onclick="showPlayerCard('Parrot')">Parrot</button></td><td>NA</td><td>Mobile</td><td><strong>81</strong></td></tr>
-                <tr><td>#4</td><td><button class="player-link-btn" onclick="showPlayerCard('Herobrine')">Herobrine</button></td><td>NA</td><td>Controller</td><td><strong>80</strong></td></tr>
-                <tr><td>#5</td><td><button class="player-link-btn" onclick="showPlayerCard('vort3xYT')">vort3xYT</button></td><td>EU</td><td>PC</td><td><strong>75</strong></td></tr>
-                <tr><td>#6</td><td><button class="player-link-btn" onclick="showPlayerCard('Server_pvp')">Server_pvp</button></td><td>NA</td><td>Mobile</td><td><strong>71</strong></td></tr>
-                <tr><td>#7</td><td><button class="player-link-btn" onclick="showPlayerCard('kylaz9')">kylaz9</button></td><td>EU</td><td>Mobile</td><td><strong>20</strong></td></tr>
-                <tr><td>#8</td><td><button class="player-link-btn" onclick="showPlayerCard('Jamier1235')">Jamier1235</button></td><td>NA</td><td>Mobile</td><td><strong>17</strong></td></tr>
-                <tr><td>#9</td><td><button class="player-link-btn" onclick="showPlayerCard('aaa666')">aaa666</button></td><td>NA</td><td>Mobile</td><td><strong>15</strong></td></tr>
-                <tr><td>#10</td><td><button class="player-link-btn" onclick="showPlayerCard('Benjamin')">Benjamin</button></td><td>NA</td><td>Mobile</td><td><strong>15</strong></td></tr>
-                <tr><td>#11</td><td><button class="player-link-btn" onclick="showPlayerCard('Booky')">Booky</button></td><td>NA</td><td>Mobile</td><td><strong>15</strong></td></tr>
-                <tr><td>#12</td><td><button class="player-link-btn" onclick="showPlayerCard('Taxbird')">Taxbird</button></td><td>NA</td><td>Mobile</td><td><strong>15</strong></td></tr>
-                <tr><td>#13</td><td><button class="player-link-btn" onclick="showPlayerCard('Marwan')">Marwan</button></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
-                <tr><td>#14</td><td><button class="player-link-btn" onclick="showPlayerCard('New_guy')">New_guy</button></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
-                <tr><td>#15</td><td><button class="player-link-btn" onclick="showPlayerCard('grant')">grant</button></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
-                <tr><td>#16</td><td><button class="player-link-btn" onclick="showPlayerCard('LATAMM')">LATAMM</button></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
-                <tr><td>#17</td><td><button class="player-link-btn" onclick="showPlayerCard('COCO-_')">COCO-_</button></td><td>NA</td><td>Mobile</td><td><strong>8</strong></td></tr>
+                <tr><td>#1</td><td><button class="player-link-btn" onclick="navigateToPlayer('Husky_Multicraft')">Husky_Multicraft</button></td><td>NA</td><td>PC</td><td><strong>180</strong></td></tr>
+                <tr><td>#2</td><td><button class="player-link-btn" onclick="navigateToPlayer('Prologozrock')">Prologozrock</button></td><td>NA</td><td>PC</td><td><strong>85</strong></td></tr>
+                <tr><td>#3</td><td><button class="player-link-btn" onclick="navigateToPlayer('Parrot')">Parrot</button></td><td>NA</td><td>Mobile</td><td><strong>81</strong></td></tr>
+                <tr><td>#4</td><td><button class="player-link-btn" onclick="navigateToPlayer('Herobrine')">Herobrine</button></td><td>NA</td><td>Controller</td><td><strong>80</strong></td></tr>
+                <tr><td>#5</td><td><button class="player-link-btn" onclick="navigateToPlayer('vort3xYT')">vort3xYT</button></td><td>EU</td><td>PC</td><td><strong>75</strong></td></tr>
+                <tr><td>#6</td><td><button class="player-link-btn" onclick="navigateToPlayer('Server_pvp')">Server_pvp</button></td><td>NA</td><td>Mobile</td><td><strong>71</strong></td></tr>
+                <tr><td>#7</td><td><button class="player-link-btn" onclick="navigateToPlayer('kylaz9')">kylaz9</button></td><td>EU</td><td>Mobile</td><td><strong>20</strong></td></tr>
+                <tr><td>#8</td><td><button class="player-link-btn" onclick="navigateToPlayer('Jamier1235')">Jamier1235</button></td><td>NA</td><td>Mobile</td><td><strong>17</strong></td></tr>
+                <tr><td>#9</td><td><button class="player-link-btn" onclick="navigateToPlayer('aaa666')">aaa666</button></td><td>NA</td><td>Mobile</td><td><strong>15</strong></td></tr>
+                <tr><td>#10</td><td><button class="player-link-btn" onclick="navigateToPlayer('Benjamin')">Benjamin</button></td><td>NA</td><td>Mobile</td><td><strong>15</strong></td></tr>
+                <tr><td>#11</td><td><button class="player-link-btn" onclick="navigateToPlayer('Booky')">Booky</button></td><td>NA</td><td>Mobile</td><td><strong>15</strong></td></tr>
+                <tr><td>#12</td><td><button class="player-link-btn" onclick="navigateToPlayer('Taxbird')">Taxbird</button></td><td>NA</td><td>Mobile</td><td><strong>15</strong></td></tr>
+                <tr><td>#13</td><td><button class="player-link-btn" onclick="navigateToPlayer('Marwan')">Marwan</button></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
+                <tr><td>#14</td><td><button class="player-link-btn" onclick="navigateToPlayer('New_guy')">New_guy</button></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
+                <tr><td>#15</td><td><button class="player-link-btn" onclick="navigateToPlayer('grant')">grant</button></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
+                <tr><td>#16</td><td><button class="player-link-btn" onclick="navigateToPlayer('LATAMM')">LATAMM</button></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
+                <tr><td>#17</td><td><button class="player-link-btn" onclick="navigateToPlayer('COCO-_')">COCO-_</button></td><td>NA</td><td>Mobile</td><td><strong>8</strong></td></tr>
             </tbody>
         </table>
     </div>
@@ -95,14 +95,13 @@
         <div id="tier-groups-container"></div>
     </div>
 
-    <!-- Global Floating Popup Modal Component -->
+    <!-- URL-Parameter Driven Pop-Up Overlay -->
     <div id="player-modal" class="modal-overlay" onclick="closeModalOnOuterClick(event)">
         <div class="player-modal-card">
-            <button class="close-modal-btn" onclick="closePlayerCard()">Close</button>
+            <button class="close-modal-btn" onclick="removePlayerParam()">Close</button>
             <div id="modal-card-content"></div>
         </div>
     </div>
 
     <script>
-        // Completely reliable static data map
         const playersDatabase = {
