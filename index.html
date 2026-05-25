@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multicraft Island Tiers | Competitive Leaderboard</title>
+    <!-- Safe Google Fonts Link for the official Multicraft Pixel Style -->
+    <link href="https://googleapis.com" rel="stylesheet">
     <style>
-        /* Premium Gaming Dark Theme Architecture Configuration Layout */
+        /* Base page layout */
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             margin: 0; 
@@ -20,7 +22,6 @@
             overflow-x: hidden; 
         }
         
-        /* Interactive Graphics Engine Canvas Background System template rules */
         #starfall-canvas { 
             position: fixed; 
             top: 0; 
@@ -31,7 +32,6 @@
             pointer-events: none; 
         }
         
-        /* Graphic Banner Center Logo containment panel styles */
         .logo-container { 
             max-width: 600px; 
             width: 100%; 
@@ -47,7 +47,6 @@
             box-shadow: 0 4px 25px rgba(0, 0, 0, 0.65);
         }
         
-        /* Dual-Split Panel Desktop Layout setup configuration rules */
         .dashboard-layout-wrapper {
             display: flex;
             flex-direction: row;
@@ -57,7 +56,6 @@
             z-index: 10;
         }
         
-        /* Navigation content panels template rules */
         .main-content-panel { 
             flex: 3;
             background: rgba(0, 0, 0, 0.6); 
@@ -72,17 +70,20 @@
         .main-content-panel.active-view { 
             display: block; 
         }
-        .main-content-panel h2 { 
+        
+        /* Official MultiCraft pixel font style applied to headings */
+        .main-content-panel h2, .sidebar-panel h3 { 
+            font-family: 'Press Start 2P', monospace;
+            line-height: 1.4;
             margin-top: 0; 
             color: #64f3e5; 
-            font-size: 1.8rem;
+            font-size: 1.3rem;
             border-bottom: 2px solid #ffffff; 
-            padding-bottom: 10px; 
+            padding-bottom: 12px; 
             margin-bottom: 20px;
             text-shadow: 0 0 10px rgba(100, 243, 229, 0.2);
         }
         
-        /* Side Community Metric Sidebar Container configuration box layout */
         .sidebar-panel {
             flex: 1;
             background: rgba(14, 39, 53, 0.8);
@@ -95,17 +96,13 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         }
         .sidebar-panel h3 {
-            margin-top: 0;
             color: #e67e22;
-            font-size: 1.35rem;
+            font-size: 1.1rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-            padding-bottom: 8px;
+            padding-bottom: 12px;
             margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
         
-        /* Custom Native Leaderboard Row Ledger grids template layout */
         .leaderboard-table { 
             width: 100%; 
             border-collapse: collapse; 
@@ -117,20 +114,14 @@
             text-align: left; 
         }
         .leaderboard-table th { 
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.7rem;
             background-color: rgba(43, 122, 113, 0.9); 
-            font-weight: bold;
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .leaderboard-table tbody tr {
-            transition: background-color 0.15s;
         }
         .leaderboard-table tbody tr:hover {
             background-color: rgba(255, 255, 255, 0.05);
         }
         
-        /* Address routing click anchors matching target reference templates styling */
         .player-link-anchor { 
             background: none; 
             border: none; 
@@ -148,7 +139,6 @@
             text-shadow: 0 0 8px #64f3e5; 
         }
         
-        /* Premium Isolated Profile card elements template configurations */
         .profile-container-box {
             padding: 5px;
         }
@@ -162,18 +152,18 @@
             font-weight: bold; 
             cursor: pointer; 
             font-size: 0.95rem;
-            transition: background 0.15s, transform 0.1s;
         }
         .close-action-trigger:hover { 
             background: #e74c3c; 
-            transform: scale(1.02);
         }
+        
         .profile-card-header-title { 
-            font-size: 2.2rem; 
+            font-family: 'Press Start 2P', monospace;
+            font-size: 1.5rem; 
             color: #64f3e5; 
             margin: 0 0 20px 0; 
             border-bottom: 2px solid #ffffff; 
-            padding-bottom: 8px; 
+            padding-bottom: 12px; 
             word-break: break-all;
             margin-right: 60px;
         }
@@ -203,7 +193,6 @@
             font-weight: bold;
         }
         
-        /* Clean data grids for player stats display */
         .profile-kit-metric-row { 
             background: rgba(255, 255, 255, 0.06); 
             padding: 14px 20px; 
@@ -221,18 +210,20 @@
             font-weight: 600;
             font-size: 1.05rem;
         }
+        
+        /* Placements styled in authentic pixel text format */
         .profile-kit-metric-row span.tier-badge-node { 
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.75rem;
             font-weight: bold; 
             color: #0b1d28; 
             background: #64f3e5; 
-            padding: 4px 12px; 
+            padding: 6px 12px; 
             border-radius: 6px; 
-            font-size: 0.95rem;
             box-shadow: 0 0 10px rgba(100, 243, 229, 0.25);
             border: 1px solid #ffffff;
         }
         
-        /* Sidebar point metrics legend text layouts styling rules */
         .points-legend-list {
             list-style: none;
             padding: 0;
@@ -241,7 +232,7 @@
         .points-legend-item {
             display: flex;
             justify-content: space-between;
-            padding: 9px 0;
+            padding: 11px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
             font-size: 0.95rem;
         }
@@ -249,6 +240,8 @@
             border-bottom: none;
         }
         .points-legend-item span.tier-id-tag {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.7rem;
             font-weight: bold;
             color: #64f3e5;
         }
@@ -257,10 +250,10 @@
             font-weight: 600;
         }
 
-        /* Mobile Layout Configuration Rules */
         @media (max-width: 900px) {
             .dashboard-layout-wrapper {
                 flex-direction: column;
+                align-items: center;
             }
             .sidebar-panel {
                 width: 100%;
@@ -273,7 +266,7 @@
     <div class="logo-container"><img src="logo.png" alt="Multicraft Island Tiers Banner"></div>
     
     <div class="dashboard-layout-wrapper">
-        <!-- Main Panel Section Interface Frame -->
+        <!-- Main rankings dashboard list module -->
         <div id="leaderboard-view-container" class="main-content-panel active-view">
             <h2>Overall Rankings</h2>
             <table class="leaderboard-table">
@@ -287,17 +280,24 @@
                     </tr>
                 </thead>
                 <tbody id="live-leaderboard-rows-target">
-                    <!-- Embedded database rows generate here dynamically under pre-sorted arrays -->
+                    <!-- JavaScript populates verified dataset rows instantly inside this target cell -->
                 </tbody>
             </table>
         </div>
 
-        <!-- Isolated Dynamic Profile Details Panel Template Frame -->
+        <!-- Full page parameter profile display box template -->
         <div id="player-profile-view-container" class="main-content-panel">
             <button class="close-action-trigger" onclick="clearActivePlayerParam()">X</button>
-            <div id="live-profile-injection-target" class="profile-container-box">
-                <!-- Selected profile data streams instantly inside this slot on link modification events -->
-            </div>
+            <div id="live-profile-injection-target" class="profile-container-box"></div>
+        </div>
+
+        <!-- Metric Score weights sidebar module -->
+        <div class="sidebar-panel">
+            <h3>Tier Points System</h3>
+            <ul class="points-legend-list">
+                <li class="points-legend-item"><span class="tier-id-tag">HT1</span><span class="points-weight-tag">100 Pts</span></li>
+                <li class="points-legend-item"><span class="tier-id-tag">LT1</span><span class="points-weight-tag">85 Pts</span></li>
+
         </div>
 
 
