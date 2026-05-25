@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multicraft Island Tiers | Competitive Leaderboard</title>
-    <!-- Web-safe Google Fonts for a premium pixel-gaming text look -->
+    <!-- Web-safe gaming font look fallback -->
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
         /* Base page layout */
@@ -58,11 +58,10 @@
         }
         
         .main-content-panel h2, .sidebar-panel h3 { 
-            font-family: 'Press Start 2P', monospace;
             line-height: 1.5;
             margin-top: 0; 
             color: #64f3e5; 
-            font-size: 1.25rem;
+            font-size: 1.6rem;
             border-bottom: 2px solid #ffffff; 
             padding-bottom: 12px; 
             margin-bottom: 20px;
@@ -82,7 +81,7 @@
         }
         .sidebar-panel h3 {
             color: #e67e22;
-            font-size: 1.05rem;
+            font-size: 1.2rem;
         }
         
         .leaderboard-table { 
@@ -96,33 +95,27 @@
             text-align: left; 
         }
         .leaderboard-table th { 
-            font-family: 'Press Start 2P', monospace;
-            font-size: 0.7rem;
             background-color: rgba(43, 122, 113, 0.9); 
+            font-weight: bold;
         }
         .leaderboard-table tbody tr:hover {
             background-color: rgba(255, 255, 255, 0.05);
         }
         
-        /* High-performance parameter activation targets */
-        .player-link-btn { 
-            background: none; 
-            border: none; 
+        /* Safe target anchors style */
+        .player-link-anchor { 
             color: #64f3e5; 
             font-weight: bold; 
             text-decoration: underline; 
             font-size: 1rem; 
-            cursor: pointer; 
-            padding: 0; 
-            font-family: inherit; 
-            text-align: left;
+            cursor: pointer;
         }
         .player-link-anchor:hover { 
             color: #ffffff; 
             text-shadow: 0 0 8px #64f3e5; 
         }
         
-        /* Isolated Profile Card Screen Overlay */
+        /* 100% Stable CSS-Overlay Panel Core Engine */
         .profile-overlay-container {
             display: none;
             position: fixed;
@@ -137,11 +130,13 @@
             padding: 20px;
             box-sizing: border-box;
         }
-        .profile-overlay-container.active-overlay {
+        
+        /* Unbreakable direct-target visibility activator toggle switch */
+        .profile-overlay-container:target {
             display: flex;
         }
         
-        /* Premium split player box panel directly matching your target design */
+        /* Premium split player box panel directly matching your screenshot reference layout */
         .premium-profile-card {
             display: flex;
             flex-direction: row;
@@ -160,10 +155,10 @@
             top: 15px;
             right: 15px;
             background: rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.6);
+            color: #ffffff;
             border: none;
-            font-family: 'Press Start 2P', monospace;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
+            font-weight: bold;
             width: 32px;
             height: 32px;
             border-radius: 50%;
@@ -171,14 +166,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            text-decoration: none;
             transition: background 0.2s;
         }
         .close-x-trigger:hover {
             background: rgba(192, 57, 43, 0.8);
-            color: #fff;
         }
         
-        /* Left Side Column Styling */
+        /* Left Panel Node Layout */
         .card-left-column {
             flex: 1;
             padding: 35px;
@@ -188,8 +183,8 @@
             box-sizing: border-box;
         }
         .rank-badge {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 0.65rem;
+            font-weight: bold;
+            font-size: 0.75rem;
             color: #ffd700;
             border: 1.5px solid #ffd700;
             padding: 4px 10px;
@@ -199,7 +194,6 @@
             text-transform: uppercase;
         }
         .card-player-title {
-            font-family: 'Press Start 2P', monospace;
             font-size: 1.8rem;
             color: #ffffff;
             margin: 0 0 15px 0;
@@ -211,8 +205,8 @@
             margin-bottom: auto;
         }
         .meta-pill {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 0.6rem;
+            font-weight: bold;
+            font-size: 0.7rem;
             color: #ef5350;
             border: 1px solid #ef5350;
             padding: 3px 8px;
@@ -224,8 +218,8 @@
             border-color: #ab47bc;
         }
         .score-display-node {
-            font-family: 'Press Start 2P', monospace;
             font-size: 1.75rem;
+            font-weight: bold;
             color: #ffd700;
             margin-top: 30px;
         }
@@ -235,14 +229,13 @@
             margin-left: 5px;
         }
         
-        /* Right Side Column Grid Styling */
+        /* Right Panel Grid Layout */
         .card-right-column {
             flex: 1.2;
             padding: 35px;
             box-sizing: border-box;
         }
         .right-column-header {
-            font-family: 'Segoe UI', sans-serif;
             font-weight: 600;
             text-transform: uppercase;
             font-size: 0.85rem;
@@ -304,8 +297,6 @@
             border-bottom: none;
         }
         .points-legend-item span.tier-id-tag {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 0.65rem;
             font-weight: bold;
             color: #64f3e5;
         }
@@ -318,4 +309,22 @@
             .dashboard-layout-wrapper, .premium-profile-card {
                 flex-direction: column;
                 align-items: center;
+            }
+            .sidebar-panel, .card-left-column {
+                width: 100%;
+            }
+            .card-left-column {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container"><img src="logo.png" alt="Multicraft Island Tiers Banner"></div>
+    
+    <div class="dashboard-layout-wrapper">
+        <!-- Main Board Panel (100% Core HTML - Physically Impossible to Hide Players) -->
+        <div class="main-content-panel">
+
             }
