@@ -42,6 +42,7 @@
             max-width: 1150px;
         }
         
+        /* Fixed display here so it never hides your data columns */
         .main-content-panel { 
             flex: 3;
             background: rgba(0, 0, 0, 0.45); 
@@ -51,6 +52,7 @@
             box-sizing: border-box; 
             backdrop-filter: blur(10px);
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+            display: block;
         }
         
         .main-content-panel h2, .sidebar-panel h3 { 
@@ -157,7 +159,7 @@
     <div class="logo-container"><img src="logo.png" alt="Multicraft Island Tiers Banner"></div>
     
     <div class="dashboard-layout-wrapper">
-        <!-- Main Board Panel with all 18 players in plain HTML -->
+        <!-- Main Content Roster Sheet -->
         <div class="main-content-panel">
             <h2>Overall Leaderboard Rankings</h2>
             <table class="leaderboard-table">
@@ -177,7 +179,7 @@
                     <tr><td>#4</td><td><span class="player-table-name">Herobrine</span></td><td><span class="table-pill pill-na">NA</span></td><td><span class="table-pill pill-con">Controller</span></td><td><strong>80</strong></td></tr>
                     <tr><td>#5</td><td><span class="player-table-name">vort3xYT</span></td><td><span class="table-pill pill-eu">EU</span></td><td><span class="table-pill pill-pc">PC</span></td><td><strong>75</strong></td></tr>
                     <tr><td>#6</td><td><span class="player-table-name">Server_pvp</span></td><td><span class="table-pill pill-na">NA</span></td><td><span class="table-pill pill-mob">Mobile</span></td><td><strong>71</strong></td></tr>
-                    <tr><td>#7</td><td><span class="player-table-name">kylaz9</span></td><td><span class="table-pill pill-eu">EU</span></td><td><span class="table-pill pill-mob">Mobile</span></td><td><strong>20</strong></td></tr>
+                    <tr><td>#7</td><td><span class="player-table-name">kylaz9</span></td><td><span class="table-pill pill-eu">EU</span></td><td><span class="table-pill pill-mob">Mobile</span></td><td><strong>28</strong></td></tr>
                     <tr><td>#8</td><td><span class="player-table-name">Jamier1235</span></td><td><span class="table-pill pill-na">NA</span></td><td><span class="table-pill pill-mob">Mobile</span></td><td><strong>17</strong></td></tr>
                     <tr><td>#9</td><td><span class="player-table-name">aaa666</span></td><td><span class="table-pill pill-na">NA</span></td><td><span class="table-pill pill-mob">Mobile</span></td><td><strong>15</strong></td></tr>
                     <tr><td>#10</td><td><span class="player-table-name">Benjamin</span></td><td><span class="table-pill pill-na">NA</span></td><td><span class="table-pill pill-mob">Mobile</span></td><td><strong>15</strong></td></tr>
@@ -197,5 +199,3 @@
         <div class="sidebar-panel">
             <h3>Tier Points System</h3>
             <ul class="points-legend-list">
-                <li class="points-legend-item"><span class="tier-id-tag">HT1</span><span class="points-weight-tag">100 Pts</span></li>
-
