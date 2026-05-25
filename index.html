@@ -41,7 +41,7 @@
     <canvas id="starfall-canvas"></canvas>
     <div class="logo-container"><img src="logo.png" alt="Multicraft Island Tiers Logo"></div>
     <div class="navigation-menu">
-        <button class="nav-btn overall-btn active" onclick="switchView('overall-view')">Overall Leaderboard</button>
+        <button class="nav-btn overall-btn active" onclick="showOverallView()">Overall Leaderboard</button>
         <button class="nav-btn" onclick="switchKitView('Dragonhide')">Dragonhide</button>
         <button class="nav-btn" onclick="switchKitView('Dragonhide KB')">Dragonhide KB</button>
         <button class="nav-btn" onclick="switchKitView('Emerald')">Emerald</button>
@@ -55,7 +55,7 @@
         <table class="leaderboard-table">
             <thead><tr><th>Rank</th><th>Name</th><th>Region</th><th>Device</th><th>Points</th></tr></thead>
             <tbody>
-                <tr class="clickable-row" onclick="showPlayerCard('Husky_Multicraft')"><td>#1</td><td><span class="clickable-name">Husky_Multicraft</span></td><td>NA</td><td>PC</td><td><strong>210</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('Husky_Multicraft')"><td>#1</td><td><span class="clickable-name">Husky_Multicraft</span></td><td>NA</td><td>PC</td><td><strong>180</strong></td></tr>
                 <tr class="clickable-row" onclick="showPlayerCard('Prologozrock')"><td>#2</td><td><span class="clickable-name">Prologozrock</span></td><td>NA</td><td>PC</td><td><strong>85</strong></td></tr>
                 <tr class="clickable-row" onclick="showPlayerCard('Parrot')"><td>#3</td><td><span class="clickable-name">Parrot</span></td><td>NA</td><td>Mobile</td><td><strong>81</strong></td></tr>
                 <tr class="clickable-row" onclick="showPlayerCard('Herobrine')"><td>#4</td><td><span class="clickable-name">Herobrine</span></td><td>NA</td><td>Controller</td><td><strong>80</strong></td></tr>
@@ -64,36 +64,36 @@
                 <tr class="clickable-row" onclick="showPlayerCard('kylaz9')"><td>#7</td><td><span class="clickable-name">kylaz9</span></td><td>EU</td><td>Mobile</td><td><strong>20</strong></td></tr>
                 <tr class="clickable-row" onclick="showPlayerCard('Jamier1235')"><td>#8</td><td><span class="clickable-name">Jamier1235</span></td><td>NA</td><td>Mobile</td><td><strong>17</strong></td></tr>
                 <tr class="clickable-row" onclick="showPlayerCard('aaa666')"><td>#9</td><td><span class="clickable-name">aaa666</span></td><td>NA</td><td>Mobile</td><td><strong>15</strong></td></tr>
-                <tr class="clickable-row" onclick="showPlayerCard('Taxbird')"><td>#10</td><td><span class="clickable-name">Taxbird</span></td><td>NA</td><td>Mobile</td><td><strong>15</strong></td></tr>
-                <tr class="clickable-row" onclick="showPlayerCard('Marwan')"><td>#11</td><td><span class="clickable-name">Marwan</span></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
-                <tr class="clickable-row" onclick="showPlayerCard('New_guy')"><td>#12</td><td><span class="clickable-name">New_guy</span></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
-                <tr class="clickable-row" onclick="showPlayerCard('grant')"><td>#13</td><td><span class="clickable-name">grant</span></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
-                <tr class="clickable-row" onclick="showPlayerCard('LATAMM')"><td>#14</td><td><span class="clickable-name">LATAMM</span></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
-                <tr class="clickable-row" onclick="showPlayerCard('COCO-_')"><td>#15</td><td><span class="clickable-name">COCO-_</span></td><td>NA</td><td>Mobile</td><td><strong>8</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('Benjamin')"><td>#10</td><td><span class="clickable-name">Benjamin</span></td><td>NA</td><td>Mobile</td><td><strong>15</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('Booky')"><td>#11</td><td><span class="clickable-name">Booky</span></td><td>NA</td><td>Mobile</td><td><strong>15</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('Taxbird')"><td>#12</td><td><span class="clickable-name">Taxbird</span></td><td>NA</td><td>Mobile</td><td><strong>15</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('Marwan')"><td>#13</td><td><span class="clickable-name">Marwan</span></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('New_guy')"><td>#14</td><td><span class="clickable-name">New_guy</span></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('grant')"><td>#15</td><td><span class="clickable-name">grant</span></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('LATAMM')"><td>#16</td><td><span class="clickable-name">LATAMM</span></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
+                <tr class="clickable-row" onclick="showPlayerCard('COCO-_')"><td>#17</td><td><span class="clickable-name">COCO-_</span></td><td>NA</td><td>Mobile</td><td><strong>8</strong></td></tr>
             </tbody>
         </table>
     </div>
 
     <!-- Player Card Details Section -->
     <div id="player-view" class="view-section">
-        <button class="back-btn" onclick="switchView('overall-view')">← Back</button>
+        <button class="back-btn" onclick="showOverallView()">← Back</button>
         <div id="player-card-container"></div>
     </div>
 
     <!-- Kit Tier Hierarchy Section -->
     <div id="kit-view" class="view-section">
-        <button class="back-btn" onclick="switchView('overall-view')">← Back</button>
+        <button class="back-btn" onclick="showOverallView()">← Back</button>
         <h2 id="kit-view-title"></h2>
         <div id="tier-groups-container"></div>
     </div>
 
     <script>
-        // Solid, pre-calculated player database
         const playersDatabase = {
-            "Husky_Multicraft": { name: "Husky_Multicraft", region: "NA", device: "PC", points: 210, tiers: { "Dragonhide": "HT3", "Dragonhide KB": "HT3", "Emerald": "LT2", "Diamond": "HT3", "Emerald KB": "LT3" } },
+            "Husky_Multicraft": { name: "Husky_Multicraft", region: "NA", device: "PC", points: 180, tiers: { "Dragonhide": "HT3", "Dragonhide KB": "HT3", "Emerald": "LT2", "Diamond": "HT3", "Emerald KB": "LT3" } },
             "Prologozrock": { name: "Prologozrock", region: "NA", device: "PC", points: 85, tiers: { "Dragonhide": "LT4", "Dragonhide KB": "LT4", "Emerald": "LT3", "Diamond": "HT4", "Emerald KB": "TBD" } },
             "Parrot": { name: "Parrot", region: "NA", device: "Mobile", points: 81, tiers: { "Dragonhide": "HT4", "Dragonhide KB": "HT4", "Emerald": "HT5", "Diamond": "LT4", "Emerald KB": "HT5" } },
             "Herobrine": { name: "Herobrine", region: "NA", device: "Controller", points: 80, tiers: { "Dragonhide": "HT4", "Dragonhide KB": "LT3", "Emerald": "HT4", "Diamond": "TBD", "Emerald KB": "TBD" } },
             "vort3xYT": { name: "vort3xYT", region: "EU", device: "PC", points: 75, tiers: { "Dragonhide": "TBD", "Dragonhide KB": "HT2", "Emerald": "TBD", "Diamond": "TBD", "Emerald KB": "TBD" } },
             "Server_pvp": { name: "Server_pvp", region: "NA", device: "Mobile", points: 71, tiers: { "Dragonhide": "LT4", "Dragonhide KB": "LT4", "Emerald": "HT5", "Diamond": "HT4", "Emerald KB": "HT5" } },
-            "kylaz9": { name: "kylaz9", region: "EU", device: "Mobile", points: 20, tiers: { "Dragonhide": "HT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "LT5", "Emerald KB": "LT5" } },
