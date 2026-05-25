@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multicraft Island Tiers | Competitive Hub</title>
-    <!-- CACHE BREAKER INTEGRATION ENGINE ROOT LINK -->
-    <link rel="stylesheet" href="style.css?v=9.9">
     <style>
-        /* Natively load your custom server typography file */
+        /* FIXED RULE: Loads your exact file name natively from repository files */
         @font-face {
             font-family: 'MulticraftCustom';
             src: url('MultiCraftfont.tff') format('truetype');
@@ -32,7 +30,7 @@
             position: relative;
         }
 
-        /* Ambient cosmic space background loop particles overlay */
+        /* Subtle starry background loop particles overlay */
         body::before {
             content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
             background-image: radial-gradient(white, rgba(255,255,255,.18) 1.5px, transparent 35px),
@@ -43,7 +41,7 @@
         .logo-container { max-width: 500px; width: 100%; margin-bottom: 20px; text-align: center; display: block; }
         .logo-container img { width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(100, 243, 229, 0.15); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6); }
         
-        /* Premium Top Control Nav Bar Layout Row precisamente wired to weapons list */
+        /* Premium Top Control Nav Bar Layout Row precisely wired to weapons list */
         .top-nav-bar { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin-bottom: 25px; width: 100%; max-width: 1200px; }
         .nav-tab-trigger {
             background: rgba(4, 15, 24, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); color: rgba(255, 255, 255, 0.35);
@@ -52,10 +50,10 @@
         .nav-tab-trigger:hover, .nav-tab-trigger.active-trigger { color: #56efaa; border-color: #56efaa; background: rgba(86, 239, 170, 0.04); box-shadow: 0 0 10px rgba(86, 239, 170, 0.15); }
         
         /* Layout Layer Viewport Visibility Elements definition */
-        .tab-panel-node { width: 100%; max-width: 1200px; }
+        .tab-panel-node { display: none; width: 100%; max-width: 1200px; }
         
-        /* CRITICAL MASTER CONFIG: Forces layouts to remain 100% visible on launch */
-        #view-layer-overall, #view-layer-emerald { display: block !important; }
+        /* CRITICAL MASTER CONFIG: Forces layout element blocks to open 100% visible on launch */
+        #view-layer-overall { display: block !important; }
         
         .dashboard-layout-wrapper { display: flex; flex-direction: row; gap: 25px; width: 100%; position: relative; }
         .main-content-panel { flex: 3; background: rgba(4, 11, 18, 0.45); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 14px; padding: 22px; box-sizing: border-box; backdrop-filter: blur(12px); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); }
@@ -114,6 +112,9 @@
         .column-header-node { font-family: 'MulticraftCustom', monospace !important; font-size: 0.75rem; color: #56efaa; text-align: center; margin-bottom: 4px; border-bottom: 1px solid rgba(86, 239, 170, 0.12); padding-bottom: 6px; text-transform: uppercase; }
         
         /* High-fidelity square block player profiles matching template geometry layout */
+        .mini-kit-card { 
+            background: rgba(4, 12, 20, 0.9); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 6px; padding: 10px; 
+
             <!-- Right-Side Structural Sidebar Panel Grid Columns Layout Wrapper -->
             <div style="flex: 1; display: flex; flex-direction: column; gap: 15px;">
                 
