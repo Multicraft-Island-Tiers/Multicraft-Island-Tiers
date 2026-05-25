@@ -18,7 +18,6 @@
             box-sizing: border-box; 
             background: radial-gradient(circle at center, #0e2430 0%, #050d12 100%);
             overflow-x: hidden; 
-            scroll-behavior: smooth;
         }
         
         .logo-container { 
@@ -35,28 +34,24 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
         }
         
-        .dashboard-wrapper {
+        .dashboard-layout-wrapper {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 20px;
             width: 100%;
             max-width: 1050px;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
         }
 
         .menu-title {
             color: #64f3e5;
             font-size: 1.6rem;
             font-weight: 700;
-            margin: 40px 0 20px 0;
+            margin: 20px 0 10px 0;
             text-shadow: 0 0 10px rgba(100, 243, 229, 0.3);
-            width: 100%;
-            max-width: 1050px;
-            border-bottom: 2px solid #ffffff;
-            padding-bottom: 10px;
         }
         
-        /* Premium horizontal rows layout matching screenshots */
+        /* Premium horizontal rows custom architecture layout */
         .roster-card-row {
             display: flex;
             align-items: center;
@@ -68,7 +63,7 @@
             gap: 15px;
             text-decoration: none;
             color: #ffffff;
-            transition: border-color 0.2s, background-color 0.2s;
+            transition: border-color 0.2s;
         }
         .roster-card-row:hover {
             border-color: #64f3e5;
@@ -82,14 +77,14 @@
             width: 35px;
             text-align: center;
         }
-        .roster-card-row:nth-child(2) .row-rank-num { color: #ffd700; }
-        .roster-card-row:nth-child(3) .row-rank-num { color: #c0c0c0; }
-        .roster-card-row:nth-child(4) .row-rank-num { color: #cd7f32; }
+        .dashboard-layout-wrapper .roster-card-row:nth-child(2) .row-rank-num { color: #ffd700; }
+        .dashboard-layout-wrapper .roster-card-row:nth-child(3) .row-rank-num { color: #c0c0c0; }
+        .dashboard-layout-wrapper .roster-card-row:nth-child(4) .row-rank-num { color: #cd7f32; }
 
         .row-player-name {
             font-size: 1.15rem;
             font-weight: 700;
-            color: #64f3e5;
+            color: #ffffff;
             flex: 1;
         }
         
@@ -149,26 +144,8 @@
             border-radius: 14px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
             overflow: hidden;
-            margin-bottom: 40px;
-            position: relative;
+            margin-bottom: 30px;
             scroll-margin-top: 20px;
-        }
-        
-        .close-x-trigger {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: #c0392b;
-            color: #ffffff;
-            border: 1px solid #ffffff;
-            border-radius: 6px;
-            padding: 5px 14px;
-            font-weight: bold;
-            text-decoration: none;
-            font-size: 0.85rem;
-        }
-        .close-x-trigger:hover {
-            background: #e74c3c;
         }
         
         .profile-left-column {
@@ -275,11 +252,11 @@
     </style>
 </head>
 <body>
-    <div id="top-logo" class="logo-container"><img src="logo.png" alt="Multicraft Island Tiers Logo Banner"></div>
+    <div class="logo-container"><img src="logo.png" alt="Multicraft Island Tiers Logo Banner"></div>
     
-    <!-- Main Rankings Menu -->
+    <!-- Main Leaderboard Layout List -->
     <div class="dashboard-wrapper">
-        <h2 style="color:#64f3e5; margin:0 0 10px 0;">Overall Rankings Menu</h2>
+        <h2 class="menu-title">Overall Rankings Menu</h2>
         
         <a href="#card-husky" class="roster-card-row">
             <div class="row-rank-num">#1</div>
@@ -291,4 +268,13 @@
 
         <a href="#card-prologozrock" class="roster-card-row">
             <div class="row-rank-num">#2</div>
+            <div class="row-player-name">Prologozrock</div>
+            <span class="badge-pill pill-na">NA</span><span class="badge-pill pill-pc">PC</span>
+            <div class="row-kits-summary-strip"><span class="row-mini-kit-tag">LT4</span><span class="row-mini-kit-tag">LT4</span><span class="row-mini-kit-tag">LT3</span><span class="row-mini-kit-tag">HT4</span><span class="row-mini-kit-tag tbd-tag">-</span></div>
+            <div class="row-points-total-tag">85 PTS</div>
+        </a>
+
+        <a href="#card-parrot" class="roster-card-row">
+            <div class="row-rank-num">#3</div>
+            <div class="row-player-name">Parrot</div>
 
