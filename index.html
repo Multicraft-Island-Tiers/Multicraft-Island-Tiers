@@ -69,7 +69,7 @@
             line-height: 1.4;
         }
         
-        /* Top Navigation Menu Tab Controls */
+        /* Top Navigation Header Filter Controls Row layout */
         .top-nav-bar {
             display: flex;
             gap: 10px;
@@ -98,10 +98,11 @@
             text-shadow: 0 0 8px rgba(100, 243, 229, 0.4);
         }
         
+        /* Dashboard view switcher panel rules */
         .tab-panel-node { display: none; width: 100%; }
         .tab-panel-node.active-panel { display: block; }
         
-        /* 5-Column Kit Tier Board Array Layout */
+        /* 5-Column Kit Tier Boards Array Grid Layout */
         .tier-board-matrix {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -128,7 +129,7 @@
             padding-bottom: 8px;
         }
 
-        /* Top 3 Podium Pedestals Layout */
+        /* Top 3 Arena Podium Pedestal layout properties */
         .podium-arena-wrapper {
             display: flex;
             justify-content: center;
@@ -148,6 +149,7 @@
             position: relative;
             box-sizing: border-box;
             cursor: pointer;
+            transition: border-color 0.2s;
         }
         .podium-pedestal-node.first-place { border-color: #ffd700; order: 2; width: 180px; height: 200px; box-shadow: 0 0 25px rgba(255, 215, 0, 0.15); }
         .podium-pedestal-node.second-place { border-color: #c0c0c0; order: 1; width: 160px; height: 170px; }
@@ -163,7 +165,7 @@
         .second-place .podium-placement-badge { color: #c0c0c0; }
         .third-place .podium-placement-badge { color: #cd7f32; }
 
-        /* Competitor Score Rows Layout */
+        /* Premium horizontal competitor list rows specifications */
         .roster-card-row {
             display: flex;
             align-items: center;
@@ -202,6 +204,7 @@
             flex: 1;
         }
         
+        /* Micro metadata badge capsules layout */
         .table-pill {
             font-size: 0.75rem;
             font-weight: bold;
@@ -225,7 +228,7 @@
             text-align: right;
         }
 
-        /* OVERLAY PANEL MODAL: Floating layout screen matching your preview snaps */
+        /* FIXED OVERLAY MODAL: Centered popup card container matching your click screenshot precisely */
         .profile-view-box {
             position: fixed;
             top: 0;
@@ -272,15 +275,6 @@
             cursor: pointer;
             transition: all 0.15s;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1100;
-        }
-        .close-x-trigger:hover { 
-            background: #c0392b; 
-            color: white; 
-            border-color: #ffffff;
-        }
             <!-- #1 Husky_Multicraft -->
             <div class="roster-card-row" onclick="setActivePlayerParam('Husky_Multicraft')">
                 <div class="row-rank-num">#1</div>
@@ -536,7 +530,7 @@
         <div id="live-profile-injection-target"></div>
     </div>
     <script>
-        // Certified master database matrix tracking your 18 real server portfolios
+        // Clean master database matrix tracking your 18 real server portfolios
         const globalCompetitiveDatabase = {
             "Husky_Multicraft": { name: "Husky_Multicraft", points: 180, region: "NA", device: "PC", rankTitle: "Combat Specialist", rankNum: 1, c1:"HT3", c2:"HT3", c3:"LT2", c4:"HT3", c5:"LT3" },
             "Prologozrock": { name: "Prologozrock", points: 85, region: "NA", device: "PC", rankTitle: "Combat Specialist", rankNum: 2, c1:"LT4", c2:"LT4", c3:"LT3", c4:"HT4", c5:"TBD" },
@@ -560,45 +554,49 @@
 
         // Navigation Switchboard Screen Logic
         function toggleLeaderboardScreen(targetViewId, controlButton) {
-            document.querySelectorAll('.tab-panel-node').forEach(function(node) { node.style.display = 'none'; });
-            const selectedScreenNode = document.getElementById('view-layer-' + targetViewId);
+            var nodes = document.querySelectorAll('.tab-panel-node');
+            for (var i = 0; i < nodes.length; i++) { nodes[i].style.display = 'none'; }
+            
+            var selectedScreenNode = document.getElementById('view-layer-' + targetViewId);
             if (selectedScreenNode) selectedScreenNode.style.display = 'block';
-            document.querySelectorAll('.nav-tab-trigger').forEach(function(btn) { btn.classList.remove('active-trigger'); });
+            
+            var triggers = document.querySelectorAll('.nav-tab-trigger');
+            for (var j = 0; j < triggers.length; j++) { triggers[j].classList.remove('active-trigger'); }
+            
             if (controlButton) controlButton.classList.add('active-trigger');
             clearActivePlayerParam();
         }
 
-        // FIXED ACTION: Directly styles layout visibility elements bypassing browser memory restrictions
+        // ULTRA SAFE MODAL GENERATOR: Pre-escaped concatenation string stacks to ensure zero quote/syntax collisions
         function setActivePlayerParam(targetName) {
-            const overlayContainer = document.getElementById('player-profile-view-container');
+            var overlayContainer = document.getElementById('player-profile-view-container');
             if (!overlayContainer || !globalCompetitiveDatabase[targetName]) return;
             
-            const activePlayer = globalCompetitiveDatabase[targetName];
-            const regPill = activePlayer.region.toLowerCase() === 'na' ? 'pill-na' : 'pill-eu';
-            let devPill = 'pill-pc';
+            var activePlayer = globalCompetitiveDatabase[targetName];
+            var regPill = activePlayer.region.toLowerCase() === 'na' ? 'pill-na' : 'pill-eu';
+            var devPill = 'pill-pc';
             if(activePlayer.device.toLowerCase() === 'mobile') devPill = 'pill-mob';
             if(activePlayer.device.toLowerCase() === 'controller') devPill = 'pill-con';
 
-            const f1 = activePlayer.c1 === 'TBD' ? 'circle-frame empty-frame' : 'circle-frame';
-            const f2 = activePlayer.c2 === 'TBD' ? 'circle-frame empty-frame' : 'circle-frame';
-            const f3 = activePlayer.c3 === 'TBD' ? 'circle-frame empty-frame' : 'circle-frame';
-            const f4 = activePlayer.c4 === 'TBD' ? 'circle-frame empty-frame' : 'circle-frame';
-            const f5 = activePlayer.c5 === 'TBD' ? 'circle-frame empty-frame' : 'circle-frame';
+            var f1 = activePlayer.c1 === 'TBD' ? 'circle-frame empty-frame' : 'circle-frame';
+            var f2 = activePlayer.c2 === 'TBD' ? 'circle-frame empty-frame' : 'circle-frame';
+            var f3 = activePlayer.c3 === 'TBD' ? 'circle-frame empty-frame' : 'circle-frame';
+            var f4 = activePlayer.c4 === 'TBD' ? 'circle-frame empty-frame' : 'circle-frame';
+            var f5 = activePlayer.c5 === 'TBD' ? 'circle-frame empty-frame' : 'circle-frame';
 
-            const v1 = activePlayer.c1 === 'TBD' ? '-' : activePlayer.c1;
-            const v2 = activePlayer.c2 === 'TBD' ? '-' : activePlayer.c2;
-            const v3 = activePlayer.c3 === 'TBD' ? '-' : activePlayer.c3;
-            const v4 = activePlayer.c4 === 'TBD' ? '-' : activePlayer.c4;
-            const v5 = activePlayer.c5 === 'TBD' ? '-' : activePlayer.c5;
+            var v1 = activePlayer.c1 === 'TBD' ? '-' : activePlayer.c1;
+            var v2 = activePlayer.c2 === 'TBD' ? '-' : activePlayer.c2;
+            var v3 = activePlayer.c3 === 'TBD' ? '-' : activePlayer.c3;
+            var v4 = activePlayer.c4 === 'TBD' ? '-' : activePlayer.c4;
+            var v5 = activePlayer.c5 === 'TBD' ? '-' : activePlayer.c5;
 
-            const s1 = activePlayer.c1 === 'TBD' ? 'color:rgba(255,255,255,0.25);' : 'color:#ffd700;';
-            const s2 = activePlayer.c2 === 'TBD' ? 'color:rgba(255,255,255,0.25);' : 'color:#ffd700;';
-            const s3 = activePlayer.c3 === 'TBD' ? 'color:rgba(255,255,255,0.25);' : 'color:#ffd700;';
-            const s4 = activePlayer.c4 === 'TBD' ? 'color:rgba(255,255,255,0.25);' : 'color:#ffd700;';
-            const s5 = activePlayer.c5 === 'TBD' ? 'color:rgba(255,255,255,0.25);' : 'color:#ffd700;';
+            var s1 = activePlayer.c1 === 'TBD' ? 'color:rgba(255,255,255,0.25);' : 'color:#ffd700;';
+            var s2 = activePlayer.c2 === 'TBD' ? 'color:rgba(255,255,255,0.25);' : 'color:#ffd700;';
+            var s3 = activePlayer.c3 === 'TBD' ? 'color:rgba(255,255,255,0.25);' : 'color:#ffd700;';
+            var s4 = activePlayer.c4 === 'TBD' ? 'color:rgba(255,255,255,0.25);' : 'color:#ffd700;';
+            var s5 = activePlayer.c5 === 'TBD' ? 'color:rgba(255,255,255,0.25);' : 'color:#ffd700;';
 
-            // Raw layout output completely safe from browser parsing glitches
-            document.getElementById('live-profile-injection-target').innerHTML = 
+            var finalContent = 
                 '<div class="premium-profile-card">' +
                     '<div class="card-left-column">' +
                         '<div class="rank-badge">RANK #' + activePlayer.rankNum + '</div>' +
@@ -626,9 +624,9 @@
                     '</div>' +
                 '</div>';
             
+            document.getElementById('live-profile-injection-target').innerHTML = finalContent;
             overlayContainer.classList.add('active-modal');
         }
 
         function clearActivePlayerParam() {
-            const overlayContainer = document.getElementById('player-profile-view-container');
-            if (overlayContainer) overlayContainer.classList.remove('active-modal');
+            var overlayContainer = document.getElementById('player-profile-view-container');
