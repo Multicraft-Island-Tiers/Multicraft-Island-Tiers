@@ -98,19 +98,174 @@
             background-color: rgba(255, 255, 255, 0.05);
         }
         
-        /* High-visibility active player path anchors */
-        .player-anchor-link { 
+        /* Ultra-Clean High-Visibility Text Click Elements */
+        .player-click-link { 
             color: #64f3e5; 
             font-weight: bold; 
-            font-size: 1rem;
+            font-size: 1rem; 
             text-decoration: underline;
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            font-family: inherit;
         }
-        .player-anchor-link:hover {
+        .player-click-link:hover {
             color: #ffffff;
             text-shadow: 0 0 8px #64f3e5;
         }
         
-        /* Points Breakdown text structure */
+        /* Isolated Profile Screen Overlay Components */
+        .profile-modal-view {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(11, 29, 40, 0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        /* CSS State Target Selector Routing engine */
+        .profile-modal-view:target {
+            display: flex;
+        }
+        
+        /* Premium split player interface card framework layout matching screenshot reference */
+        .mtc-profile-card {
+            width: 100%;
+            max-width: 850px;
+            background: #06131c;
+            border: 2px solid rgba(100, 243, 229, 0.4);
+            border-radius: 12px;
+            padding: 30px;
+            box-sizing: border-box;
+            box-shadow: 0 0 30px rgba(100, 243, 229, 0.15);
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            gap: 40px;
+        }
+        
+        .card-close-x-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+        }
+        .card-close-x-btn:hover {
+            background: #c0392b;
+        }
+        
+        /* Left Section Details Column */
+        .card-left-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .rank-badge-node {
+            background: rgba(230, 126, 34, 0.15);
+            border: 1px solid #e67e22;
+            color: #e67e22;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 20px;
+            width: fit-content;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+        }
+        .card-player-username {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffffff;
+            margin: 0 0 15px 0;
+        }
+        .card-meta-pills {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        .meta-pill {
+            background: rgba(100, 243, 229, 0.1);
+            border: 1px solid #64f3e5;
+            color: #64f3e5;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 4px 12px;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
+        .card-score-summary {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #f1c40f;
+        }
+        .card-score-summary span {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: normal;
+            margin-left: 5px;
+        }
+        
+        /* Right Section Kit Grid Column */
+        .card-right-column {
+            flex: 1.2;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            padding-left: 40px;
+        }
+        .right-column-title {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+        }
+        .kits-display-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .kit-metric-block {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 12px 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .kit-name-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 500;
+        }
+        .kit-tier-badge {
+            font-size: 1.15rem;
+            font-weight: bold;
+            color: #64f3e5;
+        }
+        
         .points-legend-list {
             list-style: none;
             padding: 0;
@@ -135,174 +290,15 @@
             font-weight: 600;
         }
 
-        /* --- STABLE CSS FLOATING PLAYER MODAL SYSTEM --- */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        
-        /* Active route interceptor rule */
-        .modal-overlay:target {
-            display: flex;
-        }
-
-        .sample-player-card {
-            width: 100%;
-            max-width: 680px;
-            background: #061520;
-            border: 2px solid #1ba5b8;
-            border-radius: 12px;
-            box-shadow: 0 0 25px rgba(27, 165, 184, 0.4);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            padding: 30px;
-            box-sizing: border-box;
-            position: relative;
-            gap: 20px;
-        }
-
-        /* Premium X Close Target Anchor Button */
-        .close-x-btn {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            width: 28px;
-            height: 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            text-decoration: none;
-            font-size: 0.8rem;
-            transition: background 0.2s;
-        }
-        .close-x-btn:hover {
-            background: #c0392b;
-            border-color: #ffffff;
-        }
-
-        /* Left Column Structure */
-        .card-left-pane {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .badges-row {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 10px;
-        }
-        .pill-badge {
-            font-size: 0.75rem;
-            font-weight: bold;
-            padding: 4px 10px;
-            border-radius: 20px;
-            text-transform: uppercase;
-        }
-        .pill-rank { background: transparent; border: 1px solid #f1c40f; color: #f1c40f; }
-        .pill-meta { background: transparent; border: 1px solid #9b59b6; color: #9b59b6; }
-        
-        .card-player-title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin: 0 0 15px 0;
-            color: #ffffff;
-            word-break: break-all;
-        }
-        .avatar-placeholder-box {
-            width: 100%;
-            height: 180px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px dashed rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.3);
-            font-size: 0.9rem;
-        }
-        .points-large-text {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #f1c40f;
-            margin-top: 15px;
-        }
-        .points-large-text span {
-            font-size: 1rem;
-            color: #ffffff;
-            margin-left: 5px;
-        }
-
-        /* Right Column Kit Matrix Grid */
-        .card-right-pane h4 {
-            margin: 0 0 20px 0;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: rgba(255, 255, 255, 0.5);
-        }
-        .kit-slots-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            row-gap: 20px;
-        }
-        .kit-slot-cell {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-        .circle-frame {
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            border: 2px solid #f1c40f;
-            background: rgba(0, 0, 0, 0.4);
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-        .circle-frame.tbd-frame {
-            border-color: rgba(255, 255, 255, 0.15);
-            opacity: 0.3;
-        }
-        .kit-slot-cell span {
-            font-size: 0.8rem;
-            font-weight: bold;
-            color: #f1c40f;
-        }
-        .kit-slot-cell span.tbd-text {
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        @media (max-width: 700px) {
-            .sample-player-card {
-                grid-template-columns: 1fr;
-                padding: 20px;
-            }
-        }
-
-        @media (max-width: 900px) {
-            .dashboard-layout-wrapper {
+        @media (max-width: 800px) {
+            .dashboard-layout-wrapper, .mtc-profile-card {
                 flex-direction: column;
-                align-items: center;
+            }
+            .card-right-column {
+                border-left: none;
+                padding-left: 0;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                padding-top: 25px;
             }
             .sidebar-panel {
                 width: 100%;
@@ -314,7 +310,7 @@
     <div class="logo-container"><img src="logo.png" alt="Multicraft Island Tiers Banner"></div>
     
     <div class="dashboard-layout-wrapper">
-        <!-- Main Board Panel Component -->
+        <!-- Main Board Panel -->
         <div class="main-content-panel">
             <h2>Overall Rankings</h2>
             <table class="leaderboard-table">
@@ -328,4 +324,4 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>#1</td><td><a href="#p-Husky" class="player-anchor-link">Husky_Multicraft</a></td><td>NA</td><td>PC</td><td><strong>180</strong></td></tr>
+                    <tr><td>#1</td><td><a href="#p-husky" class="player-click-link">Husky_Multicraft</a></td><td>NA</td><td>PC</td><td><strong>180</strong></td></tr>
