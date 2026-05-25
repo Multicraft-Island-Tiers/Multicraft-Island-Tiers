@@ -17,12 +17,12 @@
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             margin: 0; 
-            padding: 30px 15px; 
+            padding: 20px 10px; 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
             background: #02070c;
-            background-image: radial-gradient(circle at 50% 50%, rgba(10, 24, 38, 0.7) 0%, rgba(2, 7, 12, 1) 100%);
+            background-image: radial-gradient(circle at 50% 50%, rgba(10, 24, 38, 0.75) 0%, rgba(2, 7, 12, 1) 100%);
             overflow-x: hidden; 
             color: #ffffff;
             min-height: 100vh; 
@@ -37,96 +37,95 @@
                               radial-gradient(white, rgba(255,255,255,.12) 1px, transparent 25px);
             background-size: 450px 450px, 300px 300px; opacity: 0.4; z-index: -1; pointer-events: none;
         }
-        
-        .logo-container { max-width: 500px; width: 100%; margin-bottom: 20px; text-align: center; display: block; }
-        .logo-container img { width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(100, 243, 229, 0.15); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6); }
-        
-        /* Premium Top Control Nav Bar Layout Row precisely wired to weapons list */
-        .top-nav-bar { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin-bottom: 25px; width: 100%; max-width: 1200px; }
+
+        /* Top Bar Layout Architecture precisely matching your reference dashboard menu paths */
+        .top-global-header { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; margin-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.04); padding-bottom: 12px; }
+        .header-left-links { display: flex; gap: 20px; font-family: 'MulticraftCustom', monospace !important; font-size: 0.65rem; color: rgba(255,255,255,0.4); text-transform: uppercase; }
+        .header-left-links span { cursor: pointer; transition: color 0.2s; }
+        .header-left-links span:hover, .header-left-links span.active-global-tab { color: #ffffff; }
+        .header-right-search { font-family: 'MulticraftCustom', monospace !important; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 6px 12px; color: #ffffff; font-size: 0.6rem; max-width: 180px; width: 100%; text-transform: uppercase; }
+
+        /* Navigation Weapon Controls Horizontal Row */
+        .top-nav-bar { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin-bottom: 15px; width: 100%; max-width: 1200px; }
         .nav-tab-trigger {
             background: rgba(4, 15, 24, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); color: rgba(255, 255, 255, 0.35);
-            font-family: 'MulticraftCustom', monospace !important; font-size: 0.7rem; padding: 10px 14px; border-radius: 4px; cursor: pointer; text-transform: uppercase; transition: all 0.2s ease;
+            font-family: 'MulticraftCustom', monospace !important; font-size: 0.58rem; padding: 8px 12px; border-radius: 4px; cursor: pointer; text-transform: uppercase; transition: all 0.2s ease;
         }
-        .nav-tab-trigger:hover, .nav-tab-trigger.active-trigger { color: #56efaa; border-color: #56efaa; background: rgba(86, 239, 170, 0.04); box-shadow: 0 0 10px rgba(86, 239, 170, 0.15); }
-        
+        .nav-tab-trigger:hover, .nav-tab-trigger.active-trigger { color: #ffe082; border-color: #ffe082; background: rgba(255, 224, 130, 0.04); box-shadow: 0 0 10px rgba(255, 224, 130, 0.12); }
+
+        /* Secondary Advanced Filter Option Select Box Dropdowns container */
+        .secondary-filter-row { display: flex; gap: 8px; justify-content: center; align-items: center; flex-wrap: wrap; margin-bottom: 25px; width: 100%; max-width: 1200px; }
+        .filter-label-tag { font-family: 'MulticraftCustom', monospace !important; font-size: 0.5rem; color: rgba(255,255,255,0.3); text-transform: uppercase; margin-right: 4px; }
+        .custom-select-box { background: rgba(3, 10, 18, 0.85); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 6px 10px; color: #ffffff; font-family: 'MulticraftCustom', monospace !important; font-size: 0.55rem; cursor: pointer; text-transform: uppercase; }
+        .filter-reset-btn { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; color: rgba(255,255,255,0.6); font-family: 'MulticraftCustom', monospace !important; font-size: 0.52rem; padding: 6px 10px; cursor: pointer; text-transform: uppercase; }
+        .filter-reset-btn:hover { background: rgba(255,255,255,1); color: #ffffff; }
+
         /* Layout Layer Viewport Visibility Elements definition */
-        .tab-panel-node { width: 100%; max-width: 1200px; }
+        .tab-panel-node { width: 100%; max-width: 1100px; margin: 0 auto; }
         
         /* CRITICAL MASTER CONFIG: Forces layout element blocks to open 100% visible on launch */
         #view-layer-overall { display: block !important; }
         
-        .dashboard-layout-wrapper { display: flex; flex-direction: row; gap: 25px; width: 100%; position: relative; }
-        .main-content-panel { flex: 3; background: rgba(4, 11, 18, 0.45); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 14px; padding: 22px; box-sizing: border-box; backdrop-filter: blur(12px); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); }
-        .menu-title { font-family: 'MulticraftCustom', monospace !important; color: #64f3e5; font-size: 1.2rem; margin: 0 0 20px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 14px; text-transform: uppercase; text-align: center; }
+        .dashboard-layout-wrapper { display: flex; flex-direction: row; gap: 20px; width: 100%; position: relative; }
+        .main-content-panel { flex: 3.2; display: flex; flex-direction: column; gap: 8px; box-sizing: border-box; }
+        .sidebar-wrapper { flex: 1; display: flex; flex-direction: column; gap: 15px; }
 
         /* Leaderboard standard flat list rows configuration styles blueprint */
-        .roster-card-row { display: flex; align-items: center; background: rgba(4, 13, 22, 0.75); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 12px 16px; margin-bottom: 8px; box-sizing: border-box; gap: 14px; cursor: pointer; transition: all 0.15s; }
-        .roster-card-row:hover { border-color: #64f3e5; background: rgba(7, 22, 36, 0.9); }
-        .row-rank-num { font-family: 'MulticraftCustom', monospace !important; font-size: 0.8rem; color: rgba(255, 255, 255, 0.25); width: 35px; text-align: center; }
-        .roster-card-row:nth-child(1) .row-rank-num { color: #ffd700; }
-        .roster-card-row:nth-child(2) .row-rank-num { color: #c0c0c0; }
-        .roster-card-row:nth-child(3) .row-rank-num { color: #cd7f32; }
-        .row-player-name { font-size: 1rem; font-weight: 700; color: #ffffff; flex: 1; }
-        .row-points-total { font-family: 'MulticraftCustom', monospace !important; font-size: 0.75rem; color: #ffd700; min-width: 85px; text-align: right; }
+        .roster-card-row { 
+            display: flex; align-items: center; background: rgba(6, 15, 24, 0.65); border: 1px solid #101c26; 
+            border-radius: 8px; padding: 10px 16px; box-sizing: border-box; transition: all 0.15s ease; cursor: pointer; position: relative;
+        }
+        .roster-card-row:hover { border-color: #00e5ff; background: rgba(10, 25, 38, 0.85); transform: translateX(2px); }
+        
+        .row-rank-num { font-family: 'MulticraftCustom', monospace !important; font-size: 0.9rem; color: rgba(255,255,255,0.3); min-width: 30px; text-align: center; }
+        .roster-card-row:nth-child(1) .row-rank-num { color: #ffca28; }
+        .roster-card-row:nth-child(2) .row-rank-num { color: #b0bec5; }
+        .roster-card-row:nth-child(3) .row-rank-num { color: #ff8a65; }
+
+        /* Center details text containers style format rules */
+        .row-avatar-box { width: 34px; height: 34px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; margin-right: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .row-avatar-box img { width: 100%; height: auto; image-rendering: pixelated; }
+        
+        .row-identity-block { display: flex; flex-direction: column; gap: 3px; flex: 1.2; min-width: 140px; }
+        .row-player-name { font-size: 0.95rem; font-weight: 700; color: #ffffff; text-transform: none; }
+        .row-custom-title { font-family: 'MulticraftCustom', monospace !important; font-size: 0.42rem; color: #ff8a65; background: rgba(255,138,101,0.06); border: 1px solid rgba(255,138,101,0.25); padding: 1px 4px; border-radius: 20px; width: fit-content; text-transform: uppercase; }
+        .roster-card-row:nth-child(1) .row-custom-title { color: #ffca28; border-color: rgba(255,202,40,0.25); background: rgba(255,202,40,0.06); }
 
         /* Universal Data Capsule Pills Specs layout rules */
-        .table-pill { font-size: 0.55rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; text-transform: uppercase; display: inline-block; font-family: 'Segoe UI', sans-serif; letter-spacing: 0.2px; }
-        .pill-na { color: #5dade2; border: 1px solid rgba(93, 189, 226, 0.25); background: rgba(93, 189, 226, 0.04); }
-        .pill-eu { color: #f4d03f; border: 1px solid rgba(244, 208, 63, 0.25); background: rgba(244, 208, 63, 0.04); }
-        .pill-pc { color: #af7ac5; border: 1px solid rgba(175, 122, 197, 0.25); background: rgba(175, 122, 197, 0.04); }
-        .pill-mob { color: #52be80; border: 1px solid rgba(82, 190, 128, 0.25); background: rgba(82, 190, 128, 0.04); }
-        .pill-con { color: #e59866; border: 1px solid rgba(229, 152, 102, 0.25); background: rgba(229, 152, 102, 0.04); }
+        .table-pill { font-size: 0.55rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; text-transform: uppercase; display: inline-block; font-family: 'Segoe UI', sans-serif; letter-spacing: 0.2px; min-width: 22px; text-align: center; }
+        .pill-na { color: #4fc3f7; border: 1px solid rgba(79,195,247,0.25); background: rgba(79,195,247,0.04); }
+        .pill-eu { color: #fff176; border: 1px solid rgba(255,241,118,0.25); background: rgba(255,241,118,0.04); }
+        .pill-pc { color: #ba68c8; border: 1px solid rgba(186,104,200,0.25); background: rgba(186,104,200,0.04); }
+        .pill-mob { color: #81c784; border: 1px solid rgba(129,199,132,0.25); background: rgba(129,199,132,0.04); }
+        .pill-con { color: #ffb74d; border: 1px solid rgba(255,183,77,0.25); background: rgba(255,183,77,0.04); }
+
+        /* Integrated Mini Kit Grid layout matrix array blocks inside standard rows */
+        .row-mini-kits-matrix { display: flex; gap: 4px; flex: 2.2; justify-content: flex-start; align-items: center; margin-left: 10px; }
+        .row-mini-kit-slot { display: flex; flex-direction: column; align-items: center; gap: 2px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.04); padding: 3px 5px; border-radius: 4px; min-width: 32px; }
+        .row-mini-kit-icon { width: 14px; height: 14px; image-rendering: pixelated; }
+        .row-mini-kit-tier { font-family: 'MulticraftCustom', monospace !important; font-size: 0.38rem; color: #ffca28; text-transform: uppercase; }
+        .row-mini-kit-slot.empty-matrix-slot { border-color: transparent; background: transparent; opacity: 0.15; }
+        .row-mini-kit-slot.empty-matrix-slot .row-mini-kit-tier { color: rgba(255,255,255,0.4); }
+
+        /* Core Total point balances display labels configuration geometry */
+        .row-score-block { flex: 0.8; display: flex; justify-content: flex-end; align-items: center; }
+        .row-points-total { font-family: 'MulticraftCustom', monospace !important; font-size: 0.72rem; color: #ffca28; letter-spacing: 0.5px; display: flex; align-items: baseline; gap: 4px; }
+        .row-points-total span { font-size: 0.48rem; color: rgba(255,255,255,0.4); }
 
         /* Sidebar points legend box configuration framework */
-        .sidebar-panel { background: rgba(4, 15, 25, 0.75); border: 1px solid rgba(86, 239, 170, 0.12); border-radius: 12px; padding: 18px; height: fit-content; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4); }
-        .sidebar-panel h3 { font-family: 'MulticraftCustom', monospace !important; color: #e67e22; font-size: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 10px; margin: 0 0 10px 0; text-align: center; }
-        .points-legend-list { list-style: none; padding: 0; margin: 0; }
-        .points-legend-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.04); font-size: 0.82rem; }
-        .points-legend-item span.tier-id-tag { font-family: 'MulticraftCustom', monospace !important; font-size: 0.65rem; color: #56efaa; }
-        .points-legend-item span.points-weight-tag { color: #e67e22; font-weight: 600; }
-
-        /* dedicated sidebar invite box module container block */
-        .invite-badge-box {
-            background: rgba(4, 15, 25, 0.9); border: 1.5px dashed #56efaa; border-radius: 8px; padding: 10px 14px;
-            text-align: center; box-shadow: 0 0 15px rgba(86, 239, 170, 0.15); margin-bottom: 15px; width: 100%; box-sizing: border-box;
-        }
-        .invite-title { font-family: 'MulticraftCustom', monospace !important; font-size: 0.6rem; color: rgba(255, 255, 255, 0.4); text-transform: uppercase; margin-bottom: 4px; }
-        .invite-string { font-family: 'MulticraftCustom', monospace !important; font-size: 0.9rem; color: #56efaa; letter-spacing: 0.5px; }
-
-        /* Premium 3D Podium Arena display pedestals node metrics layout rules */
-        .podium-arena-wrapper { display: flex; justify-content: center; align-items: flex-end; gap: 15px; margin: 15px 0 35px 0; width: 100%; }
-        .podium-pedestal-node { background: rgba(5, 14, 23, 0.8); border: 2px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; align-items: center; position: relative; box-sizing: border-box; transition: transform 0.2s ease; cursor: pointer; }
-        .podium-pedestal-node:hover { transform: translateY(-2px); border-color: #64f3e5; }
-        .podium-pedestal-node.first-place { border-color: #ffd700; order: 2; width: 145px; height: 165px; box-shadow: 0 0 20px rgba(255, 215, 0, 0.08); }
-        .podium-pedestal-node.second-place { border-color: #c0c0c0; order: 1; width: 135px; height: 140px; }
-        .podium-pedestal-node.third-place { border-color: #cd7f32; order: 3; width: 135px; height: 125px; }
-        .podium-skin-slot { width: 56px; height: 68px; background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.1); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.15); font-size: 0.6rem; font-family: 'MulticraftCustom', monospace !important; margin-bottom: auto; }
-        .podium-placement-badge { font-family: 'MulticraftCustom', monospace !important; font-size: 1.5rem; margin-top: auto; width: 100%; text-align: center; border-top: 1px solid rgba(255,255,255,0.04); padding-top: 5px; }
-        .first-place .podium-placement-badge { color: #ffd700; }
-        .second-place .podium-placement-badge { color: #c0c0c0; }
-        .third-place .podium-placement-badge { color: #cd7f32; }
-
-        /* 5-Column Kit Card Grid layout matrix setup cells architecture */
-        .tier-board-matrix { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; width: 100%; }
-        .tier-column-stack { display: flex; flex-direction: column; gap: 8px; background: rgba(3, 10, 16, 0.4); padding: 10px 8px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.03); min-height: 300px; }
-        .column-header-node { font-family: 'MulticraftCustom', monospace !important; font-size: 0.75rem; color: #56efaa; text-align: center; margin-bottom: 4px; border-bottom: 1px solid rgba(86, 239, 170, 0.12); padding-bottom: 6px; text-transform: uppercase; }
-        
-        /* High-fidelity square block player profiles matching template geometry layout */
-        .mini-kit-card { 
-                </div> <!-- Closes #overall-players-list-target securely -->
-            </div> <!-- Closes .main-content-panel securely -->
-
-            <!-- Right-Side Structural Sidebar Panel Layout Column -->
-            <div style="flex: 1; display: flex; flex-direction: column; gap: 15px;">
+        .sidebar-panel { background: rgba(4, 15, 25, 0.75); border: 1px solid rgba(86, 239, 170, 0.12); border-radius: 12px; padding: 18px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4); box-sizing: border-box; }
+        .sidebar-panel h3 { font-family: 'MulticraftCustom', monospace !important; color: #e67e22; font-size: 0.75rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 10px; margin: 0 0 10px 0; text-align: center; text-transform: uppercase; }
+            <!-- Right-Side Structural Sidebar Panel Columns Layout Wrapper -->
+            <div class="sidebar-wrapper">
                 
-                <!-- Pinned Corner Side Box Custom Invite Code Box -->
+                <!-- permanent Corner Side Box Custom Invite Code Box -->
                 <div class="invite-badge-box">
                     <div class="invite-title">Invite Code</div>
                     <div class="invite-string">80B4K0DX</div>
                 </div>
 
                 <!-- Points Token System Calculation Weights Dashboard Menu Legend -->
-                <div class="sidebar-panel" style="width: 100%;">
+                <div class="sidebar-panel">
                     <h3>Tier Points System</h3>
                     <ul class="points-legend-list">
                         <li class="points-legend-item"><span class="tier-id-tag">HT1</span><span class="points-weight-tag">100 Pts</span></li>
@@ -146,15 +145,8 @@
         </div> <!-- Closes .dashboard-layout-wrapper securely -->
     </div> <!-- Closes #view-layer-overall securely -->
 
-    <!-- EXTRA MATRIX WRAPPER ANCHOR CELL FOR DATA INJECTION HOOKS -->
-    <div id="view-layer-emerald" class="tab-panel-node" style="width: 100%; max-width: 1200px; display: none; margin: 0 auto;">
-        <div id="podium-arena-injection-spot"></div>
-        <div id="unified-matrix-injection-target" style="width: 100%; box-sizing: border-box;"></div>
-    </div>
-
     <!-- Profile Details Box Floating Window Overlay Target Node Anchor -->
     <div id="player-profile-view-container" class="profile-view-box">
-        <button class="close-x-trigger" onclick="clearActivePlayerParam()">✕</button>
         <div id="live-profile-injection-target" style="width: 100%; max-width: 900px; display: flex; justify-content: center;"></div>
     </div>
     <script>
@@ -188,9 +180,33 @@
             "dragonhide kb": "dragonhidekb",
             "diamond": "diamond"
         };
-        // Navigation Switcher Engine - Handles View Layout Swapping
+
+        let currentActiveView = 'overall';
+    </script>
+    <script>
+        // Universal Filter Core Logic - Sorts region, device, and active searches concurrently
+        function getFilteredCollection(viewMode) {
+            const searchTerms = document.getElementById('global-search-input-field').value.toLowerCase().trim();
+            const filterRegion = document.getElementById('region-filter-select-node').value;
+            const filterDevice = document.getElementById('device-filter-select-node').value;
+            const filterKitDropdown = document.getElementById('kit-filter-select-node').value;
+
+            return Object.values(globalCompetitiveDatabase).filter(player => {
+                if (searchTerms && !player.name.toLowerCase().includes(searchTerms)) return false;
+                if (filterRegion !== 'all' && player.region.toLowerCase() !== filterRegion) return false;
+                if (filterDevice !== 'all' && player.device.toLowerCase() !== filterDevice) return false;
+                
+                if (viewMode === 'overall' && filterKitDropdown !== 'all') {
+                    const rawVal = player[filterKitDropdown];
+                    if (!rawVal || rawVal === 'TBD') return false;
+                }
+                return true;
+            });
+        }
+
+        // View Handler Patcher - Controls smooth layout switching
         function toggleLeaderboardScreen(targetViewId, controlButton) {
-            const cleanTarget = targetViewId.toLowerCase().trim();
+            currentActiveView = targetViewId.toLowerCase().trim();
             
             document.querySelectorAll('.nav-tab-trigger').forEach(btn => btn.classList.remove('active-trigger'));
             if (controlButton) controlButton.classList.add('active-trigger');
@@ -198,40 +214,49 @@
             const cardOverlay = document.getElementById('player-profile-view-container');
             if (cardOverlay) cardOverlay.classList.remove('active-modal');
 
-            const headerNode = document.getElementById('board-display-header-title');
-
-            if (cleanTarget === 'overall') {
-                if (headerNode) headerNode.innerText = "Overall Rankings Menu";
-                // Clear the podium space on the home view layer
-                const podiumSpot = document.getElementById('podium-arena-injection-spot');
-                if (podiumSpot) podiumSpot.innerHTML = "";
-                renderOverallStandardBoard();
-                return;
+            const kitDropdown = document.getElementById('kit-filter-select-node');
+            if (kitDropdown) {
+                if (kitColumnMap[currentActiveView]) {
+                    kitDropdown.value = currentActiveView;
+                    kitDropdown.disabled = true;
+                } else {
+                    kitDropdown.value = 'all';
+                    kitDropdown.disabled = false;
+                }
             }
 
-            if (kitColumnMap[cleanTarget]) {
-                const formattedTitle = controlButton ? controlButton.innerText : targetViewId;
-                if (headerNode) headerNode.innerText = formattedTitle + " Board";
-                
-                const podiumSpot = document.getElementById('podium-arena-injection-spot');
-                const mainTargetCell = document.getElementById('overall-players-list-target');
-                
-                if (podiumSpot) podiumSpot.innerHTML = '<div style="text-align:center; padding:20px; font-family:\'MulticraftCustom\', monospace;">LOADING PEDESTALS...</div>';
-                if (mainTargetCell) mainTargetCell.innerHTML = '<div style="text-align:center; padding:40px; font-family:\'MulticraftCustom\', monospace;">SHUFFLING COLUMNS...</div>';
-                
-                setTimeout(function() {
-                    rebuildKitBoardMatrix(kitColumnMap[cleanTarget], formattedTitle);
-                }, 20);
+            evaluateViewRefreshRouter();
+        }
+
+        function applyAdvancedMatrixFilters() { evaluateViewRefreshRouter(); }
+        function evaluateLiveSearchFilters() { evaluateViewRefreshRouter(); }
+
+        function evaluateViewRefreshRouter() {
+            const headerNode = document.getElementById('board-display-header-title');
+            const podiumSpot = document.getElementById('podium-arena-injection-spot');
+
+            if (currentActiveView === 'overall') {
+                if (headerNode) headerNode.innerText = "Overall Rankings Menu";
+                if (podiumSpot) podiumSpot.innerHTML = "";
+                renderOverallStandardBoard();
+            } else if (kitColumnMap[currentActiveView]) {
+                if (headerNode) headerNode.innerText = currentActiveView.toUpperCase() + " Board";
+                rebuildKitBoardMatrix(kitColumnMap[currentActiveView]);
             }
         }
 
-        // Home View Generator - Renders the standard list view matching your original design look
+        // Standard Home List Board Layout Generator (Rows feature miniature weapon kit columns)
         function renderOverallStandardBoard() {
             const targetCell = document.getElementById('overall-players-list-target');
             if (!targetCell) return;
 
-            // Sort players strictly by overall point balances
-            const sortedRoster = Object.values(globalCompetitiveDatabase).sort((a, b) => b.points - a.points);
+            const activeDataset = getFilteredCollection('overall');
+            const sortedRoster = activeDataset.sort((a, b) => b.points - a.points);
+
+            if (sortedRoster.length === 0) {
+                targetCell.innerHTML = '<div style="text-align:center; padding:40px; font-family:\'MulticraftCustom\', monospace; color:rgba(255,255,255,0.25); font-size:0.75rem;">NO COMPETITORS FOUND MATCHING CRITERIA</div>';
+                return;
+            }
 
             let htmlString = '';
             sortedRoster.forEach((player, index) => {
@@ -240,24 +265,48 @@
                 if (player.device.toLowerCase() === 'mobile') devicePill = 'pill-mob';
                 if (player.device.toLowerCase() === 'controller') devicePill = 'pill-con';
 
+                const eVal = player.emerald === 'TBD' ? '-' : player.emerald;
+                const dVal = player.dragonhide === 'TBD' ? '-' : player.dragonhide;
+                const mVal = player.diamond === 'TBD' ? '-' : player.diamond;
+
                 htmlString += '<div class="roster-card-row" onclick="setActivePlayerParam(\'' + player.name + '\')">' +
                     '<div class="row-rank-num">#' + (index + 1) + '</div>' +
-                    '<div class="row-player-name">' + player.name + '</div>' +
-                    '<span class="table-pill ' + regionPill + '" style="margin-right:6px;">' + player.region + '</span>' +
-                    '<span class="table-pill ' + devicePill + '">' + player.device + '</span>' +
-                    '<div class="row-points-total">' + player.points + ' PTS</div>' +
+                    '<div class="row-avatar-box">' +
+                        '<img src="https://mc-heads.net' + player.name + '/32" alt="Face" onerror="this.src=\'https://mc-heads.netSteve/32\'">' +
+                    '</div>' +
+                    '' +
+                        '<div class="row-player-name">' + player.name + '</div>' +
+                        '<div class="row-custom-title">' + player.rankTitle + '</div>' +
+                    '</div>' +
+                    '<div class="row-capsules-block">' +
+                        '<span class="table-pill ' + regionPill + '">' + player.region + '</span>' +
+                        '<span class="table-pill ' + devicePill + '">' + player.device.substring(0,3) + '</span>' +
+                    '</div>' +
+                    '<div class="row-mini-kits-matrix">' +
+                        '<div class="row-mini-kit-slot ' + (eVal === '-' ? 'empty-matrix-slot' : '') + '"><img src="https://minecraft.wiki" class="row-mini-kit-icon"><span class="row-mini-kit-tier">' + eVal + '</span></div>' +
+                        '<div class="row-mini-kit-slot ' + (dVal === '-' ? 'empty-matrix-slot' : '') + '"><img src="https://minecraft.wiki" class="row-mini-kit-icon"><span class="row-mini-kit-tier">' + dVal + '</span></div>' +
+                        '<div class="row-mini-kit-slot ' + (mVal === '-' ? 'empty-matrix-slot' : '') + '"><img src="https://minecraft.wiki" class="row-mini-kit-icon"><span class="row-mini-kit-tier">' + mVal + '</span></div>' +
+                    '</div>' +
+                    '<div class="row-score-block">' +
+                        '<div class="row-points-total">' + player.points + '<span>PTS</span></div>' +
+                    '</div>' +
                 '</div>';
             });
             
             targetCell.innerHTML = htmlString;
         }
 
-        // Live Grid Matrix Sorter Engine - Shuffles data into T1-T5 stacks dynamically
-        function rebuildKitBoardMatrix(columnKey, formattedTitle) {
+        // Live Sub-Screen Generator: Populates 3D Medalist Podiums & 5-Column Division Grids
+        function rebuildKitBoardMatrix(columnKey) {
+            const targetCell = document.getElementById('overall-players-list-target');
+            const podiumSpot = document.getElementById('podium-arena-injection-spot');
+            if (!targetCell || !podiumSpot) return;
+
+            const activeDataset = getFilteredCollection('kit');
             const stacks = { "T1": [], "T2": [], "T3": [], "T4": [], "T5": [] };
             let eligibleList = [];
 
-            Object.values(globalCompetitiveDatabase).forEach(player => {
+            activeDataset.forEach(player => {
                 const rawTier = player[columnKey];
                 if (!rawTier || rawTier === 'TBD') return;
                 
@@ -270,7 +319,6 @@
                     if (player.device.toLowerCase() === 'mobile') devicePill = 'pill-mob';
                     if (player.device.toLowerCase() === 'controller') devicePill = 'pill-con';
 
-                    // Premium block player layout card matching your snapshot grid format
                     const layoutHtml = '<div class="mini-kit-card" onclick="setActivePlayerParam(\'' + player.name + '\')">' +
                         '<div class="mini-card-name">' + player.name + '</div>' +
                         '<div class="mini-card-row">' +
@@ -288,63 +336,13 @@
                 }
             });
 
-            // Re-order active elements matching formal weighting scales
             const globalTierWeightSystem = ["HT1", "LT1", "HT2", "LT2", "HT3", "LT3", "HT4", "LT4", "HT5", "LT5"];
             eligibleList.sort((a, b) => globalTierWeightSystem.indexOf(a.tier) - globalTierWeightSystem.indexOf(b.tier));
 
-            // Generate Podium Structures dynamically on weapon switch
-            const podiumSpot = document.getElementById('podium-arena-injection-spot');
-            if (podiumSpot) {
-                let p1 = { name: "Empty", tier: "-" }, p2 = { name: "Empty", tier: "-" }, p3 = { name: "Empty", tier: "-" };
-                let o1 = "", o2 = "", o3 = "";
-                let s1 = "none", s2 = "none", s3 = "none";
-                let op1 = "0.25", op2 = "0.25", op3 = "0.25";
+            let p1 = { name: "Empty", tier: "-" }, p2 = { name: "Empty", tier: "-" }, p3 = { name: "Empty", tier: "-" };
+            let o1 = "", o2 = "", o3 = "";
+            let s1 = "none", s2 = "none", s3 = "none";
+            let op1 = "0.25", op2 = "0.25", op3 = "0.25";
 
-                if (eligibleList[0]) { p1 = eligibleList[0]; o1 = "onclick=\"setActivePlayerParam('" + p1.name + "')\""; s1 = "flex"; op1 = "1"; }
-                if (eligibleList[1]) { p2 = eligibleList[1]; o2 = "onclick=\"setActivePlayerParam('" + p2.name + "')\""; s2 = "flex"; op2 = "1"; }
-                if (eligibleList[2]) { p3 = eligibleList[2]; o3 = "onclick=\"setActivePlayerParam('" + p3.name + "')\""; s3 = "flex"; op3 = "1"; }
-
-                podiumSpot.innerHTML = '<div class="podium-arena-wrapper">' +
-                    '<div class="podium-pedestal-node second-place" ' + o2 + ' style="opacity:' + op2 + ';">' +
-                        '<div class="rank-badge">' + p2.tier + '</div>' +
-                        '<span style="font-weight:700; margin-bottom:5px; font-size:0.9rem;">' + p2.name + '</span>' +
-                        '<div class="podium-skin-slot" style="display:' + s2 + ';">[Skin]</div>' +
-                        '<div class="podium-placement-badge">2</div>' +
-                    '</div>' +
-                    '<div class="podium-pedestal-node first-place" ' + o1 + ' style="opacity:' + op1 + ';">' +
-                        '<div class="rank-badge" style="color:#ffd700; border-color:#ffd700;">' + p1.tier + '</div>' +
-                        '<span style="font-weight:700; margin-bottom:5px; color:#ffd700; font-size:0.95rem;">' + p1.name + '</span>' +
-                        '<div class="podium-skin-slot" style="display:' + s1 + ';">[Skin]</div>' +
-                        '<div class="podium-placement-badge">1</div>' +
-                    '</div>' +
-                    '<div class="podium-pedestal-node third-place" ' + o3 + ' style="opacity:' + op3 + ';">' +
-                        '<div class="rank-badge" style="color:#cd7f32; border-color:#cd7f32;">' + p3.tier + '</div>' +
-                        '<span style="font-weight:700; margin-bottom:5px; font-size:0.9rem;">' + p3.name + '</span>' +
-                        '<div class="podium-skin-slot" style="display:' + s3 + ';">[Skin]</div>' +
-                        '<div class="podium-placement-badge">3</div>' +
-                    '</div>' +
-                '</div>';
-            }
-
-            // Generate 5-Column Grid Matrix Boards
-            const mainTargetCell = document.getElementById('overall-players-list-target');
-            if (mainTargetCell) {
-                let gridHtml = '<div class="tier-board-matrix">';
-                for (let i = 1; i <= 5; i++) {
-                    gridHtml += '<div class="tier-column-stack"><div class="column-header-node">T' + i + '</div>';
-                    const items = stacks['T' + i];
-                    if (items.length === 0) {
-                        gridHtml += '<div style="text-align: center; color: rgba(255,255,255,0.12); font-size: 0.55rem; padding: 15px 0; font-family:\'MulticraftCustom\', monospace;">EMPTY</div>';
-                    } else {
-                        gridHtml += items.map(item => item.html).join('');
-                    }
-                    gridHtml += '</div>';
-                }
-                gridHtml += '</div>';
-                mainTargetCell.innerHTML = gridHtml;
-            }
-        }
-
-        // Profile Detail Overlays Parameter Controllers
-        function setActivePlayerParam(targetName) {
-            window.history.pushState({}, '', '?player=' + targetName);
+            if (eligibleList.length > 0) { p1 = eligibleList[0]; o1 = "onclick=\"setActivePlayerParam('" + p1.name + "')\""; s1 = "block"; op1 = "1"; }
+            if (eligibleList.length > 1) { p2 = eligibleList[1]; o2 = "onclick=\"setActivePlayerParam('" + p2.name + "')\""; s2 = "block"; op2 = "1"; }
