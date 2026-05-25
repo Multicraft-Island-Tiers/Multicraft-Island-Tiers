@@ -3,328 +3,303 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multicraft Island Tiers | Competitive Leaderboard</title>
-    <!-- Web-safe gaming font look fallback -->
+    <title>Multicraft Island Tiers | Competitive Gaming Hub</title>
+    <!-- Web-Safe Pixel Font to recreate the official game style UI look seamlessly -->
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
-        /* Base page layout */
+        /* Base page theme config lines */
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             margin: 0; 
-            padding: 30px 20px; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
+            padding: 0; 
             color: #ffffff; 
             min-height: 100vh; 
-            box-sizing: border-box; 
-            background-color: #0b1d28; 
-            overflow-x: hidden; 
-        }
-        
-        .logo-container { 
-            max-width: 600px; 
-            width: 100%; 
-            margin-bottom: 25px; 
-            text-align: center; 
-            z-index: 10; 
-        }
-        .logo-container img { 
-            width: 100%; 
-            height: auto; 
-            border-radius: 10px; 
-            border: 1px solid rgba(100, 243, 229, 0.25);
-            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.65);
-        }
-        
-        .dashboard-layout-wrapper {
-            display: flex;
-            flex-direction: row;
-            gap: 25px;
-            width: 100%;
-            max-width: 1100px;
-            z-index: 10;
-        }
-        
-        .main-content-panel { 
-            flex: 3;
-            background: rgba(0, 0, 0, 0.6); 
-            border: 2px solid #ffffff; 
-            border-radius: 14px; 
-            padding: 25px; 
-            box-sizing: border-box; 
-            backdrop-filter: blur(8px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-        }
-        
-        .main-content-panel h2, .sidebar-panel h3 { 
-            line-height: 1.5;
-            margin-top: 0; 
-            color: #64f3e5; 
-            font-size: 1.6rem;
-            border-bottom: 2px solid #ffffff; 
-            padding-bottom: 12px; 
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px rgba(100, 243, 229, 0.2);
-        }
-        
-        .sidebar-panel {
-            flex: 1;
-            background: rgba(14, 39, 53, 0.8);
-            border: 2px solid #64f3e5;
-            border-radius: 14px;
-            padding: 20px;
-            box-sizing: border-box;
-            backdrop-filter: blur(8px);
-            height: fit-content;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-        }
-        .sidebar-panel h3 {
-            color: #e67e22;
-            font-size: 1.2rem;
-        }
-        
-        .leaderboard-table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            margin-top: 10px; 
-        }
-        .leaderboard-table th, .leaderboard-table td { 
-            padding: 14px 12px; 
-            border: 1px solid #ffffff; 
-            text-align: left; 
-        }
-        .leaderboard-table th { 
-            background-color: rgba(43, 122, 113, 0.9); 
-            font-weight: bold;
-        }
-        .leaderboard-table tbody tr:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-        }
-        
-        /* Safe target anchors style */
-        .player-link-anchor { 
-            color: #64f3e5; 
-            font-weight: bold; 
-            text-decoration: underline; 
-            font-size: 1rem; 
-            cursor: pointer;
-        }
-        .player-link-anchor:hover { 
-            color: #ffffff; 
-            text-shadow: 0 0 8px #64f3e5; 
-        }
-        
-        /* 100% Stable CSS-Overlay Panel Core Engine */
-        .profile-overlay-container {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(5, 12, 17, 0.95);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        
-        /* Unbreakable direct-target visibility activator toggle switch */
-        .profile-overlay-container:target {
-            display: flex;
-        }
-        
-        /* Premium split player box panel directly matching your screenshot reference layout */
-        .premium-profile-card {
-            display: flex;
-            flex-direction: row;
-            width: 100%;
-            max-width: 820px;
-            background: #06131c;
-            border: 2px solid rgba(100, 243, 229, 0.3);
-            border-radius: 12px;
-            box-shadow: 0 0 30px rgba(100, 243, 229, 0.15);
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .close-x-trigger {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-            border: none;
-            font-size: 0.9rem;
-            font-weight: bold;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: background 0.2s;
-        }
-        .close-x-trigger:hover {
-            background: rgba(192, 57, 43, 0.8);
-        }
-        
-        /* Left Panel Node Layout */
-        .card-left-column {
-            flex: 1;
-            padding: 35px;
-            display: flex;
-            flex-direction: column;
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
-            box-sizing: border-box;
-        }
-        .rank-badge {
-            font-weight: bold;
-            font-size: 0.75rem;
-            color: #ffd700;
-            border: 1.5px solid #ffd700;
-            padding: 4px 10px;
-            border-radius: 20px;
-            width: fit-content;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-        .card-player-title {
-            font-size: 1.8rem;
-            color: #ffffff;
-            margin: 0 0 15px 0;
-            word-break: break-all;
-        }
-        .tags-row {
-            display: flex;
-            gap: 8px;
-            margin-bottom: auto;
-        }
-        .meta-pill {
-            font-weight: bold;
-            font-size: 0.7rem;
-            color: #ef5350;
-            border: 1px solid #ef5350;
-            padding: 3px 8px;
-            border-radius: 4px;
-            text-transform: uppercase;
-        }
-        .meta-pill.device-pill {
-            color: #ab47bc;
-            border-color: #ab47bc;
-        }
-        .score-display-node {
-            font-size: 1.75rem;
-            font-weight: bold;
-            color: #ffd700;
-            margin-top: 30px;
-        }
-        .score-display-node span {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.4);
-            margin-left: 5px;
-        }
-        
-        /* Right Panel Grid Layout */
-        .card-right-column {
-            flex: 1.2;
-            padding: 35px;
-            box-sizing: border-box;
-        }
-        .right-column-header {
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            color: rgba(255, 255, 255, 0.4);
-            margin: 0 0 25px 0;
-        }
-        .kits-display-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-        .kit-slot-circle {
+            background: radial-gradient(circle at 30% 20%, #112d3e 0%, #06131c 70%);
+            overflow-x: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-align: center;
-        }
-        .circle-frame {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            border: 2px solid #ffd700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 8px;
-            background: rgba(255, 255, 255, 0.02);
-            font-weight: bold;
-            color: #ffffff;
-            font-size: 1rem;
-            box-shadow: 0 0 12px rgba(255, 215, 0, 0.1);
-        }
-        .circle-frame.empty-frame {
-            border-color: rgba(255, 255, 255, 0.05);
-            color: rgba(255, 255, 255, 0.15);
-            box-shadow: none;
-        }
-        .kit-slot-name {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.6);
-            white-space: nowrap;
         }
         
-        .points-legend-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        #starfall-canvas { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100vw; 
+            height: 100vh; 
+            z-index: 1; 
+            pointer-events: none; 
         }
-        .points-legend-item {
+
+        /* Top Header Navigation Panel Module */
+        .top-navbar {
+            width: 100%;
+            background: rgba(4, 11, 16, 0.85);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 15px 40px;
+            box-sizing: border-box;
             display: flex;
             justify-content: space-between;
-            padding: 11px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            font-size: 0.95rem;
+            align-items: center;
+            z-index: 100;
+            backdrop-filter: blur(10px);
         }
-        .points-legend-item:last-child {
-            border-bottom: none;
+        .nav-links-left {
+            display: flex;
+            gap: 25px;
         }
-        .points-legend-item span.tier-id-tag {
+        .nav-link-item {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.65rem;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .nav-link-item:hover, .nav-link-item.active-nav {
+            color: #64f3e5;
+            text-shadow: 0 0 8px rgba(100, 243, 229, 0.4);
+        }
+        .search-mock-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            padding: 6px 12px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.55rem;
+            color: rgba(255, 255, 255, 0.3);
+            width: 160px;
+            text-align: left;
+        }
+
+        /* Centered App View Frame Wrapper */
+        .app-layout-frame {
+            width: 100%;
+            max-width: 1200px;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Horizontal Custom Capsule Menu Tabs Layout */
+        .kit-tabs-capsule-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+        .kit-tab-btn {
+            background: rgba(14, 39, 53, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.6);
+            padding: 8px 16px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.55rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .kit-tab-btn:hover {
+            border-color: #64f3e5;
+            color: #ffffff;
+        }
+        .kit-tab-btn.active-kit {
+            background: #1a4d47;
+            border-color: #64f3e5;
+            color: #64f3e5;
+            box-shadow: 0 0 12px rgba(100, 243, 229, 0.25);
+        }
+
+        /* View Content Blocks Setup configurations */
+        .rankings-display-view {
+            display: none;
+            width: 100%;
+        }
+        .rankings-display-view.active-view {
+            display: block;
+        }
+
+        /* --- PRE-SORTED OVERALL VIEW LAYOUT --- */
+        .overall-roster-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+        }
+        .player-pill-row {
+            background: rgba(4, 11, 16, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px 25px;
+            display: flex;
+            align-items: center;
+            box-sizing: border-box;
+            transition: transform 0.15s, border-color 0.15s;
+        }
+        .player-pill-row:hover {
+            transform: translateX(4px);
+            border-color: rgba(100, 243, 229, 0.4);
+            background: rgba(6, 19, 28, 0.8);
+        }
+        .row-rank-node {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.4);
+            width: 50px;
+        }
+        .player-pill-row:nth-child(1) .row-rank-node { color: #ffd700; }
+        .player-pill-row:nth-child(2) .row-rank-node { color: #c0c0c0; }
+        .player-pill-row:nth-child(3) .row-rank-node { color: #cd7f32; }
+        
+        .row-name-anchor {
+            font-family: 'Segoe UI', sans-serif;
             font-weight: bold;
+            font-size: 1.1rem;
+            color: #ffffff;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            text-align: left;
+            flex: 1.5;
+        }
+        .row-name-anchor:hover {
+            color: #64f3e5;
+            text-decoration: underline;
+        }
+        
+        .row-meta-tags-wrapper {
+            display: flex;
+            gap: 8px;
+            flex: 1;
+        }
+        .row-pill {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.5rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255,255,255,0.2);
             color: #64f3e5;
         }
-        .points-legend-item span.points-weight-tag {
-            color: #e67e22;
-            font-weight: 600;
+        .row-pill.device-pill { color: #ab47bc; border-color: rgba(171, 71, 188, 0.4); }
+        
+        .row-kits-preview-grid {
+            display: flex;
+            gap: 6px;
+            flex: 3;
+            justify-content: center;
+        }
+        .preview-square-badge {
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.45rem;
+            color: rgba(255, 255, 255, 0.2);
+        }
+        .preview-square-badge.filled-badge {
+            color: #0b1d28;
+            background: #64f3e5;
+            border-color: #ffffff;
+            font-weight: bold;
+        }
+        
+        .row-points-badge {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.8rem;
+            color: #ffd700;
+            flex: 1;
+            text-align: right;
         }
 
-        @media (max-width: 800px) {
-            .dashboard-layout-wrapper, .premium-profile-card {
-                flex-direction: column;
-                align-items: center;
-            }
-            .sidebar-panel, .card-left-column {
-                width: 100%;
-            }
-            .card-left-column {
-                border-right: none;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            }
+        /* --- KIT SPECIFIC EMERALD PODIUM SYSTEM LAYOUT --- */
+        .podium-section-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 15px;
+            height: 180px;
+            margin-bottom: 40px;
+            width: 100%;
         }
-    </style>
-</head>
-<body>
-    <div class="logo-container"><img src="logo.png" alt="Multicraft Island Tiers Banner"></div>
-    
-    <div class="dashboard-layout-wrapper">
-        <!-- Main Board Panel (100% Core HTML - Physically Impossible to Hide Players) -->
-        <div class="main-content-panel">
+        .podium-column-node {
+            background: rgba(14, 39, 53, 0.7);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px 8px 4px 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+            padding: 15px;
+            width: 150px;
+            position: relative;
+        }
+        .podium-column-node.pos-1 { height: 160px; border-color: #ffd700; box-shadow: 0 0 15px rgba(255, 215, 0, 0.15); }
+        .podium-column-node.pos-2 { height: 130px; border-color: #c0c0c0; }
+        .podium-column-node.pos-3 { height: 110px; border-color: #cd7f32; }
+        
+        .podium-placement-number {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: auto;
+        }
+        .pos-1 .podium-placement-number { color: #ffd700; }
+        .pos-2 .podium-placement-number { color: #c0c0c0; }
+        .pos-3 .podium-placement-number { color: #cd7f32; }
+        
+        .podium-player-name {
+            font-weight: bold;
+            font-size: 0.95rem;
+            text-align: center;
+            position: absolute;
+            top: -30px;
+            width: 100%;
+            color: #ffffff;
+        }
+        .podium-sub-tag {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.45rem;
+            color: #64f3e5;
+            background: rgba(0,0,0,0.4);
+            padding: 2px 6px;
+            border-radius: 4px;
+            position: absolute;
+            top: -10px;
+            border: 1px solid #64f3e5;
+        }
 
-            }
+        /* --- VERTICAL GRID METRIC TREE SYSTEM LAYOUT --- */
+        .hierarchy-grid-columns-wrapper {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            width: 100%;
+        }
+        .hierarchy-column-tree h4 {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.65rem;
+            color: rgba(255, 255, 255, 0.3);
+            text-align: center;
+            margin: 0 0 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 8px;
+        }
+        .hierarchy-column-tree-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .grid-player-card-node {
+            background: rgba(4, 11, 16, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
