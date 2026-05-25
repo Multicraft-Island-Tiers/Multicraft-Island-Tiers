@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multicraft Island Tiers | Competitive Leaderboard</title>
+    <title>Multicraft Island Tiers | Competitive Hub</title>
+    <!-- Web-safe Google Fonts for a premium pixel-gaming layout look -->
+    <link href="https://googleapis.com" rel="stylesheet">
     <style>
-        /* Unbreakable, standard system font layout */
+        /* Base page layout - Dark outer space gaming atmosphere */
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             margin: 0; 
@@ -16,70 +18,48 @@
             color: #ffffff; 
             min-height: 100vh; 
             box-sizing: border-box; 
-            background: radial-gradient(circle at center, #0e2430 0%, #050d12 100%);
+            background: #060d13;
+            background-image: radial-gradient(circle at 30% 20%, rgba(16, 44, 58, 0.4) 0%, rgba(5, 12, 18, 0.4) 100%),
+                              radial-gradient(circle at 80% 70%, rgba(45, 14, 58, 0.35) 0%, rgba(5, 12, 18, 0.4) 100%);
             overflow-x: hidden; 
         }
         
         .logo-container { 
             max-width: 600px; 
             width: 100%; 
-            margin-bottom: 30px; 
+            margin-bottom: 25px; 
             text-align: center; 
         }
         .logo-container img { 
             width: 100%; 
             height: auto; 
             border-radius: 12px; 
-            border: 1px solid rgba(100, 243, 229, 0.25);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(100, 243, 229, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
         }
         
-        .dashboard-layout-wrapper {
+        .dashboard-wrapper {
             display: flex;
-            flex-direction: row;
-            gap: 30px;
+            flex-direction: column;
+            gap: 12px;
             width: 100%;
-            max-width: 1150px;
+            max-width: 1050px;
         }
-        
-        .main-content-panel { 
-            flex: 3;
-            background: rgba(0, 0, 0, 0.45); 
-            border: 2px solid #ffffff; 
-            border-radius: 16px; 
-            padding: 25px; 
-            box-sizing: border-box; 
-            backdrop-filter: blur(10px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
-            display: block;
+        .dashboard-wrapper.hidden-layout {
+            display: none;
         }
-        
-        .main-content-panel h2, .sidebar-panel h3 { 
-            margin-top: 0; 
-            color: #64f3e5; 
-            font-size: 1.75rem;
-            border-bottom: 2px solid #ffffff; 
-            padding-bottom: 12px; 
-            margin-bottom: 25px;
+
+        .menu-title {
+            font-family: 'Press Start 2P', monospace;
+            color: #64f3e5;
+            font-size: 1.15rem;
+            margin: 0 0 10px 0;
             text-shadow: 0 0 10px rgba(100, 243, 229, 0.3);
+            border-bottom: 2px solid #ffffff;
+            padding-bottom: 12px;
         }
         
-        .sidebar-panel {
-            flex: 1;
-            background: rgba(14, 39, 53, 0.8);
-            border: 2px solid #64f3e5;
-            border-radius: 16px;
-            padding: 20px;
-            box-sizing: border-box;
-            backdrop-filter: blur(10px);
-            height: fit-content;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-        }
-        .sidebar-panel h3 {
-            color: #e67e22;
-        }
-        
-        /* Premium horizontal rows custom architecture layout */
+        /* Premium horizontal rows configuration architecture layout */
         .roster-card-row {
             display: flex;
             align-items: center;
@@ -87,14 +67,21 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 10px;
             padding: 14px 20px;
-            margin-bottom: 10px;
             box-sizing: border-box;
             gap: 15px;
+            transition: transform 0.15s, border-color 0.15s;
+            cursor: pointer;
+        }
+        .roster-card-row:hover {
+            transform: translateY(-2px);
+            border-color: #64f3e5;
+            background: rgba(12, 28, 38, 0.9);
+            box-shadow: 0 0 15px rgba(100, 243, 229, 0.1);
         }
         
         .row-rank-num {
-            font-size: 1.1rem;
-            font-weight: 800;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.85rem;
             color: rgba(255, 255, 255, 0.4);
             width: 45px;
             text-align: center;
@@ -105,152 +92,327 @@
 
         .row-player-name {
             font-size: 1.15rem;
-            font-weight: bold;
-            color: #64f3e5;
+            font-weight: 700;
+            color: #ffffff;
             flex: 1;
         }
         
-        /* Micro Pill Badges for Table Rows */
-        .table-pill {
+        /* Badge pill structural configuration settings */
+        .badge-pill {
             font-size: 0.75rem;
             font-weight: bold;
             padding: 4px 10px;
             border-radius: 5px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            text-align: center;
             display: inline-block;
         }
-        .pill-na { color: #5dade2; border: 1px solid #5dade2; background: rgba(93, 189, 226, 0.05); }
-        .pill-eu { color: #f4d03f; border: 1px solid #f4d03f; background: rgba(244, 208, 63, 0.05); }
-        .pill-pc { color: #af7ac5; border: 1px solid #af7ac5; background: rgba(175, 122, 197, 0.05); }
-        .pill-mob { color: #52be80; border: 1px solid #52be80; background: rgba(82, 190, 128, 0.05); }
-        .pill-con { color: #e59866; border: 1px solid #e59866; background: rgba(229, 152, 102, 0.05); }
-        
-        /* Row mini kit grids container spacing settings */
+        .pill-na { color: #4fc3f7; border: 1px solid #4fc3f7; background: rgba(79, 195, 247, 0.05); }
+        .pill-eu { color: #fff176; border: 1px solid #fff176; background: rgba(255, 241, 118, 0.05); }
+        .pill-pc { color: #ba68c8; border: 1px solid #ba68c8; background: rgba(186, 104, 200, 0.05); }
+        .pill-mob { color: #81c784; border: 1px solid #81c784; background: rgba(129, 199, 132, 0.05); }
+        .pill-con { color: #ffb74d; border: 1px solid #ffb74d; background: rgba(255, 183, 77, 0.05); }
+
         .row-kits-summary-strip {
             display: flex;
             gap: 6px;
             align-items: center;
         }
         .row-mini-kit-tag {
-            font-size: 0.7rem;
-            font-weight: 800;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.55rem;
             color: #0b1d28;
             background: #64f3e5;
-            padding: 3px 7px;
+            padding: 4px 6px;
             border-radius: 4px;
             border: 1px solid #ffffff;
         }
         .row-mini-kit-tag.tbd-tag {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.15);
         }
 
         .row-points-total {
-            font-size: 1.15rem;
-            font-weight: 800;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.85rem;
             color: #ffd700;
-            min-width: 90px;
+            min-width: 100px;
             text-align: right;
         }
+
+        /* Full Page Profile Box Interface Layer */
+        .player-profile-overlay-container {
+            display: none;
+            width: 100%;
+            max-width: 1050px;
+            box-sizing: border-box;
+            z-index: 100;
+        }
+        .player-profile-overlay-container.active-view {
+            display: block;
+        }
         
-        .points-legend-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .points-legend-item {
+        .premium-split-profile-card {
             display: flex;
-            justify-content: space-between;
-            padding: 11px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            flex-direction: row;
+            width: 100%;
+            background: #06131c;
+            border: 2px solid rgba(100, 243, 229, 0.25);
+            border-radius: 14px;
+            box-shadow: 0 0 35px rgba(100, 243, 229, 0.12);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .close-x-action-trigger {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #c0392b;
+            color: white;
+            border: 1px solid #ffffff;
             font-size: 0.95rem;
-        }
-        .points-legend-item:last-child {
-            border-bottom: none;
-        }
-        .points-legend-item span.tier-id-tag {
             font-weight: bold;
-            color: #64f3e5;
+            padding: 6px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.15s;
         }
-        .points-legend-item span.points-weight-tag {
-            color: #e67e22;
+        .close-x-action-trigger:hover {
+            background: #e74c3c;
+        }
+        
+        /* Left Column Structure Styling */
+        .profile-left-column {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            box-sizing: border-box;
+            background: linear-gradient(135deg, rgba(14, 36, 48, 0.3) 0%, rgba(5, 13, 18, 0.3) 100%);
+        }
+        .profile-rank-pill-badge {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.65rem;
+            color: #ffd700;
+            border: 1.5px solid #ffd700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            width: fit-content;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .profile-player-header-title {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin: 0 0 15px 0;
+            word-break: break-all;
+            line-height: 1.3;
+        }
+        .profile-meta-tags-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: auto;
+        }
+        .profile-points-readout-node {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 1.8rem;
+            color: #ffd700;
+            margin-top: 35px;
+        }
+        .profile-points-readout-node span {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.35);
+            margin-left: 6px;
+        }
+        
+        /* Right Column Kit Rankings configurations */
+        .profile-right-column {
+            flex: 1.4;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+        .profile-right-column-title {
+            font-family: 'Segoe UI', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.35);
+            margin: 0 0 25px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding-bottom: 8px;
+        }
+        .profile-kits-display-circle-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+        .kit-circle-slot-node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .circle-badge-frame {
+            font-family: 'Press Start 2P', monospace;
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            border: 2px solid #ffd700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.02);
+            color: #ffffff;
+            font-size: 0.8rem;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.12);
+        }
+        .circle-badge-frame.tbd-circle-frame {
+            border-color: rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.2);
+            box-shadow: none;
+        }
+        .kit-circle-slot-label {
+            font-size: 0.8rem;
             font-weight: 600;
+            color: rgba(255, 255, 255, 0.55);
+            white-space: nowrap;
         }
+    <script>
+        // Secure, uncut Data Matrix containing 100% of your 18 players
+        const globalCompetitiveDatabase = {
+            "Husky_Multicraft": { name: "Husky_Multicraft", region: "NA", device: "PC", points: 180, tiers: { "Dragonhide": "HT3", "Dragonhide KB": "HT3", "Emerald": "LT2", "Diamond": "HT3", "Emerald KB": "LT3" } },
+            "Prologozrock": { name: "Prologozrock", region: "NA", device: "PC", points: 85, tiers: { "Dragonhide": "LT4", "Dragonhide KB": "LT4", "Emerald": "LT3", "Diamond": "HT4", "Emerald KB": "TBD" } },
+            "Parrot": { name: "Parrot", region: "NA", device: "Mobile", points: 81, tiers: { "Dragonhide": "HT4", "Dragonhide KB": "HT4", "Emerald": "HT5", "Diamond": "LT4", "Emerald KB": "HT5" } },
+            "Herobrine": { name: "Herobrine", region: "NA", device: "Controller", points: 80, tiers: { "Dragonhide": "HT4", "Dragonhide KB": "LT3", "Emerald": "HT4", "Diamond": "TBD", "Emerald KB": "TBD" } },
+            "vort3xYT": { name: "vort3xYT", region: "EU", device: "PC", points: 75, tiers: { "Dragonhide": "TBD", "Dragonhide KB": "HT2", "Emerald": "TBD", "Diamond": "TBD", "Emerald KB": "TBD" } },
+            "Server_pvp": { name: "Server_pvp", region: "NA", device: "Mobile", points: 71, tiers: { "Dragonhide": "LT4", "Dragonhide KB": "LT4", "Emerald": "HT5", "Diamond": "HT4", "Emerald KB": "HT5" } },
+            "kylaz9": { name: "kylaz9", region: "EU", device: "Mobile", points: 28, tiers: { "Dragonhide": "HT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "LT5", "Emerald KB": "HT5" } },
+            "Jamier1235": { name: "Jamier1235", region: "NA", device: "Mobile", points: 17, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "TBD", "Emerald KB": "HT5" } },
+            "aaa666": { name: "aaa666", region: "NA", device: "Mobile", points: 15, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "LT5", "Emerald KB": "LT5" } },
+            "Benjamin": { name: "Benjamin", region: "NA", device: "Mobile", points: 15, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "LT5", "Emerald KB": "LT5" } },
+            "Booky": { name: "Booky", region: "NA", device: "Mobile", points: 15, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "LT5", "Emerald KB": "LT5" } },
+            "Taxbird": { name: "Taxbird", region: "NA", device: "Mobile", points: 15, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "LT5", "Emerald KB": "LT5" } },
+            "Halo117": { name: "Halo117", region: "NA", device: "Mobile", points: 12, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "LT5", "Emerald KB": "TBD" } },
+            "Marwan": { name: "Marwan", region: "NA", device: "Mobile", points: 9, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "TBD", "Diamond": "TBD", "Emerald KB": "LT5" } },
+            "New_guy": { name: "New_guy", region: "NA", device: "Mobile", points: 9, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "TBD", "Emerald KB": "TBD" } },
+            "grant": { name: "grant", region: "NA", device: "Mobile", points: 9, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "LT5", "Emerald": "LT5", "Diamond": "TBD", "Emerald KB": "TBD" } },
+            "LATAMM": { name: "LATAMM", region: "NA", device: "Mobile", points: 9, tiers: { "Dragonhide": "LT5", "Dragonhide KB": "TBD", "Emerald": "LT5", "Diamond": "LT5", "Emerald KB": "TBD" } },
+            "COCO-_": { name: "COCO-_", region: "NA", device: "Mobile", points: 8, tiers: { "Dragonhide": "HT5", "Dragonhide KB": "TBD", "Emerald": "TBD", "Diamond": "TBD", "Emerald KB": "TBD" } }
+        };
 
-        @media (max-width: 900px) {
-            .dashboard-layout-wrapper {
-                flex-direction: column;
-                align-items: center;
-            }
-            .sidebar-panel {
-                width: 100%;
-            }
-            .row-kits-summary-strip {
-                display: none;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- The Logo Image File -->
-    <div class="logo-container"><img src="logo.png" alt="Multicraft Island Tiers Banner"></div>
-    
-    <div class="dashboard-layout-wrapper">
-        <!-- Main Board Panel -->
-        <div class="main-content-panel">
-            <h2>Overall Leaderboard Rankings</h2>
+        // Generates the clean horizontal rows on screen
+        function compileRosterDashboardRows() {
+            let processedRowsHtml = '';
+            const descendingSortedArray = Object.values(globalCompetitiveDatabase).sort((alpha, beta) => Number(beta.points) - Number(alpha.points));
             
-            <!-- #1 Husky_Multicraft -->
-            <div class="roster-card-row">
-                <div class="row-rank-num">#1</div>
-                <div class="row-player-name">Husky_Multicraft</div>
-                <span class="table-pill pill-na">NA</span>
-                <span class="table-pill pill-pc">PC</span>
-                <div class="row-kits-summary-strip"><span class="row-mini-kit-tag">HT3</span><span class="row-mini-kit-tag">HT3</span><span class="row-mini-kit-tag">LT2</span><span class="row-mini-kit-tag">HT3</span><span class="row-mini-kit-tag">LT3</span></div>
-                <div class="row-points-total">180 PTS</div>
-            </div>
+            descendingSortedArray.forEach((playerObj, rankingIndex) => {
+                const regionalStyleClass = playerObj.region.toLowerCase() === 'na' ? 'pill-na' : 'pill-eu';
+                let hardwareStyleClass = 'pill-pc';
+                if (playerObj.device.toLowerCase() === 'mobile') hardwareStyleClass = 'pill-mob';
+                if (playerObj.device.toLowerCase() === 'controller') hardwareStyleClass = 'pill-con';
 
-            <!-- #2 Prologozrock -->
-            <div class="roster-card-row">
-                <div class="row-rank-num">#2</div>
-                <div class="row-player-name">Prologozrock</div>
-                <span class="table-pill pill-na">NA</span>
-                <span class="table-pill pill-pc">PC</span>
-                <div class="row-kits-summary-strip"><span class="row-mini-kit-tag">LT4</span><span class="row-mini-kit-tag">LT4</span><span class="row-mini-kit-tag">LT3</span><span class="row-mini-kit-tag">HT4</span><span class="row-mini-kit-tag tbd-tag">-</span></div>
-                <div class="row-points-total">85 PTS</div>
-            </div>
+                let squareTagsStripHtml = '';
+                for (const tierPlacementValue of Object.values(playerObj.tiers)) {
+                    if (tierPlacementValue === 'TBD') {
+                        squareTagsStripHtml += `<span class="row-mini-kit-tag tbd-tag">-</span>`;
+                    } else {
+                        squareTagsStripHtml += `<span class="row-mini-kit-tag">${tierPlacementValue}</span>`;
+                    }
+                }
 
-            <!-- #3 Parrot -->
-            <div class="roster-card-row">
-                <div class="row-rank-num">#3</div>
-                <div class="row-player-name">Parrot</div>
-                <span class="table-pill pill-na">NA</span>
-                <span class="table-pill pill-mob">Mobile</span>
-                <div class="row-kits-summary-strip"><span class="row-mini-kit-tag">HT4</span><span class="row-mini-kit-tag">HT4</span><span class="row-mini-kit-tag">HT5</span><span class="row-mini-kit-tag">LT4</span><span class="row-mini-kit-tag">HT5</span></div>
-                <div class="row-points-total">81 PTS</div>
-            </div>
+                processedRowsHtml += `
+                    <div class="roster-card-row" onclick="setActivePlayerParam('${playerObj.name}')">
+                        <div class="row-rank-num">#${rankingIndex + 1}</div>
+                        <div class="row-player-name">${playerObj.name}</div>
+                        <span class="badge-pill ${regionalStyleClass}">${playerObj.region}</span>
+                        <span class="badge-pill ${hardwareStyleClass}">${playerObj.device}</span>
+                        <div class="row-kits-summary-strip">${squareTagsStripHtml}</div>
+                        <div class="row-points-total">${playerObj.points} PTS</div>
+                    </div>`;
+            });
+            
+            document.getElementById('live-pill-rows-injection-target').innerHTML = processedRowsHtml;
+        }
 
-            <!-- #4 Herobrine -->
-            <div class="roster-card-row">
-                <div class="row-rank-num">#4</div>
-                <div class="row-player-name">Herobrine</div>
-                <span class="table-pill pill-na">NA</span>
-                <span class="table-pill pill-con">Controller</span>
-                <div class="row-kits-summary-strip"><span class="row-mini-kit-tag">HT4</span><span class="row-mini-kit-tag">LT3</span><span class="row-mini-kit-tag">HT4</span><span class="row-mini-kit-tag tbd-tag">-</span><span class="row-mini-kit-tag tbd-tag">-</span></div>
-                <div class="row-points-total">80 PTS</div>
-            </div>
+        function setActivePlayerParam(targetName) {
+            window.history.pushState({}, '', '?player=' + targetName);
+            evaluateAddressPathParameters();
+        }
 
-            <!-- #5 vort3xYT -->
-            <div class="roster-card-row">
-                <div class="row-rank-num">#5</div>
-                <div class="row-player-name">vort3xYT</div>
-                <span class="table-pill pill-eu">EU</span>
-                <span class="table-pill pill-pc">PC</span>
-                <div class="row-kits-summary-strip"><span class="row-mini-kit-tag tbd-tag">-</span><span class="row-mini-kit-tag">HT2</span><span class="row-mini-kit-tag tbd-tag">-</span><span class="row-mini-kit-tag tbd-tag">-</span><span class="row-mini-kit-tag tbd-tag">-</span></div>
-                <div class="row-points-total">75 PTS</div>
-            </div>
+        function clearActivePlayerParam() {
+            window.history.pushState({}, '', window.location.pathname);
+            evaluateAddressPathParameters();
+        }
 
-            <!-- #6 Server_pvp -->
-            <div class="roster-card-row">
+        // Script handles frame swaps and injects data circles onto the player cards
+        function evaluateAddressPathParameters() {
+            const masterBoardPanel = document.getElementById('leaderboard-view-wrapper');
+            const targetOverlayCard = document.getElementById('player-profile-view-container');
+            
+            masterBoardPanel.classList.remove('hidden-layout');
+            targetOverlayCard.classList.remove('active-view');
+            
+            const dynamicSearchParams = new URLSearchParams(window.location.search);
+            const verifiedPlayerKey = dynamicSearchParams.get('player');
+            
+            if (verifiedPlayerKey && globalCompetitiveDatabase[verifiedPlayerKey]) {
+                const activePlayerData = globalCompetitiveDatabase[verifiedPlayerKey];
+                
+                const scoreSortedListArray = Object.values(globalCompetitiveDatabase).sort((a, b) => b.points - a.points);
+                const dynamicRankIndex = scoreSortedListArray.findIndex(element => element.name === activePlayerData.name) + 1;
+
+                const regionalCardPill = activePlayerData.region.toLowerCase() === 'na' ? 'pill-na' : 'pill-eu';
+                let hardwareCardPill = 'pill-pc';
+                if (activePlayerData.device.toLowerCase() === 'mobile') hardwareCardPill = 'pill-mob';
+                if (activePlayerData.device.toLowerCase() === 'controller') hardwareCardPill = 'pill-con';
+
+                let geometricCircleGridHtml = '';
+                for (const [kitTitleString, tierValueText] of Object.entries(activePlayerData.tiers)) {
+                    const circleTbdClassModifier = tierValueText === 'TBD' ? 'tbd-circle-frame' : '';
+                    geometricCircleGridHtml += `
+                        <div class="kit-circle-slot-node">
+                            <div class="circle-badge-frame ${circleTbdClassModifier}">${tierValueText === 'TBD' ? '-' : tierValueText}</div>
+                            <span class="kit-circle-slot-label">${kitTitleString}</span>
+                        </div>`;
+                }
+                
+                document.getElementById('live-profile-card-injection-target').innerHTML = `
+                    <div class="premium-split-profile-card">
+                        <div class="profile-left-column">
+                            <div class="profile-rank-pill-badge">Rank #${dynamicRankIndex}</div>
+                            <h3 class="profile-player-header-title">${activePlayerData.name}</h3>
+                            <div class="profile-meta-tags-row">
+                                <span class="badge-pill ${regionalCardPill}">${activePlayerData.region}</span>
+                                <span class="badge-pill ${hardwareCardPill}">${activePlayerData.device}</span>
+                            </div>
+                            <div class="profile-points-readout-node">${activePlayerData.points}<span>PTS</span></div>
+                        </div>
+                        <div class="profile-right-column">
+                            <h4 class="profile-right-column-title">Kit Rankings</h4>
+                            <div class="profile-kits-display-circle-grid">${geometricCircleGridHtml}</div>
+                        </div>
+                    </div>
+                `;
+                
+                masterBoardPanel.classList.add('hidden-layout');
+                targetOverlayCard.classList.add('active-view');
+            }
+        }
+
+        window.onpopstate = evaluateAddressPathParameters;
+        
+        compileRosterDashboardRows();
+        evaluateAddressPathParameters();
+    </script>
+</body>
+</html>
+
+        @media (max-width: 850px) {
+            .premium-split-profile-card { flex-direction: column; }
