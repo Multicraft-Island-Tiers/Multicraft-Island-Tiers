@@ -40,7 +40,9 @@
         .roster-card-row:nth-child(1) .row-rank-num { color: #ffd700; }
         .roster-card-row:nth-child(2) .row-rank-num { color: #c0c0c0; }
         .roster-card-row:nth-child(3) .row-rank-num { color: #cd7f32; }
-        .row-player-name { font-size: 1rem; font-weight: 700; color: #ffffff; flex: 1; }
+        
+        /* FONT MAPPING FIX: Forces player names to pull the custom server font directly */
+        .row-player-name { font-family: 'MulticraftCustom', monospace !important; font-size: 0.9rem; font-weight: normal; color: #ffffff; flex: 1; }
         .row-points-total { font-family: 'MulticraftCustom', monospace !important; font-size: 0.75rem; color: #ffd700; min-width: 85px; text-align: right; }
 
         .table-pill { font-size: 0.55rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; text-transform: uppercase; display: inline-block; font-family: 'Segoe UI', sans-serif; letter-spacing: 0.2px; }
@@ -52,7 +54,7 @@
 
         /* Sidebar Elements */
         .sidebar-panel { background: rgba(4, 15, 25, 0.75); border: 1px solid rgba(86, 239, 170, 0.12); border-radius: 12px; padding: 18px; height: fit-content; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4); }
-        .sidebar-panel h3 { font-family: 'MulticraftCustom', monospace !important; color: #e67e22; font-size: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 10px; margin: 0 0 10px 0; text-align: center; }
+        .sidebar-panel h3 { font-family: 'MulticraftCustom', monospace !important; color: #e67e22; font-size: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 10px; margin: 0 0 10px 0; text-align: center; text-transform: uppercase; }
         .points-legend-list { list-style: none; padding: 0; margin: 0; }
         .points-legend-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.04); font-size: 0.82rem; }
         .points-legend-item span.tier-id-tag { font-family: 'MulticraftCustom', monospace !important; font-size: 0.65rem; color: #56efaa; }
@@ -146,21 +148,98 @@
                 <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
                 <div class="row-points-total">15 PTS</div>
             </div>
-        </div>
+            <!-- Remaining Player Roster Entries Slots -->
+            <div class="roster-card-row">
+                <div class="row-rank-num">#11</div>
+                <div class="row-player-name">Booky</div>
+                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
+                <div class="row-points-total">15 PTS</div>
+            </div>
 
-        <!-- 3. Permanent Right Sidebar Panel -->
+            <div class="roster-card-row">
+                <div class="row-rank-num">#12</div>
+                <div class="row-player-name">Taxbird</div>
+                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
+                <div class="row-points-total">15 PTS</div>
+            </div>
+
+            <div class="roster-card-row">
+                <div class="row-rank-num">#13</div>
+                <div class="row-player-name">Halo117</div>
+                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
+                <div class="row-points-total">12 PTS</div>
+            </div>
+
+            <div class="roster-card-row">
+                <div class="row-rank-num">#14</div>
+                <div class="row-player-name">Marwan</div>
+                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
+                <div class="row-points-total">9 PTS</div>
+            </div>
+
+            <div class="roster-card-row">
+                <div class="row-rank-num">#15</div>
+                <div class="row-player-name">New_guy</div>
+                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
+                <div class="row-points-total">9 PTS</div>
+            </div>
+
+            <div class="roster-card-row">
+                <div class="row-rank-num">#16</div>
+                <div class="row-player-name">grant</div>
+                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
+                <div class="row-points-total">9 PTS</div>
+            </div>
+
+            <div class="roster-card-row">
+                <div class="row-rank-num">#17</div>
+                <div class="row-player-name">LATAMM</div>
+                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
+                <div class="row-points-total">9 PTS</div>
+            </div>
+
+            <div class="roster-card-row">
+                <div class="row-rank-num">#18</div>
+                <div class="row-player-name">COCO-_</div>
+                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
+                <div class="row-points-total">8 PTS</div>
+            </div>
+
+            <div class="roster-card-row">
+                <div class="row-rank-num">#19</div>
+                <div class="row-player-name">Hamude_VIP</div>
+                <span class="table-pill pill-na">NA</span><span class="table-pill pill-pc">PC</span>
+                <div class="row-points-total">8 PTS</div>
+            </div>
+        </div> <!-- Closes .main-content-panel securely -->
+
+        <!-- 3. Permanent Right Sidebar Panel Column -->
         <div style="flex: 1; display: flex; flex-direction: column; gap: 15px;">
             
-            <!-- Invite Code Container Box -->
+            <!-- Invite Code Box Component -->
             <div class="invite-badge-box">
                 <div class="invite-title">Invite Code</div>
                 <div class="invite-string">80B4K0DX</div>
             </div>
 
-            <!-- Tier Points System Sidebar Legend -->
+            <!-- Complete Tier Points System Sidebar Legend -->
             <div class="sidebar-panel">
                 <h3>Tier Points System</h3>
                 <ul class="points-legend-list">
                     <li class="points-legend-item"><span class="tier-id-tag">HT1</span><span class="points-weight-tag">100 Pts</span></li>
                     <li class="points-legend-item"><span class="tier-id-tag">LT1</span><span class="points-weight-tag">85 Pts</span></li>
                     <li class="points-legend-item"><span class="tier-id-tag">HT2</span><span class="points-weight-tag">75 Pts</span></li>
+                    <li class="points-legend-item"><span class="tier-id-tag">LT2</span><span class="points-weight-tag">60 Pts</span></li>
+                    <li class="points-legend-item"><span class="tier-id-tag">HT3</span><span class="points-weight-tag">40 Pts</span></li>
+                    <li class="points-legend-item"><span class="tier-id-tag">LT3</span><span class="points-weight-tag">30 Pts</span></li>
+                    <li class="points-legend-item"><span class="tier-id-tag">HT4</span><span class="points-weight-tag">25 Pts</span></li>
+                    <li class="points-legend-item"><span class="tier-id-tag">LT4</span><span class="points-weight-tag">15 Pts</span></li>
+                    <li class="points-legend-item"><span class="tier-id-tag">HT5</span><span class="points-weight-tag">8 Pts</span></li>
+                    <li class="points-legend-item"><span class="tier-id-tag">LT5</span><span class="points-weight-tag">3 Pts</span></li>
+                </ul>
+            </div>
+        </div> <!-- Closes sidebar column wrapper safely -->
+    </div> <!-- Closes .dashboard-layout-wrapper securely -->
+
+</body>
+</html>
