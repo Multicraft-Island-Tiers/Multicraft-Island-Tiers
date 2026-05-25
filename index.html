@@ -4,53 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multicraft Island Tiers | Competitive Hub</title>
-    <link href="https://googleapis.com" rel="stylesheet">
     <style>
-        /* Base Cosmic Atmosphere */
+        /* Natively load your custom server typography file */
+        @font-face {
+            font-family: 'MulticraftCustom';
+            src: url('Multicraft.font.tff') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* Base Page Layout Setup - Cosmic Theme Matrix */
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            margin: 0; padding: 40px 20px; 
-            display: flex; flex-direction: column; align-items: center; 
+            margin: 0; 
+            padding: 30px 15px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
             background: #02070c;
-            background-image: radial-gradient(circle at 50% 50%, rgba(10, 24, 38, 0.6) 0%, rgba(2, 7, 12, 1) 100%);
-            overflow-x: hidden; color: #ffffff; min-height: 100vh; box-sizing: border-box; position: relative;
+            background-image: radial-gradient(circle at 50% 50%, rgba(10, 24, 38, 0.7) 0%, rgba(2, 7, 12, 1) 100%);
+            overflow-x: hidden; 
+            color: #ffffff;
+            min-height: 100vh; 
+            box-sizing: border-box;
+            position: relative;
         }
+
+        /* Subtle animated pixel star background loops */
         body::before {
             content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
             background-image: radial-gradient(white, rgba(255,255,255,.18) 1.5px, transparent 35px),
                               radial-gradient(white, rgba(255,255,255,.12) 1px, transparent 25px);
-            background-size: 450px 450px, 300px 300px; opacity: 0.35; z-index: -1; pointer-events: none;
+            background-size: 450px 450px, 300px 300px; opacity: 0.4; z-index: -1; pointer-events: none;
         }
         
-        .logo-container { max-width: 500px; width: 100%; margin-bottom: 20px; text-align: center; }
+        .logo-container { max-width: 500px; width: 100%; margin-bottom: 20px; text-align: center; display: block; }
         .logo-container img { width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(100, 243, 229, 0.15); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6); }
         
-        /* Top Navigation Filter Bar Row */
+        /* Top Navigation Filter Control Bar Header Row */
         .top-nav-bar { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin-bottom: 25px; width: 100%; max-width: 1200px; }
         .nav-tab-trigger {
             background: rgba(4, 15, 24, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); color: rgba(255, 255, 255, 0.35);
-            font-family: 'Press Start 2P', monospace; font-size: 0.52rem; padding: 10px 14px; border-radius: 4px; cursor: pointer; text-transform: uppercase; transition: all 0.2s ease;
+            font-family: 'MulticraftCustom', monospace !important; font-size: 0.7rem; padding: 10px 14px; border-radius: 4px; cursor: pointer; text-transform: uppercase; transition: all 0.2s ease;
         }
         .nav-tab-trigger:hover, .nav-tab-trigger.active-trigger { color: #56efaa; border-color: #56efaa; background: rgba(86, 239, 170, 0.04); box-shadow: 0 0 10px rgba(86, 239, 170, 0.15); }
         
-        /* Layout Framework Toggles */
-        .tab-panel-node { width: 100%; max-width: 1200px; }
+        /* Viewport Switching Layout Controllers */
+        .tab-panel-node { display: none; width: 100%; max-width: 1200px; }
+        
+        /* FIXED ENGINE LAUNCH FORCER: Overrides system logic to show list rows immediately */
+        #view-layer-overall { display: block !important; }
         
         .dashboard-layout-wrapper { display: flex; flex-direction: row; gap: 25px; width: 100%; }
         .main-content-panel { flex: 3; background: rgba(4, 11, 18, 0.45); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 14px; padding: 22px; box-sizing: border-box; backdrop-filter: blur(12px); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); }
-        .menu-title { font-family: 'Press Start 2P', monospace; color: #64f3e5; font-size: 1.05rem; margin: 0 0 20px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 14px; text-transform: uppercase; text-align: center; }
+        .menu-title { font-family: 'MulticraftCustom', monospace !important; color: #64f3e5; font-size: 1.2rem; margin: 0 0 20px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 14px; text-transform: uppercase; text-align: center; }
 
-        /* Standard Leaderboard Rows Base Architecture Styles */
+        /* Standard Homepage Leaderboard Rows Styling */
         .roster-card-row { display: flex; align-items: center; background: rgba(4, 13, 22, 0.75); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 12px 16px; margin-bottom: 8px; box-sizing: border-box; gap: 14px; cursor: pointer; transition: all 0.15s; }
         .roster-card-row:hover { border-color: #64f3e5; background: rgba(7, 22, 36, 0.9); }
-        .row-rank-num { font-family: 'Press Start 2P', monospace; font-size: 0.68rem; color: rgba(255, 255, 255, 0.25); width: 35px; text-align: center; }
+        .row-rank-num { font-family: 'MulticraftCustom', monospace !important; font-size: 0.8rem; color: rgba(255, 255, 255, 0.25); width: 35px; text-align: center; }
         .roster-card-row:nth-child(1) .row-rank-num { color: #ffd700; }
         .roster-card-row:nth-child(2) .row-rank-num { color: #c0c0c0; }
         .roster-card-row:nth-child(3) .row-rank-num { color: #cd7f32; }
         .row-player-name { font-size: 1rem; font-weight: 700; color: #ffffff; flex: 1; }
-        .row-points-total { font-family: 'Press Start 2P', monospace; font-size: 0.62rem; color: #ffd700; min-width: 85px; text-align: right; }
+        .row-points-total { font-family: 'MulticraftCustom', monospace !important; font-size: 0.75rem; color: #ffd700; min-width: 85px; text-align: right; }
 
-        /* Universal Metric Status Capsule Pills Specs */
+        /* Universal Metric Status Capsule Badges Group */
         .table-pill { font-size: 0.55rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; text-transform: uppercase; display: inline-block; font-family: 'Segoe UI', sans-serif; letter-spacing: 0.2px; }
         .pill-na { color: #5dade2; border: 1px solid rgba(93, 189, 226, 0.25); background: rgba(93, 189, 226, 0.04); }
         .pill-eu { color: #f4d03f; border: 1px solid rgba(244, 208, 63, 0.25); background: rgba(244, 208, 63, 0.04); }
@@ -58,33 +77,33 @@
         .pill-mob { color: #52be80; border: 1px solid rgba(82, 190, 128, 0.25); background: rgba(82, 190, 128, 0.04); }
         .pill-con { color: #e59866; border: 1px solid rgba(229, 152, 102, 0.25); background: rgba(229, 152, 102, 0.04); }
 
-        /* Points Sidebar System */
+        /* Sidebar System Information Box Block */
         .sidebar-panel { flex: 1; background: rgba(4, 15, 25, 0.75); border: 1px solid rgba(86, 239, 170, 0.12); border-radius: 12px; padding: 18px; height: fit-content; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4); }
-        .sidebar-panel h3 { font-family: 'Press Start 2P', monospace; color: #e67e22; font-size: 0.7rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 10px; margin: 0 0 10px 0; text-align: center; }
+        .sidebar-panel h3 { font-family: 'MulticraftCustom', monospace !important; color: #e67e22; font-size: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 10px; margin: 0 0 10px 0; text-align: center; }
         .points-legend-list { list-style: none; padding: 0; margin: 0; }
         .points-legend-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.04); font-size: 0.82rem; }
-        .points-legend-item span.tier-id-tag { font-family: 'Press Start 2P', monospace; font-size: 0.52rem; color: #56efaa; }
+        .points-legend-item span.tier-id-tag { font-family: 'MulticraftCustom', monospace !important; font-size: 0.65rem; color: #56efaa; }
         .points-legend-item span.points-weight-tag { color: #e67e22; font-weight: 600; }
 
-        /* Premium 3D Podium Arena Placements Display Module Layout */
+        /* Premium 3D Podium Arena Geometry Grid */
         .podium-arena-wrapper { display: flex; justify-content: center; align-items: flex-end; gap: 15px; margin: 15px 0 35px 0; width: 100%; }
         .podium-pedestal-node { background: rgba(5, 14, 23, 0.8); border: 2px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; align-items: center; position: relative; box-sizing: border-box; transition: transform 0.2s ease; cursor: pointer; }
         .podium-pedestal-node:hover { transform: translateY(-2px); border-color: #64f3e5; }
         .podium-pedestal-node.first-place { border-color: #ffd700; order: 2; width: 145px; height: 165px; box-shadow: 0 0 20px rgba(255, 215, 0, 0.08); }
         .podium-pedestal-node.second-place { border-color: #c0c0c0; order: 1; width: 135px; height: 140px; }
         .podium-pedestal-node.third-place { border-color: #cd7f32; order: 3; width: 135px; height: 125px; }
-        .podium-skin-slot { width: 56px; height: 68px; background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.1); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.15); font-size: 0.5rem; font-family: 'Press Start 2P', monospace; margin-bottom: auto; }
-        .podium-placement-badge { font-family: 'Press Start 2P', monospace; font-size: 1.3rem; margin-top: auto; width: 100%; text-align: center; border-top: 1px solid rgba(255,255,255,0.04); padding-top: 5px; }
+        .podium-skin-slot { width: 56px; height: 68px; background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.1); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.15); font-size: 0.6rem; font-family: 'MulticraftCustom', monospace !important; margin-bottom: auto; }
+        .podium-placement-badge { font-family: 'MulticraftCustom', monospace !important; font-size: 1.5rem; margin-top: auto; width: 100%; text-align: center; border-top: 1px solid rgba(255,255,255,0.04); padding-top: 5px; }
         .first-place .podium-placement-badge { color: #ffd700; }
         .second-place .podium-placement-badge { color: #c0c0c0; }
         .third-place .podium-placement-badge { color: #cd7f32; }
 
-        /* Exact 5-Column Kit Card Grid Architecture */
+        /* Exact 5-Column Kit Card Grid Architecture matching your picture layout matrix */
         .tier-board-matrix { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; width: 100%; }
         .tier-column-stack { display: flex; flex-direction: column; gap: 8px; background: rgba(3, 10, 16, 0.4); padding: 10px 8px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.03); min-height: 300px; }
-        .column-header-node { font-family: 'Press Start 2P', monospace; font-size: 0.65rem; color: #56efaa; text-align: center; margin-bottom: 4px; border-bottom: 1px solid rgba(86, 239, 170, 0.12); padding-bottom: 6px; text-transform: uppercase; }
+        .column-header-node { font-family: 'MulticraftCustom', monospace !important; font-size: 0.75rem; color: #56efaa; text-align: center; margin-bottom: 4px; border-bottom: 1px solid rgba(86, 239, 170, 0.12); padding-bottom: 6px; text-transform: uppercase; }
         
-        /* Custom Premium Square Player Card Elements */
+        /* High-fidelity custom premium square player card containers matching your photo reference blocks */
         .mini-kit-card { 
             background: rgba(4, 12, 20, 0.9); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 6px; padding: 10px; 
             display: flex; flex-direction: column; gap: 6px; box-sizing: border-box; text-align: left; cursor: pointer; transition: all 0.15s ease;
@@ -92,12 +111,7 @@
         .mini-kit-card:hover { border-color: #64f3e5; background: rgba(7, 21, 34, 0.95); transform: translateY(-1px); }
         .mini-card-name { font-size: 0.82rem; font-weight: 700; color: #ffffff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .mini-card-row { display: flex; justify-content: space-between; align-items: center; gap: 4px; }
-        .mini-card-tier { font-family: 'Press Start 2P', monospace; font-size: 0.42rem; color: #ffd700; background: rgba(255, 215, 0, 0.05); padding: 2px 4px; border-radius: 2px; border: 1.5px solid rgba(255, 215, 0, 0.15); }
-        
-        /* Modal Profile Window Layer styling */
-        .profile-view-box { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(2, 6, 10, 0.85); backdrop-filter: blur(12px); z-index: 1000; display: none; align-items: center; justify-content: center; }
-        .profile-view-box.active-modal { display: flex; }
-        .premium-profile-card { display: flex; flex-direction: row; width: 100%; max-width: 900px; background: #030e16; border: 1px solid #1c2d3a; border-radius: 12px; overflow: hidden; position: relative; }
+        .mini-card-tier { font-family: 'MulticraftCustom', monospace !important; font-size: 0.55rem; color: #ffd700; background: rgba(255, 215, 0, 0.05); padding: 2px 4px; border-radius: 2px; border: 1.5px solid rgba(255, 215, 0, 0.15); }
                     <!-- #1 Husky_Multicraft -->
                     <div class="roster-card-row" onclick="setActivePlayerParam('Husky_Multicraft')">
                         <div class="row-rank-num">#1</div>
@@ -261,6 +275,7 @@
                     <li class="points-legend-item"><span class="tier-id-tag">LT1</span><span class="points-weight-tag">85 Pts</span></li>
                     <li class="points-legend-item"><span class="tier-id-tag">HT2</span><span class="points-weight-tag">75 Pts</span></li>
                     <li class="points-legend-item"><span class="tier-id-tag">LT2</span><span class="points-weight-tag">60 Pts</span></li>
+                    <li class="points-legend-item"><span class="tier-id-tag">HT3</span><span class="points-weight-tag">40 Pts</span></li>
     <!-- EMERALD KIT DISPLAY & MATRIX GRID COMPONENT LAYER -->
     <div id="view-layer-emerald" class="tab-panel-node" style="width: 100%; max-width: 1200px; display: none; margin: 0 auto;">
         
@@ -311,7 +326,7 @@
 
                 <!-- Column T3 Group Array -->
                 <div class="tier-column-stack">
-                    <div class="column-header-node">T3</div>
+                    <div class="column-header-node">T4</div>
                     <div id="stack-injection-cell-T3" style="display: flex; flex-direction: column; gap: 8px;"></div>
                 </div>
 
@@ -331,8 +346,139 @@
         </div>
     </div> <!-- Closes out Kit grid frame context wrapper safely -->
 
-    <!-- Profile Details Box Floating Window Overlay Node Anchor -->
+    <!-- Profile Details Box Floating Window Overlay Target Node Anchor -->
     <div id="player-profile-view-container" class="profile-view-box">
         <button class="close-x-trigger" onclick="clearActivePlayerParam()">✕</button>
         <div id="live-profile-injection-target"></div>
     </div>
+    <script>
+        // Certified master portfolio map tracking your 19 competitors
+        const globalCompetitiveDatabase = {
+            "Husky_Multicraft": { name: "Husky_Multicraft", points: 180, region: "NA", device: "PC", rankTitle: "Combat Specialist", rankNum: 1, emerald:"HT3", dragonhide:"HT3", dragonhidekb:"LT2", diamond:"HT3", emeraldkb:"LT3" },
+            "Prologozrock": { name: "Prologozrock", points: 85, region: "NA", device: "PC", rankTitle: "Combat Specialist", rankNum: 2, emerald:"LT4", dragonhide:"LT4", dragonhidekb:"LT3", diamond:"HT4", emeraldkb:"TBD" },
+            "Parrot": { name: "Parrot", points: 81, region: "NA", device: "Mobile", rankTitle: "Combat Specialist", rankNum: 3, emerald:"HT4", dragonhide:"HT4", dragonhidekb:"HT5", diamond:"LT4", emeraldkb:"HT5" },
+            "Herobrine": { name: "Herobrine", points: 80, region: "NA", device: "Controller", rankTitle: "Combat Specialist", rankNum: 4, emerald:"HT4", dragonhide:"LT3", dragonhidekb:"HT4", diamond:"TBD", emeraldkb:"TBD" },
+            "vort3xYT": { name: "vort3xYT", points: 75, region: "EU", device: "PC", rankTitle: "Combat Specialist", rankNum: 5, emerald:"TBD", dragonhide:"HT2", dragonhidekb:"TBD", diamond:"TBD", emeraldkb:"TBD" },
+            "Server_pvp": { name: "Server_pvp", points: 71, region: "NA", device: "Mobile", rankTitle: "Combat Specialist", rankNum: 6, emerald:"LT4", dragonhide:"LT4", dragonhidekb:"HT5", diamond:"HT4", emeraldkb:"HT5" },
+            "kylaz9": { name: "kylaz9", points: 28, region: "EU", device: "Mobile", rankTitle: "Rookie", rankNum: 7, emerald:"HT5", dragonhide:"LT5", dragonhidekb:"LT5", diamond:"LT5", emeraldkb:"HT5" },
+            "Jamier1235": { name: "Jamier1235", points: 17, region: "NA", device: "Mobile", rankTitle: "Rookie", rankNum: 8, emerald:"LT5", dragonhide:"LT5", dragonhidekb:"LT5", diamond:"TBD", emeraldkb:"HT5" },
+            "aaa666": { name: "aaa666", points: 15, region: "NA", device: "Mobile", rankTitle: "Rookie", rankNum: 9, emerald:"LT5", dragonhide:"LT5", dragonhidekb:"LT5", diamond:"LT5", emeraldkb:"LT5" },
+            "Benjamin": { name: "Benjamin", points: 15, region: "NA", device: "Mobile", rankTitle: "Rookie", rankNum: 10, emerald:"LT5", dragonhide:"LT5", dragonhidekb:"LT5", diamond:"LT5", emeraldkb:"LT5" },
+            "Booky": { name: "Booky", points: 15, region: "NA", device: "Mobile", rankTitle: "Rookie", rankNum: 11, emerald:"LT5", dragonhide:"LT5", dragonhidekb:"LT5", diamond:"LT5", emeraldkb:"LT5" },
+            "Taxbird": { name: "Taxbird", points: 15, region: "NA", device: "Mobile", rankTitle: "Rookie", rankNum: 12, emerald:"LT5", dragonhide:"LT5", dragonhidekb:"LT5", diamond:"LT5", emeraldkb:"LT5" },
+            "Halo117": { name: "Halo117", points: 12, region: "NA", device: "Mobile", rankTitle: "Rookie", rankNum: 13, emerald:"LT5", dragonhide:"LT5", dragonhidekb:"LT5", diamond:"LT5", emeraldkb:"TBD" },
+            "Marwan": { name: "Marwan", points: 9, region: "NA", device: "Mobile", rankTitle: "Rookie", rankNum: 14, emerald:"LT5", dragonhide:"LT5", dragonhidekb:"TBD", diamond:"TBD", emeraldkb:"LT5" },
+            "New_guy": { name: "New_guy", points: 9, region: "NA", device: "Mobile", rankTitle: "Rookie", rankNum: 15, emerald:"LT5", dragonhide:"LT5", dragonhidekb:"LT5", diamond:"TBD", emeraldkb:"TBD" },
+            "grant": { name: "grant", points: 9, region: "NA", device: "Mobile", rankTitle: "Rookie", rankNum: 16, emerald:"LT5", dragonhide:"LT5", dragonhidekb:"LT5", diamond:"TBD", emeraldkb:"TBD" },
+            "LATAMM": { name: "LATAMM", points: 9, region: "NA", device: "Mobile", rankTitle: "Rookie", rankNum: 17, emerald:"LT5", dragonhide:"TBD", dragonhidekb:"LT5", diamond:"LT5", emeraldkb:"TBD" },
+            "COCO-_": { name: "COCO-_", points: 8, region: "NA", device: "Mobile", rankTitle: "Rookie", rankNum: 18, emerald:"HT5", dragonhide:"TBD", dragonhidekb:"TBD", diamond:"TBD", emeraldkb:"TBD" },
+            "Hamude_VIP": { name: "Hamude_VIP", points: 8, region: "NA", device: "PC", rankTitle: "Rookie", rankNum: 19, emerald:"HT5", dragonhide:"LT5", dragonhidekb:"TBD", diamond:"TBD", emeraldkb:"TBD" }
+        };
+
+        const kitColumnMap = {
+            "emerald": "emerald",
+            "emerald kb": "emeraldkb",
+            "dragonhide": "dragonhide",
+            "dragonhide kb": "dragonhidekb",
+            "diamond": "diamond"
+        };
+
+        // Navigation Switcher Engine
+        function toggleLeaderboardScreen(targetViewId, controlButton) {
+            const cleanTarget = targetViewId.toLowerCase().trim();
+            
+            document.querySelectorAll('.nav-tab-trigger').forEach(btn => btn.classList.remove('active-trigger'));
+            if (controlButton) controlButton.classList.add('active-trigger');
+            
+            const cardOverlay = document.getElementById('player-profile-view-container');
+            if (cardOverlay) cardOverlay.classList.remove('active-modal');
+
+            if (cleanTarget === 'overall') {
+                document.getElementById('view-layer-emerald').style.display = 'none';
+                document.getElementById('view-layer-overall').style.display = 'block';
+                return;
+            }
+
+            if (kitColumnMap[cleanTarget]) {
+                document.getElementById('view-layer-overall').style.display = 'none';
+                document.getElementById('view-layer-emerald').style.display = 'block';
+                
+                const formattedTitle = controlButton ? controlButton.innerText : targetViewId;
+                document.querySelector('#view-layer-emerald .menu-title').innerText = formattedTitle + " Board";
+                
+                rebuildKitBoardMatrix(kitColumnMap[cleanTarget]);
+            }
+        }
+
+        // Grid Redistribution Shuffling Engine
+        function rebuildKitBoardMatrix(columnKey) {
+            const stacks = { "T1": [], "T2": [], "T3": [], "T4": [], "T5": [] };
+            let eligibleList = [];
+
+            Object.values(globalCompetitiveDatabase).forEach(player => {
+                const rawTier = player[columnKey];
+                if (!rawTier || rawTier === 'TBD') return;
+                
+                const tierNumber = rawTier.substring(2); 
+                const targetStackKey = 'T' + tierNumber;
+                
+                if (stacks[targetStackKey]) {
+                    const regionPill = player.region.toLowerCase() === 'na' ? 'pill-na' : 'pill-eu';
+                    let devicePill = 'pill-pc';
+                    if (player.device.toLowerCase() === 'mobile') devicePill = 'pill-mob';
+                    if (player.device.toLowerCase() === 'controller') devicePill = 'pill-con';
+
+                    const layoutHtml = '<div class="mini-kit-card" onclick="setActivePlayerParam(\'' + player.name + '\')">' +
+                        '<div class="mini-card-name">' + player.name + '</div>' +
+                        '<div class="mini-card-row">' +
+                            '<div>' +
+                                '<span class="table-pill ' + regionPill + '" style="font-size:0.5rem; padding:1px 4px; margin-right:4px;">' + player.region + '</span>' +
+                                '<span class="table-pill ' + devicePill + '" style="font-size:0.5rem; padding:1px 4px;">' + player.device.substring(0,3) + '</span>' +
+                            '</div>' +
+                            '<div class="mini-card-tier">' + rawTier + '</div>' +
+                        '</div>' +
+                    '</div>';
+                    
+                    const playerPayload = { html: layoutHtml, tier: rawTier, name: player.name };
+                    stacks[targetStackKey].push(playerPayload);
+                    eligibleList.push(playerPayload);
+                }
+            });
+
+            const globalTierWeightSystem = ["HT1", "LT1", "HT2", "LT2", "HT3", "LT3", "HT4", "LT4", "HT5", "LT5"];
+            eligibleList.sort((a, b) => globalTierWeightSystem.indexOf(a.tier) - globalTierWeightSystem.indexOf(b.tier));
+
+            for (let i = 1; i <= 5; i++) {
+                const clearCell = document.getElementById('stack-injection-cell-T' + i);
+                if (!clearCell) continue;
+                
+                const items = stacks['T' + i];
+                if (items.length === 0) {
+                    clearCell.innerHTML = '<div style="text-align: center; color: rgba(255,255,255,0.12); font-size: 0.65rem; padding: 10px 0; font-family:\'MulticraftCustom\', monospace;">EMPTY</div>';
+                } else {
+                    clearCell.innerHTML = items.map(item => item.html).join('');
+                }
+            }
+
+            const placements = [
+                { id: 1, rankIndex: 0, nodeClass: '.first-place' },
+                { id: 2, rankIndex: 1, nodeClass: '.second-place' },
+                { id: 3, rankIndex: 2, nodeClass: '.third-place' }
+            ];
+
+            placements.forEach(p => {
+                const targetPedestal = document.querySelector(p.nodeClass);
+                if (!targetPedestal) return;
+
+                if (eligibleList[p.rankIndex]) {
+                    const match = eligibleList[p.rankIndex];
+                    targetPedestal.style.opacity = "1";
+                    targetPedestal.setAttribute('onclick', "setActivePlayerParam('" + match.name + "')");
+                    document.getElementById('podium-rank-' + p.id).innerText = match.tier;
+                    document.getElementById('podium-name-' + p.id).innerText = match.name;
+                    targetPedestal.querySelector('.podium-skin-slot').style.display = 'flex';
+                } else {
+                    targetPedestal.style.opacity = "0.25";
+                    targetPedestal.setAttribute('onclick', '');
+                    document.getElementById('podium-rank-' + p.id).innerText = "-";
+                    document.getElementById('podium-name-' + p.id).innerText = "Empty";
