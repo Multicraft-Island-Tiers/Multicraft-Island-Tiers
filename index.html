@@ -3,117 +3,297 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multicraft Island Tiers</title>
+    <title>Multicraft Island Tiers | Competitive Leaderboard</title>
     <style>
-        /* Base page layout */
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; color: #fff; min-height: 100vh; box-sizing: border-box; background-color: #0b1d28; overflow-x: hidden; }
-        #starfall-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; }
-        .logo-container { max-width: 600px; width: 100%; margin-bottom: 20px; text-align: center; z-index: 1; }
-        .logo-container img { width: 100%; max-width: 600px; height: auto; border-radius: 8px; }
+        /* Modernized Dark Gaming Architecture Palette Layout Settings */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            padding: 30px 20px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            color: #ffffff; 
+            min-height: 100vh; 
+            box-sizing: border-box; 
+            background-color: #0b1d28; 
+            overflow-x: hidden; 
+        }
         
-        .main-container { width: 100%; max-width: 800px; background: rgba(0, 0, 0, 0.4); border: 2px solid #ffffff; border-radius: 12px; padding: 20px; box-sizing: border-box; z-index: 1; margin-bottom: 30px; }
-        .main-container h2 { margin-top: 0; color: #64f3e5; border-bottom: 2px solid #ffffff; padding-bottom: 8px; }
+        /* Interactive Graphic Canvas System background template styling */
+        #starfall-canvas { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100vw; 
+            height: 100vh; 
+            z-index: -1; 
+            pointer-events: none; 
+        }
         
-        .leaderboard-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        .leaderboard-table th, .leaderboard-table td { padding: 12px; text-align: left; border: 1px solid #ffffff; }
-        .leaderboard-table th { background-color: rgba(43, 122, 113, 0.8); }
+        /* Logo containment layout block */
+        .logo-container { 
+            max-width: 600px; 
+            width: 100%; 
+            margin-bottom: 25px; 
+            text-align: center; 
+            z-index: 10; 
+        }
+        .logo-container img { 
+            width: 100%; 
+            height: auto; 
+            border-radius: 10px; 
+            border: 1px solid rgba(100, 243, 229, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+        }
         
-        /* High-visibility pure anchor layout targets */
-        .player-anchor-link { color: #64f3e5; font-weight: bold; text-decoration: underline; font-size: 1rem; cursor: pointer; }
-        .player-anchor-link:hover { color: #ffffff; text-shadow: 0 0 5px #64f3e5; }
+        /* Double-Split Panel Setup matching target premium tracking site references */
+        .dashboard-layout-wrapper {
+            display: flex;
+            flex-direction: row;
+            gap: 25px;
+            width: 100%;
+            max-width: 1100px;
+            z-index: 10;
+        }
         
-        /* Full Screen Isolated CSS Popup Overlay System (0% JavaScript Dependency) */
-        .modal-container { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: 1000; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; }
+        /* Dynamic Screen Window Elements template rules */
+        .main-content-panel { 
+            flex: 3;
+            background: rgba(0, 0, 0, 0.55); 
+            border: 2px solid #ffffff; 
+            border-radius: 14px; 
+            padding: 25px; 
+            box-sizing: border-box; 
+            backdrop-filter: blur(8px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            display: none;
+        }
+        .main-content-panel.active-view { 
+            display: block; 
+        }
+        .main-content-panel h2 { 
+            margin-top: 0; 
+            color: #64f3e5; 
+            font-size: 1.75rem;
+            border-bottom: 2px solid #ffffff; 
+            padding-bottom: 10px; 
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(100, 243, 229, 0.2);
+        }
         
-        /* Direct link routing engine */
-        .modal-container:target { display: flex; }
+        /* Structural Data Sidebar Element Box for Points Matrix Legend Mapping */
+        .sidebar-panel {
+            flex: 1;
+            background: rgba(14, 39, 53, 0.75);
+            border: 2px solid #64f3e5;
+            border-radius: 14px;
+            padding: 20px;
+            box-sizing: border-box;
+            backdrop-filter: blur(8px);
+            height: fit-content;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+        .sidebar-panel h3 {
+            margin-top: 0;
+            color: #e67e22;
+            font-size: 1.3rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
         
-        .player-modal-card { width: 100%; max-width: 450px; background: #0e2735; border: 3px solid #64f3e5; border-radius: 12px; padding: 25px; box-sizing: border-box; position: relative; box-shadow: 0 0 25px rgba(100, 243, 229, 0.5); }
+        /* Custom Ledger Table Architecture Config lines */
+        .leaderboard-table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 10px; 
+        }
+        .leaderboard-table th, .leaderboard-table td { 
+            padding: 14px 12px; 
+            border: 1px solid #ffffff; 
+            text-align: left; 
+        }
+        .leaderboard-table th { 
+            background-color: rgba(43, 122, 113, 0.85); 
+            font-weight: bold;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .leaderboard-table tbody tr {
+            transition: background-color 0.2s;
+        }
+        .leaderboard-table tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
         
-        /* Premium X Close button matching your intent */
-        .close-x-btn { position: absolute; top: 15px; right: 15px; background: #c0392b; color: white; border: 1px solid #fff; border-radius: 4px; padding: 6px 14px; font-weight: bold; cursor: pointer; text-decoration: none; font-size: 0.9rem; transition: background 0.2s; }
-        .close-x-btn:hover { background: #e74c3c; }
+        /* High-performance query parameter navigation actions components styling */
+        .player-link-anchor { 
+            background: none; 
+            border: none; 
+            color: #64f3e5; 
+            font-weight: bold; 
+            text-decoration: underline; 
+            font-size: 1rem; 
+            cursor: pointer; 
+            padding: 0; 
+            font-family: inherit; 
+            text-align: left;
+            transition: color 0.1s;
+        }
+        .player-link-anchor:hover { 
+            color: #ffffff; 
+            text-shadow: 0 0 8px #64f3e5; 
+        }
         
-        .player-card-title { font-size: 1.8rem; color: #64f3e5; margin-top: 0; border-bottom: 2px solid #ffffff; padding-bottom: 5px; margin-right: 60px; word-break: break-all; }
-        .meta-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px; background: rgba(255,255,255,0.05); padding: 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2); }
-        .modal-kit-list { display: grid; grid-template-columns: 1fr; gap: 8px; }
-        .modal-kit-item { background: rgba(255,255,255,0.1); padding: 10px 15px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2); display: flex; justify-content: space-between; align-items: center; }
-        .modal-kit-item span.kit-tier { font-weight: bold; color: #64f3e5; background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 4px; border: 1px solid #64f3e5; }
+        /* Premium Isolated Profile Interface Layouts elements configuration */
+        .profile-container-box {
+            padding: 5px;
+        }
+        .close-action-trigger { 
+            float: right; 
+            background: #c0392b; 
+            color: #ffffff; 
+            border: 1px solid #ffffff; 
+            border-radius: 6px; 
+            padding: 6px 16px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            font-size: 0.95rem;
+            transition: background 0.2s, transform 0.1s;
+        }
+        .close-action-trigger:hover { 
+            background: #e74c3c; 
+            transform: scale(1.03);
+        }
+        .profile-card-header-title { 
+            font-size: 2.2rem; 
+            color: #64f3e5; 
+            margin: 0 0 20px 0; 
+            border-bottom: 2px solid #ffffff; 
+            padding-bottom: 8px; 
+            word-break: break-all;
+            margin-right: 60px;
+        }
+        .profile-metadata-matrix { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 15px; 
+            margin-bottom: 25px; 
+            background: rgba(255, 255, 255, 0.05); 
+            padding: 15px; 
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+        .metadata-node {
+            text-align: center;
+        }
+        .metadata-node strong {
+            display: block;
+            color: #64f3e5;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+        .metadata-node span {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        /* Individual competitive kit metrics rows spacing configurations */
+        .profile-kit-metric-row { 
+            background: rgba(255, 255, 255, 0.07); 
+            padding: 14px 20px; 
+            margin-bottom: 8px; 
+            border-radius: 8px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: background 0.2s;
+        }
+        .profile-kit-metric-row:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+        .profile-kit-metric-row span.kit-label-text {
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+        .profile-kit-metric-row span.tier-badge-node { 
+            font-weight: bold; 
+            color: #0b1d28; 
+            background: #64f3e5; 
+            padding: 4px 12px; 
+            border-radius: 6px; 
+            font-size: 0.95rem;
+            box-shadow: 0 0 10px rgba(100, 243, 229, 0.3);
+            border: 1px solid #ffffff;
+        }
+        
+        /* Decorative custom lists configurations for side point matrix mappings */
+        .points-legend-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .points-legend-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+        }
+        .points-legend-item:last-child {
+            border-bottom: none;
+        }
+        .points-legend-item span.tier-id-tag {
+            font-weight: bold;
+            color: #64f3e5;
+        }
+        .points-legend-item span.points-weight-tag {
+            color: #e67e22;
+            font-weight: 600;
+        }
+
+        /* Responsive Layout Overrides */
+        @media (max-width: 900px) {
+            .dashboard-layout-wrapper {
+                flex-direction: column;
+            }
+            .sidebar-panel {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
     <canvas id="starfall-canvas"></canvas>
-    <div class="logo-container"><img src="logo.png" alt="Multicraft Island Tiers Logo"></div>
+    <div class="logo-container"><img src="logo.png" alt="Multicraft Island Tiers Logo Banner"></div>
     
-    <!-- Stable Main Leaderboard Dashboard Container -->
-    <div class="main-container">
-        <h2>Overall Leaderboard</h2>
-        <table class="leaderboard-table">
-            <thead><tr><th>Rank</th><th>Name</th><th>Region</th><th>Device</th><th>Points</th></tr></thead>
-            <tbody>
-                <tr><td>#1</td><td><a href="#card-Husky" class="player-anchor-link">Husky_Multicraft</a></td><td>NA</td><td>PC</td><td><strong>180</strong></td></tr>
-                <tr><td>#2</td><td><a href="#card-Prologozrock" class="player-anchor-link">Prologozrock</a></td><td>NA</td><td>PC</td><td><strong>85</strong></td></tr>
-                <tr><td>#3</td><td><a href="#card-Parrot" class="player-anchor-link">Parrot</a></td><td>NA</td><td>Mobile</td><td><strong>81</strong></td></tr>
-                <tr><td>#4</td><td><a href="#card-Herobrine" class="player-anchor-link">Herobrine</a></td><td>NA</td><td>Controller</td><td><strong>80</strong></td></tr>
-                <tr><td>#5</td><td><a href="#card-vort3xYT" class="player-anchor-link">vort3xYT</a></td><td>EU</td><td>PC</td><td><strong>75</strong></td></tr>
-                <tr><td>#6</td><td><a href="#card-Server" class="player-anchor-link">Server_pvp</a></td><td>NA</td><td>Mobile</td><td><strong>71</strong></td></tr>
-                <tr><td>#7</td><td><a href="#card-kylaz9" class="player-anchor-link">kylaz9</a></td><td>EU</td><td>Mobile</td><td><strong>20</strong></td></tr>
-                <tr><td>#8</td><td><a href="#card-Jamier" class="player-anchor-link">Jamier1235</a></td><td>NA</td><td>Mobile</td><td><strong>17</strong></td></tr>
-                <tr><td>#9</td><td><a href="#card-aaa666" class="player-anchor-link">aaa666</a></td><td>NA</td><td>Mobile</td><td><strong>15</strong></td></tr>
-                <tr><td>#10</td><td><a href="#card-Benjamin" class="player-anchor-link">Benjamin</a></td><td>NA</td><td>Mobile</td><td><strong>15</strong></td></tr>
-                <tr><td>#11</td><td><a href="#card-Booky" class="player-anchor-link">Booky</a></td><td>NA</td><td>Mobile</td><td><strong>15</strong></td></tr>
-                <tr><td>#12</td><td><a href="#card-Taxbird" class="player-anchor-link">Taxbird</a></td><td>NA</td><td>Mobile</td><td><strong>15</strong></td></tr>
-                <tr><td>#13</td><td><a href="#card-Marwan" class="player-anchor-link">Marwan</a></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
-                <tr><td>#14</td><td><a href="#card-Newguy" class="player-anchor-link">New_guy</a></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
-                <tr><td>#15</td><td><a href="#card-grant" class="player-anchor-link">grant</a></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
-                <tr><td>#16</td><td><a href="#card-LATAMM" class="player-anchor-link">LATAMM</a></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
-                <tr><td>#17</td><td><a href="#card-COCO" class="player-anchor-link">COCO-_</a></td><td>NA</td><td>Mobile</td><td><strong>8</strong></td></tr>
-            </tbody>
-        </table>
-    </div>
-
-    <!-- Isolated Player Popup Overlays (Only 1 reveals itself per active link) -->
-
-    <!-- #1 Husky_Multicraft -->
-    <div id="card-Husky" class="modal-container">
-        <div class="player-modal-card">
-            <a href="#" class="close-x-btn">X</a>
-            <h3 class="player-card-title">Husky_Multicraft</h3>
-            <div class="meta-grid"><div><strong>Region:</strong> NA</div><div><strong>Device:</strong> PC</div><div style="grid-column: span 2;"><strong>Total Points:</strong> 180</div></div>
-            <div class="modal-kit-list">
-                <div class="modal-kit-item"><strong>Dragonhide</strong> <span class="kit-tier">HT3</span></div>
-                <div class="modal-kit-item"><strong>Dragonhide KB</strong> <span class="kit-tier">HT3</span></div>
-                <div class="modal-kit-item"><strong>Emerald</strong> <span class="kit-tier">LT2</span></div>
-                <div class="modal-kit-item"><strong>Diamond</strong> <span class="kit-tier">HT3</span></div>
-                <div class="modal-kit-item"><strong>Emerald KB</strong> <span class="kit-tier">LT3</span></div>
-            </div>
+    <div class="dashboard-layout-wrapper">
+        <!-- Main Panel Section Interface Frame -->
+        <div id="leaderboard-view-container" class="main-content-panel active-view">
+            <h2>Overall Rankings</h2>
+            <table class="leaderboard-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Name</th>
+                        <th>Region</th>
+                        <th>Device</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+                <tbody id="live-leaderboard-rows-target">
+                    <!-- Embedded database rows generate here dynamically under pre-sorted arrays -->
+                </tbody>
+            </table>
         </div>
-    </div>
 
-    <!-- #2 Prologozrock -->
-    <div id="card-Prologozrock" class="modal-container">
-        <div class="player-modal-card">
-            <a href="#" class="close-x-btn">X</a>
-            <h3 class="player-card-title">Prologozrock</h3>
-            <div class="meta-grid"><div><strong>Region:</strong> NA</div><div><strong>Device:</strong> PC</div><div style="grid-column: span 2;"><strong>Total Points:</strong> 85</div></div>
-            <div class="modal-kit-list">
-                <div class="modal-kit-item"><strong>Dragonhide</strong> <span class="kit-tier">LT4</span></div>
-                <div class="modal-kit-item"><strong>Dragonhide KB</strong> <span class="kit-tier">LT4</span></div>
-                <div class="modal-kit-item"><strong>Emerald</strong> <span class="kit-tier">LT3</span></div>
-                <div class="modal-kit-item"><strong>Diamond</strong> <span class="kit-tier">HT4</span></div>
-                <div class="modal-kit-item"><strong>Emerald KB</strong> <span class="kit-tier">TBD</span></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- #3 Parrot -->
-    <div id="card-Parrot" class="modal-container">
-        <div class="player-modal-card">
-            <a href="#" class="close-x-btn">X</a>
-            <h3 class="player-card-title">Parrot</h3>
-            <div class="meta-grid"><div><strong>Region:</strong> NA</div><div><strong>Device:</strong> Mobile</div><div style="grid-column: span 2;"><strong>Total Points:</strong> 81</div></div>
-            <div class="modal-kit-list">
-                <div class="modal-kit-item"><strong>Dragonhide</strong> <span class="kit-tier">HT4</span></div>
-                <div class="modal-kit-item"><strong>Dragonhide KB</strong> <span class="kit-tier">HT4</span></div>
-                <div class="modal-kit-item"><strong>Emerald</strong> <span class="kit-tier">HT5</span></div>
+        <!-- Isolated Dynamic Profile Details Panel Template Frame -->
+        <div id="player-profile-view-container" class="main-content-panel">
+            <button class="close-action-trigger" onclick="clearActivePlayerParam()">X</button>
+            <div id="live-profile-injection-target" class="profile-container-box">
 
