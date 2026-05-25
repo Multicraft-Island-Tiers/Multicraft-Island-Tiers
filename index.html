@@ -20,16 +20,6 @@
             overflow-x: hidden; 
         }
         
-        #starfall-canvas { 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100vw; 
-            height: 100vh; 
-            z-index: -1; 
-            pointer-events: none; 
-        }
-        
         .logo-container { 
             max-width: 600px; 
             width: 100%; 
@@ -63,10 +53,6 @@
             box-sizing: border-box; 
             backdrop-filter: blur(8px);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-            display: none;
-        }
-        .main-content-panel.active-view { 
-            display: block; 
         }
         
         .main-content-panel h2, .sidebar-panel h3 { 
@@ -112,103 +98,10 @@
             background-color: rgba(255, 255, 255, 0.05);
         }
         
-        .player-link-anchor { 
-            background: none; 
-            border: none; 
+        .player-name-text { 
             color: #64f3e5; 
             font-weight: bold; 
-            text-decoration: underline; 
             font-size: 1rem; 
-            cursor: pointer; 
-            padding: 0; 
-            font-family: inherit; 
-            text-align: left;
-        }
-        .player-link-anchor:hover { 
-            color: #ffffff; 
-            text-shadow: 0 0 8px #64f3e5; 
-        }
-        
-        .profile-container-box {
-            padding: 5px;
-        }
-        .close-action-trigger { 
-            float: right; 
-            background: #c0392b; 
-            color: #ffffff; 
-            border: 1px solid #ffffff; 
-            border-radius: 6px; 
-            padding: 6px 16px; 
-            font-weight: bold; 
-            cursor: pointer; 
-            font-size: 0.95rem;
-        }
-        .close-action-trigger:hover { 
-            background: #e74c3c; 
-        }
-        
-        .profile-card-header-title { 
-            font-size: 2rem; 
-            color: #64f3e5; 
-            margin: 0 0 20px 0; 
-            border-bottom: 2px solid #ffffff; 
-            padding-bottom: 12px; 
-            word-break: break-all;
-            margin-right: 60px;
-        }
-        .profile-metadata-matrix { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 15px; 
-            margin-bottom: 25px; 
-            background: rgba(255, 255, 255, 0.05); 
-            padding: 15px; 
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.15);
-        }
-        .metadata-node {
-            text-align: center;
-        }
-        .metadata-node strong {
-            display: block;
-            color: #64f3e5;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-            letter-spacing: 0.5px;
-        }
-        .metadata-node span {
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-        
-        .profile-kit-metric-row { 
-            background: rgba(255, 255, 255, 0.06); 
-            padding: 14px 20px; 
-            margin-bottom: 8px; 
-            border-radius: 8px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center;
-            border: 1px solid rgba(255,255,255,0.07);
-        }
-        .profile-kit-metric-row:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        .profile-kit-metric-row span.kit-label-text {
-            font-weight: 600;
-            font-size: 1.05rem;
-        }
-        
-        .profile-kit-metric-row span.tier-badge-node { 
-            font-weight: bold; 
-            color: #0b1d28; 
-            background: #64f3e5; 
-            padding: 4px 12px; 
-            border-radius: 6px; 
-            font-size: 0.95rem;
-            box-shadow: 0 0 10px rgba(100, 243, 229, 0.25);
-            border: 1px solid #ffffff;
         }
         
         .points-legend-list {
@@ -247,12 +140,11 @@
     </style>
 </head>
 <body>
-    <canvas id="starfall-canvas"></canvas>
     <div class="logo-container"><img src="logo.png" alt="Multicraft Island Tiers Banner"></div>
     
     <div class="dashboard-layout-wrapper">
         <!-- Main Board Panel -->
-        <div id="leaderboard-view-container" class="main-content-panel active-view">
+        <div class="main-content-panel">
             <h2>Overall Rankings</h2>
             <table class="leaderboard-table">
                 <thead>
@@ -264,16 +156,26 @@
                         <th>Points</th>
                     </tr>
                 </thead>
-                <tbody id="live-leaderboard-rows-target">
-                    <!-- Dynamic player entries are safely injected here -->
+                <tbody>
+                    <tr><td>#1</td><td><span class="player-name-text">Husky_Multicraft</span></td><td>NA</td><td>PC</td><td><strong>180</strong></td></tr>
+                    <tr><td>#2</td><td><span class="player-name-text">Prologozrock</span></td><td>NA</td><td>PC</td><td><strong>85</strong></td></tr>
+                    <tr><td>#3</td><td><span class="player-name-text">Parrot</span></td><td>NA</td><td>Mobile</td><td><strong>81</strong></td></tr>
+                    <tr><td>#4</td><td><span class="player-name-text">Herobrine</span></td><td>NA</td><td>Controller</td><td><strong>80</strong></td></tr>
+                    <tr><td>#5</td><td><span class="player-name-text">vort3xYT</span></td><td>EU</td><td>PC</td><td><strong>75</strong></td></tr>
+                    <tr><td>#6</td><td><span class="player-name-text">Server_pvp</span></td><td>NA</td><td>Mobile</td><td><strong>71</strong></td></tr>
+                    <tr><td>#7</td><td><span class="player-name-text">kylaz9</span></td><td>EU</td><td>Mobile</td><td><strong>20</strong></td></tr>
+                    <tr><td>#8</td><td><span class="player-name-text">Jamier1235</span></td><td>NA</td><td>Mobile</td><td><strong>17</strong></td></tr>
+                    <tr><td>#9</td><td><span class="player-name-text">aaa666</span></td><td>NA</td><td>Mobile</td><td><strong>15</strong></td></tr>
+                    <tr><td>#10</td><td><span class="player-name-text">Benjamin</span></td><td>NA</td><td>Mobile</td><td><strong>15</strong></td></tr>
+                    <tr><td>#11</td><td><span class="player-name-text">Booky</span></td><td>NA</td><td>Mobile</td><td><strong>15</strong></td></tr>
+                    <tr><td>#12</td><td><span class="player-name-text">Taxbird</span></td><td>NA</td><td>Mobile</td><td><strong>15</strong></td></tr>
+                    <tr><td>#13</td><td><span class="player-name-text">Marwan</span></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
+                    <tr><td>#14</td><td><span class="player-name-text">New_guy</span></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
+                    <tr><td>#15</td><td><span class="player-name-text">grant</span></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
+                    <tr><td>#16</td><td><span class="player-name-text">LATAMM</span></td><td>NA</td><td>Mobile</td><td><strong>9</strong></td></tr>
+                    <tr><td>#17</td><td><span class="player-name-text">COCO-_</span></td><td>NA</td><td>Mobile</td><td><strong>8</strong></td></tr>
                 </tbody>
             </table>
-        </div>
-
-        <!-- Full Page Player Profile Display Slot -->
-        <div id="player-profile-view-container" class="main-content-panel">
-            <button class="close-action-trigger" onclick="clearActivePlayerParam()">X</button>
-            <div id="live-profile-injection-target" class="profile-container-box"></div>
         </div>
 
         <!-- Fully Restored Points Legend Sidebar -->
@@ -289,3 +191,9 @@
                 <li class="points-legend-item"><span class="tier-id-tag">HT4</span><span class="points-weight-tag">25 Pts</span></li>
                 <li class="points-legend-item"><span class="tier-id-tag">LT4</span><span class="points-weight-tag">15 Pts</span></li>
                 <li class="points-legend-item"><span class="tier-id-tag">HT5</span><span class="points-weight-tag">8 Pts</span></li>
+                <li class="points-legend-item"><span class="tier-id-tag">LT5</span><span class="points-weight-tag">3 Pts</span></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
