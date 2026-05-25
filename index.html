@@ -16,89 +16,47 @@
             color: #ffffff; 
             min-height: 100vh; 
             box-sizing: border-box; 
-            background: #060d13;
-            background-image: radial-gradient(circle at 30% 20%, rgba(16, 44, 58, 0.4) 0%, rgba(5, 12, 18, 0.4) 100%),
-                              radial-gradient(circle at 80% 70%, rgba(45, 14, 58, 0.35) 0%, rgba(5, 12, 18, 0.4) 100%);
+            background: radial-gradient(circle at center, #0e2430 0%, #050d12 100%);
             overflow-x: hidden; 
+            scroll-behavior: smooth;
         }
         
         .logo-container { 
             max-width: 600px; 
             width: 100%; 
-            margin-bottom: 25px; 
+            margin-bottom: 30px; 
             text-align: center; 
         }
         .logo-container img { 
             width: 100%; 
             height: auto; 
             border-radius: 12px; 
-            border: 1px solid rgba(100, 243, 229, 0.2);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(100, 243, 229, 0.25);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
         }
         
-        /* Dashboard Roster Wrapper Layout Grid */
         .dashboard-wrapper {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 12px;
             width: 100%;
             max-width: 1050px;
+            margin-bottom: 60px;
         }
-        
+
         .menu-title {
             color: #64f3e5;
             font-size: 1.6rem;
             font-weight: 700;
-            margin: 0 0 10px 0;
+            margin: 40px 0 20px 0;
             text-shadow: 0 0 10px rgba(100, 243, 229, 0.3);
+            width: 100%;
+            max-width: 1050px;
+            border-bottom: 2px solid #ffffff;
+            padding-bottom: 10px;
         }
         
-        /* Top Selection Header Tabs Layout Elements */
-        .nav-tabs-wrapper {
-            display: flex;
-            gap: 8px;
-            width: 100%;
-            margin-bottom: 5px;
-            overflow-x: auto;
-            padding-bottom: 5px;
-        }
-        .tab-btn {
-            background: rgba(14, 39, 53, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.6);
-            padding: 8px 16px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            border-radius: 6px;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .tab-btn.active-tab {
-            border-color: #ffd700;
-            color: #ffd700;
-            background: rgba(255, 215, 0, 0.05);
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.15);
-        }
-
-        /* Top Dropdown Bar Filters styling rules */
-        .filter-select-bar {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 10px;
-        }
-        .filter-dropdown {
-            background: #09161f;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #ffffff;
-            padding: 8px 14px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            border-radius: 6px;
-            outline: none;
-        }
-
-        /* Premium clickable horizontal leaderboard card rows layout */
+        /* Premium horizontal rows layout matching screenshots */
         .roster-card-row {
             display: flex;
             align-items: center;
@@ -108,14 +66,13 @@
             padding: 14px 20px;
             box-sizing: border-box;
             gap: 15px;
-            transition: transform 0.15s, border-color 0.15s;
             text-decoration: none;
             color: #ffffff;
+            transition: border-color 0.2s, background-color 0.2s;
         }
         .roster-card-row:hover {
-            transform: translateY(-2px);
-            border-color: rgba(100, 243, 229, 0.25);
-            background: rgba(12, 28, 38, 0.9);
+            border-color: #64f3e5;
+            background: rgba(14, 34, 48, 0.9);
         }
         
         .row-rank-num {
@@ -125,14 +82,14 @@
             width: 35px;
             text-align: center;
         }
-        .roster-card-row:nth-child(3) .row-rank-num { color: #ffd700; }
-        .roster-card-row:nth-child(4) .row-rank-num { color: #c0c0c0; }
-        .roster-card-row:nth-child(5) .row-rank-num { color: #cd7f32; }
+        .roster-card-row:nth-child(2) .row-rank-num { color: #ffd700; }
+        .roster-card-row:nth-child(3) .row-rank-num { color: #c0c0c0; }
+        .roster-card-row:nth-child(4) .row-rank-num { color: #cd7f32; }
 
         .row-player-name {
             font-size: 1.15rem;
             font-weight: 700;
-            color: #ffffff;
+            color: #64f3e5;
             flex: 1;
         }
         
@@ -181,66 +138,39 @@
             text-align: right;
         }
 
-        /* Full Screen Isolated CSS Popup Overlay System (0% Javascript Dependency) */
-        .profile-overlay-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(5, 12, 17, 0.92);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            box-sizing: border-box;
-            backdrop-filter: blur(5px);
-        }
-        
-        /* Trigger engine rule revealing popup upon direct anchor activation match links */
-        .profile-overlay-modal:target {
-            display: flex;
-        }
-        
+        /* Premium Split-Column Profile Cards Display Layout */
         .premium-split-profile-card {
             display: flex;
             flex-direction: row;
             width: 100%;
-            max-width: 850px;
+            max-width: 1050px;
             background: #06131c;
             border: 2px solid rgba(100, 243, 229, 0.25);
             border-radius: 14px;
-            box-shadow: 0 0 35px rgba(100, 243, 229, 0.12);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
             overflow: hidden;
+            margin-bottom: 40px;
             position: relative;
+            scroll-margin-top: 20px;
         }
         
-        .close-x-action-trigger {
+        .close-x-trigger {
             position: absolute;
             top: 20px;
             right: 20px;
-            background: rgba(255, 255, 255, 0.08);
-            color: rgba(255, 255, 255, 0.5);
-            border: none;
-            font-size: 1rem;
-            font-weight: bold;
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: background 0.15s, color 0.15s;
-        }
-        .close-x-action-trigger:hover {
             background: #c0392b;
             color: #ffffff;
+            border: 1px solid #ffffff;
+            border-radius: 6px;
+            padding: 5px 14px;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+        .close-x-trigger:hover {
+            background: #e74c3c;
         }
         
-        /* Left Column Structure */
         .profile-left-column {
             flex: 1;
             padding: 35px;
@@ -260,7 +190,6 @@
             width: fit-content;
             margin-bottom: 15px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
         .profile-player-header-title {
             font-size: 2rem;
@@ -286,7 +215,6 @@
             margin-left: 6px;
         }
         
-        /* Right Side Column Structure */
         .profile-right-column {
             flex: 1.4;
             padding: 35px;
@@ -304,3 +232,63 @@
         }
         .profile-kits-display-circle-grid {
             display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .kit-circle-slot-node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .circle-badge-frame {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 2px solid #64f3e5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.02);
+            font-weight: 800;
+            color: #ffffff;
+            font-size: 1.1rem;
+            box-shadow: 0 0 15px rgba(100, 243, 229, 0.15);
+        }
+        .circle-badge-frame.tbd-circle-frame {
+            border-color: rgba(255, 255, 255, 0.07);
+            color: rgba(255, 255, 255, 0.2);
+            box-shadow: none;
+        }
+        .kit-circle-slot-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        @media (max-width: 850px) {
+            .premium-split-profile-card { flex-direction: column; }
+            .profile-left-column { border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.1); width: 100%; }
+            .row-kits-summary-strip { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div id="top-logo" class="logo-container"><img src="logo.png" alt="Multicraft Island Tiers Logo Banner"></div>
+    
+    <!-- Main Rankings Menu -->
+    <div class="dashboard-wrapper">
+        <h2 style="color:#64f3e5; margin:0 0 10px 0;">Overall Rankings Menu</h2>
+        
+        <a href="#card-husky" class="roster-card-row">
+            <div class="row-rank-num">#1</div>
+            <div class="row-player-name">Husky_Multicraft</div>
+            <span class="badge-pill pill-na">NA</span><span class="badge-pill pill-pc">PC</span>
+            <div class="row-kits-summary-strip"><span class="row-mini-kit-tag">HT3</span><span class="row-mini-kit-tag">HT3</span><span class="row-mini-kit-tag">LT2</span><span class="row-mini-kit-tag">HT3</span><span class="row-mini-kit-tag">LT3</span></div>
+            <div class="row-points-total-tag">180 PTS</div>
+        </a>
+
+        <a href="#card-prologozrock" class="roster-card-row">
+            <div class="row-rank-num">#2</div>
+
