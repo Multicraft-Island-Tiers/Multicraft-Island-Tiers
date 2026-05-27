@@ -30,19 +30,100 @@
         .logo-container { max-width: 500px; width: 100%; margin-bottom: 25px; text-align: center; }
         .logo-container img { width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(100, 243, 229, 0.15); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6); }
         
-        /* 27-FLIP LAYOUT GRID */
+        /* --- STACKED KIT FILTER NAVIGATION BAR --- */
+        .kit-navbar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+            width: 100%;
+            max-width: 1100px;
+            margin-bottom: 35px;
+            padding: 15px;
+            background: rgba(4, 11, 18, 0.3);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .kit-btn {
+            font-family: 'MulticraftCustom', monospace !important;
+            font-size: 0.6rem;
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: rgba(6, 17, 28, 0.6);
+            border: 1px solid rgba(100, 243, 229, 0.1);
+            color: rgba(255, 255, 255, 0.45);
+            width: 110px;
+            height: 95px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            box-sizing: border-box;
+        }
+
+        /* STRIPPING OUT DARK BACKGROUND TEXTURES COMPLETELY */
+        .kit-btn img {
+            width: 44px;
+            height: 44px;
+            object-fit: contain;
+            opacity: 0.55;
+            mix-blend-mode: screen; 
+            filter: brightness(1.2) contrast(1.1); 
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .kit-btn:hover {
+            color: #ffffff;
+            border-color: rgba(100, 243, 229, 0.4);
+            background: rgba(100, 243, 229, 0.05);
+        }
+        .kit-btn:hover img {
+            opacity: 0.9;
+            transform: scale(1.06);
+        }
+
+        .kit-btn.active {
+            color: #64f3e5;
+            border-color: #64f3e5;
+            background: rgba(100, 243, 229, 0.12);
+            box-shadow: 0 0 15px rgba(100, 243, 229, 0.2);
+        }
+        .kit-btn.active img {
+            opacity: 1;
+            transform: scale(1.08);
+        }
+
+        /* --- DASHBOARD CONFIGURATION --- */
         .dashboard-layout-wrapper { display: flex; flex-direction: row; gap: 20px; width: 100%; max-width: 1100px; align-items: flex-start; }
         .main-content-panel { flex: 3; background: rgba(4, 11, 18, 0.45); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 14px; padding: 22px; box-sizing: border-box; backdrop-filter: blur(12px); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); display: flex; flex-direction: column; }
         .menu-title { font-family: 'MulticraftCustom', monospace !important; color: #64f3e5; font-size: 1.2rem; margin: 0 0 20px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 14px; text-transform: uppercase; text-align: center; }
 
-        /* Leaderboard Rows */
-        .roster-card-row { display: flex; align-items: center; background: rgba(4, 13, 22, 0.75); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 12px 16px; margin-bottom: 8px; box-sizing: border-box; gap: 14px; width: 100%; }
+        .roster-card-row { 
+            display: flex; 
+            align-items: center; 
+            background: rgba(4, 13, 22, 0.75); 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            border-radius: 8px; 
+            padding: 12px 16px; 
+            margin-bottom: 8px; 
+            box-sizing: border-box; 
+            gap: 14px; 
+            width: 100%;
+        }
+
+        .roster-card-row.hidden { display: none !important; }
         .row-rank-num { font-family: 'MulticraftCustom', monospace !important; font-size: 0.8rem; color: rgba(255, 255, 255, 0.25); width: 35px; text-align: center; }
-        .roster-card-row:nth-child(1) .row-rank-num { color: #ffd700; }
-        .roster-card-row:nth-child(2) .row-rank-num { color: #c0c0c0; }
-        .roster-card-row:nth-child(3) .row-rank-num { color: #cd7f32; }
         
-        .row-player-name { font-family: 'MulticraftCustom', monospace !important; font-size: 0.9rem; font-weight: normal; color: #ffffff; flex: 1; text-transform: none !important; }
+        .roster-card-row.visible-rank-1 .row-rank-num { color: #ffd700; }
+        .roster-card-row.visible-rank-2 .row-rank-num { color: #c0c0c0; }
+        .roster-card-row.visible-rank-3 .row-rank-num { color: #cd7f32; }
+        
+        .row-player-name { font-family: 'MulticraftCustom', monospace !important; font-size: 0.9rem; font-weight: normal; color: #ffffff; flex: 1; text-transform: none !important; display: flex; flex-direction: column; gap: 4px; }
+        .player-kit-subtext { font-size: 0.65rem; color: rgba(100, 243, 229, 0.7); font-family: sans-serif; }
         .row-points-total { font-family: 'MulticraftCustom', monospace !important; font-size: 0.75rem; color: #ffd700; min-width: 85px; text-align: right; }
 
         .table-pill { font-size: 0.55rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; text-transform: uppercase; display: inline-block; font-family: 'Segoe UI', sans-serif; letter-spacing: 0.2px; }
@@ -75,143 +156,92 @@
         <img src="logo.png" alt="Multicraft Server Banner">
     </div>
     
+    <!-- STACKED FILTER BAR WITH LOCAL IMAGE POINTERS -->
+    <div class="kit-navbar">
+        <button class="kit-btn active" onclick="filterKit('all', this)">
+            <img src="overall.png" alt="Overall" onerror="this.style.visibility='hidden'"> Overall
+        </button>
+        <button class="kit-btn" onclick="filterKit('emerald', this)">
+            <img src="Emerald.png" alt="Emerald"> Emerald
+        </button>
+        <button class="kit-btn" onclick="filterKit('emerald-kb', this)">
+            <img src="Emerald_KB.png" alt="Emerald KB"> Emerald KB
+        </button>
+        <button class="kit-btn" onclick="filterKit('dragonhide-kb', this)">
+            <img src="Dragonhide_KB.png" alt="Dragonhide KB"> Dragonhide KB
+        </button>
+        <button class="kit-btn" onclick="filterKit('dragonhide', this)">
+            <img src="Dragonhide.png" alt="Dragonhide"> Dragonhide
+        </button>
+        <button class="kit-btn" onclick="filterKit('diamond', this)">
+            <img src="Diamond.png" alt="Diamond"> Diamond
+        </button>
+    </div>
+    
     <div class="dashboard-layout-wrapper">
         <div class="main-content-panel">
-            <h2 class="menu-title">Overall Leaderboard</h2>
+            <h2 class="menu-title" id="leaderboard-title">Overall Leaderboard</h2>
             
-            <div class="roster-card-row">
-                <div class="row-rank-num">#1</div>
-                <div class="row-player-name">vort3xYT</div>
-                <span class="table-pill pill-eu">EU</span><span class="table-pill pill-pc">PC</span>
-                <div class="row-points-total">210 PTS</div>
-            </div>
+            <div id="roster-list-container">
+                <div class="roster-card-row" data-kits="all,emerald,dragonhide" data-score="210">
+                    <div class="row-rank-num"></div>
+                    <div class="row-player-name">
+                        vort3xYT
+                        <span class="player-kit-subtext">Dragonhide (LT2) | Emerald (HT2)</span>
+                    </div>
+                    <span class="table-pill pill-eu">EU</span><span class="table-pill pill-pc">PC</span>
+                <div class="roster-card-row" data-kits="all" data-score="15">
+                    <div class="row-rank-num"></div>
+                    <div class="row-player-name">Taxbird</div>
+                    <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
+                    <div class="row-points-total">15 PTS</div>
+                </div>
 
-            <div class="roster-card-row">
-                <div class="row-rank-num">#2</div>
-                <div class="row-player-name">Husky_Multicraft</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-pc">PC</span>
-                <div class="row-points-total">180 PTS</div>
-            </div>
+                <div class="roster-card-row" data-kits="all" data-score="12">
+                    <div class="row-rank-num"></div>
+                    <div class="row-player-name">Halo117</div>
+                    <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
+                    <div class="row-points-total">12 PTS</div>
+                </div>
 
-            <div class="roster-card-row">
-                <div class="row-rank-num">#3</div>
-                <div class="row-player-name">Herobrine</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-con">Controller</span>
-                <div class="row-points-total">135 PTS</div>
-            </div>
+                <div class="roster-card-row" data-kits="all" data-score="9">
+                    <div class="row-rank-num"></div>
+                    <div class="row-player-name">Marwan</div>
+                    <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
+                    <div class="row-points-total">9 PTS</div>
+                </div>
 
-            <div class="roster-card-row">
-                <div class="row-rank-num">#4</div>
-                <div class="row-player-name">Prologozrock</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-pc">PC</span>
-                <div class="row-points-total">93 PTS</div>
-            </div>
+                <div class="roster-card-row" data-kits="all" data-score="9">
+                    <div class="row-rank-num"></div>
+                    <div class="row-player-name">New_guy</div>
+                    <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
+                    <div class="row-points-total">9 PTS</div>
+                </div>
 
-            <div class="roster-card-row">
-                <div class="row-rank-num">#5</div>
-                <div class="row-player-name">Parrot</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">81 PTS</div>
-            </div>
+                <div class="roster-card-row" data-kits="all" data-score="9">
+                    <div class="row-rank-num"></div>
+                    <div class="row-player-name">grant</div>
+                    <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
+                    <div class="row-points-total">9 PTS</div>
+                </div>
 
-            <div class="roster-card-row">
-                <div class="row-rank-num">#6</div>
-                <div class="row-player-name">Server_pvp</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">71 PTS</div>
-            </div>
+                <div class="roster-card-row" data-kits="all" data-score="9">
+                    <div class="row-rank-num"></div>
+                    <div class="row-player-name">LATAMM</div>
+                    <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
+                    <div class="row-points-total">9 PTS</div>
+                </div>
 
-            <div class="roster-card-row">
-                <div class="row-rank-num">#7</div>
-                <div class="row-player-name">kylaz9</div>
-                <span class="table-pill pill-eu">EU</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">28 PTS</div>
-            </div>
+                <div class="roster-card-row" data-kits="all" data-score="8">
+                    <div class="row-rank-num"></div>
+                    <div class="row-player-name">COCO-_</div>
+                    <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
+                    <div class="row-points-total">8 PTS</div>
+                </div>
 
-            <div class="roster-card-row">
-                <div class="row-rank-num">#8</div>
-                <div class="row-player-name">Jamier1235</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">17 PTS</div>
-            </div>
-
-            <div class="roster-card-row">
-                <div class="row-rank-num">#9</div>
-                <div class="row-player-name">aaa666</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">15 PTS</div>
-            </div>
-
-            <div class="roster-card-row">
-                <div class="row-rank-num">#10</div>
-                <div class="row-player-name">Benjamin</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">15 PTS</div>
-            </div>
-
-            <div class="roster-card-row">
-                <div class="row-rank-num">#11</div>
-                <div class="row-player-name">Booky</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">15 PTS</div>
-            </div>
-
-            <div class="roster-card-row">
-                <div class="row-rank-num">#12</div>
-                <div class="row-player-name">Taxbird</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                            <div class="roster-card-row">
-                <div class="row-rank-num">#12</div>
-                <div class="row-player-name">Taxbird</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">15 PTS</div>
-            </div>
-
-            <div class="roster-card-row">
-                <div class="row-rank-num">#13</div>
-                <div class="row-player-name">Halo117</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">12 PTS</div>
-            </div>
-
-            <div class="roster-card-row">
-                <div class="row-rank-num">#14</div>
-                <div class="row-player-name">Marwan</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">9 PTS</div>
-            </div>
-
-            <div class="roster-card-row">
-                <div class="row-rank-num">#15</div>
-                <div class="row-player-name">New_guy</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">9 PTS</div>
-            </div>
-
-            <div class="roster-card-row">
-                <div class="row-rank-num">#16</div>
-                <div class="row-player-name">grant</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">9 PTS</div>
-            </div>
-
-            <div class="roster-card-row">
-                <div class="row-rank-num">#17</div>
-                <div class="row-player-name">LATAMM</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">9 PTS</div>
-            </div>
-
-            <div class="roster-card-row">
-                <div class="row-rank-num">#18</div>
-                <div class="row-player-name">COCO-_</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                <div class="row-points-total">8 PTS</div>
-            </div>
-
-            <div class="roster-card-row">
-                <div class="row-rank-num">#19</div>
-                <div class="row-player-name">Hamude_VIP</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-pc">PC</span>
-                <div class="row-points-total">8 PTS</div>
-            </div>
+                <div class="roster-card-row" data-kits="all" data-score="8">
+                    <div class="row-rank-num"></div>
+                    <div class="row-player-name">Hamude_VIP</div>
+                    <span class="table-pill pill-na">NA</span><span class="table-pill pill-pc">PC</span>
+                    <div class="row-points-total">8 PTS</div>
+                </div>
