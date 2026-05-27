@@ -30,19 +30,18 @@
         .logo-container { max-width: 500px; width: 100%; margin-bottom: 25px; text-align: center; }
         .logo-container img { width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(100, 243, 229, 0.15); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6); }
         
-        /* 27-FLIP LAYOUT GRID: Holds your columns perfectly side-by-side with zero alignment slips */
+        /* 27-FLIP LAYOUT GRID */
         .dashboard-layout-wrapper { display: flex; flex-direction: row; gap: 20px; width: 100%; max-width: 1100px; align-items: flex-start; }
         .main-content-panel { flex: 3; background: rgba(4, 11, 18, 0.45); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 14px; padding: 22px; box-sizing: border-box; backdrop-filter: blur(12px); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); display: flex; flex-direction: column; }
         .menu-title { font-family: 'MulticraftCustom', monospace !important; color: #64f3e5; font-size: 1.2rem; margin: 0 0 20px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 14px; text-transform: uppercase; text-align: center; }
 
-        /* Permanent Flat Leaderboard Rows */
+        /* Leaderboard Rows */
         .roster-card-row { display: flex; align-items: center; background: rgba(4, 13, 22, 0.75); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 12px 16px; margin-bottom: 8px; box-sizing: border-box; gap: 14px; width: 100%; }
         .row-rank-num { font-family: 'MulticraftCustom', monospace !important; font-size: 0.8rem; color: rgba(255, 255, 255, 0.25); width: 35px; text-align: center; }
         .roster-card-row:nth-child(1) .row-rank-num { color: #ffd700; }
         .roster-card-row:nth-child(2) .row-rank-num { color: #c0c0c0; }
         .roster-card-row:nth-child(3) .row-rank-num { color: #cd7f32; }
         
-        /* FIXED PLAYER NAME STYLE: Forces names to pull the custom server font directly */
         .row-player-name { font-family: 'MulticraftCustom', monospace !important; font-size: 0.9rem; font-weight: normal; color: #ffffff; flex: 1; text-transform: none !important; }
         .row-points-total { font-family: 'MulticraftCustom', monospace !important; font-size: 0.75rem; color: #ffd700; min-width: 85px; text-align: right; }
 
@@ -53,7 +52,7 @@
         .pill-mob { color: #52be80; border: 1px solid rgba(82, 190, 128, 0.25); background: rgba(82, 190, 128, 0.04); }
         .pill-con { color: #e59866; border: 1px solid rgba(229, 152, 102, 0.25); background: rgba(229, 152, 102, 0.04); }
 
-        /* Sidebar Elements Aligned to Right Frame Window bounds precisely */
+        /* Sidebar Elements */
         .sidebar-wrapper-column { flex: 1; display: flex; flex-direction: column; gap: 15px; min-width: 240px; box-sizing: border-box; }
         .sidebar-panel { background: rgba(4, 15, 25, 0.75); border: 1px solid rgba(86, 239, 170, 0.12); border-radius: 12px; padding: 18px; height: fit-content; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4); width: 100%; }
         .sidebar-panel h3 { font-family: 'MulticraftCustom', monospace !important; color: #e67e22; font-size: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 10px; margin: 0 0 10px 0; text-align: center; text-transform: uppercase; }
@@ -77,7 +76,6 @@
     </div>
     
     <div class="dashboard-layout-wrapper">
-        <!-- Permanent Left Leaderboard List Box Container -->
         <div class="main-content-panel">
             <h2 class="menu-title">Overall Leaderboard</h2>
             
@@ -159,6 +157,10 @@
             </div>
 
             <div class="roster-card-row">
+                <div class="row-rank-num">#12</div>
+                <div class="row-player-name">Taxbird</div>
+                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
+                            <div class="roster-card-row">
                 <div class="row-rank-num">#12</div>
                 <div class="row-player-name">Taxbird</div>
                 <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
