@@ -1,100 +1,268 @@
-            <!-- Player #12 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multicraft Tiers | Roster Hub</title>
+    <style>
+        /* Load your exact font file extension locally */
+        @font-face {
+            font-family: 'MulticraftCustom';
+            src: url('MultiCraftFont.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            padding: 30px 15px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            background: #02070c;
+            background-image: radial-gradient(circle at 50% 50%, rgba(10, 24, 38, 0.75) 0%, rgba(2, 7, 12, 1) 100%);
+            color: #ffffff;
+            min-height: 100vh; 
+            box-sizing: border-box;
+        }
+        
+        .logo-container { max-width: 500px; width: 100%; margin-bottom: 25px; text-align: center; }
+        .logo-container img { width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(100, 243, 229, 0.15); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6); }
+        
+        /* Dashboard Wrapper Layout Container Grid */
+        .dashboard-layout-wrapper { display: flex; flex-direction: row; gap: 20px; width: 100%; max-width: 1200px; align-items: flex-start; }
+        .main-content-panel { flex: 3; background: rgba(4, 11, 18, 0.45); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 14px; padding: 22px; box-sizing: border-box; backdrop-filter: blur(12px); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); display: flex; flex-direction: column; }
+        .menu-title { font-family: 'MulticraftCustom', monospace !important; color: #64f3e5; font-size: 1.2rem; margin: 0 0 20px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 14px; text-transform: uppercase; text-align: center; }
+
+        /* Leaderboard Rows */
+        .roster-card-row { display: flex; align-items: center; background: rgba(4, 13, 22, 0.75); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 12px 16px; margin-bottom: 8px; box-sizing: border-box; gap: 14px; width: 100%; }
+        .row-rank-num { font-family: 'MulticraftCustom', monospace !important; font-size: 0.8rem; color: rgba(255, 255, 255, 0.25); width: 35px; text-align: center; }
+        .roster-card-row:nth-child(2) .row-rank-num { color: #ffd700; }
+        .roster-card-row:nth-child(3) .row-rank-num { color: #c0c0c0; }
+        .roster-card-row:nth-child(4) .row-rank-num { color: #cd7f32; }
+        
+        /* Player Info Layout Setup */
+        .player-info-container { display: flex; align-items: center; flex: 1; gap: 12px; }
+        .row-player-name { font-family: 'MulticraftCustom', monospace !important; font-size: 0.9rem; font-weight: normal; color: #ffffff; text-transform: none !important; min-width: 150px; }
+        .row-points-total { font-family: 'MulticraftCustom', monospace !important; font-size: 0.75rem; color: #ffd700; min-width: 85px; text-align: right; }
+
+        .table-pill { font-size: 0.55rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; text-transform: uppercase; display: inline-block; font-family: 'Segoe UI', sans-serif; letter-spacing: 0.2px; }
+        .pill-na { color: #5dade2; border: 1px solid rgba(93, 189, 226, 0.25); background: rgba(93, 189, 226, 0.04); }
+        .pill-eu { color: #f4d03f; border: 1px solid rgba(244, 208, 63, 0.25); background: rgba(244, 208, 63, 0.04); }
+        .pill-pc { color: #af7ac5; border: 1px solid rgba(175, 122, 197, 0.25); background: rgba(175, 122, 197, 0.04); }
+        .pill-mob { color: #52be80; border: 1px solid rgba(82, 190, 128, 0.25); background: rgba(82, 190, 128, 0.04); }
+        .pill-con { color: #e59866; border: 1px solid rgba(229, 152, 102, 0.25); background: rgba(229, 152, 102, 0.04); }
+
+        /* --- STACKED KIT TIER BOXES --- */
+        .player-kits-display { display: flex; gap: 8px; flex: 2; justify-content: flex-start; }
+        
+        .tier-showcase-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 65px;
+            border-radius: 8px;
+            background: rgba(2, 7, 12, 0.4);
+            box-sizing: border-box;
+            padding: 4px;
+        }
+        .tier-showcase-box.green-border { border: 1.5px solid #2e7d32; color: #52be80; }
+        .tier-showcase-box.cyan-border { border: 1.5px solid #00838f; color: #64f3e5; }
+
+        .tier-showcase-box img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+            margin-bottom: 4px;
+            mix-blend-mode: screen; 
+        }
+        .tier-showcase-box span {
+            font-family: 'MulticraftCustom', monospace !important;
+            font-size: 0.55rem;
+            text-transform: uppercase;
+        }
+
+        /* Sidebar Elements */
+        .sidebar-wrapper-column { flex: 1; display: flex; flex-direction: column; gap: 15px; min-width: 240px; box-sizing: border-box; }
+        .sidebar-panel { background: rgba(4, 15, 25, 0.75); border: 1px solid rgba(86, 239, 170, 0.12); border-radius: 12px; padding: 18px; height: fit-content; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4); width: 100%; }
+        .sidebar-panel h3 { font-family: 'MulticraftCustom', monospace !important; color: #e67e22; font-size: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 10px; margin: 0 0 10px 0; text-align: center; text-transform: uppercase; }
+        .points-legend-list { list-style: none; padding: 0; margin: 0; }
+        .points-legend-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.04); font-size: 0.82rem; }
+        .points-legend-item span.tier-id-tag { font-family: 'MulticraftCustom', monospace !important; font-size: 0.65rem; color: #56efaa; }
+        .points-legend-item span.points-weight-tag { color: #e67e22; font-weight: 600; }
+
+        .invite-badge-box { background: rgba(4, 15, 25, 0.9); border: 1.5px dashed #56efaa; border-radius: 8px; padding: 10px 14px; text-align: center; box-shadow: 0 0 15px rgba(86, 239, 170, 0.15); margin-bottom: 15px; width: 100%; box-sizing: border-box; }
+        .invite-title { font-family: 'MulticraftCustom', monospace !important; font-size: 0.6rem; color: rgba(255, 255, 255, 0.4); text-transform: uppercase; margin-bottom: 4px; }
+        .invite-string { font-family: 'MulticraftCustom', monospace !important; font-size: 0.9rem; color: #56efaa; letter-spacing: 0.5px; }
+
+        @media (max-width: 850px) { .dashboard-layout-wrapper { flex-direction: column; } .sidebar-wrapper-column { width: 100%; } }
+    </style>
+</head>
+<body>
+
+    <!-- Centered Server Banner Image -->
+    <div class="logo-container">
+        <img src="logo.png" alt="Multicraft Server Banner">
+    </div>
+    
+    <div class="dashboard-layout-wrapper">
+        <!-- Main Leaderboard panel -->
+        <div class="main-content-panel">
+            <h2 class="menu-title">Overall Leaderboard</h2>
+            
+            <!-- Player #1 -->
             <div class="roster-card-row">
-                <div class="row-rank-num">#12</div>
+                <div class="row-rank-num">#1</div>
                 <div class="player-info-container">
-                    <span class="row-player-name">Taxbird</span>
-                    <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
+                    <span class="row-player-name">vort3xYT</span>
+                    <span class="table-pill pill-eu">EU</span><span class="table-pill pill-pc">PC</span>
                 </div>
                 <div class="player-kits-display">
-                    <!-- Placeholder space for future item assets -->
+                    <div class="tier-showcase-box green-border">
+                        <img src="Emerald.png" alt="Emerald" onerror="this.style.visibility='hidden'">
+                        <span>HT2</span>
+                    </div>
+                    <div class="tier-showcase-box cyan-border">
+                        <img src="Dragonhide.png" alt="Dragonhide" onerror="this.style.visibility='hidden'">
+                        <span>LT2</span>
+                    </div>
                 </div>
-                <div class="row-points-total">15 PTS</div>
+                <div class="row-points-total">210 PTS</div>
             </div>
 
-            <!-- Player #13 -->
+            <!-- Player #2 -->
             <div class="roster-card-row">
-                <div class="row-rank-num">#13</div>
+                <div class="row-rank-num">#2</div>
                 <div class="player-info-container">
-                    <span class="row-player-name">Halo117</span>
-                    <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                </div>
-                <div class="player-kits-display"></div>
-                <div class="row-points-total">12 PTS</div>
-            </div>
-
-            <!-- Player #14 -->
-            <div class="roster-card-row">
-                <div class="row-rank-num">#14</div>
-                <div class="player-info-container">
-                    <span class="row-player-name">Marwan</span>
-                    <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                </div>
-                <div class="player-kits-display"></div>
-                <div class="row-points-total">9 PTS</div>
-            </div>
-
-            <!-- Player #15 -->
-            <div class="roster-card-row">
-                <div class="row-rank-num">#15</div>
-                <div class="player-info-container">
-                    <span class="row-player-name">New_guy</span>
-                    <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                </div>
-                <div class="player-kits-display"></div>
-                <div class="row-points-total">9 PTS</div>
-            </div>
-
-            <!-- Player #16 -->
-            <div class="roster-card-row">
-                <div class="row-rank-num">#16</div>
-                <div class="player-info-container">
-                    <span class="row-player-name">grant</span>
-                    <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                </div>
-                <div class="player-kits-display"></div>
-                <div class="row-points-total">9 PTS</div>
-            </div>
-
-            <!-- Player #17 -->
-            <div class="roster-card-row">
-                <div class="row-rank-num">#17</div>
-                <div class="row-player-name">LATAMM</div>
-                <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-            </div>
-            <div class="player-kits-display"></div>
-            <div class="row-points-total">9 PTS</div>
-
-            <!-- Player #18 -->
-            <div class="roster-card-row">
-                <div class="row-rank-num">#18</div>
-                <div class="player-info-container">
-                    <span class="row-player-name">COCO-_</span>
-                    <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
-                </div>
-                <div class="player-kits-display"></div>
-                <div class="row-points-total">8 PTS</div>
-            </div>
-
-            <!-- Player #19 -->
-            <div class="roster-card-row">
-                <div class="row-rank-num">#19</div>
-                <div class="player-info-container">
-                    <span class="row-player-name">Hamude_VIP</span>
+                    <span class="row-player-name">Husky_Multicraft</span>
                     <span class="table-pill pill-na">NA</span><span class="table-pill pill-pc">PC</span>
                 </div>
                 <div class="player-kits-display"></div>
-                <div class="row-points-total">8 PTS</div>
+                <div class="row-points-total">180 PTS</div>
             </div>
+
+            <!-- Player #3 -->
+            <div class="roster-card-row">
+                <div class="row-rank-num">#3</div>
+                <div class="player-info-container">
+                    <span class="row-player-name">Herobrine</span>
+                    <span class="table-pill pill-na">NA</span><span class="table-pill pill-con">Controller</span>
+                </div>
+                <div class="player-kits-display">
+                    <div class="tier-showcase-box green-border">
+                        <img src="Emerald.png" alt="Emerald" onerror="this.style.visibility='hidden'">
+                        <span>HT4</span>
+                    </div>
+                    <div class="tier-showcase-box cyan-border">
+                        <img src="Dragonhide.png" alt="Dragonhide" onerror="this.style.visibility='hidden'">
+                        <span>LT3</span>
+                    </div>
+                </div>
+                <div class="row-points-total">135 PTS</div>
+            </div>
+                                <!-- Player #4 -->
+            <div class="roster-card-row">
+                <div class="row-rank-num">#4</div>
+                <div class="player-info-container">
+                    <span class="row-player-name">Prologozrock</span>
+                    <span class="table-pill pill-na">NA</span><span class="table-pill pill-pc">PC</span>
+                </div>
+                <div class="player-kits-display">
+                    <div class="tier-showcase-box cyan-border">
+                        <img src="Emerald_KB.png" alt="Emerald KB" onerror="this.style.visibility='hidden'">
+                        <span>HT5</span>
+                    </div>
+                </div>
+                <div class="row-points-total">93 PTS</div>
+            </div>
+
+            <!-- Player #5 -->
+            <div class="roster-card-row">
+                <div class="row-rank-num">#5</div>
+                <div class="player-info-container">
+                    <span class="row-player-name">Parrot</span>
+                    <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
+                </div>
+                <div class="player-kits-display"></div>
+                <div class="row-points-total">81 PTS</div>
+            </div>
+
+            <!-- Player #6 -->
+            <div class="roster-card-row">
+                <div class="row-rank-num">#6</div>
+                <div class="player-info-container">
+                    <span class="row-player-name">Server_pvp</span>
+                    <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
+                </div>
+                <div class="player-kits-display"></div>
+                <div class="row-points-total">71 PTS</div>
+            </div>
+
+            <!-- Player #7 -->
+            <div class="roster-card-row">
+                <div class="row-rank-num">#7</div>
+                <div class="player-info-container">
+                    <span class="row-player-name">kylaz9</span>
+                    <span class="table-pill pill-eu">EU</span><span class="table-pill pill-mob">Mobile</span>
+                </div>
+                <div class="player-kits-display"></div>
+                <div class="row-points-total">28 PTS</div>
+            </div>
+
+            <!-- Player #8 -->
+            <div class="roster-card-row">
+                <div class="row-rank-num">#8</div>
+                <div class="player-info-container">
+                    <span class="row-player-name">Jamier1235</span>
+                    <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
+                </div>
+                <div class="player-kits-display"></div>
+                <div class="row-points-total">17 PTS</div>
+            </div>
+
+            <!-- Player #9 -->
+            <div class="roster-card-row">
+                <div class="row-rank-num">#9</div>
+                <div class="player-info-container">
+                    <span class="row-player-name">aaa666</span>
+                    <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
+                </div>
+                <div class="player-kits-display"></div>
+                <div class="row-points-total">15 PTS</div>
+            </div>
+
+            <!-- Player #10 -->
+            <div class="roster-card-row">
+                <div class="row-rank-num">#10</div>
+                <div class="player-info-container">
+                    <span class="row-player-name">Benjamin</span>
+                    <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
+                </div>
+                <div class="player-kits-display"></div>
+                <div class="row-points-total">15 PTS</div>
+            </div>
+
+            <!-- Player #11 -->
+            <div class="roster-card-row">
+                <div class="row-rank-num">#11</div>
+                <div class="player-info-container">
+                    <span class="row-player-name">Booky</span>
+                    <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
+                </div>
+                <div class="player-kits-display"></div>
+                <div class="row-points-total">15 PTS</div>
+            </div>
+
             <!-- Player #12 -->
             <div class="roster-card-row">
                 <div class="row-rank-num">#12</div>
                 <div class="player-info-container">
-                    <span class="row-player-name">Taxbird</span>
                     <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
                 </div>
-                <div class="player-kits-display">
-                    <!-- Placeholder space for future item assets -->
-                </div>
+                <div class="player-kits-display"></div>
                 <div class="row-points-total">15 PTS</div>
             </div>
 
@@ -156,8 +324,8 @@
             <!-- Player #18 -->
             <div class="roster-card-row">
                 <div class="row-rank-num">#18</div>
-                <div class="row-player-name">COCO-_</div>
                 <div class="player-info-container">
+                    <span class="row-player-name">COCO-_</span>
                     <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">Mobile</span>
                 </div>
                 <div class="player-kits-display"></div>
@@ -174,3 +342,4 @@
                 <div class="player-kits-display"></div>
                 <div class="row-points-total">8 PTS</div>
             </div>
+
