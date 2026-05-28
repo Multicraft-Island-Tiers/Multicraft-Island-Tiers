@@ -29,9 +29,31 @@
         .logo-container { max-width: 500px; width: 100%; margin-bottom: 25px; text-align: center; }
         .logo-container img { width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(100, 243, 229, 0.15); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6); }
         
-        /* Dashboard Layout Wrapper Grid Container */
-        .dashboard-layout-wrapper { display: flex; flex-direction: row; gap: 20px; width: 100%; max-width: 1250px; align-items: flex-start; }
-        .main-content-panel { flex: 3; background: rgba(4, 11, 18, 0.45); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 14px; padding: 22px; box-sizing: border-box; backdrop-filter: blur(12px); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); display: flex; flex-direction: column; }
+        /* FIXED GRID SYSTEM: Forces columns to stand perfectly side-by-side with zero overlay slips */
+        .dashboard-layout-wrapper { 
+            display: flex; 
+            flex-direction: row; 
+            gap: 25px; 
+            width: 100%; 
+            max-width: 1250px; 
+            align-items: flex-start;
+            box-sizing: border-box;
+        }
+        
+        .main-content-panel { 
+            flex: 3; 
+            background: rgba(4, 11, 18, 0.45); 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            border-radius: 14px; 
+            padding: 22px; 
+            box-sizing: border-box; 
+            backdrop-filter: blur(12px); 
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); 
+            display: flex; 
+            flex-direction: column; 
+            min-width: 0; /* Prevents text overflow breaking column bounds */
+        }
+        
         .menu-title { font-family: 'MulticraftCustom', monospace !important; color: #64f3e5; font-size: 1.2rem; margin: 0 0 20px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 14px; text-transform: uppercase; text-align: center; }
 
         /* Permanent Flat Leaderboard Rows */
@@ -39,16 +61,16 @@
         .row-rank-num { font-family: 'MulticraftCustom', monospace !important; font-size: 0.8rem; color: rgba(255, 255, 255, 0.25); width: 35px; text-align: center; }
         .roster-card-row.hidden { display: none !important; }
         
-        .roster-card-row.visible-rank-1 .row-rank-num { color: #ffd700; }
-        .roster-card-row.visible-rank-2 .row-rank-num { color: #c0c0c0; }
-        .roster-card-row.visible-rank-3 .row-rank-num { color: #cd7f32; }
+        .roster-card-row:nth-child(2) .row-rank-num { color: #ffd700; }
+        .roster-card-row:nth-child(3) .row-rank-num { color: #c0c0c0; }
+        .roster-card-row:nth-child(4) .row-rank-num { color: #cd7f32; }
         
         /* Player Info Blocks formatting */
-        .player-info-container { display: flex; align-items: center; width: 180px; gap: 8px; }
+        .player-info-container { display: flex; align-items: center; width: 180px; gap: 8px; flex-shrink: 0; }
         .row-player-name { font-family: 'MulticraftCustom', monospace !important; font-size: 0.85rem; font-weight: normal; color: #ffffff; text-transform: none !important; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .row-points-total { font-family: 'MulticraftCustom', monospace !important; font-size: 0.75rem; color: #ffd700; min-width: 95px; text-align: right; }
+        .row-points-total { font-family: 'MulticraftCustom', monospace !important; font-size: 0.75rem; color: #ffd700; min-width: 95px; text-align: right; flex-shrink: 0; }
 
-        .table-pill { font-size: 0.55rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; text-transform: uppercase; display: inline-block; font-family: 'Segoe UI', sans-serif; letter-spacing: 0.2px; }
+        .table-pill { font-size: 0.55rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; text-transform: uppercase; display: inline-block; font-family: 'Segoe UI', sans-serif; letter-spacing: 0.2px; flex-shrink: 0; }
         .pill-na { color: #5dade2; border: 1px solid rgba(93, 189, 226, 0.25); background: rgba(93, 189, 226, 0.04); }
         .pill-eu { color: #f4d03f; border: 1px solid rgba(244, 208, 63, 0.25); background: rgba(244, 208, 63, 0.04); }
         .pill-pc { color: #af7ac5; border: 1px solid rgba(175, 122, 197, 0.25); background: rgba(175, 122, 197, 0.04); }
@@ -56,7 +78,7 @@
         .pill-con { color: #e59866; border: 1px solid rgba(229, 152, 102, 0.25); background: rgba(229, 152, 102, 0.04); }
 
         /* --- HORIZONTAL KIT TIER INDICATOR SHOWCASE --- */
-        .player-kits-display { display: flex; gap: 6px; flex: 3; justify-content: flex-start; overflow-x: auto; padding: 2px 0; }
+        .player-kits-display { display: flex; gap: 6px; flex: 1; justify-content: flex-start; overflow-x: auto; padding: 2px 0; min-width: 0; }
         
         .tier-showcase-box {
             display: flex;
@@ -75,14 +97,14 @@
         .tier-showcase-box.cyan-border { border: 1px solid rgba(100, 243, 229, 0.4); color: #64f3e5; }
         .tier-showcase-box.purple-border { border: 1px solid rgba(175, 122, 197, 0.4); color: #af7ac5; }
 
-        /* REMOVING GREY BOXES: Re-rendered transparency pipeline via web-blends */
+        /* CLEAN CORE BLENDS: Vanishes box lines from weapon image sheet captures */
         .tier-showcase-box img {
             width: 22px;
             height: 22px;
             object-fit: contain;
             margin-bottom: 2px;
             background-color: transparent !important;
-            mix-blend-mode: color-dodge; /* Completely drops dark box textures so colors bounce over solid black backgrounds */
+            mix-blend-mode: color-dodge; /* Burns away dark backdrops perfectly against dark themes */
             filter: brightness(1.2) contrast(1.1);
         }
         .tier-showcase-box span {
@@ -92,7 +114,7 @@
             letter-spacing: -0.2px;
         }
 
-        /* --- NAVIGATION LINKS BAR --- */
+        /* --- STACKED KIT FILTER BAR LINK DECK --- */
         .kit-navbar {
             display: flex;
             flex-wrap: wrap;
@@ -105,6 +127,7 @@
             background: rgba(4, 11, 18, 0.3);
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.03);
+            box-sizing: border-box;
         }
 
         .kit-btn {
@@ -152,9 +175,17 @@
         }
         .kit-btn.active img { opacity: 1; transform: scale(1.08); }
 
-        /* Sidebar Elements */
-        .sidebar-wrapper-column { flex: 1; display: flex; flex-direction: column; gap: 15px; min-width: 240px; box-sizing: border-box; }
-        .sidebar-panel { background: rgba(4, 15, 25, 0.75); border: 1px solid rgba(86, 239, 170, 0.12); border-radius: 12px; padding: 18px; height: fit-content; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4); width: 100%; }
+        /* FIXED SIDEBAR STRUCTURE: Locked to exact column properties to prevent content collisions */
+        .sidebar-wrapper-column { 
+            flex: 1; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 15px; 
+            min-width: 260px; 
+            max-width: 320px;
+            box-sizing: border-box; 
+        }
+        .sidebar-panel { background: rgba(4, 15, 25, 0.75); border: 1px solid rgba(86, 239, 170, 0.12); border-radius: 12px; padding: 18px; height: fit-content; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4); width: 100%; box-sizing: border-box; }
         .sidebar-panel h3 { font-family: 'MulticraftCustom', monospace !important; color: #e67e22; font-size: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 10px; margin: 0 0 10px 0; text-align: center; text-transform: uppercase; }
         .points-legend-list { list-style: none; padding: 0; margin: 0; }
         .points-legend-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.04); font-size: 0.82rem; }
@@ -165,23 +196,6 @@
         .invite-title { font-family: 'MulticraftCustom', monospace !important; font-size: 0.6rem; color: rgba(255, 255, 255, 0.4); text-transform: uppercase; margin-bottom: 4px; }
         .invite-string { font-family: 'MulticraftCustom', monospace !important; font-size: 0.9rem; color: #56efaa; letter-spacing: 0.5px; }
 
-        @media (max-width: 950px) { .dashboard-layout-wrapper { flex-direction: column; } .sidebar-wrapper-column { width: 100%; } }
-    </style>
-</head>
-<body>
-
-    <!-- Centered Server Banner Image -->
-    <div class="logo-container">
-        <img src="logo.png" alt="Multicraft Server Banner">
-    </div>
-    
-    <!-- NAVIGATION DECK LINKS BAR -->
-    <div class="kit-navbar">
-        <button class="kit-btn active" onclick="filterKit('all', this)">
-            <img src="overall.png" alt="Overall" onerror="this.style.visibility='hidden'"> Overall
-        </button>
-        <button class="kit-btn" onclick="filterKit('emerald', this)">
-            <img src="Emerald.png" alt="Emerald"> Emerald
                 <!-- Player #7: kylaz9 (28 PTS) -->
                 <div class="roster-card-row" data-kits="all">
                     <div class="row-rank-num"></div>
@@ -331,7 +345,7 @@
             </div>
         </div> 
 
-        <!-- RIGHT SIDEBAR WINDOW BOUNDS -->
+        <!-- RIGHT SIDEBAR COLUMN MATRIX -->
         <div class="sidebar-wrapper-column">
             <!-- Invite Widget -->
             <div class="invite-badge-box">
@@ -339,7 +353,7 @@
                 <div class="invite-string">80B4K0DX</div>
             </div>
 
-            <!-- Points Legend Panel -->
+            <!-- Points Guide Weight Legend Box Panel -->
             <div class="sidebar-panel">
                 <h3>Tier Points System</h3>
                 <ul class="points-legend-list">
@@ -356,9 +370,9 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div> <!-- Closes .dashboard-layout-wrapper cleanly -->
 
-    <!-- JS ENGINE NAVIGATION MODULE -->
+    <!-- RE-RANKING FILTER JS SCRIPT ENGINE MODULE -->
     <script>
         function filterKit(kitName, btnElement) {
             document.querySelectorAll('.kit-btn').forEach(btn => btn.classList.remove('active'));
