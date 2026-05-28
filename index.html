@@ -16,7 +16,7 @@
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             margin: 0; 
-            padding: 30px 15px; 
+            padding: 20px 25px; 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
@@ -24,12 +24,31 @@
             color: #ffffff;
             min-height: 100vh; 
             box-sizing: border-box;
+            position: relative;
         }
         
-        .logo-container { max-width: 500px; width: 100%; margin-bottom: 25px; text-align: center; }
+        /* --- HIGH-VISIBILITY TOP RIGHT CORNER INVITE TOKEN BADGE --- */
+        .invite-badge-box { 
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            background: rgba(4, 15, 25, 0.85); 
+            border: 1px dashed #56efaa; 
+            border-radius: 6px; 
+            padding: 8px 14px; 
+            text-align: center; 
+            box-shadow: 0 4px 15px rgba(86, 239, 170, 0.1); 
+            z-index: 100;
+            width: fit-content;
+            box-sizing: border-box; 
+        }
+        .invite-title { font-family: 'MulticraftCustom', monospace !important; font-size: 0.5rem; color: rgba(255, 255, 255, 0.4); text-transform: uppercase; margin-bottom: 2px; }
+        .invite-string { font-family: 'MulticraftCustom', monospace !important; font-size: 0.8rem; color: #56efaa; letter-spacing: 0.5px; }
+
+        .logo-container { max-width: 500px; width: 100%; margin-bottom: 25px; text-align: center; margin-top: 10px; }
         .logo-container img { width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(100, 243, 229, 0.15); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6); }
         
-        /* THE ORIGINAL SIDE-BY-SIDE GRID: Locks the leaderboard panel left and side reference bars right */
+        /* THE ORIGINAL SIDE-BY-SIDE GRID: Locks the leaderboard panel left and side matrix right safely */
         .dashboard-layout-wrapper { 
             display: flex; 
             flex-direction: row; 
@@ -173,7 +192,7 @@
         }
         .kit-btn.active img { opacity: 1; transform: scale(1.08); }
 
-        /* RIGHT column sidebar REFERENCE MODULE CONTAINER */
+        /* SIDEBAR MATRIX NEXT TO PLAYER DASHBOARD COLUMN */
         .sidebar-wrapper-column { 
             flex: 1; 
             display: flex; 
@@ -187,15 +206,6 @@
         .sidebar-panel h3 { font-family: 'MulticraftCustom', monospace !important; color: #e67e22; font-size: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 10px; margin: 0 0 10px 0; text-align: center; text-transform: uppercase; }
         .points-legend-list { list-style: none; padding: 0; margin: 0; }
         .points-legend-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.04); font-size: 0.82rem; }
-        .points-legend-item span.tier-id-tag { font-family: 'MulticraftCustom', monospace !important; font-size: 0.65rem; color: #56efaa; }
-        .points-legend-item span.points-weight-tag { color: #e67e22; font-weight: 600; }
-
-        .invite-badge-box { background: rgba(4, 15, 25, 0.9); border: 1.5px dashed #56efaa; border-radius: 8px; padding: 10px 14px; text-align: center; box-shadow: 0 0 15px rgba(86, 239, 170, 0.15); margin-bottom: 15px; width: 100%; box-sizing: border-box; }
-        .invite-title { font-family: 'MulticraftCustom', monospace !important; font-size: 0.6rem; color: rgba(255, 255, 255, 0.4); text-transform: uppercase; margin-bottom: 4px; }
-        .invite-string { font-family: 'MulticraftCustom', monospace !important; font-size: 0.9rem; color: #56efaa; letter-spacing: 0.5px; }
-
-        @media (max-width: 950px) { .dashboard-layout-wrapper { flex-direction: column; } .sidebar-wrapper-column { max-width: 100%; width: 100%; } }
-    </style>
                 <!-- Player #1: vort3xYT (210 PTS) -->
                 <div class="roster-card-row" data-kits="all,dragonhide-kb,dragonhide,emerald" data-points="210">
                     <div class="row-rank-num">#1</div>
@@ -234,7 +244,7 @@
                     <div class="row-rank-num">#3</div>
                     <div class="player-info-container">
                         <span class="row-player-name">big_nub</span>
-                        <span class="table-pill pill-na">NA</span><span class="table-pill pill-pc">PC</span>
+                        <span class="table-pill pill-eu">EU</span><span class="table-pill pill-pc">PC</span>
                     </div>
                     <div class="player-kits-display">
                         <div class="tier-showcase-box cyan-border"><img src="Dragonhide_KB.png" alt="Dragonhide KB"><span>LT1</span></div>
@@ -330,15 +340,8 @@
             </div>
         </div> 
 
-        <!-- RIGHT SIDEBAR WINDOW BOUNDS -->
+        <!-- SHIFTED SIDEBAR MODULE: Now locks directly next to the player dashboard -->
         <div class="sidebar-wrapper-column">
-            <!-- Server Invite Token Card -->
-            <div class="invite-badge-box">
-                <div class="invite-title">Invite Code</div>
-                <div class="invite-string">80B4K0DX</div>
-            </div>
-
-            <!-- Tier Weight Point Reference Card -->
             <div class="sidebar-panel">
                 <h3>Tier Points System</h3>
                 <ul class="points-legend-list">
@@ -355,7 +358,7 @@
                 </ul>
             </div>
         </div>
-    </div> <!-- Closes dashboard layout wrapper smoothly -->
+    </div> <!-- Closes dashboard layout wrapper cleanly -->
 
     <!-- REAL-TIME INTERACTIVE FILTER ENGINE -->
     <script>
