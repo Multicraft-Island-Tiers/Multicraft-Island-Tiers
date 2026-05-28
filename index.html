@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multicraft Tiers | Roster Hub</title>
+    <title>MTC Tiers | Roster Hub</title>
     <style>
-        /* Load your exact font file extension locally */
+        /* Embeds your custom truetype font file */
         @font-face {
             font-family: 'MulticraftCustom';
             src: url('MultiCraftFont.ttf') format('truetype');
@@ -18,7 +18,7 @@
             margin: 0; 
             padding: 0; 
             background: #02070c;
-            /* Matches the rich galaxy gradient look with subtle space coloring */
+            /* Rich space galaxy gradient styling background bounds */
             background-image: radial-gradient(circle at 30% 50%, rgba(13, 38, 41, 0.6) 0%, rgba(2, 7, 12, 1) 70%),
                               radial-gradient(circle at 80% 40%, rgba(39, 13, 46, 0.4) 0%, rgba(2, 7, 12, 1) 100%);
             background-attachment: fixed;
@@ -30,7 +30,7 @@
             align-items: center;
         }
 
-        /* --- SCREEN HEADER DECK --- */
+        /* --- SCREEN HEADER LINKS NAVBAR --- */
         .top-global-header {
             width: 100%;
             display: flex;
@@ -55,7 +55,7 @@
             text-shadow: 0 0 8px rgba(100, 243, 229, 0.4);
         }
 
-        /* --- MAIN LAYOUT RESPONSIVE WRAPPER --- */
+        /* --- LAYOUT WRAPPER GRID CONTAINER --- */
         .dashboard-layout-wrapper { 
             display: flex; 
             flex-direction: column; 
@@ -65,7 +65,7 @@
             box-sizing: border-box;
         }
 
-        /* --- PRIMARY NAVIGATION FILTER BUTTONS BAR --- */
+        /* --- PRIMARY NAV FILTERS BLOCK --- */
         .kit-navbar {
             display: flex;
             flex-wrap: wrap;
@@ -82,7 +82,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
             background: rgba(4, 11, 18, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.05);
             color: rgba(255, 255, 255, 0.5);
@@ -104,7 +103,7 @@
             box-shadow: inset 0 0 8px rgba(255, 215, 0, 0.1), 0 0 10px rgba(255, 215, 0, 0.15);
         }
 
-        /* --- SECONDARY DROP-DOWN MATRIX SUB-NAVBAR --- */
+        /* --- DROP-DOWN SUB-FILTER CRITERIA SELECTION BAR --- */
         .sub-filter-bar {
             display: flex;
             justify-content: center;
@@ -112,6 +111,7 @@
             gap: 15px;
             width: 100%;
             margin-bottom: 30px;
+            flex-wrap: wrap;
         }
         .filter-label-text {
             font-family: 'MulticraftCustom', monospace !important;
@@ -136,7 +136,7 @@
             background-position: right 8px center;
         }
 
-        /* --- PREMIUM LEADERBOARD CARDS --- */
+        /* --- OVERALL CENTRIC LEADERBOARD MAIN SHEET --- */
         .main-content-panel { 
             width: 100%;
             display: flex; 
@@ -154,15 +154,16 @@
             box-sizing: border-box; 
             gap: 15px; 
             width: 100%; 
-            transition: border-color 0.2s ease, background 0.2s ease;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
         .roster-card-row:hover {
-            border-color: rgba(100, 243, 229, 0.15);
+            border-color: rgba(100, 243, 229, 0.25);
             background: rgba(4, 13, 24, 0.85);
         }
         .roster-card-row.hidden { display: none !important; }
 
-        /* --- RANK INDEX COLUMN --- */
+        /* --- VALUE METRIC TEXT PLACEMENT COLUMNS --- */
         .row-rank-num { 
             font-family: 'MulticraftCustom', monospace !important; 
             font-size: 1rem; 
@@ -172,7 +173,7 @@
             flex-shrink: 0;
         }
 
-        /* --- PLAYER PROFILE COMPONENT (Avatar Slots & Custom Font Setup) --- */
+        /* --- PLAYER PROFILE MODULE LAYOUTS --- */
         .player-info-container { display: flex; align-items: center; width: 220px; gap: 12px; flex-shrink: 0; }
         
         .player-avatar-box {
@@ -189,17 +190,16 @@
         .player-name-block { display: flex; flex-direction: column; gap: 2px; }
         .row-player-name { font-family: 'MulticraftCustom', monospace !important; font-size: 0.85rem; font-weight: normal; color: #ffffff; margin: 0; }
 
-        /* --- SYSTEM PILL DEVICE BADGES --- */
+        /* --- DEVICE CHANNELS PLATFORM PILLS --- */
         .device-badge-group { display: flex; gap: 5px; flex-shrink: 0; width: 75px; }
         .table-pill { font-size: 0.5rem; font-weight: bold; padding: 2px 5px; border-radius: 3px; text-transform: uppercase; display: inline-block; font-family: 'Segoe UI', sans-serif; letter-spacing: 0.5px; flex-shrink: 0; }
         .pill-na { color: #4facfe; border: 1px solid rgba(79, 172, 254, 0.2); background: rgba(79, 172, 254, 0.05); }
         .pill-eu { color: #fccb90; border: 1px solid rgba(252, 203, 144, 0.2); background: rgba(252, 203, 144, 0.05); }
-        .pill-as { color: #e14eca; border: 1px solid rgba(225, 78, 202, 0.2); background: rgba(225, 78, 202, 0.05); }
         .pill-pc { color: #00f2fe; border: 1px solid rgba(0, 242, 254, 0.2); background: rgba(0, 242, 254, 0.05); }
         .pill-mob { color: #45f545; border: 1px solid rgba(69, 245, 69, 0.2); background: rgba(69, 245, 69, 0.05); }
         .pill-con { color: #ff9900; border: 1px solid rgba(255, 153, 0, 0.2); background: rgba(255, 153, 0, 0.05); }
 
-        /* --- PREMIUM NO-SCROLL WEAPON GRID PANELS --- */
+        /* --- NO-SCROLL INTEGRATED KIT SHOWCASE PANELS --- */
         .player-kits-display { 
             display: flex; 
             gap: 6px; 
@@ -224,8 +224,8 @@
         }
         .tier-showcase-box.green-border { border: 1px solid rgba(85, 255, 85, 0.35); color: #55ff55; }
         .tier-showcase-box.cyan-border { border: 1px solid rgba(85, 255, 255, 0.35); color: #55ffff; }
+        .tier-showcase-box.purple-border { border: 1px solid rgba(175, 122, 197, 0.35); color: #af7ac5; }
         .tier-showcase-box.orange-border { border: 1px solid rgba(255, 170, 0, 0.35); color: #ffaa00; }
-        .tier-showcase-box.red-border { border: 1px solid rgba(255, 85, 85, 0.35); color: #ff5555; }
 
         .tier-showcase-box img {
             width: 18px;
@@ -233,7 +233,7 @@
             object-fit: contain;
             margin-bottom: 2px;
             background: transparent !important;
-            mix-blend-mode: color-dodge; /* Burns away raw backdrop boxes cleanly */
+            mix-blend-mode: color-dodge; /* Completely drops gray weapon bounding squares */
             filter: brightness(1.2) contrast(1.15);
         }
         .tier-showcase-box span {
@@ -242,7 +242,7 @@
             text-transform: uppercase;
         }
 
-        /* --- PREMIUM SCORE INDICATOR CAPSULE --- */
+        /* --- PREMIUM CAPSULE POINTS BADGES --- */
         .row-points-total { 
             font-family: 'MulticraftCustom', monospace !important; 
             font-size: 0.75rem; 
@@ -256,8 +256,11 @@
             gap: 8px;
         }
         .points-capsule-badge {
-                <!-- Player #1: vort3xYT (270 PTS) -->
-                <div class="roster-card-row" data-kits="all,dragonhide-kb,dragonhide,emerald">
+            background: rgba(255, 215, 0, 0.08);
+            border: 1px solid rgba(255, 215, 0, 0.25);
+            padding: 4px 8px;
+                <!-- Player #1: vort3xYT (100 PTS) -->
+                <div class="roster-card-row" data-kits="all,dragonhide-kb,dragonhide,emerald" data-status="active" data-points="100" onclick="openPlayerModal('vort3xYT', '100 PTS', { 'Dragonhide KB': 'HT2 (30 Pts)', 'Emerald': 'HT2 (30 Pts)', 'Dragonhide': 'LT2 (20 Pts)', 'Emerald KB': 'LT2 (20 Pts)' })">
                     <div class="row-rank-num">#1</div>
                     <div class="player-info-container">
                         <div class="player-avatar-box">
@@ -276,11 +279,11 @@
                         <div class="tier-showcase-box cyan-border"><img src="Dragonhide.png" alt="Dragonhide"><span>LT2</span></div>
                         <div class="tier-showcase-box cyan-border"><img src="Emerald.png" alt="Emerald"><span>LT2</span></div>
                     </div>
-                    <div class="row-points-total"><span class="points-capsule-badge">270 PTS</span></div>
+                    <div class="row-points-total"><span class="points-capsule-badge">100 PTS</span></div>
                 </div>
 
-                <!-- Player #2: Husky_Multicraft (230 PTS) -->
-                <div class="roster-card-row" data-kits="all,dragonhide-kb,diamond,emerald,dragonhide,emerald-kb">
+                <!-- Player #2: Husky_Multicraft (72 PTS) -->
+                <div class="roster-card-row" data-kits="all,dragonhide-kb,diamond,emerald,dragonhide,emerald-kb" data-status="active" data-points="72" onclick="openPlayerModal('Husky_Multicraft', '72 PTS', { 'Dragonhide KB': 'HT3 (12 Pts)', 'Diamond': 'HT3 (12 Pts)', 'Emerald': 'LT2 (20 Pts)', 'Dragonhide': 'LT2 (20 Pts)', 'Emerald KB': 'LT3 (8 Pts)' })">
                     <div class="row-rank-num">#2</div>
                     <div class="player-info-container">
                         <div class="player-avatar-box">
@@ -295,16 +298,16 @@
                     </div>
                     <div class="player-kits-display">
                         <div class="tier-showcase-box purple-border"><img src="Dragonhide_KB.png" alt="Dragonhide KB"><span>HT3</span></div>
-                        <div class="tier-showcase-box cyan-border"><img src="Dragonhide.png" alt="Dragonhide"><span>LT2</span></div>
-                        <div class="tier-showcase-box cyan-border"><img src="Emerald.png" alt="Emerald"><span>LT2</span></div>
-                        <div class="tier-showcase-box purple-border"><img src="Emerald_KB.png" alt="Emerald KB"><span>LT3</span></div>
                         <div class="tier-showcase-box purple-border"><img src="Diamond.png" alt="Diamond"><span>HT3</span></div>
+                        <div class="tier-showcase-box cyan-border"><img src="Emerald.png" alt="Emerald"><span>LT2</span></div>
+                        <div class="tier-showcase-box cyan-border"><img src="Dragonhide.png" alt="Dragonhide"><span>LT2</span></div>
+                        <div class="tier-showcase-box purple-border"><img src="Emerald_KB.png" alt="Emerald KB"><span>LT3</span></div>
                     </div>
-                    <div class="row-points-total"><span class="points-capsule-badge">230 PTS</span></div>
+                    <div class="row-points-total"><span class="points-capsule-badge">72 PTS</span></div>
                 </div>
 
-                <!-- Player #3: Herobrine (110 PTS) -->
-                <div class="roster-card-row" data-kits="all,dragonhide-kb,dragonhide,emerald,diamond">
+                <!-- Player #3: Herobrine (26 PTS) -->
+                <div class="roster-card-row" data-kits="all,dragonhide-kb,dragonhide,emerald,diamond" data-status="active" data-points="26" onclick="openPlayerModal('Herobrine', '26 PTS', { 'Dragonhide KB': 'LT3 (8 Pts)', 'Dragonhide': 'HT4 (5 Pts)', 'Emerald': 'LT3 (8 Pts)', 'Diamond': 'HT4 (5 Pts)' })">
                     <div class="row-rank-num">#3</div>
                     <div class="player-info-container">
                         <div class="player-avatar-box">
@@ -319,15 +322,15 @@
                     </div>
                     <div class="player-kits-display">
                         <div class="tier-showcase-box purple-border"><img src="Dragonhide_KB.png" alt="Dragonhide KB"><span>LT3</span></div>
-                        <div class="tier-showcase-box green-border"><img src="Dragonhide.png" alt="Dragonhide"><span>HT4</span></div>
+                        <div class="tier-showcase-box orange-border"><img src="Dragonhide.png" alt="Dragonhide"><span>HT4</span></div>
                         <div class="tier-showcase-box purple-border"><img src="Emerald.png" alt="Emerald"><span>LT3</span></div>
-                        <div class="tier-showcase-box green-border"><img src="Diamond.png" alt="Diamond"><span>HT4</span></div>
+                        <div class="tier-showcase-box orange-border"><img src="Diamond.png" alt="Diamond"><span>HT4</span></div>
                     </div>
-                    <div class="row-points-total"><span class="points-capsule-badge">110 PTS</span></div>
+                    <div class="row-points-total"><span class="points-capsule-badge">26 PTS</span></div>
                 </div>
 
-                <!-- Player #4: Prologozrock (93 PTS) -->
-                <div class="roster-card-row" data-kits="all,dragonhide-kb,dragonhide,emerald,emerald-kb,diamond">
+                <!-- Player #4: Prologozrock (57 PTS) -->
+                <div class="roster-card-row" data-kits="all,dragonhide-kb,dragonhide,emerald,emerald-kb,diamond" data-status="active" data-points="57" onclick="openPlayerModal('Prologozrock', '57 PTS', { 'Dragonhide KB': 'LT4 (3 Pts)', 'Dragonhide': 'LT4 (3 Pts)', 'Emerald': 'LT3 (8 Pts)', 'Emerald KB': 'HT5 (2 Pts)', 'Diamond': 'HT4 (5 Pts)' })">
                     <div class="row-rank-num">#4</div>
                     <div class="player-info-container">
                         <div class="player-avatar-box">
@@ -341,17 +344,17 @@
                         <span class="table-pill pill-na">NA</span><span class="table-pill pill-pc">MK</span>
                     </div>
                     <div class="player-kits-display">
-                        <div class="tier-showcase-box cyan-border"><img src="Dragonhide_KB.png" alt="Dragonhide KB"><span>LT4</span></div>
-                        <div class="tier-showcase-box cyan-border"><img src="Dragonhide.png" alt="Dragonhide"><span>LT4</span></div>
+                        <div class="tier-showcase-box orange-border"><img src="Dragonhide_KB.png" alt="Dragonhide KB"><span>LT4</span></div>
+                        <div class="tier-showcase-box orange-border"><img src="Dragonhide.png" alt="Dragonhide"><span>LT4</span></div>
                         <div class="tier-showcase-box purple-border"><img src="Emerald.png" alt="Emerald"><span>LT3</span></div>
-                        <div class="tier-showcase-box green-border"><img src="Emerald_KB.png" alt="Emerald KB"><span>HT5</span></div>
-                        <div class="tier-showcase-box green-border"><img src="Diamond.png" alt="Diamond"><span>HT4</span></div>
+                        <div class="tier-showcase-box orange-border"><img src="Emerald_KB.png" alt="Emerald KB"><span>HT5</span></div>
+                        <div class="tier-showcase-box orange-border"><img src="Diamond.png" alt="Diamond"><span>HT4</span></div>
                     </div>
-                    <div class="row-points-total"><span class="points-capsule-badge">93 PTS</span></div>
+                    <div class="row-points-total"><span class="points-capsule-badge">57 PTS</span></div>
                 </div>
 
-                <!-- Player #5: Parrot (81 PTS) -->
-                <div class="roster-card-row" data-kits="all,dragonhide-kb,dragonhide,emerald,emerald-kb,diamond">
+                <!-- Player #5: Parrot (61 PTS) -->
+                <div class="roster-card-row" data-kits="all,dragonhide-kb,dragonhide,emerald,emerald-kb,diamond" data-status="active" data-points="61" onclick="openPlayerModal('Parrot', '61 PTS', { 'Dragonhide KB': 'HT4 (5 Pts)', 'Dragonhide': 'HT4 (5 Pts)', 'Emerald': 'HT5 (2 Pts)', 'Emerald KB': 'HT5 (2 Pts)', 'Diamond': 'LT4 (3 Pts)' })">
                     <div class="row-rank-num">#5</div>
                     <div class="player-info-container">
                         <div class="player-avatar-box">
@@ -365,38 +368,21 @@
                         <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">TP</span>
                     </div>
                     <div class="player-kits-display">
-                        <div class="tier-showcase-box green-border"><img src="Dragonhide_KB.png" alt="Dragonhide KB"><span>HT4</span></div>
-                        <div class="tier-showcase-box green-border"><img src="Dragonhide.png" alt="Dragonhide"><span>HT4</span></div>
-                        <div class="tier-showcase-box green-border"><img src="Emerald.png" alt="Emerald"><span>HT5</span></div>
-                        <div class="tier-showcase-box green-border"><img src="Emerald_KB.png" alt="Emerald KB"><span>HT5</span></div>
-                        <div class="tier-showcase-box cyan-border"><img src="Diamond.png" alt="Diamond"><span>LT4</span></div>
+                        <div class="tier-showcase-box orange-border"><img src="Dragonhide_KB.png" alt="Dragonhide KB"><span>HT4</span></div>
+                        <div class="tier-showcase-box orange-border"><img src="Dragonhide.png" alt="Dragonhide"><span>HT4</span></div>
+                        <div class="tier-showcase-box orange-border"><img src="Emerald.png" alt="Emerald"><span>HT5</span></div>
+                        <div class="tier-showcase-box orange-border"><img src="Emerald_KB.png" alt="Emerald KB"><span>HT5</span></div>
+                        <div class="tier-showcase-box orange-border"><img src="Diamond.png" alt="Diamond"><span>LT4</span></div>
                     </div>
-                    <div class="row-points-total"><span class="points-capsule-badge">81 PTS</span></div>
+                    <div class="row-points-total"><span class="points-capsule-badge">61 PTS</span></div>
                 </div>
 
-                <!-- Player #6: Server_pvp (71 PTS) -->
-                <div class="roster-card-row" data-kits="all,emerald,emerald-kb,dragonhide,dragonhide-kb,diamond">
+                <!-- Player #6: Server_pvp (25 PTS) -->
+                <div class="roster-card-row" data-kits="all,emerald,emerald-kb,dragonhide,dragonhide-kb,diamond" data-status="active" data-points="25" onclick="openPlayerModal('Server_pvp', '25 PTS', { 'Emerald': 'HT5 (2 Pts)', 'Emerald KB': 'HT5 (2 Pts)', 'Dragonhide': 'LT4 (3 Pts)', 'Dragonhide KB': 'LT4 (3 Pts)', 'Diamond': 'HT4 (5 Pts)' })">
                     <div class="row-rank-num">#6</div>
                     <div class="player-info-container">
-                        <div class="player-avatar-box">
-                            <img src="Server_pvp_head.png" alt="Server_pvp" onerror="this.src='steve.png'">
-                        </div>
-                        <div class="player-name-block">
-                            <p class="row-player-name">Server_pvp</p>
-                        </div>
-                    </div>
-                    <div class="device-badge-group">
-                        <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">MOB</span>
-                    </div>
-                    <div class="player-kits-display">
-                        <div class="tier-showcase-box green-border"><img src="Emerald.png" alt="Emerald"><span>HT5</span></div>
-                        <div class="tier-showcase-box green-border"><img src="Emerald_KB.png" alt="Emerald KB"><span>HT5</span></div>
-                        <div class="tier-showcase-box cyan-border"><img src="Dragonhide.png" alt="Dragonhide"><span>LT4</span></div>
-                        <div class="tier-showcase-box cyan-border"><img src="Dragonhide_KB.png" alt="Dragonhide KB"><span>LT4</span></div>
-                        <div class="tier-showcase-box green-border"><img src="Diamond.png" alt="Diamond"><span>HT4</span></div>
-                    </div>
-                <!-- Player #7: kylaz9 (25 PTS) -->
-                <div class="roster-card-row" data-kits="all,dragonhide,emerald-kb,dragonhide-kb,emerald,diamond">
+                <!-- Player #7: kylaz9 (7 PTS) -->
+                <div class="roster-card-row" data-kits="all,dragonhide,emerald-kb,dragonhide-kb,emerald,diamond" data-status="active" data-points="7" onclick="openPlayerModal('kylaz9', '7 PTS', { 'Dragonhide': 'HT5 (2 Pts)', 'Emerald KB': 'HT5 (2 Pts)', 'Dragonhide KB': 'LT5 (1 Pt)', 'Emerald': 'LT5 (1 Pt)', 'Diamond': 'LT5 (1 Pt)' })">
                     <div class="row-rank-num">#7</div>
                     <div class="player-info-container">
                         <div class="player-avatar-box">
@@ -416,11 +402,11 @@
                         <div class="tier-showcase-box orange-border"><img src="Emerald.png" alt="Emerald"><span>LT5</span></div>
                         <div class="tier-showcase-box orange-border"><img src="Diamond.png" alt="Diamond"><span>LT5</span></div>
                     </div>
-                    <div class="row-points-total"><span class="points-capsule-badge">25 PTS</span></div>
+                    <div class="row-points-total"><span class="points-capsule-badge">7 PTS</span></div>
                 </div>
 
-                <!-- Player #8: Jamier1235 (15 PTS) -->
-                <div class="roster-card-row" data-kits="all,dragonhide,emerald,dragonhide-kb,emerald-kb,diamond">
+                <!-- Player #8: Jamier1235 (5 PTS) -->
+                <div class="roster-card-row" data-kits="all,dragonhide,emerald,dragonhide-kb,emerald-kb,diamond" data-status="active" data-points="5" onclick="openPlayerModal('Jamier1235', '5 PTS', { 'Dragonhide': 'LT5 (1 Pt)', 'Emerald': 'LT5 (1 Pt)', 'Dragonhide KB': 'LT5 (1 Pt)', 'Emerald KB': 'LT5 (1 Pt)', 'Diamond': 'LT5 (1 Pt)' })">
                     <div class="row-rank-num">#8</div>
                     <div class="player-info-container">
                         <div class="player-avatar-box">
@@ -440,11 +426,11 @@
                         <div class="tier-showcase-box orange-border"><img src="Emerald_KB.png" alt="Emerald KB"><span>LT5</span></div>
                         <div class="tier-showcase-box orange-border"><img src="Diamond.png" alt="Diamond"><span>LT5</span></div>
                     </div>
-                    <div class="row-points-total"><span class="points-capsule-badge">15 PTS</span></div>
+                    <div class="row-points-total"><span class="points-capsule-badge">5 PTS</span></div>
                 </div>
 
-                <!-- Player #9: aaa666 (15 PTS) -->
-                <div class="roster-card-row" data-kits="all,dragonhide,emerald,dragonhide-kb,emerald-kb,diamond">
+                <!-- Player #9: aaa666 (5 PTS) -->
+                <div class="roster-card-row" data-kits="all,dragonhide,emerald,dragonhide-kb,emerald-kb,diamond" data-status="active" data-points="5" onclick="openPlayerModal('aaa666', '5 PTS', { 'Dragonhide': 'LT5 (1 Pt)', 'Emerald': 'LT5 (1 Pt)', 'Dragonhide KB': 'LT5 (1 Pt)', 'Emerald KB': 'LT5 (1 Pt)', 'Diamond': 'LT5 (1 Pt)' })">
                     <div class="row-rank-num">#9</div>
                     <div class="player-info-container">
                         <div class="player-avatar-box">
@@ -464,11 +450,11 @@
                         <div class="tier-showcase-box orange-border"><img src="Emerald_KB.png" alt="Emerald KB"><span>LT5</span></div>
                         <div class="tier-showcase-box orange-border"><img src="Diamond.png" alt="Diamond"><span>LT5</span></div>
                     </div>
-                    <div class="row-points-total"><span class="points-capsule-badge">15 PTS</span></div>
+                    <div class="row-points-total"><span class="points-capsule-badge">5 PTS</span></div>
                 </div>
 
-                <!-- Player #10: Benjamin (15 PTS) -->
-                <div class="roster-card-row" data-kits="all,dragonhide,emerald,dragonhide-kb,emerald-kb,diamond">
+                <!-- Player #10: Benjamin (5 PTS) -->
+                <div class="roster-card-row" data-kits="all,dragonhide,emerald,dragonhide-kb,emerald-kb,diamond" data-status="active" data-points="5" onclick="openPlayerModal('Benjamin', '5 PTS', { 'Dragonhide': 'LT5 (1 Pt)', 'Emerald': 'LT5 (1 Pt)', 'Dragonhide KB': 'LT5 (1 Pt)', 'Emerald KB': 'LT5 (1 Pt)', 'Diamond': 'LT5 (1 Pt)' })">
                     <div class="row-rank-num">#10</div>
                     <div class="player-info-container">
                         <div class="player-avatar-box">
@@ -488,11 +474,11 @@
                         <div class="tier-showcase-box orange-border"><img src="Emerald_KB.png" alt="Emerald KB"><span>LT5</span></div>
                         <div class="tier-showcase-box orange-border"><img src="Diamond.png" alt="Diamond"><span>LT5</span></div>
                     </div>
-                    <div class="row-points-total"><span class="points-capsule-badge">15 PTS</span></div>
+                    <div class="row-points-total"><span class="points-capsule-badge">5 PTS</span></div>
                 </div>
 
-                <!-- Player #11: Booky (15 PTS) -->
-                <div class="roster-card-row" data-kits="all,dragonhide,emerald,dragonhide-kb,emerald-kb,diamond">
+                <!-- Player #11: Booky (5 PTS) -->
+                <div class="roster-card-row" data-kits="all,dragonhide,emerald,dragonhide-kb,emerald-kb,diamond" data-status="active" data-points="5" onclick="openPlayerModal('Booky', '5 PTS', { 'Dragonhide': 'LT5 (1 Pt)', 'Emerald': 'LT5 (1 Pt)', 'Dragonhide KB': 'LT5 (1 Pt)', 'Emerald KB': 'LT5 (1 Pt)', 'Diamond': 'LT5 (1 Pt)' })">
                     <div class="row-rank-num">#11</div>
                     <div class="player-info-container">
                         <div class="player-avatar-box">
@@ -512,29 +498,12 @@
                         <div class="tier-showcase-box orange-border"><img src="Emerald_KB.png" alt="Emerald KB"><span>LT5</span></div>
                         <div class="tier-showcase-box orange-border"><img src="Diamond.png" alt="Diamond"><span>LT5</span></div>
                     </div>
-                    <div class="row-points-total"><span class="points-capsule-badge">15 PTS</span></div>
+                    <div class="row-points-total"><span class="points-capsule-badge">5 PTS</span></div>
                 </div>
 
-                <!-- Player #12: Taxbird (15 PTS) -->
-                <div class="roster-card-row" data-kits="all,dragonhide,emerald,dragonhide-kb,emerald-kb,diamond">
-                    <div class="row-rank-num">#12</div>
-                    <div class="player-info-container">
-                        <div class="player-avatar-box">
-                            <img src="Taxbird_head.png" alt="Taxbird" onerror="this.src='steve.png'">
-                        </div>
-                        <div class="player-name-block">
-                            <p class="row-player-name">Taxbird</p>
-                        </div>
-                    </div>
-                    <div class="device-badge-group">
-                        <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">MOB</span>
-                    </div>
-                    <div class="player-kits-display">
-                        <div class="tier-showcase-box orange-border"><img src="Dragonhide.png" alt="Dragonhide"><span>LT5</span></div>
-                        <div class="tier-showcase-box orange-border"><img src="Emerald.png" alt="Emerald"><span>LT5</span></div>
-                        <div class="tier-showcase-box orange-border"><img src="Dragonhide_KB.png" alt="Dragonhide KB"><span>LT5</span></div>
-                <!-- Player #13: Halo117 (9 PTS) -->
-                <div class="roster-card-row" data-kits="all,emerald,dragonhide,dragonhide-kb">
+                <!-- Player #12: Taxbird (5 PTS) -->
+                <!-- Player #13: Halo117 (3 PTS) -->
+                <div class="roster-card-row" data-kits="all,emerald,dragonhide,dragonhide-kb" data-status="active" data-points="3" onclick="openPlayerModal('Halo117', '3 PTS', { 'Emerald': 'LT5 (1 Pt)', 'Dragonhide': 'LT5 (1 Pt)', 'Dragonhide KB': 'LT5 (1 Pt)' })">
                     <div class="row-rank-num">#13</div>
                     <div class="player-info-container">
                         <div class="player-avatar-box">
@@ -552,11 +521,11 @@
                         <div class="tier-showcase-box orange-border"><img src="Dragonhide.png" alt="Dragonhide"><span>LT5</span></div>
                         <div class="tier-showcase-box orange-border"><img src="Dragonhide_KB.png" alt="Dragonhide KB"><span>LT5</span></div>
                     </div>
-                    <div class="row-points-total"><span class="points-capsule-badge">9 PTS</span></div>
+                    <div class="row-points-total"><span class="points-capsule-badge">3 PTS</span></div>
                 </div>
 
-                <!-- Player #14: New_guy (9 PTS) -->
-                <div class="roster-card-row" data-kits="all,dragonhide,dragonhide-kb,diamond">
+                <!-- Player #14: New_guy (3 PTS) -->
+                <div class="roster-card-row" data-kits="all,dragonhide,dragonhide-kb,diamond" data-status="active" data-points="3" onclick="openPlayerModal('New_guy', '3 PTS', { 'Dragonhide': 'LT5 (1 Pt)', 'Dragonhide KB': 'LT5 (1 Pt)', 'Diamond': 'LT5 (1 Pt)' })">
                     <div class="row-rank-num">#14</div>
                     <div class="player-info-container">
                         <div class="player-avatar-box">
@@ -574,11 +543,11 @@
                         <div class="tier-showcase-box orange-border"><img src="Dragonhide_KB.png" alt="Dragonhide KB"><span>LT5</span></div>
                         <div class="tier-showcase-box orange-border"><img src="Diamond.png" alt="Diamond"><span>LT5</span></div>
                     </div>
-                    <div class="row-points-total"><span class="points-capsule-badge">9 PTS</span></div>
+                    <div class="row-points-total"><span class="points-capsule-badge">3 PTS</span></div>
                 </div>
 
-                <!-- Player #15: grant (9 PTS) -->
-                <div class="roster-card-row" data-kits="all,dragonhide,dragonhide-kb,diamond">
+                <!-- Player #15: grant (3 PTS) -->
+                <div class="roster-card-row" data-kits="all,dragonhide,dragonhide-kb,diamond" data-status="active" data-points="3" onclick="openPlayerModal('grant', '3 PTS', { 'Dragonhide': 'LT5 (1 Pt)', 'Dragonhide KB': 'LT5 (1 Pt)', 'Diamond': 'LT5 (1 Pt)' })">
                     <div class="row-rank-num">#15</div>
                     <div class="player-info-container">
                         <div class="player-avatar-box">
@@ -596,11 +565,11 @@
                         <div class="tier-showcase-box orange-border"><img src="Dragonhide_KB.png" alt="Dragonhide KB"><span>LT5</span></div>
                         <div class="tier-showcase-box orange-border"><img src="Diamond.png" alt="Diamond"><span>LT5</span></div>
                     </div>
-                    <div class="row-points-total"><span class="points-capsule-badge">9 PTS</span></div>
+                    <div class="row-points-total"><span class="points-capsule-badge">3 PTS</span></div>
                 </div>
 
-                <!-- Player #16: Hamude_VIP (8 PTS) -->
-                <div class="roster-card-row" data-kits="all,emerald-kb">
+                <!-- Player #16: Hamude_VIP (2 PTS) -->
+                <div class="roster-card-row" data-kits="all,emerald-kb" data-status="active" data-points="2" onclick="openPlayerModal('Hamude_VIP', '2 PTS', { 'Emerald KB': 'HT5 (2 Pts)' })">
                     <div class="row-rank-num">#16</div>
                     <div class="player-info-container">
                         <div class="player-avatar-box">
@@ -616,71 +585,79 @@
                     <div class="player-kits-display">
                         <div class="tier-showcase-box cyan-border"><img src="Emerald_KB.png" alt="Emerald KB"><span>HT5</span></div>
                     </div>
-                    <div class="row-points-total"><span class="points-capsule-badge">8 PTS</span></div>
+                    <div class="row-points-total"><span class="points-capsule-badge">2 PTS</span></div>
                 </div>
             </div>
         </div> 
 
-        <!-- RIGHT COLUMN SIDEBAR WIDGET PANELS -->
+        <!-- RIGHT SIDEBAR WINDOW BOUNDS -->
         <div class="sidebar-wrapper-column">
-            <!-- Server Invite Token Card -->
+            <!-- Invite Code Badge Box Container -->
             <div class="invite-badge-box">
                 <div class="invite-title">Invite Code</div>
                 <div class="invite-string">80B4K0DX</div>
             </div>
 
-            <!-- Tier Weight Point Reference Card -->
+            <!-- Tier Weight Point Cards Reference Matrix -->
             <div class="sidebar-panel">
                 <h3>Tier Points System</h3>
                 <ul class="points-legend-list">
-                    <li class="points-legend-item"><span class="tier-id-tag">HT1</span><span class="points-weight-tag">100 Pts</span></li>
-                    <li class="points-legend-item"><span class="tier-id-tag">LT1</span><span class="points-weight-tag">85 Pts</span></li>
-                    <li class="points-legend-item"><span class="tier-id-tag">HT2</span><span class="points-weight-tag">75 Pts</span></li>
-                    <li class="points-legend-item"><span class="tier-id-tag">LT2</span><span class="points-weight-tag">60 Pts</span></li>
-                    <li class="points-legend-item"><span class="tier-id-tag">HT3</span><span class="points-weight-tag">40 Pts</span></li>
-                    <li class="points-legend-item"><span class="tier-id-tag">LT3</span><span class="points-weight-tag">30 Pts</span></li>
-                    <li class="points-legend-item"><span class="tier-id-tag">HT4</span><span class="points-weight-tag">25 Pts</span></li>
-                    <li class="points-legend-item"><span class="tier-id-tag">LT4</span><span class="points-weight-tag">15 Pts</span></li>
-                    <li class="points-legend-item"><span class="tier-id-tag">HT5</span><span class="points-weight-tag">8 Pts</span></li>
-                    <li class="points-legend-item"><span class="tier-id-tag">LT5</span><span class="points-weight-tag">3 Pts</span></li>
+                    <li class="points-legend-item"><span class="tier-id-tag">HT1</span><span class="points-weight-tag">50 Pts</span></li>
+                    <li class="points-legend-item"><span class="tier-id-tag">LT1</span><span class="points-weight-tag">40 Pts</span></li>
+                    <li class="points-legend-item"><span class="tier-id-tag">HT2</span><span class="points-weight-tag">30 Pts</span></li>
+                    <li class="points-legend-item"><span class="tier-id-tag">LT2</span><span class="points-weight-tag">20 Pts</span></li>
+                    <li class="points-legend-item"><span class="tier-id-tag">HT3</span><span class="points-weight-tag">12 Pts</span></li>
+                    <li class="points-legend-item"><span class="tier-id-tag">LT3</span><span class="points-weight-tag">8 Pts</span></li>
+                    <li class="points-legend-item"><span class="tier-id-tag">HT4</span><span class="points-weight-tag">5 Pts</span></li>
+                    <li class="points-legend-item"><span class="tier-id-tag">LT4</span><span class="points-weight-tag">3 Pts</span></li>
+                    <li class="points-legend-item"><span class="tier-id-tag">HT5</span><span class="points-weight-tag">2 Pts</span></li>
+                    <li class="points-legend-item"><span class="tier-id-tag">LT5</span><span class="points-weight-tag">1 Pt</span></li>
                 </ul>
             </div>
         </div>
-    </div> <!-- Closes dashboard layout wrapper smoothly -->
+    </div> <!-- Closes .dashboard-layout-wrapper cleanly -->
 
-    <!-- REAL-TIME INTERACTIVE FILTER ENGINE -->
+    <!-- BACKGROUND POPUP CARD STRUCTURE CONTAINER -->
+    <div class="info-modal-backdrop" id="playerModal" onclick="closePlayerModal(event)">
+        <div class="info-modal-card">
+            <button class="close-modal-btn" onclick="closePlayerModalForce()">✕</button>
+            <h3 class="modal-player-name" id="modalName">Player Name</h3>
+            <p class="modal-points-text" id="modalPoints">0 PTS</p>
+            <div class="modal-kits-grid" id="modalKitsGrid">
+                <!-- Appended rows slide in via JS dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- DYNAMIC INTERACTIVE CORE ENGINE -->
     <script>
-        function filterKit(kitName, btnElement) {
-            document.querySelectorAll('.kit-btn').forEach(btn => btn.classList.remove('active'));
-            btnElement.classList.add('active');
+        let currentKitFilter = 'all';
 
-            const titleElement = document.getElementById('leaderboard-title');
-            titleElement.innerText = kitName === 'all' ? 'Overall Leaderboard' : kitName.replace('-', ' ') + ' Leaderboard';
-
-            const rows = Array.from(document.querySelectorAll('.roster-card-row'));
-            let visibleRankCounter = 1;
-
-            rows.forEach(row => {
-                row.classList.remove('visible-rank-1', 'visible-rank-2', 'visible-rank-3', 'hidden');
-                const connectedKits = row.getAttribute('data-kits').split(',');
-
-                if (kitName === 'all' || connectedKits.includes(kitName)) {
-                    row.querySelector('.row-rank-num').innerText = "#" + visibleRankCounter;
-                    
-                    if (visibleRankCounter === 1) row.classList.add('visible-rank-1');
-                    if (visibleRankCounter === 2) row.classList.add('visible-rank-2');
-                    if (visibleRankCounter === 3) row.classList.add('visible-rank-3');
-                    
-                    visibleRankCounter++;
-                } else {
-                    row.classList.add('hidden');
-                }
-            });
+        function openPlayerModal(name, points, kitsObj) {
+            document.getElementById('modalName').innerText = name;
+            document.getElementById('modalPoints').innerText = points;
+            
+            const gridContainer = document.getElementById('modalKitsGrid');
+            gridContainer.innerHTML = '';
+            
+            for (const [kit, tier] of Object.entries(kitsObj)) {
+                const row = document.createElement('div');
+                row.className = 'modal-kit-row';
+                row.innerHTML = `<span>${kit}</span><span class="tier-val">${tier}</span>`;
+                gridContainer.appendChild(row);
+            }
+            
+            document.getElementById('playerModal').classList.add('active');
         }
 
-        document.addEventListener("DOMContentLoaded", () => {
-            filterKit('all', document.querySelector('.kit-btn.active'));
-        });
-    </script>
-</body>
-</html>
+        function closePlayerModal(e) {
+            if (e.target.id === 'playerModal') {
+                document.getElementById('playerModal').classList.remove('active');
+            }
+        }
+
+        function closePlayerModalForce() {
+            document.getElementById('playerModal').classList.remove('active');
+        }
+
+        function filterKit(kitName, btnElement) {
