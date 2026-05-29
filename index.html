@@ -149,7 +149,7 @@
         .kit-btn:hover { color: #64f3e5; border-color: rgba(100, 243, 229, 0.4); }
         .kit-btn.active { color: #64f3e5; border-color: #64f3e5; background: rgba(100, 243, 229, 0.12); box-shadow: 0 0 10px rgba(100, 243, 229, 0.2); }
 
-        /* INTEGRATED HORIZONTAL MATRICES BLOCKS */
+        /* INTEGRATED FOOTER MODULE */
         .sidebar-panel { background: rgba(4, 15, 25, 0.75); border: 1px solid rgba(86, 239, 170, 0.12); border-radius: 12px; padding: 18px; margin-top: 20px; width: 100%; box-sizing: border-box; }
         .sidebar-panel h3 { font-family: 'MulticraftCustom', monospace !important; color: #e67e22; font-size: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 10px; margin: 0 0 10px 0; text-align: center; text-transform: uppercase; }
         .points-legend-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; width: 100%; padding: 0; margin: 0; list-style: none; }
@@ -251,7 +251,6 @@
                     </div>
                     <div class="row-points-total">110 PTS</div>
                 </div>
-
                 <!-- Player #5: Prologozrock (93 PTS) -->
                 <div class="roster-card-row" data-kits="all,dragonhide,dragonhide-kb,emerald-kb,emerald,diamond" data-points="93">
                     <div class="row-rank-num">#5</div>
@@ -318,6 +317,22 @@
                         <div class="tier-showcase-box orange-border"><img src="Diamond.png" alt="Diamond"><span>LT5</span></div>
                     </div>
                     <div class="row-points-total">25 PTS</div>
+                </div>
+                <!-- Player #9: Jamier1235 (20 PTS) -->
+                <div class="roster-card-row" data-kits="all,dragonhide,emerald,dragonhide-kb,emerald-kb,diamond" data-points="20">
+                    <div class="row-rank-num">#9</div>
+                    <div class="player-info-container">
+                        <span class="row-player-name">Jamier1235</span>
+                        <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">MOB</span>
+                    </div>
+                    <div class="player-kits-display">
+                        <div class="tier-showcase-box green-border"><img src="Dragonhide.png" alt="Dragonhide"><span>HT5</span></div>
+                        <div class="tier-showcase-box orange-border"><img src="Emerald.png" alt="Emerald"><span>LT5</span></div>
+                        <div class="tier-showcase-box orange-border"><img src="Dragonhide_KB.png" alt="Dragonhide KB"><span>LT5</span></div>
+                        <div class="tier-showcase-box orange-border"><img src="Emerald_KB.png" alt="Emerald KB"><span>LT5</span></div>
+                        <div class="tier-showcase-box orange-border"><img src="Diamond.png" alt="Diamond"><span>LT5</span></div>
+                    </div>
+                    <div class="row-points-total">20 PTS</div>
                 </div>
 
                 <!-- Player #10: aaa666 (15 PTS) -->
@@ -420,7 +435,7 @@
             </div>
         </div> 
 
-        <!-- INTEGRATED FOOTER BLOCK: Spans across 5 column groups cleanly -->
+        <!-- BOTTOM GRID REFERENCE MODULE: Displays cleanly across 5 columns -->
         <div class="sidebar-panel">
             <h3>Tier Points System</h3>
             <ul class="points-legend-grid">
@@ -438,10 +453,11 @@
         </div>
     </div> <!-- Closes dashboard layout wrapper cleanly -->
 
-    <!-- ZERO-SET KB TAB FILTER LOGIC ENGINE -->
+    <!-- MASTER DYNAMIC SORTING ENGINE WITH OVERALL-WEIGHTED FALLBACK TIE BREAKER -->
     <script>
         let currentKitFilter = 'all';
 
+        // Direct point matrix translation map used to accurately re-score tabs dynamically
         const pointMatrix = {
             'HT1': 100, 'LT1': 85, 'HT2': 75, 'LT2': 60,
             'HT3': 40,  'LT3': 30, 'HT4': 25, 'LT4': 15,
@@ -465,18 +481,18 @@
                 if (matchesKit) {
                     row.classList.remove('hidden');
                     
-                    // CASE A: IF 'OVERALL' TAB IS ACTIVE
+                    // CASE A: OVERALL TOTAL TAB ACTIVE
                     if (currentKitFilter === 'all') {
                         const originalPoints = row.getAttribute('data-points');
                         row.querySelector('.row-points-total').innerText = originalPoints + " PTS";
                         row.setAttribute('data-current-sort-score', originalPoints);
                     } 
-                    // CASE B: IF EMERALD-KB OR DRAGONHIDE-KB ARE ACTIVE -> ZERO-SCORE EVERYONE CLEANLY
+                    // CASE B: IF EMERALD-KB OR DRAGONHIDE-KB ARE SELECTABLE -> EVALUATE AT 0 PTS
                     else if (currentKitFilter === 'emerald-kb' || currentKitFilter === 'dragonhide-kb') {
                         row.querySelector('.row-points-total').innerText = "0 PTS";
                         row.setAttribute('data-current-sort-score', '0');
                     } 
-                    // CASE C: IF A STANDARD WORKING KIT TAB IS ACTIVE
+                    // CASE C: CORE COMBAT KIT ACTIVE
                     else {
                         let specificScore = 0;
                         const kitBoxes = row.querySelectorAll('.tier-showcase-box');
@@ -502,14 +518,25 @@
 
             const listContainer = document.getElementById('roster-list-container');
             
-            // Sort by active scores first. If scores are tied (like on 0 PTS tabs), fallback to alphabetical order smoothly
+            // SORT RUNTIME EXCLUSION LOGIC: Ties filter dynamically by master overall point levels (data-points)
             const sortedRows = rows.filter(r => !r.classList.contains('hidden'))
                                    .sort((a, b) => {
                                         const scoreA = parseInt(a.getAttribute('data-current-sort-score'));
                                         const scoreB = parseInt(b.getAttribute('data-current-sort-score'));
+                                        
+                                        // If tab scores are different, sort by tab score descending
                                         if (scoreB !== scoreA) {
                                             return scoreB - scoreA;
                                         }
+                                        
+                                        // TIE BREAKER FALLBACK ENGINE: Sort by true Overall Data-Points descending
+                                        const overallA = parseInt(a.getAttribute('data-points'));
+                                        const overallB = parseInt(b.getAttribute('data-points'));
+                                        if (overallB !== overallA) {
+                                            return overallB - overallA;
+                                        }
+                                        
+                                        // Final absolute tie breaker: Alphabetical name order fallback
                                         const nameA = a.querySelector('.row-player-name').innerText.toLowerCase();
                                         const nameB = b.querySelector('.row-player-name').innerText.toLowerCase();
                                         return nameA.localeCompare(nameB);
