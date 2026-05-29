@@ -189,8 +189,8 @@
         <div class="main-content-panel">
             <h2 class="menu-title" id="leaderboard-title">Overall Leaderboard</h2>
             <div id="roster-list-container">
-                <!-- Player #1: vort3xYT (210 PTS) -->
-                <div class="roster-card-row" data-kits="all,dragonhide-kb,dragonhide,emerald" data-points="210">
+                <!-- Player #1: vort3xYT (270 PTS) -->
+                <div class="roster-card-row" data-kits="all,dragonhide-kb,dragonhide,emerald" data-points="270">
                     <div class="row-rank-num">#1</div>
                     <div class="player-info-container">
                         <span class="row-player-name">vort3xYT</span>
@@ -202,11 +202,11 @@
                         <div class="tier-showcase-box cyan-border"><img src="Dragonhide.png" alt="Dragonhide"><span>LT2</span></div>
                         <div class="tier-showcase-box cyan-border"><img src="Emerald.png" alt="Emerald"><span>LT2</span></div>
                     </div>
-                    <div class="row-points-total">210 PTS</div>
+                    <div class="row-points-total">270 PTS</div>
                 </div>
 
-                <!-- Player #2: Husky_Multicraft (180 PTS) -->
-                <div class="roster-card-row" data-kits="all,dragonhide-kb,diamond,emerald,dragonhide,emerald-kb" data-points="180">
+                <!-- Player #2: Husky_Multicraft (230 PTS) -->
+                <div class="roster-card-row" data-kits="all,dragonhide-kb,diamond,emerald,dragonhide,emerald-kb" data-points="230">
                     <div class="row-rank-num">#2</div>
                     <div class="player-info-container">
                         <span class="row-player-name">Husky_Multicraft</span>
@@ -219,7 +219,7 @@
                         <div class="tier-showcase-box purple-border"><img src="Emerald_KB.png" alt="Emerald KB"><span>LT3</span></div>
                         <div class="tier-showcase-box purple-border"><img src="Diamond.png" alt="Diamond"><span>HT3</span></div>
                     </div>
-                    <div class="row-points-total">180 PTS</div>
+                    <div class="row-points-total">230 PTS</div>
                 </div>
 
                 <!-- Player #3: big_nub (125 PTS) -->
@@ -251,6 +251,7 @@
                     </div>
                     <div class="row-points-total">110 PTS</div>
                 </div>
+
                 <!-- Player #5: Prologozrock (93 PTS) -->
                 <div class="roster-card-row" data-kits="all,dragonhide,dragonhide-kb,emerald-kb,emerald,diamond" data-points="93">
                     <div class="row-rank-num">#5</div>
@@ -319,22 +320,6 @@
                     <div class="row-points-total">25 PTS</div>
                 </div>
 
-                <!-- Player #9: Jamier1235 (20 PTS) -->
-                <div class="roster-card-row" data-kits="all,dragonhide,emerald,dragonhide-kb,emerald-kb,diamond" data-points="20">
-                    <div class="row-rank-num">#9</div>
-                    <div class="player-info-container">
-                        <span class="row-player-name">Jamier1235</span>
-                        <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">MOB</span>
-                    </div>
-                    <div class="player-kits-display">
-                        <div class="tier-showcase-box green-border"><img src="Dragonhide.png" alt="Dragonhide"><span>HT5</span></div>
-                        <div class="tier-showcase-box orange-border"><img src="Emerald.png" alt="Emerald"><span>LT5</span></div>
-                        <div class="tier-showcase-box orange-border"><img src="Dragonhide_KB.png" alt="Dragonhide KB"><span>LT5</span></div>
-                        <div class="tier-showcase-box orange-border"><img src="Emerald_KB.png" alt="Emerald KB"><span>LT5</span></div>
-                        <div class="tier-showcase-box orange-border"><img src="Diamond.png" alt="Diamond"><span>LT5</span></div>
-                    </div>
-                    <div class="row-points-total">20 PTS</div>
-                </div>
                 <!-- Player #10: aaa666 (15 PTS) -->
                 <div class="roster-card-row" data-kits="all,dragonhide,emerald,dragonhide-kb,emerald-kb,diamond" data-points="15">
                     <div class="row-rank-num">#10</div>
@@ -435,7 +420,7 @@
             </div>
         </div> 
 
-        <!-- BOTTOM GRID MODULE: Arranged horizontally across 5 column blocks -->
+        <!-- INTEGRATED FOOTER BLOCK: Spans across 5 column groups cleanly -->
         <div class="sidebar-panel">
             <h3>Tier Points System</h3>
             <ul class="points-legend-grid">
@@ -453,11 +438,10 @@
         </div>
     </div> <!-- Closes dashboard layout wrapper cleanly -->
 
-    <!-- DYNAMIC REAL-TIME LEADERBOARD FILTER ENGINE -->
+    <!-- ZERO-SET KB TAB FILTER LOGIC ENGINE -->
     <script>
         let currentKitFilter = 'all';
 
-        // Translation point reference matrix map used to compute tier weights accurately
         const pointMatrix = {
             'HT1': 100, 'LT1': 85, 'HT2': 75, 'LT2': 60,
             'HT3': 40,  'LT3': 30, 'HT4': 25, 'LT4': 15,
@@ -481,11 +465,19 @@
                 if (matchesKit) {
                     row.classList.remove('hidden');
                     
+                    // CASE A: IF 'OVERALL' TAB IS ACTIVE
                     if (currentKitFilter === 'all') {
                         const originalPoints = row.getAttribute('data-points');
                         row.querySelector('.row-points-total').innerText = originalPoints + " PTS";
                         row.setAttribute('data-current-sort-score', originalPoints);
-                    } else {
+                    } 
+                    // CASE B: IF EMERALD-KB OR DRAGONHIDE-KB ARE ACTIVE -> ZERO-SCORE EVERYONE CLEANLY
+                    else if (currentKitFilter === 'emerald-kb' || currentKitFilter === 'dragonhide-kb') {
+                        row.querySelector('.row-points-total').innerText = "0 PTS";
+                        row.setAttribute('data-current-sort-score', '0');
+                    } 
+                    // CASE C: IF A STANDARD WORKING KIT TAB IS ACTIVE
+                    else {
                         let specificScore = 0;
                         const kitBoxes = row.querySelectorAll('.tier-showcase-box');
                         
@@ -509,8 +501,19 @@
             });
 
             const listContainer = document.getElementById('roster-list-container');
+            
+            // Sort by active scores first. If scores are tied (like on 0 PTS tabs), fallback to alphabetical order smoothly
             const sortedRows = rows.filter(r => !r.classList.contains('hidden'))
-                                   .sort((a, b) => parseInt(b.getAttribute('data-current-sort-score')) - parseInt(a.getAttribute('data-current-sort-score')));
+                                   .sort((a, b) => {
+                                        const scoreA = parseInt(a.getAttribute('data-current-sort-score'));
+                                        const scoreB = parseInt(b.getAttribute('data-current-sort-score'));
+                                        if (scoreB !== scoreA) {
+                                            return scoreB - scoreA;
+                                        }
+                                        const nameA = a.querySelector('.row-player-name').innerText.toLowerCase();
+                                        const nameB = b.querySelector('.row-player-name').innerText.toLowerCase();
+                                        return nameA.localeCompare(nameB);
+                                   });
 
             let visibleRankCounter = 1;
             sortedRows.forEach(row => {
