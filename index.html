@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multicraft Tiers | Roster Hub</title>
     <style>
+        /* Local typography dynamic font pipeline assignment */
         @font-face {
             font-family: 'MulticraftCustom';
             src: url('MultiCraftFont.ttf') format('truetype');
@@ -19,17 +20,17 @@
             display: flex; 
             flex-direction: column; 
             align-items: center; 
-            background: #02070c url('background.png') no-repeat center center fixed;
-            background-size: cover;
+            background: #060c13; /* Solid rich deep space theme color backdrop */
             color: #ffffff;
             min-height: 100vh; 
             box-sizing: border-box;
         }
         
-        .logo-container { max-width: 500px; width: 100%; margin-bottom: 15px; text-align: center; }
-        .logo-container img { width: 100%; height: auto; border-radius: 12px; }
+        /* BANNER CONSTRAINT CONTAINER: Strict bounds prevent column-choking shifts */
+        .logo-container { width: 100%; max-width: 500px; margin-bottom: 15px; text-align: center; display: block; }
+        .logo-container img { width: 100%; height: auto; display: block; border-radius: 12px; border: 1px solid rgba(100, 243, 229, 0.15); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6); }
 
-        /* --- PRIMARY FILTER NAVIGATION DECK --- */
+        /* --- PRIMARY LINK FILTER NAVBAR --- */
         .kit-navbar {
             display: flex;
             flex-wrap: wrap;
@@ -71,9 +72,9 @@
             box-sizing: border-box;
         }
 
-        /* --- PODIUM DISPLAY STRUCTURE --- */
+        /* --- DYNAMIC PODIUM CONTAINER PLATFORMS --- */
         .podium-backdrop-container {
-            display: none; /* Hidden on Overall, shows on Specific Kit view */
+            display: none; /* Hidden strictly during Overall, toggles block view in kit view */
             justify-content: center;
             align-items: flex-end;
             gap: 20px;
@@ -82,42 +83,11 @@
         }
         .podium-backdrop-container.active { display: flex; }
 
-        .podium-spot-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 120px;
-            box-sizing: border-box;
-        }
-        .podium-spot-box img.podium-skin {
-            width: 70px;
-            height: auto;
-            image-rendering: pixelated;
-            margin-bottom: 5px;
-        }
-        .podium-spot-box .podium-name {
-            font-family: 'MulticraftCustom', monospace !important;
-            font-size: 0.75rem;
-            margin-bottom: 8px;
-            text-align: center;
-            white-space: nowrap;
-        }
-        .podium-base-block {
-            width: 100%;
-            background: rgba(4, 11, 18, 0.75);
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-sizing: border-box;
-            position: relative;
-        }
-        .podium-base-block span.rank-indicator {
-            font-family: 'MulticraftCustom', monospace !important;
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
+        .podium-spot-box { display: flex; flex-direction: column; align-items: center; width: 120px; box-sizing: border-box; }
+        .podium-spot-box .podium-name { font-family: 'MulticraftCustom', monospace !important; font-size: 0.75rem; margin: 0 0 8px 0; text-align: center; white-space: nowrap; color: #ffffff; }
+        .podium-base-block { width: 100%; background: rgba(4, 11, 18, 0.75); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-sizing: border-box; position: relative; }
+        .podium-base-block span.rank-indicator { font-family: 'MulticraftCustom', monospace !important; font-size: 1.8rem; font-weight: bold; }
+        
         .podium-base-block span.tier-subtag {
             position: absolute;
             bottom: -16px;
@@ -126,9 +96,10 @@
             padding: 2px 4px;
             border-radius: 3px;
             background: rgba(2, 7, 12, 0.9);
+            white-space: nowrap;
         }
 
-        /* Podium Ranking Variants */
+        /* Pedestal Structural Height Scaling Steps */
         .spot-1 { order: 2; }
         .spot-1 .podium-base-block { height: 75px; border: 1.5px solid #ffd700; box-shadow: 0 0 15px rgba(255, 215, 0, 0.15); }
         .spot-1 .rank-indicator { color: #ffd700; text-shadow: 0 0 10px rgba(255, 215, 0, 0.4); }
@@ -144,47 +115,17 @@
         .spot-3 .rank-indicator { color: #cd7f32; }
         .spot-3 .tier-subtag { border: 1px solid rgba(205, 127, 50, 0.3); color: #cd7f32; }
 
-        /* --- LEADERBOARD CARD LAYOUT VIEWS --- */
+        /* --- DASHBOARD DISPLAY CONTAINER MODES --- */
         .main-content-panel { width: 100%; box-sizing: border-box; }
         
-        /* Default Linear Row Stack for OVERALL Tab */
-        #roster-list-container.view-overall {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            max-width: 950px;
-            margin: 0 auto;
-        }
-        #roster-list-container.view-overall .roster-card-row {
-            display: flex;
-            align-items: center;
-            background: rgba(4, 13, 22, 0.75);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            padding: 12px 18px;
-            margin-bottom: 8px;
-            gap: 15px;
-            width: 100%;
-            box-sizing: border-box;
-        }
+        /* View Mode A: Linear Column Cascade Stack */
+        #roster-list-container.view-overall { display: flex; flex-direction: column; width: 100%; max-width: 950px; margin: 0 auto; }
+        #roster-list-container.view-overall .roster-card-row { display: flex; align-items: center; background: rgba(4, 13, 22, 0.75); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 12px 18px; margin-bottom: 8px; gap: 15px; width: 100%; box-sizing: border-box; }
 
-        /* Custom T1-T5 Column Split Layout for SPECIFIC KIT Tabs */
-        #roster-list-container.view-columns {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 15px;
-            width: 100%;
-        }
+        /* View Mode B: 5-Column Split Dashboard Layout */
+        #roster-list-container.view-columns { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; width: 100%; }
+        .tier-column-wrapper { display: flex; flex-direction: column; background: rgba(4, 11, 18, 0.2); border-radius: 10px; padding: 5px; min-height: 200px; }
         
-        /* Grid Column Containers for T1-T5 */
-        .tier-column-wrapper {
-            display: flex;
-            flex-direction: column;
-            background: rgba(4, 11, 18, 0.2);
-            border-radius: 10px;
-            padding: 5px;
-            min-height: 200px;
-        }
         .tier-column-wrapper h4 {
             font-family: 'MulticraftCustom', monospace !important;
             color: #64f3e5;
@@ -197,31 +138,17 @@
             padding-bottom: 8px;
         }
 
-        /* Compact Card Transformation inside T1-T5 Column view */
-        #roster-list-container.view-columns .roster-card-row {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background: rgba(4, 13, 22, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 8px;
-            padding: 12px 8px;
-            margin-bottom: 10px;
-            width: 100%;
-            box-sizing: border-box;
-            gap: 8px;
-            text-align: center;
-        }
+        /* Structural row reshaping inside active column boxes */
+        #roster-list-container.view-columns .roster-card-row { display: flex; flex-direction: column; align-items: center; background: rgba(4, 13, 22, 0.85); border: 1px solid rgba(255, 255, 255, 0.04); border-radius: 8px; padding: 12px 8px; margin-bottom: 10px; width: 100%; box-sizing: border-box; gap: 8px; text-align: center; }
 
-        /* Font & Utility Toggles based on Active Tab View */
+        /* Flex field scaling handles based on parameters active */
         .row-rank-num { font-family: 'MulticraftCustom', monospace !important; font-size: 0.85rem; color: rgba(255, 255, 255, 0.25); width: 40px; text-align: center; flex-shrink: 0; }
-        #roster-list-container.view-columns .row-rank-num { display: none !important; } /* Hide numbers in column grid */
+        #roster-list-container.view-columns .row-rank-num { display: none !important; }
 
         .player-info-container { display: flex; align-items: center; width: 220px; gap: 10px; flex-shrink: 0; }
         #roster-list-container.view-columns .player-info-container { flex-direction: column; width: 100%; gap: 6px; }
 
         .row-player-name { font-family: 'MulticraftCustom', monospace !important; font-size: 0.85rem; font-weight: normal; color: #ffffff; text-transform: none !important; margin: 0; }
-        
         .device-badge-group { display: flex; gap: 4px; }
         
         .row-points-total { font-family: 'MulticraftCustom', monospace !important; font-size: 0.8rem; color: #ffd700; min-width: 95px; text-align: right; flex-shrink: 0; margin-left: auto; }
@@ -234,12 +161,18 @@
         .pill-mob { color: #52be80; border: 1px solid rgba(82, 190, 128, 0.25); background: rgba(82, 190, 128, 0.04); }
         .pill-con { color: #e59866; border: 1px solid rgba(229, 152, 102, 0.25); background: rgba(229, 152, 102, 0.04); }
 
-        /* Weapon display controls */
+        /* Weapon display wrappers constraints */
         .player-kits-display { display: flex; gap: 5px; flex: 1; justify-content: flex-start; align-items: center; min-width: 0; }
-        #roster-list-container.view-columns .player-kits-display { display: none !important; } /* Hide rows weapons in column display */
+        #roster-list-container.view-columns .player-kits-display { display: none !important; }
+        
+        .tier-showcase-box { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 44px; height: 52px; border-radius: 5px; background: rgba(2, 7, 12, 0.5); box-sizing: border-box; padding: 2px; flex-shrink: 0; }
+        .tier-showcase-box.green-border { border: 1px solid rgba(82, 190, 128, 0.4); color: #52be80; }
+        .tier-showcase-box.cyan-border { border: 1px solid rgba(100, 243, 229, 0.4); color: #64f3e5; }
+        .tier-showcase-box.purple-border { border: 1px solid rgba(175, 122, 197, 0.4); color: #af7ac5; }
+        .tier-showcase-box.orange-border { border: 1px solid rgba(229, 152, 102, 0.4); color: #e59866; }
         
                 <!-- Player #1: vort3xYT (210 PTS) -->
-                <div class="roster-card-row" data-kits="all,dragonhide-kb,dragonhide,emerald" data-points="210" data-skin="vort3xYT_head.png">
+                <div class="roster-card-row" data-kits="all,dragonhide-kb,dragonhide,emerald" data-points="210">
                     <div class="row-rank-num">#1</div>
                     <div class="player-info-container">
                         <span class="row-player-name">vort3xYT</span>
@@ -257,7 +190,7 @@
                 </div>
 
                 <!-- Player #2: Husky_Multicraft (180 PTS) -->
-                <div class="roster-card-row" data-kits="all,dragonhide-kb,diamond,emerald,dragonhide,emerald-kb" data-points="180" data-skin="Husky_head.png">
+                <div class="roster-card-row" data-kits="all,dragonhide-kb,diamond,emerald,dragonhide,emerald-kb" data-points="180">
                     <div class="row-rank-num">#2</div>
                     <div class="player-info-container">
                         <span class="row-player-name">Husky_Multicraft</span>
@@ -276,7 +209,7 @@
                 </div>
 
                 <!-- Player #3: big_nub (125 PTS) -->
-                <div class="roster-card-row" data-kits="all,dragonhide-kb,diamond" data-points="125" data-skin="steve.png">
+                <div class="roster-card-row" data-kits="all,dragonhide-kb,diamond" data-points="125">
                     <div class="row-rank-num">#3</div>
                     <div class="player-info-container">
                         <span class="row-player-name">big_nub</span>
@@ -292,7 +225,7 @@
                 </div>
 
                 <!-- Player #4: Herobrine (110 PTS) -->
-                <div class="roster-card-row" data-kits="all,diamond,emerald,dragonhide,dragonhide-kb" data-points="110" data-skin="steve.png">
+                <div class="roster-card-row" data-kits="all,diamond,emerald,dragonhide,dragonhide-kb" data-points="110">
                     <div class="row-rank-num">#4</div>
                     <div class="player-info-container">
                         <span class="row-player-name">Herobrine</span>
@@ -309,7 +242,7 @@
                     <div class="row-points-total">110 PTS</div>
                 </div>
                 <!-- Player #5: Prologozrock (93 PTS) -->
-                <div class="roster-card-row" data-kits="all,dragonhide,dragonhide-kb,emerald-kb,emerald,diamond" data-points="93" data-skin="steve.png">
+                <div class="roster-card-row" data-kits="all,dragonhide,dragonhide-kb,emerald-kb,emerald,diamond" data-points="93">
                     <div class="row-rank-num">#5</div>
                     <div class="player-info-container">
                         <span class="row-player-name">Prologozrock</span>
@@ -328,7 +261,7 @@
                 </div>
 
                 <!-- Player #6: Parrot (81 PTS) -->
-                <div class="roster-card-row" data-kits="all,dragonhide,dragonhide-kb,diamond,emerald,emerald-kb" data-points="81" data-skin="steve.png">
+                <div class="roster-card-row" data-kits="all,dragonhide,dragonhide-kb,diamond,emerald,emerald-kb" data-points="81">
                     <div class="row-rank-num">#6</div>
                     <div class="player-info-container">
                         <span class="row-player-name">Parrot</span>
@@ -347,7 +280,7 @@
                 </div>
 
                 <!-- Player #7: Server_pvp (71 PTS) -->
-                <div class="roster-card-row" data-kits="all,dragonhide,dragonhide-kb,emerald,emerald-kb,diamond" data-points="71" data-skin="steve.png">
+                <div class="roster-card-row" data-kits="all,dragonhide,dragonhide-kb,emerald,emerald-kb,diamond" data-points="71">
                     <div class="row-rank-num">#7</div>
                     <div class="player-info-container">
                         <span class="row-player-name">Server_pvp</span>
@@ -366,7 +299,7 @@
                 </div>
 
                 <!-- Player #8: kylaz9 (25 PTS) -->
-                <div class="roster-card-row" data-kits="all,dragonhide,emerald-kb,dragonhide-kb,emerald,diamond" data-points="25" data-skin="steve.png">
+                <div class="roster-card-row" data-kits="all,dragonhide,emerald-kb,dragonhide-kb,emerald,diamond" data-points="25">
                     <div class="row-rank-num">#8</div>
                     <div class="player-info-container">
                         <span class="row-player-name">kylaz9</span>
@@ -384,7 +317,7 @@
                     <div class="row-points-total">25 PTS</div>
                 </div>
                 <!-- Player #9: aaa666 (15 PTS) -->
-                <div class="roster-card-row" data-kits="all,dragonhide,emerald,dragonhide-kb,emerald-kb,diamond" data-points="15" data-skin="steve.png">
+                <div class="roster-card-row" data-kits="all,dragonhide,emerald,dragonhide-kb,emerald-kb,diamond" data-points="15">
                     <div class="row-rank-num">#9</div>
                     <div class="player-info-container">
                         <span class="row-player-name">aaa666</span>
@@ -403,7 +336,7 @@
                 </div>
 
                 <!-- Player #10: Benjamin (15 PTS) -->
-                <div class="roster-card-row" data-kits="all,dragonhide,emerald,dragonhide-kb,emerald-kb,diamond" data-points="15" data-skin="steve.png">
+                <div class="roster-card-row" data-kits="all,dragonhide,emerald,dragonhide-kb,emerald-kb,diamond" data-points="15">
                     <div class="row-rank-num">#10</div>
                     <div class="player-info-container">
                         <span class="row-player-name">Benjamin</span>
@@ -422,7 +355,7 @@
                 </div>
 
                 <!-- Player #11: Booky (15 PTS) -->
-                <div class="roster-card-row" data-kits="all,dragonhide,emerald,dragonhide-kb,emerald-kb,diamond" data-points="15" data-skin="steve.png">
+                <div class="roster-card-row" data-kits="all,dragonhide,emerald,dragonhide-kb,emerald-kb,diamond" data-points="15">
                     <div class="row-rank-num">#11</div>
                     <div class="player-info-container">
                         <span class="row-player-name">Booky</span>
@@ -441,7 +374,7 @@
                 </div>
 
                 <!-- Player #12: Taxbird (15 PTS) -->
-                <div class="roster-card-row" data-kits="all,dragonhide,emerald,dragonhide-kb,emerald-kb,diamond" data-points="15" data-skin="steve.png">
+                <div class="roster-card-row" data-kits="all,dragonhide,emerald,dragonhide-kb,emerald-kb,diamond" data-points="15">
                     <div class="row-rank-num">#12</div>
                     <div class="player-info-container">
                         <span class="row-player-name">Taxbird</span>
@@ -460,7 +393,7 @@
                 </div>
 
                 <!-- Player #13: grant (9 PTS) -->
-                <div class="roster-card-row" data-kits="all,dragonhide,dragonhide-kb,diamond" data-points="9" data-skin="steve.png">
+                <div class="roster-card-row" data-kits="all,dragonhide,dragonhide-kb,diamond" data-points="9">
                     <div class="row-rank-num">#13</div>
                     <div class="player-info-container">
                         <span class="row-player-name">grant</span>
@@ -477,7 +410,7 @@
                 </div>
 
                 <!-- Player #14: New_guy (9 PTS) -->
-                <div class="roster-card-row" data-kits="all,dragonhide,dragonhide-kb,diamond" data-points="9" data-skin="steve.png">
+                <div class="roster-card-row" data-kits="all,dragonhide,dragonhide-kb,diamond" data-points="9">
                     <div class="row-rank-num">#14</div>
                     <div class="player-info-container">
                         <span class="row-player-name">New_guy</span>
@@ -513,11 +446,11 @@
         </div>
     </div> <!-- Closes dashboard layout wrapper cleanly -->
 
-    <!-- MASTER INTELLIGENT DYNAMIC PODIUM & SPLIT-GRID LAYOUT ENGINE -->
+    <!-- MASTER DYNAMIC PODIUM & SPLIT-GRID LAYOUT ENGINE -->
     <script>
         let currentKitFilter = 'all';
 
-        // Core translation matrix map used to calculate tier placement weights accurately
+        // Translation point reference matrix map used to compute tier weights accurately
         const pointMatrix = {
             'HT1': 100, 'LT1': 85, 'HT2': 75, 'LT2': 60,
             'HT3': 40,  'LT3': 30, 'HT4': 25, 'LT4': 15,
@@ -536,13 +469,13 @@
             const podiumZone = document.getElementById('podium-zone');
             const rows = Array.from(document.querySelectorAll('.roster-card-row'));
             
-            // Clean out column wrappers if they exist from a previous selection loop
+            // Wipe standard container loops to prepare for re-injection
             listContainer.innerHTML = '';
             podiumZone.classList.remove('active');
             
             let filteredActiveRows = [];
 
-            // Step 1: Track active visibility states and determine kit-specific scores
+            // Step 1: Assign local points evaluation variables per kit selection
             rows.forEach(row => {
                 const connectedKits = row.getAttribute('data-kits').split(',');
                 const matchesKit = (currentKitFilter === 'all' || connectedKits.includes(currentKitFilter));
@@ -581,10 +514,10 @@
                 }
             });
 
-            // Step 2: Sort the active elements cleanly by current active score thresholds
+            // Step 2: Sort matched entities descending by target weight attribute
             filteredActiveRows.sort((a, b) => parseInt(b.getAttribute('data-current-sort-score')) - parseInt(a.getAttribute('data-current-sort-score')));
 
-            // --- DEPLOY VIEW MODE 1: OVERALL LINEAR VERTICAL VIEW ---
+            // --- VIEW MODULE A: OVERALL TOTAL LINEAR CASCADE ---
             if (currentKitFilter === 'all') {
                 listContainer.className = 'view-overall';
                 
@@ -602,33 +535,33 @@
                 });
                 
             } else {
-                // --- DEPLOY VIEW MODE 2: SPECIFIC KIT T1-T5 PODIUM SPLIT-GRID VIEW ---
+                // --- VIEW MODULE B: KIT PODIUM & T1-T5 SPLIT COLUMNS CONTAINER ---
                 listContainer.className = 'view-columns';
                 podiumZone.classList.add('active');
 
-                // Bind high-score podium podium targets dynamically
-                const spot1Player = filteredActiveRows[0];
-                const spot2Player = filteredActiveRows[1];
-                const spot3Player = filteredActiveRows[2];
-
-                if (spot1Player) {
-                    document.getElementById('podium-1-name').innerText = spot1Player.querySelector('.row-player-name').innerText;
-                    document.getElementById('podium-1-tier').innerText = spot1Player.getAttribute('data-active-tier');
+                // Bind high-score index tracks securely to structural pedestals
+                if (filteredActiveRows[0]) {
+                    document.getElementById('podium-1-name').innerText = filteredActiveRows[0].querySelector('.row-player-name').innerText;
+                    document.getElementById('podium-1-tier').innerText = filteredActiveRows[0].getAttribute('data-active-tier');
+                } else {
+                    document.getElementById('podium-1-name').innerText = "---";
                 }
-                if (spot2Player) {
-                    document.getElementById('podium-2-name').innerText = spot2Player.querySelector('.row-player-name').innerText;
-                    document.getElementById('podium-2-tier').innerText = spot2Player.getAttribute('data-active-tier');
+                
+                if (filteredActiveRows[1]) {
+                    document.getElementById('podium-2-name').innerText = filteredActiveRows[1].querySelector('.row-player-name').innerText;
+                    document.getElementById('podium-2-tier').innerText = filteredActiveRows[1].getAttribute('data-active-tier');
                 } else {
                     document.getElementById('podium-2-name').innerText = "---";
                 }
-                if (spot3Player) {
-                    document.getElementById('podium-3-name').innerText = spot3Player.querySelector('.row-player-name').innerText;
-                    document.getElementById('podium-3-tier').innerText = spot3Player.getAttribute('data-active-tier');
+                
+                if (filteredActiveRows[2]) {
+                    document.getElementById('podium-3-name').innerText = filteredActiveRows[2].querySelector('.row-player-name').innerText;
+                    document.getElementById('podium-3-tier').innerText = filteredActiveRows[2].getAttribute('data-active-tier');
                 } else {
                     document.getElementById('podium-3-name').innerText = "---";
                 }
 
-                // Compile and structure T1 to T5 layout block elements
+                // Loop layout blocks and assemble T1 down to T5 column shells dynamically
                 for (let i = 1; i <= 5; i++) {
                     const columnWrapper = document.createElement('div');
                     columnWrapper.className = 'tier-column-wrapper';
@@ -637,7 +570,9 @@
                     filteredActiveRows.forEach(row => {
                         const playerTierNum = row.getAttribute('data-active-tier');
                         if (playerTierNum && playerTierNum.includes(i.toString())) {
-                            columnWrapper.appendChild(row);
+                            // Elements clone nicely to avoid breaking background sheet allocations
+                            const clonedRow = row.cloneNode(true);
+                            columnWrapper.appendChild(clonedRow);
                         }
                     });
                     
