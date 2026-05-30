@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multicraft Tiers | Roster Hub</title>
-    <!-- Imports a stable web pipeline typeface to prevent font-loading stalls -->
+    <!-- Stable Google monospace pipeline to completely bypass broken local font files -->
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
         body { 
@@ -23,7 +23,7 @@
         .logo-container { max-width: 500px; width: 100%; margin-bottom: 25px; text-align: center; }
         .logo-container img { width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(100, 243, 229, 0.15); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6); }
         
-        /* THE STABLE PIPELINE ENGINE: Locks layout left and matrix elements down natively */
+        /* STRICT DOWNWARD PIPELINE: Forces the table panel layout straight down, never side-by-side */
         .dashboard-layout-wrapper { 
             display: flex; 
             flex-direction: column; 
@@ -63,9 +63,10 @@
         .row-rank-num { font-family: 'Share Tech Mono', monospace !important; font-size: 1.1rem; color: rgba(255, 255, 255, 0.25); width: 40px; text-align: center; flex-shrink: 0; }
         .roster-card-row.hidden { display: none !important; }
         
+        /* Fixed styling targets applied strictly via script engine */
         .roster-card-row.visible-rank-1 .row-rank-num { color: #ffd700; text-shadow: 0 0 8px rgba(255, 215, 0, 0.4); }
-        .roster-card-row.visible-rank-2 .row-rank-num { color: #c0c0c0; }
-        .roster-card-row.visible-rank-3 .row-rank-num { color: #cd7f32; }
+        .roster-card-row.visible-rank-2 .row-rank-num { color: #c0c0c0; text-shadow: none; }
+        .roster-card-row.visible-rank-3 .row-rank-num { color: #cd7f32; text-shadow: none; }
         
         .player-info-container { display: flex; align-items: center; width: 220px; gap: 10px; flex-shrink: 0; }
         .row-player-name { font-family: 'Share Tech Mono', monospace !important; font-size: 1.05rem; font-weight: normal; color: #ffffff; text-transform: none !important; margin: 0; }
@@ -188,8 +189,6 @@
     </div>
     
     <div class="dashboard-layout-wrapper">
-        <div class="main-content-panel">
-            <h2 class="menu-title" id="leaderboard-title">Overall Leaderboard</h2>
                 <!-- Player #1: vort3xYT (270 PTS) -->
                 <div class="roster-card-row" data-kits="all,dragonhide-kb,dragonhide,emerald" data-points="270">
                     <div class="row-rank-num">#1</div>
@@ -469,7 +468,7 @@
         </div>
     </div> <!-- Closes dashboard layout wrapper cleanly -->
 
-    <!-- ADVANCED WEIGHTED FALLBACK LEADERBOARD FILTER ENGINE -->
+    <!-- REAL-TIME FILTERING & STYLESHEET CLEANING LOGIC ENGINE -->
     <script>
         let currentKitFilter = 'all';
 
@@ -493,21 +492,21 @@
                 const connectedKits = row.getAttribute('data-kits').split(',');
                 const matchesKit = (currentKitFilter === 'all' || connectedKits.includes(currentKitFilter));
                 
+                // DEEP CLEAN UP: Forcefully drop old ranking highlighting classes from every row before re-sorting
+                row.classList.remove('visible-rank-1', 'visible-rank-2', 'visible-rank-3');
+                
                 if (matchesKit) {
                     row.classList.remove('hidden');
                     
-                    // IF 'OVERALL' TAB IS ACTIVE: Revert display to show original total overall points
                     if (currentKitFilter === 'all') {
                         const originalPoints = row.getAttribute('data-points');
                         row.querySelector('.row-points-total').innerText = originalPoints + " PTS";
                         row.setAttribute('data-current-sort-score', originalPoints);
                     } 
-                    // IF EMERALD-KB OR DRAGONHIDE-KB ARE ACTIVE: Evaluate everyone dynamically at 0 PTS
                     else if (currentKitFilter === 'emerald-kb' || currentKitFilter === 'dragonhide-kb') {
                         row.querySelector('.row-points-total').innerText = "0 PTS";
                         row.setAttribute('data-current-sort-score', '0');
                     } 
-                    // IF A STANDARD FUNCTIONAL KIT TAB IS ACTIVE: Pull exact tier values
                     else {
                         let specificScore = 0;
                         const kitBoxes = row.querySelectorAll('.tier-showcase-box');
@@ -533,25 +532,21 @@
 
             const listContainer = document.getElementById('roster-list-container');
             
-            // SORT MULTI-TIER PIPELINE: Breaks matching point ties using overall rank weight variables
             const sortedRows = rows.filter(r => !r.classList.contains('hidden'))
                                    .sort((a, b) => {
                                         const scoreA = parseInt(a.getAttribute('data-current-sort-score'));
                                         const scoreB = parseInt(b.getAttribute('data-current-sort-score'));
                                         
-                                        // 1st Priority: Sort by the active kit tab score value
                                         if (scoreB !== scoreA) {
                                             return scoreB - scoreA;
                                         }
                                         
-                                        // 2nd Priority (Tie-Breaker): If active scores match, sort by overall total data-points
                                         const overallA = parseInt(a.getAttribute('data-points'));
                                         const overallB = parseInt(b.getAttribute('data-points'));
                                         if (overallB !== overallA) {
                                             return overallB - overallA;
                                         }
                                         
-                                        // 3rd Priority: Alphabetical name sort fallback if points are perfectly identical
                                         const nameA = a.querySelector('.row-player-name').innerText.toLowerCase();
                                         const nameB = b.querySelector('.row-player-name').innerText.toLowerCase();
                                         return nameA.localeCompare(nameB);
@@ -559,9 +554,9 @@
 
             let visibleRankCounter = 1;
             sortedRows.forEach(row => {
-                row.classList.remove('visible-rank-1', 'visible-rank-2', 'visible-rank-3');
                 row.querySelector('.row-rank-num').innerText = "#" + visibleRankCounter;
                 
+                // Dynamically apply pristine rank layout colors strictly to the new top 3 positions
                 if (visibleRankCounter === 1) row.classList.add('visible-rank-1');
                 if (visibleRankCounter === 2) row.classList.add('visible-rank-2');
                 if (visibleRankCounter === 3) row.classList.add('visible-rank-3');
