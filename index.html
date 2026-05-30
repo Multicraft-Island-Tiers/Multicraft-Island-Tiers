@@ -1,194 +1,136 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multicraft Tiers | Roster Hub</title>
-    <style>
-        /* Load your exact font file extension locally */
-        @font-face {
-            font-family: 'MulticraftCustom';
-            src: url('MultiCraftFont.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
+            </div>
+        </div> 
+
+        <!-- INTEGRATED FOOTER MODULE: Arranged horizontally across 5 column groups -->
+        <div class="sidebar-panel">
+            <h3>Tier Points System</h3>
+            <ul class="points-legend-grid">
+                <li class="points-legend-item"><span class="tier-id-tag">HT1</span><span class="points-weight-tag">100 Pts</span></li>
+                <li class="points-legend-item"><span class="tier-id-tag">LT1</span><span class="points-weight-tag">85 Pts</span></li>
+                <li class="points-legend-item"><span class="tier-id-tag">HT2</span><span class="points-weight-tag">75 Pts</span></li>
+                <li class="points-legend-item"><span class="tier-id-tag">LT2</span><span class="points-weight-tag">60 Pts</span></li>
+                <li class="points-legend-item"><span class="tier-id-tag">HT3</span><span class="points-weight-tag">40 Pts</span></li>
+                <li class="points-legend-item"><span class="tier-id-tag">LT3</span><span class="points-weight-tag">30 Pts</span></li>
+                <li class="points-legend-item"><span class="tier-id-tag">HT4</span><span class="points-weight-tag">25 Pts</span></li>
+                <li class="points-legend-item"><span class="tier-id-tag">LT4</span><span class="points-weight-tag">15 Pts</span></li>
+                <li class="points-legend-item"><span class="tier-id-tag">HT5</span><span class="points-weight-tag">8 Pts</span></li>
+                <li class="points-legend-item"><span class="tier-id-tag">LT5</span><span class="points-weight-tag">3 Pts</span></li>
+            </ul>
+        </div>
+    </div> <!-- Closes dashboard layout wrapper cleanly -->
+
+    <!-- ADVANCED WEIGHTED FALLBACK LEADERBOARD FILTER ENGINE -->
+    <script>
+        let currentKitFilter = 'all';
+
+        // Translation point reference matrix map used to compute tier weights accurately
+        const pointMatrix = {
+            'HT1': 100, 'LT1': 85, 'HT2': 75, 'LT2': 60,
+            'HT3': 40,  'LT3': 30, 'HT4': 25, 'LT4': 15,
+            'HT5': 8,   'LT5': 3
+        };
+
+        function filterKit(kitName, btnElement) {
+            document.querySelectorAll('.kit-btn').forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+            currentKitFilter = kitName;
+            applyGlobalFilters();
         }
 
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            margin: 0; 
-            padding: 30px 15px; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            background: #060c13; /* Solid deep navy dark background to prevent layout shifts */
-            color: #ffffff;
-            min-height: 100vh; 
-            box-sizing: border-box;
-        }
-        
-        .logo-container { max-width: 500px; width: 100%; margin-bottom: 25px; text-align: center; }
-        .logo-container img { width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(100, 243, 229, 0.15); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6); }
-        
-        /* STRICT DOWNWARD PIPELINE: Forces the table panel layout straight down, never side-by-side */
-        .dashboard-layout-wrapper { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 20px; 
-            width: 100%; 
-            max-width: 950px; 
-            box-sizing: border-box;
-        }
-        
-        .main-content-panel { 
-            width: 100%;
-            background: rgba(4, 11, 18, 0.45); 
-            border: 1px solid rgba(255, 255, 255, 0.05); 
-            border-radius: 14px; 
-            padding: 22px; 
-            box-sizing: border-box; 
-            backdrop-filter: blur(12px); 
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); 
-            display: flex; 
-            flex-direction: column; 
-        }
-        
-        .menu-title { font-family: 'MulticraftCustom', monospace !important; color: #64f3e5; font-size: 1.2rem; margin: 0 0 20px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 14px; text-transform: uppercase; text-align: center; }
+        function applyGlobalFilters() {
+            const rows = Array.from(document.querySelectorAll('.roster-card-row'));
+            
+            rows.forEach(row => {
+                const connectedKits = row.getAttribute('data-kits').split(',');
+                const matchesKit = (currentKitFilter === 'all' || connectedKits.includes(currentKitFilter));
+                
+                if (matchesKit) {
+                    row.classList.remove('hidden');
+                    
+                    // IF 'OVERALL' TAB IS ACTIVE: Revert display to show original total overall points
+                    if (currentKitFilter === 'all') {
+                        const originalPoints = row.getAttribute('data-points');
+                        row.querySelector('.row-points-total').innerText = originalPoints + " PTS";
+                        row.setAttribute('data-current-sort-score', originalPoints);
+                    } 
+                    // IF EMERALD-KB OR DRAGONHIDE-KB ARE ACTIVE: Evaluate everyone dynamically at 0 PTS
+                    else if (currentKitFilter === 'emerald-kb' || currentKitFilter === 'dragonhide-kb') {
+                        row.querySelector('.row-points-total').innerText = "0 PTS";
+                        row.setAttribute('data-current-sort-score', '0');
+                    } 
+                    // IF A STANDARD FUNCTIONAL KIT TAB IS ACTIVE: Pull exact tier values
+                    else {
+                        let specificScore = 0;
+                        const kitBoxes = row.querySelectorAll('.tier-showcase-box');
+                        
+                        kitBoxes.forEach(box => {
+                            const imgAlt = box.querySelector('img').getAttribute('alt').toLowerCase().replace('_', '-');
+                            if (imgAlt === currentKitFilter) {
+                                const tierText = box.querySelector('span').innerText.trim().toUpperCase();
+                                if (pointMatrix[tierText]) {
+                                    specificScore = pointMatrix[tierText];
+                                }
+                            }
+                        });
+                        
+                        row.querySelector('.row-points-total').innerText = specificScore + " PTS";
+                        row.setAttribute('data-current-sort-score', specificScore);
+                    }
+                } else {
+                    row.classList.add('hidden');
+                    row.setAttribute('data-current-sort-score', '-1');
+                }
+            });
 
-        /* Stable Row Blocks Cascading Straight Down Without Clipping */
-        .roster-card-row { display: flex; align-items: center; background: rgba(4, 13, 22, 0.75); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 12px 18px; margin-bottom: 8px; box-sizing: border-box; gap: 15px; width: 100%; }
-        .row-rank-num { font-family: 'MulticraftCustom', monospace !important; font-size: 0.85rem; color: rgba(255, 255, 255, 0.25); width: 40px; text-align: center; flex-shrink: 0; }
-        .roster-card-row.hidden { display: none !important; }
-        
-        .roster-card-row.visible-rank-1 .row-rank-num { color: #ffd700; text-shadow: 0 0 8px rgba(255, 215, 0, 0.4); }
-        .roster-card-row.visible-rank-2 .row-rank-num { color: #c0c0c0; }
-        .roster-card-row.visible-rank-3 .row-rank-num { color: #cd7f32; }
-        
-        /* UNBLOCKED FLEXIBLE CELL ALIGNMENT: Names and points remain fully visible together */
-        .player-info-container { display: flex; align-items: center; width: 220px; gap: 10px; flex-shrink: 0; }
-        .row-player-name { font-family: 'MulticraftCustom', monospace !important; font-size: 0.85rem; font-weight: normal; color: #ffffff; text-transform: none !important; margin: 0; }
-        .row-points-total { font-family: 'MulticraftCustom', monospace !important; font-size: 0.8rem; color: #ffd700; min-width: 95px; text-align: right; flex-shrink: 0; margin-left: auto; }
+            const listContainer = document.getElementById('roster-list-container');
+            
+            // SORT MULTI-TIER PIPELINE: Breaks matching point ties using overall rank weight variables
+            const sortedRows = rows.filter(r => !r.classList.contains('hidden'))
+                                   .sort((a, b) => {
+                                        const scoreA = parseInt(a.getAttribute('data-current-sort-score'));
+                                        const scoreB = parseInt(b.getAttribute('data-current-sort-score'));
+                                        
+                                        // 1st Priority: Sort by the active kit tab score value
+                                        if (scoreB !== scoreA) {
+                                            return scoreB - scoreA;
+                                        }
+                                        
+                                        // 2nd Priority (Tie-Breaker): If active scores match, sort by overall total data-points
+                                        const overallA = parseInt(a.getAttribute('data-points'));
+                                        const overallB = parseInt(b.getAttribute('data-points'));
+                                        if (overallB !== overallA) {
+                                            return overallB - overallA;
+                                        }
+                                        
+                                        // 3rd Priority: Alphabetical name sort fallback if points are perfectly identical
+                                        const nameA = a.querySelector('.row-player-name').innerText.toLowerCase();
+                                        const nameB = b.querySelector('.row-player-name').innerText.toLowerCase();
+                                        return nameA.localeCompare(nameB);
+                                   });
 
-        .table-pill { font-size: 0.55rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; text-transform: uppercase; display: inline-block; font-family: 'Segoe UI', sans-serif; letter-spacing: 0.2px; flex-shrink: 0; }
-        .pill-na { color: #5dade2; border: 1px solid rgba(93, 189, 226, 0.25); background: rgba(93, 189, 226, 0.04); }
-        .pill-eu { color: #f4d03f; border: 1px solid rgba(244, 208, 63, 0.25); background: rgba(244, 208, 63, 0.04); }
-        .pill-pc { color: #af7ac5; border: 1px solid rgba(175, 122, 197, 0.25); background: rgba(175, 122, 197, 0.04); }
-        .pill-mob { color: #52be80; border: 1px solid rgba(82, 190, 128, 0.25); background: rgba(82, 190, 128, 0.04); }
-        .pill-con { color: #e59866; border: 1px solid rgba(229, 152, 102, 0.25); background: rgba(229, 152, 102, 0.04); }
+            let visibleRankCounter = 1;
+            sortedRows.forEach(row => {
+                row.classList.remove('visible-rank-1', 'visible-rank-2', 'visible-rank-3');
+                row.querySelector('.row-rank-num').innerText = "#" + visibleRankCounter;
+                
+                if (visibleRankCounter === 1) row.classList.add('visible-rank-1');
+                if (visibleRankCounter === 2) row.classList.add('visible-rank-2');
+                if (visibleRankCounter === 3) row.classList.add('visible-rank-3');
+                
+                listContainer.appendChild(row);
+                visibleRankCounter++;
+            });
 
-        /* NO-SCROLL COMPACT WEAPON BOXES CONTAINER */
-        .player-kits-display { display: flex; gap: 5px; flex: 1; justify-content: flex-start; align-items: center; min-width: 0; }
-        
-        .tier-showcase-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 44px;
-            height: 52px;
-            border-radius: 5px;
-            background: rgba(2, 7, 12, 0.5);
-            box-sizing: border-box;
-            padding: 2px;
-            flex-shrink: 0;
-        }
-        .tier-showcase-box.green-border { border: 1px solid rgba(82, 190, 128, 0.4); color: #52be80; }
-        .tier-showcase-box.cyan-border { border: 1px solid rgba(100, 243, 229, 0.4); color: #64f3e5; }
-        .tier-showcase-box.purple-border { border: 1px solid rgba(175, 122, 197, 0.4); color: #af7ac5; }
-        .tier-showcase-box.orange-border { border: 1px solid rgba(229, 152, 102, 0.4); color: #e59866; }
-
-        .tier-showcase-box img {
-            width: 20px;
-            height: 20px;
-            object-fit: contain;
-            margin-bottom: 2px;
-            background-color: transparent !important;
-            mix-blend-mode: color-dodge; 
-            filter: brightness(1.2) contrast(1.1);
-        }
-        .tier-showcase-box span {
-            font-family: 'MulticraftCustom', monospace !important;
-            font-size: 0.45rem;
-            text-transform: uppercase;
+            const titleElement = document.getElementById('leaderboard-title');
+            titleElement.innerText = currentKitFilter === 'all' ? 'Overall Leaderboard' : currentKitFilter.replace('-', ' ') + ' Leaderboard';
         }
 
-        .kit-navbar {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 12px;
-            width: 100%;
-            max-width: 950px;
-            margin-bottom: 25px;
-            padding: 12px;
-            background: rgba(4, 11, 18, 0.3);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            box-sizing: border-box;
-        }
-
-        .kit-btn {
-            font-family: 'MulticraftCustom', monospace !important;
-            font-size: 0.58rem;
-            display: flex;
-            flex-direction: column; 
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            background: rgba(6, 17, 28, 0.6);
-            border: 1px solid rgba(100, 243, 229, 0.1);
-            color: rgba(255, 255, 255, 0.45);
-            width: 100px;
-            height: 85px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-transform: uppercase;
-            box-sizing: border-box;
-        }
-        .kit-btn img { width: 38px; height: 38px; object-fit: contain; opacity: 0.55; mix-blend-mode: color-dodge; filter: brightness(1.2) contrast(1.1); }
-        .kit-btn:hover { color: #64f3e5; border-color: rgba(100, 243, 229, 0.4); }
-        .kit-btn.active { color: #64f3e5; border-color: #64f3e5; background: rgba(100, 243, 229, 0.12); box-shadow: 0 0 10px rgba(100, 243, 229, 0.2); }
-
-        /* INTEGRATED HORIZONTAL MATRICES BLOCKS */
-        .sidebar-panel { background: rgba(4, 15, 25, 0.75); border: 1px solid rgba(86, 239, 170, 0.12); border-radius: 12px; padding: 18px; margin-top: 20px; width: 100%; box-sizing: border-box; }
-        .sidebar-panel h3 { font-family: 'MulticraftCustom', monospace !important; color: #e67e22; font-size: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 10px; margin: 0 0 10px 0; text-align: center; text-transform: uppercase; }
-        .points-legend-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; width: 100%; padding: 0; margin: 0; list-style: none; }
-        .points-legend-item { display: flex; flex-direction: column; align-items: center; background: rgba(2, 7, 12, 0.4); padding: 8px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.03); font-size: 0.8rem; }
-        .points-legend-item span.tier-id-tag { font-family: 'MulticraftCustom', monospace !important; font-size: 0.6rem; color: #56efaa; margin-bottom: 2px; }
-        .points-legend-item span.points-weight-tag { color: #e67e22; font-weight: 600; }
-    </style>
-</head>
-<body>
-
-    <div class="logo-container">
-        <img src="logo.png" alt="Multicraft Server Banner">
-    </div>
-    
-    <div class="kit-navbar">
-        <button class="kit-btn active" onclick="filterKit('all', this)">
-            <img src="overall.png" alt="Overall" onerror="this.style.visibility='hidden'"> Overall
-        </button>
-        <button class="kit-btn" onclick="filterKit('emerald', this)">
-            <img src="Emerald.png" alt="Emerald"> Emerald
-        </button>
-        <button class="kit-btn" onclick="filterKit('emerald-kb', this)">
-            <img src="Emerald_KB.png" alt="Emerald KB"> Emerald KB
-        </button>
-        <button class="kit-btn" onclick="filterKit('dragonhide-kb', this)">
-            <img src="Dragonhide_KB.png" alt="Dragonhide KB"> Dragonhide KB
-        </button>
-        <button class="kit-btn" onclick="filterKit('dragonhide', this)">
-            <img src="Dragonhide.png" alt="Dragonhide"> Dragonhide
-        </button>
-        <button class="kit-btn" onclick="filterKit('diamond', this)">
-            <img src="Diamond.png" alt="Diamond"> Diamond
-        </button>
-    </div>
-    
-    <div class="dashboard-layout-wrapper">
-        <div class="main-content-panel">
-            <h2 class="menu-title" id="leaderboard-title">Overall Leaderboard</h2>
-            <div id="roster-list-container">
+        document.addEventListener("DOMContentLoaded", () => {
+            applyGlobalFilters();
+        });
+    </script>
+</body>
+</html>
                 <!-- Player #1: vort3xYT (270 PTS) -->
                 <div class="roster-card-row" data-kits="all,dragonhide-kb,dragonhide,emerald" data-points="270">
                     <div class="row-rank-num">#1</div>
@@ -251,9 +193,60 @@
                     </div>
                     <div class="row-points-total">110 PTS</div>
                 </div>
-                <!-- Player #9: void (70 PTS) -->
+                <!-- Player #5: Prologozrock (93 PTS) -->
+                <div class="roster-card-row" data-kits="all,dragonhide,dragonhide-kb,emerald-kb,emerald,diamond" data-points="93">
+                    <div class="row-rank-num">#5</div>
+                    <div class="player-info-container">
+                        <span class="row-player-name">Prologozrock</span>
+                        <span class="table-pill pill-na">NA</span><span class="table-pill pill-pc">PC</span>
+                    </div>
+                    <div class="player-kits-display">
+                        <div class="tier-showcase-box cyan-border"><img src="Dragonhide.png" alt="Dragonhide"><span>LT4</span></div>
+                        <div class="tier-showcase-box cyan-border"><img src="Dragonhide_KB.png" alt="Dragonhide KB"><span>LT4</span></div>
+                        <div class="tier-showcase-box green-border"><img src="Emerald_KB.png" alt="Emerald KB"><span>HT5</span></div>
+                        <div class="tier-showcase-box purple-border"><img src="Emerald.png" alt="Emerald"><span>LT3</span></div>
+                        <div class="tier-showcase-box green-border"><img src="Diamond.png" alt="Diamond"><span>HT4</span></div>
+                    </div>
+                    <div class="row-points-total">93 PTS</div>
+                </div>
+
+                <!-- Player #6: Parrot (81 PTS) -->
+                <div class="roster-card-row" data-kits="all,dragonhide,dragonhide-kb,diamond,emerald,emerald-kb" data-points="81">
+                    <div class="row-rank-num">#6</div>
+                    <div class="player-info-container">
+                        <span class="row-player-name">Parrot</span>
+                        <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">MOB</span>
+                    </div>
+                    <div class="player-kits-display">
+                        <div class="tier-showcase-box green-border"><img src="Dragonhide.png" alt="Dragonhide"><span>HT4</span></div>
+                        <div class="tier-showcase-box green-border"><img src="Dragonhide_KB.png" alt="Dragonhide KB"><span>HT4</span></div>
+                        <div class="tier-showcase-box cyan-border"><img src="Diamond.png" alt="Diamond"><span>LT4</span></div>
+                        <div class="tier-showcase-box green-border"><img src="Emerald.png" alt="Emerald"><span>HT5</span></div>
+                        <div class="tier-showcase-box green-border"><img src="Emerald_KB.png" alt="Emerald KB"><span>HT5</span></div>
+                    </div>
+                    <div class="row-points-total">81 PTS</div>
+                </div>
+
+                <!-- Player #7: Server_pvp (71 PTS) -->
+                <div class="roster-card-row" data-kits="all,dragonhide,dragonhide-kb,emerald,emerald-kb,diamond" data-points="71">
+                    <div class="row-rank-num">#7</div>
+                    <div class="player-info-container">
+                        <span class="row-player-name">Server_pvp</span>
+                        <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">MOB</span>
+                    </div>
+                    <div class="player-kits-display">
+                        <div class="tier-showcase-box cyan-border"><img src="Dragonhide.png" alt="Dragonhide"><span>LT4</span></div>
+                        <div class="tier-showcase-box cyan-border"><img src="Dragonhide_KB.png" alt="Dragonhide KB"><span>LT4</span></div>
+                        <div class="tier-showcase-box green-border"><img src="Emerald.png" alt="Emerald"><span>HT5</span></div>
+                        <div class="tier-showcase-box green-border"><img src="Emerald_KB.png" alt="Emerald KB"><span>HT5</span></div>
+                        <div class="tier-showcase-box green-border"><img src="Diamond.png" alt="Diamond"><span>HT4</span></div>
+                    </div>
+                    <div class="row-points-total">71 PTS</div>
+                </div>
+
+                <!-- Player #8: void (70 PTS) -->
                 <div class="roster-card-row" data-kits="all,dragonhide,emerald,diamond,emerald-kb" data-points="70">
-                    <div class="row-rank-num">#9</div>
+                    <div class="row-rank-num">#8</div>
                     <div class="player-info-container">
                         <span class="row-player-name">void</span>
                         <span class="table-pill pill-na">NA</span><span class="table-pill pill-pc">PC</span>
@@ -267,6 +260,22 @@
                     <div class="row-points-total">70 PTS</div>
                 </div>
 
+                <!-- Player #9: kylaz9 (25 PTS) -->
+                <div class="roster-card-row" data-kits="all,dragonhide,emerald-kb,dragonhide-kb,emerald,diamond" data-points="25">
+                    <div class="row-rank-num">#9</div>
+                    <div class="player-info-container">
+                        <span class="row-player-name">kylaz9</span>
+                        <span class="table-pill pill-eu">EU</span><span class="table-pill pill-mob">MOB</span>
+                    </div>
+                    <div class="player-kits-display">
+                        <div class="tier-showcase-box green-border"><img src="Dragonhide.png" alt="Dragonhide"><span>HT5</span></div>
+                        <div class="tier-showcase-box green-border"><img src="Emerald_KB.png" alt="Emerald KB"><span>HT5</span></div>
+                        <div class="tier-showcase-box orange-border"><img src="Dragonhide_KB.png" alt="Dragonhide KB"><span>LT5</span></div>
+                        <div class="tier-showcase-box orange-border"><img src="Emerald.png" alt="Emerald"><span>LT5</span></div>
+                        <div class="tier-showcase-box orange-border"><img src="Diamond.png" alt="Diamond"><span>LT5</span></div>
+                    </div>
+                    <div class="row-points-total">25 PTS</div>
+                </div>
                 <!-- Player #10: Jamier1235 (20 PTS) -->
                 <div class="roster-card-row" data-kits="all,dragonhide,emerald,dragonhide-kb,emerald-kb,diamond" data-points="20">
                     <div class="row-rank-num">#10</div>
@@ -405,7 +414,6 @@
     <script>
         let currentKitFilter = 'all';
 
-        // Translation point reference matrix map used to compute tier weights accurately
         const pointMatrix = {
             'HT1': 100, 'LT1': 85, 'HT2': 75, 'LT2': 60,
             'HT3': 40,  'LT3': 30, 'HT4': 25, 'LT4': 15,
