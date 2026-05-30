@@ -4,17 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multicraft Tiers | Roster Hub</title>
-    <!-- Stable Google monospace pipeline to completely bypass broken local font files -->
-    <link href="https://googleapis.com" rel="stylesheet">
     <style>
+        /* CRITICAL FIXED TYPOGRAPHY BASELINE: Bypasses .ttf restrictions entirely */
+        body, button, span, h2, h3 {
+            font-family: 'Courier New', Courier, monospace !important;
+            font-weight: bold;
+            letter-spacing: -0.5px;
+        }
+
         body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             margin: 0; 
             padding: 30px 15px; 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
-            background: #02070c; /* High-density dark canvas prevents asset loading drops */
+            background: #060c13; 
             color: #ffffff;
             min-height: 100vh; 
             box-sizing: border-box;
@@ -23,7 +27,6 @@
         .logo-container { max-width: 500px; width: 100%; margin-bottom: 25px; text-align: center; }
         .logo-container img { width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(100, 243, 229, 0.15); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6); }
         
-        /* STRICT DOWNWARD PIPELINE: Forces the table panel layout straight down, never side-by-side */
         .dashboard-layout-wrapper { 
             display: flex; 
             flex-direction: column; 
@@ -47,7 +50,6 @@
         }
         
         .menu-title { 
-            font-family: 'Share Tech Mono', monospace !important; 
             color: #64f3e5; 
             font-size: 1.4rem; 
             margin: 0 0 20px 0; 
@@ -55,24 +57,22 @@
             padding-bottom: 14px; 
             text-transform: uppercase; 
             text-align: center; 
-            letter-spacing: 1px;
         }
 
-        /* Stable Roster Row Architecture (Cascades strictly downward) */
         .roster-card-row { display: flex; align-items: center; background: rgba(4, 13, 22, 0.75); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 12px 18px; margin-bottom: 8px; box-sizing: border-box; gap: 15px; width: 100%; }
-        .row-rank-num { font-family: 'Share Tech Mono', monospace !important; font-size: 1.1rem; color: rgba(255, 255, 255, 0.25); width: 40px; text-align: center; flex-shrink: 0; }
+        .row-rank-num { font-size: 1.1rem; color: rgba(255, 255, 255, 0.25); width: 45px; text-align: center; flex-shrink: 0; }
         .roster-card-row.hidden { display: none !important; }
         
-        /* Fixed styling targets applied strictly via script engine */
-        .roster-card-row.visible-rank-1 .row-rank-num { color: #ffd700; text-shadow: 0 0 8px rgba(255, 215, 0, 0.4); }
-        .roster-card-row.visible-rank-2 .row-rank-num { color: #c0c0c0; text-shadow: none; }
-        .roster-card-row.visible-rank-3 .row-rank-num { color: #cd7f32; text-shadow: none; }
+        /* Strict rank highlighting configurations */
+        .roster-card-row.visible-rank-1 .row-rank-num { color: #ffd700 !important; text-shadow: 0 0 8px rgba(255, 215, 0, 0.4); }
+        .roster-card-row.visible-rank-2 .row-rank-num { color: #c0c0c0 !important; text-shadow: none; }
+        .roster-card-row.visible-rank-3 .row-rank-num { color: #cd7f32 !important; text-shadow: none; }
         
         .player-info-container { display: flex; align-items: center; width: 220px; gap: 10px; flex-shrink: 0; }
-        .row-player-name { font-family: 'Share Tech Mono', monospace !important; font-size: 1.05rem; font-weight: normal; color: #ffffff; text-transform: none !important; margin: 0; }
-        .row-points-total { font-family: 'Share Tech Mono', monospace !important; font-size: 1rem; color: #ffd700; min-width: 95px; text-align: right; flex-shrink: 0; margin-left: auto; }
+        .row-player-name { font-size: 1.05rem; color: #ffffff; text-transform: none !important; margin: 0; }
+        .row-points-total { font-size: 1rem; color: #ffd700; min-width: 95px; text-align: right; flex-shrink: 0; margin-left: auto; }
 
-        .table-pill { font-size: 0.55rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; text-transform: uppercase; display: inline-block; font-family: 'Segoe UI', sans-serif; letter-spacing: 0.2px; flex-shrink: 0; }
+        .table-pill { font-size: 0.55rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; text-transform: uppercase; display: inline-block; font-family: sans-serif !important; letter-spacing: 0.2px; flex-shrink: 0; }
         .pill-na { color: #5dade2; border: 1px solid rgba(93, 189, 226, 0.25); background: rgba(93, 189, 226, 0.04); }
         .pill-eu { color: #f4d03f; border: 1px solid rgba(244, 208, 63, 0.25); background: rgba(244, 208, 63, 0.04); }
         .pill-pc { color: #af7ac5; border: 1px solid rgba(175, 122, 197, 0.25); background: rgba(175, 122, 197, 0.04); }
@@ -109,7 +109,6 @@
             filter: brightness(1.2) contrast(1.1);
         }
         .tier-showcase-box span {
-            font-family: 'Share Tech Mono', monospace !important;
             font-size: 0.55rem;
             text-transform: uppercase;
         }
@@ -130,7 +129,6 @@
         }
 
         .kit-btn {
-            font-family: 'Share Tech Mono', monospace !important;
             font-size: 0.75rem;
             display: flex;
             flex-direction: column; 
@@ -147,18 +145,17 @@
             transition: all 0.2s ease;
             text-transform: uppercase;
             box-sizing: border-box;
-            letter-spacing: 0.5px;
         }
         .kit-btn img { width: 38px; height: 38px; object-fit: contain; opacity: 0.55; mix-blend-mode: color-dodge; filter: brightness(1.2) contrast(1.1); }
         .kit-btn:hover { color: #64f3e5; border-color: rgba(100, 243, 229, 0.4); background: rgba(100, 243, 229, 0.02); }
         .kit-btn.active { color: #64f3e5; border-color: #64f3e5; background: rgba(100, 243, 229, 0.12); box-shadow: 0 0 10px rgba(100, 243, 229, 0.2); }
 
         .sidebar-panel { background: rgba(4, 15, 25, 0.75); border: 1px solid rgba(86, 239, 170, 0.12); border-radius: 12px; padding: 18px; margin-top: 20px; width: 100%; box-sizing: border-box; }
-        .sidebar-panel h3 { font-family: 'Share Tech Mono', monospace !important; color: #e67e22; font-size: 0.9rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 10px; margin: 0 0 10px 0; text-align: center; text-transform: uppercase; letter-spacing: 0.5px; }
+        .sidebar-panel h3 { color: #e67e22; font-size: 0.9rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 10px; margin: 0 0 10px 0; text-align: center; text-transform: uppercase; }
         .points-legend-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; width: 100%; padding: 0; margin: 0; list-style: none; }
         .points-legend-item { display: flex; flex-direction: column; align-items: center; background: rgba(2, 7, 12, 0.4); padding: 8px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.03); font-size: 0.8rem; }
-        .points-legend-item span.tier-id-tag { font-family: 'Share Tech Mono', monospace !important; font-size: 0.7rem; color: #56efaa; margin-bottom: 2px; }
-        .points-legend-item span.points-weight-tag { color: #e67e22; font-weight: 600; font-family: 'Share Tech Mono', monospace !important; }
+        .points-legend-item span.tier-id-tag { color: #56efaa; margin-bottom: 2px; }
+        .points-legend-item span.points-weight-tag { color: #e67e22; font-weight: 600; }
     </style>
 </head>
 <body>
@@ -189,6 +186,9 @@
     </div>
     
     <div class="dashboard-layout-wrapper">
+        <div class="main-content-panel">
+            <h2 class="menu-title" id="leaderboard-title">Overall Leaderboard</h2>
+            <div id="roster-list-container">
                 <!-- Player #1: vort3xYT (270 PTS) -->
                 <div class="roster-card-row" data-kits="all,dragonhide-kb,dragonhide,emerald" data-points="270">
                     <div class="row-rank-num">#1</div>
@@ -468,7 +468,7 @@
         </div>
     </div> <!-- Closes dashboard layout wrapper cleanly -->
 
-    <!-- REAL-TIME FILTERING & STYLESHEET CLEANING LOGIC ENGINE -->
+    <!-- ADVANCED CACHE-CLEANING TIE-BREAKER SORT ENGINE -->
     <script>
         let currentKitFilter = 'all';
 
@@ -492,8 +492,8 @@
                 const connectedKits = row.getAttribute('data-kits').split(',');
                 const matchesKit = (currentKitFilter === 'all' || connectedKits.includes(currentKitFilter));
                 
-                // DEEP CLEAN UP: Forcefully drop old ranking highlighting classes from every row before re-sorting
-                row.classList.remove('visible-rank-1', 'visible-rank-2', 'visible-rank-3');
+                // DEEP CACHE SANITIZATION: Completely strips out all old rank colors to clear browser memory
+                row.className = 'roster-card-row';
                 
                 if (matchesKit) {
                     row.classList.remove('hidden');
@@ -532,6 +532,7 @@
 
             const listContainer = document.getElementById('roster-list-container');
             
+            // PRIORITY LOOP SORT: Checks active points first, breaks ties via total overall points attribute
             const sortedRows = rows.filter(r => !r.classList.contains('hidden'))
                                    .sort((a, b) => {
                                         const scoreA = parseInt(a.getAttribute('data-current-sort-score'));
@@ -554,9 +555,9 @@
 
             let visibleRankCounter = 1;
             sortedRows.forEach(row => {
+                // Force-writes the inner text component to completely bypass browser formatting glitches
                 row.querySelector('.row-rank-num').innerText = "#" + visibleRankCounter;
                 
-                // Dynamically apply pristine rank layout colors strictly to the new top 3 positions
                 if (visibleRankCounter === 1) row.classList.add('visible-rank-1');
                 if (visibleRankCounter === 2) row.classList.add('visible-rank-2');
                 if (visibleRankCounter === 3) row.classList.add('visible-rank-3');
