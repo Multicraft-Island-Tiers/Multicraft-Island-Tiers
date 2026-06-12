@@ -417,118 +417,10 @@
                     </div>
                     <div class="row-points-total">15 PTS</div>
                 </div>
-                  <!-- Player Matrix Entry for _-persus-_ -->
-                <tr class="player-row" data-badges="emerald dragonhide">
-                    <td class="rank">#15</td>
-                    <td>
-                        
-                            <span class="username">_-persus-_</span>
-                            <span class="network-tag">Global Challenger</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="badge-box">
-                            <span class="tag tag-emerald">Emerald (HT4)</span>
-                            <span class="tag tag-dragonhide">Dragonhide KB (LT4)</span>
-                        </div>
-                    </td>
-                    <td class="points-val">90 PTS</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
 
-    <!-- ================= BREAKDOWN KITS SUB-SECTION ================= -->
-    <div class="board-card" style="margin-top: 40px;">
-        <h2>Combat Weapon Kits</h2>
-        <div class="system-grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));">
-            <div class="system-cell" style="text-align: left; border-left: 3px solid var(--emerald);">
-                <strong style="display: block; margin-bottom: 5px;">Sword Kit Top</strong>
-                <span style="font-size: 0.85rem; color: var(--text-muted);">vort3xYT (HT2)<br>Husky_Multicraft (LT2)</span>
-            </div>
-            <div class="system-cell" style="text-align: left; border-left: 3px solid var(--dragonhide);">
-                <strong style="display: block; margin-bottom: 5px;">Knockback Kit Top</strong>
-                <span style="font-size: 0.85rem; color: var(--text-muted);">vort3xYT (HT2)<br>Husky_Multicraft (HT3)</span>
-            </div>
-            <div class="system-cell" style="text-align: left; border-left: 3px solid var(--diamond);">
-                <strong style="display: block; margin-bottom: 5px;">Diamond Tier Top</strong>
-                <span style="font-size: 0.85rem; color: var(--text-muted);">vort3xYT (HT2)<br>Prologozrock (HT4)</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- ================= SCORE DISTRIBUTION DECK ================= -->
-    <div class="system-panel">
-        <h2 class="system-title">Tier Point Distribution</h2>
-        <div class="system-grid">
-            <div class="system-cell"><strong>HT1</strong>: 100 Pts</div>
-            <div class="system-cell"><strong>HT2</strong>: 85 Pts</div>
-            <div class="system-cell"><strong>HT3</strong>: 75 Pts</div>
-            <div class="system-cell"><strong>HT4</strong>: 65 Pts</div>
-            <div class="system-cell"><strong>HT5</strong>: 55 Pts</div>
-            <div class="system-cell"><strong>LT1</strong>: 45 Pts</div>
-            <div class="system-cell"><strong>LT2</strong>: 35 Pts</div>
-            <div class="system-cell"><strong>LT3</strong>: 30 Pts</div>
-            <div class="system-cell"><strong>LT4</strong>: 25 Pts</div>
-            <div class="system-cell"><strong>LT5</strong>: 15 Pts</div>
-        </div>
-    </div>
-</div>
-
-<!-- ================= CORE LOGIC JAVASCRIPT ENGINE ================= -->
-<script>
-    const userSearch = document.getElementById('userSearch');
-    const tabs = document.querySelectorAll('.btn');
-    const rows = document.querySelectorAll('.player-row');
-    const sectionHeader = document.getElementById('sectionHeader');
-
-    let activeFilter = 'all';
-    let queryValue = '';
-
-    function filterRoster() {
-        rows.forEach(row => {
-            const nameText = row.querySelector('.username').textContent.toLowerCase();
-            const badgeMeta = row.getAttribute('data-badges') || '';
-            
-            const passSearch = nameText.includes(queryValue);
-            const passFilter = activeFilter === 'all' || badgeMeta.includes(activeFilter);
-
-            if (passSearch && passFilter) {
-                row.style.display = '';
-            } else {
-                row.style.display = 'none';
-            }
-        });
-    }
-
-    userSearch.addEventListener('input', (e) => {
-        queryValue = e.target.value.toLowerCase();
-        filterRoster();
-    });
-
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            tabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-
-            activeFilter = tab.getAttribute('data-target');
-            
-            if(activeFilter === 'all') {
-                sectionHeader.textContent = 'Overall Hub';
-            } else {
-                sectionHeader.textContent = activeFilter.charAt(0).toUpperCase() + activeFilter.slice(1) + ' Tier List';
-            }
-
-            filterRoster();
-        });
-    });
-</script>
-</body>
-</html>
-
-                <!-- Player #16: grant (9 PTS) -->
+                <!-- Player #15: grant (9 PTS) -->
                 <div class="roster-card-row" data-kits="all,dragonhide,dragonhide-kb,diamond" data-points="9">
-                    <div class="row-rank-num">#16</div>
+                    <div class="row-rank-num">#15</div>
                     <div class="player-info-container">
                         <span class="row-player-name">grant</span>
                         <span class="table-pill pill-na">NA</span><span class="table-pill pill-mob">MOB</span>
@@ -541,7 +433,7 @@
                     <div class="row-points-total">9 PTS</div>
                 </div>
 
-                <!-- Player #17: New_guy (9 PTS) -->
+                <!-- Player #16: New_guy (9 PTS) -->
                 <div class="roster-card-row" data-kits="all,dragonhide,dragonhide-kb,diamond" data-points="9">
                     <div class="row-rank-num">#16</div>
                     <div class="player-info-container">
