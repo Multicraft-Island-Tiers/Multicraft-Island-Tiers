@@ -18,7 +18,7 @@ const players = [
     rank: 2,
     name: 'Prologozrock',
     avatar: 'P',
-    badges: ['Emerald Expert'],
+    badges: ['Elite Player'],
     kits: {
       'Dragonhide KB': 'LT4',
       'Dragonhide': 'LT4',
@@ -51,8 +51,8 @@ const players = [
       'Dragonhide KB': 'LT3',
       'Dragonhide': 'HT4',
       'Emerald': 'LT3',
-      'Emerald KB': 'HT4',
-      'Diamond': 'HT4'
+      'Emerald KB': 'Diamond',
+      'Diamond': 'Diamond'
     },
     points: 285
   },
@@ -74,7 +74,7 @@ const players = [
     rank: 6,
     name: 'Void',
     avatar: 'Vo',
-    badges: ['Emerging Master'],
+    badges: ['Rising Master'],
     kits: {
       'Dragonhide': 'LT4',
       'Dragonhide KB': 'LT4',
