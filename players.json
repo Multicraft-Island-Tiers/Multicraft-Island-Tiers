@@ -1,0 +1,232 @@
+[
+  {
+    "name": "vort3xYT",
+    "rank": 1,
+    "totalPoints": 270,
+    "regions": ["EU"],
+    "platforms": ["PC"],
+    "kits": ["all", "dragonhide-kb", "dragonhide", "emerald"],
+    "achievements": [
+      {"kit": "dragonhide-kb", "tier": "HT2"},
+      {"kit": "emerald", "tier": "HT2"},
+      {"kit": "dragonhide", "tier": "LT2"},
+      {"kit": "emerald", "tier": "LT2"}
+    ]
+  },
+  {
+    "name": "Husky_Multicraft",
+    "rank": 2,
+    "totalPoints": 230,
+    "regions": ["NA"],
+    "platforms": ["PC"],
+    "kits": ["all", "dragonhide-kb", "diamond", "emerald", "dragonhide", "emerald-kb"],
+    "achievements": [
+      {"kit": "dragonhide-kb", "tier": "HT3"},
+      {"kit": "dragonhide", "tier": "LT2"},
+      {"kit": "emerald", "tier": "LT2"},
+      {"kit": "emerald-kb", "tier": "LT3"},
+      {"kit": "diamond", "tier": "HT3"}
+    ]
+  },
+  {
+    "name": "big_nub",
+    "rank": 3,
+    "totalPoints": 125,
+    "regions": ["EU"],
+    "platforms": ["PC"],
+    "kits": ["all", "dragonhide-kb", "diamond"],
+    "achievements": [
+      {"kit": "dragonhide-kb", "tier": "LT1"},
+      {"kit": "diamond", "tier": "HT3"}
+    ]
+  },
+  {
+    "name": "Herobrine",
+    "rank": 4,
+    "totalPoints": 110,
+    "regions": ["NA"],
+    "platforms": ["CTRL"],
+    "kits": ["all", "diamond", "emerald", "dragonhide", "dragonhide-kb"],
+    "achievements": [
+      {"kit": "diamond", "tier": "HT4"},
+      {"kit": "emerald", "tier": "HT4"},
+      {"kit": "dragonhide", "tier": "LT3"},
+      {"kit": "dragonhide-kb", "tier": "LT3"}
+    ]
+  },
+  {
+    "name": "Prologozrock",
+    "rank": 5,
+    "totalPoints": 93,
+    "regions": ["NA"],
+    "platforms": ["PC"],
+    "kits": ["all", "dragonhide", "dragonhide-kb", "emerald-kb", "emerald", "diamond"],
+    "achievements": [
+      {"kit": "dragonhide", "tier": "LT4"},
+      {"kit": "dragonhide-kb", "tier": "LT4"},
+      {"kit": "emerald-kb", "tier": "HT5"},
+      {"kit": "emerald", "tier": "LT3"},
+      {"kit": "diamond", "tier": "HT4"}
+    ]
+  },
+  {
+    "name": "Parrot",
+    "rank": 6,
+    "totalPoints": 81,
+    "regions": ["NA"],
+    "platforms": ["MOB"],
+    "kits": ["all", "dragonhide", "dragonhide-kb", "diamond", "emerald", "emerald-kb"],
+    "achievements": [
+      {"kit": "dragonhide", "tier": "HT4"},
+      {"kit": "dragonhide-kb", "tier": "HT4"},
+      {"kit": "diamond", "tier": "LT4"},
+      {"kit": "emerald", "tier": "HT5"},
+      {"kit": "emerald-kb", "tier": "HT5"}
+    ]
+  },
+  {
+    "name": "Server_pvp",
+    "rank": 7,
+    "totalPoints": 71,
+    "regions": ["NA"],
+    "platforms": ["MOB"],
+    "kits": ["all", "dragonhide", "dragonhide-kb", "emerald", "emerald-kb", "diamond"],
+    "achievements": [
+      {"kit": "dragonhide", "tier": "LT4"},
+      {"kit": "dragonhide-kb", "tier": "LT4"},
+      {"kit": "emerald", "tier": "HT5"},
+      {"kit": "emerald-kb", "tier": "HT5"},
+      {"kit": "diamond", "tier": "HT4"}
+    ]
+  },
+  {
+    "name": "void",
+    "rank": 8,
+    "totalPoints": 70,
+    "regions": ["NA"],
+    "platforms": ["PC"],
+    "kits": ["all", "dragonhide", "emerald", "diamond", "emerald-kb"],
+    "achievements": [
+      {"kit": "dragonhide", "tier": "LT4"},
+      {"kit": "emerald", "tier": "LT4"},
+      {"kit": "diamond", "tier": "LT4"},
+      {"kit": "emerald-kb", "tier": "HT4"}
+    ]
+  },
+  {
+    "name": "kylaz9",
+    "rank": 9,
+    "totalPoints": 25,
+    "regions": ["EU"],
+    "platforms": ["MOB"],
+    "kits": ["all", "dragonhide", "emerald-kb", "dragonhide-kb", "emerald", "diamond"],
+    "achievements": [
+      {"kit": "dragonhide", "tier": "HT5"},
+      {"kit": "emerald-kb", "tier": "HT5"},
+      {"kit": "dragonhide-kb", "tier": "LT5"},
+      {"kit": "emerald", "tier": "LT5"},
+      {"kit": "diamond", "tier": "LT5"}
+    ]
+  },
+  {
+    "name": "Jamier1235",
+    "rank": 10,
+    "totalPoints": 20,
+    "regions": ["NA"],
+    "platforms": ["MOB"],
+    "kits": ["all", "dragonhide", "emerald", "dragonhide-kb", "emerald-kb", "diamond"],
+    "achievements": [
+      {"kit": "dragonhide", "tier": "HT5"},
+      {"kit": "emerald", "tier": "LT5"},
+      {"kit": "dragonhide-kb", "tier": "LT5"},
+      {"kit": "emerald-kb", "tier": "LT5"},
+      {"kit": "diamond", "tier": "LT5"}
+    ]
+  },
+  {
+    "name": "aaa666",
+    "rank": 11,
+    "totalPoints": 15,
+    "regions": ["NA"],
+    "platforms": ["MOB"],
+    "kits": ["all", "dragonhide", "emerald", "dragonhide-kb", "emerald-kb", "diamond"],
+    "achievements": [
+      {"kit": "dragonhide", "tier": "LT5"},
+      {"kit": "emerald", "tier": "LT5"},
+      {"kit": "dragonhide-kb", "tier": "LT5"},
+      {"kit": "emerald-kb", "tier": "LT5"},
+      {"kit": "diamond", "tier": "LT5"}
+    ]
+  },
+  {
+    "name": "Benjamin",
+    "rank": 12,
+    "totalPoints": 15,
+    "regions": ["NA"],
+    "platforms": ["MOB"],
+    "kits": ["all", "dragonhide", "emerald", "dragonhide-kb", "emerald-kb", "diamond"],
+    "achievements": [
+      {"kit": "dragonhide", "tier": "LT5"},
+      {"kit": "emerald", "tier": "LT5"},
+      {"kit": "dragonhide-kb", "tier": "LT5"},
+      {"kit": "emerald-kb", "tier": "LT5"},
+      {"kit": "diamond", "tier": "LT5"}
+    ]
+  },
+  {
+    "name": "Booky",
+    "rank": 13,
+    "totalPoints": 15,
+    "regions": ["NA"],
+    "platforms": ["MOB"],
+    "kits": ["all", "dragonhide", "emerald", "dragonhide-kb", "emerald-kb", "diamond"],
+    "achievements": [
+      {"kit": "dragonhide", "tier": "LT5"},
+      {"kit": "emerald", "tier": "LT5"},
+      {"kit": "dragonhide-kb", "tier": "LT5"},
+      {"kit": "emerald-kb", "tier": "LT5"},
+      {"kit": "diamond", "tier": "LT5"}
+    ]
+  },
+  {
+    "name": "Taxbird",
+    "rank": 14,
+    "totalPoints": 15,
+    "regions": ["NA"],
+    "platforms": ["MOB"],
+    "kits": ["all", "dragonhide", "emerald", "dragonhide-kb", "emerald-kb", "diamond"],
+    "achievements": [
+      {"kit": "dragonhide", "tier": "LT5"},
+      {"kit": "emerald", "tier": "LT5"},
+      {"kit": "dragonhide-kb", "tier": "LT5"},
+      {"kit": "emerald-kb", "tier": "LT5"},
+      {"kit": "diamond", "tier": "LT5"}
+    ]
+  },
+  {
+    "name": "grant",
+    "rank": 15,
+    "totalPoints": 9,
+    "regions": ["NA"],
+    "platforms": ["MOB"],
+    "kits": ["all", "dragonhide", "dragonhide-kb", "diamond"],
+    "achievements": [
+      {"kit": "dragonhide", "tier": "LT5"},
+      {"kit": "dragonhide-kb", "tier": "LT5"},
+      {"kit": "diamond", "tier": "LT5"}
+    ]
+  },
+  {
+    "name": "New_guy",
+    "rank": 16,
+    "totalPoints": 9,
+    "regions": ["NA"],
+    "platforms": ["MOB"],
+    "kits": ["all", "dragonhide", "dragonhide-kb", "diamond"],
+    "achievements": [
+      {"kit": "dragonhide", "tier": "LT5"},
+      {"kit": "dragonhide-kb", "tier": "LT5"},
+      {"kit": "diamond", "tier": "LT5"}
+    ]
+  }
+]
