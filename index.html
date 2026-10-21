@@ -1,620 +1,619 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multicraft Tiers | Roster Hub</title>
-    <style>
-        /* STARFIELD BACKGROUND & COSMIC THEMING */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multicraft Tier List</title>
+  <style>
+    :root {
+      --bg-deep: #07131d;
+      --bg-mid: #0b1a2a;
+      --panel: rgba(10, 18, 28, 0.88);
+      --panel-border: rgba(100, 243, 229, 0.3);
+      --gold: #f8d457;
+      --cyan: #8ef2ff;
+      --lime: #7be5a6;
+      --purple: #a77dff;
+      --orange: #ffba5a;
+      --text: #edf7ff;
+      --muted: rgba(236, 244, 255, 0.76);
+      --shadow: rgba(0, 0, 0, 0.6);
+      --nav-bg: rgba(3, 8, 14, 0.78);
+    }
 
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
+    * { box-sizing: border-box; }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
+    html, body {
+      margin: 0;
+      width: 100%;
+      min-height: 100%;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(45, 131, 155, 0.4), transparent 22%),
+        radial-gradient(circle at 80% 12%, rgba(138, 85, 155, 0.45), transparent 25%),
+        linear-gradient(180deg, #061924 0%, #0e1d2d 25%, #0b0d1a 100%);
+      color: var(--text);
+      overflow-x: hidden;
+    }
 
-        body {
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: bold;
-            letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #060c13 0%, #0a1428 100%);
-            color: #ffffff;
-            min-height: 100vh;
-            padding: 30px 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            overflow-x: hidden;
-        }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(2px 2px at 10% 15%, rgba(255,255,255,0.8), transparent 50%),
+        radial-gradient(2px 2px at 28% 28%, rgba(255,255,255,0.8), transparent 50%),
+        radial-gradient(1.5px 1.5px at 40% 18%, rgba(255,255,255,0.8), transparent 50%),
+        radial-gradient(1.5px 1.5px at 58% 30%, rgba(255,255,255,0.8), transparent 50%),
+        radial-gradient(2px 2px at 75% 18%, rgba(255,255,255,0.8), transparent 50%),
+        radial-gradient(2px 2px at 90% 22%, rgba(255,255,255,0.8), transparent 50%),
+        radial-gradient(1.5px 1.5px at 18% 77%, rgba(255,255,255,0.8), transparent 50%),
+        radial-gradient(1.5px 1.5px at 35% 60%, rgba(255,255,255,0.8), transparent 50%),
+        radial-gradient(2px 2px at 62% 75%, rgba(255,255,255,0.8), transparent 50%),
+        radial-gradient(1.5px 1.5px at 72% 67%, rgba(255,255,255,0.8), transparent 50%),
+        radial-gradient(2px 2px at 84% 58%, rgba(255,255,255,0.8), transparent 50%),
+        radial-gradient(1.5px 1.5px at 92% 80%, rgba(255,255,255,0.8), transparent 50%);
+      opacity: 0.9;
+      pointer-events: none;
+      z-index: 0;
+      animation: twinkle 6s ease-in-out infinite alternate;
+    }
 
-        /* Starfield effect */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
-                radial-gradient(2px 2px at 60px 70px, #fff, rgba(0,0,0,0)),
-                radial-gradient(1px 1px at 50px 50px, #ddd, rgba(0,0,0,0)),
-                radial-gradient(1px 1px at 130px 80px, #fff, rgba(0,0,0,0)),
-                radial-gradient(2px 2px at 90px 10px, #eee, rgba(0,0,0,0));
-            background-repeat: repeat;
-            background-size: 200px 200px;
-            z-index: 0;
-            pointer-events: none;
-            animation: twinkle 3s ease-in-out infinite;
-        }
+    @keyframes twinkle {
+      0% { opacity: 0.4; }
+      100% { opacity: 0.95; }
+    }
 
-        body > * {
-            position: relative;
-            z-index: 1;
-        }
+    .page-shell {
+      position: relative;
+      z-index: 1;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 18px 14px 30px;
+    }
 
-        .logo-container {
-            max-width: 500px;
-            width: 100%;
-            margin-bottom: 25px;
-            text-align: center;
-        }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 58px;
+      background: rgba(8, 11, 18, 0.85);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 0;
+      box-shadow: 0 0 0 1px rgba(50,50,50,0.15) inset;
+      padding: 0 18px;
+      margin-bottom: 12px;
+    }
 
-        .logo-container img {
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
-            border: 1px solid rgba(100, 243, 229, 0.15);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
-        }
+    .brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 180px;
+      height: 100%;
+    }
 
-        .dashboard-layout-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            width: 100%;
-            max-width: 1100px;
-            box-sizing: border-box;
-        }
+    .brand img {
+      display: block;
+      height: 42px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 0 10px rgba(130, 218, 255, 0.25));
+    }
 
-        .main-content-panel {
-            width: 100%;
-            background: rgba(6, 12, 19, 0.85);
-            border: 1px solid rgba(100, 243, 229, 0.2);
-            border-radius: 14px;
-            padding: 22px;
-            box-sizing: border-box;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(100, 243, 229, 0.05);
-            display: flex;
-            flex-direction: column;
-        }
+    .main-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      flex: 1;
+      font-size: 11px;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      font-weight: 700;
+    }
 
-        .menu-title {
-            color: #64f3e5;
-            font-size: 1.4rem;
-            margin: 0 0 20px 0;
-            border-bottom: 1px solid rgba(100, 243, 229, 0.2);
-            padding-bottom: 14px;
-            text-transform: uppercase;
-            text-align: center;
-            text-shadow: 0 0 10px rgba(100, 243, 229, 0.3);
-        }
+    .main-links a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      opacity: 0.9;
+      transition: color 0.2s ease, opacity 0.2s ease;
+    }
 
-        .roster-card-row {
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, rgba(10, 20, 35, 0.8) 0%, rgba(8, 15, 28, 0.8) 100%);
-            border: 1px solid rgba(100, 243, 229, 0.15);
-            border-radius: 8px;
-            padding: 14px 18px;
-            margin-bottom: 10px;
-            gap: 15px;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(8px);
-        }
+    .main-links a:hover,
+    .main-links a.active {
+      color: var(--cyan);
+      opacity: 1;
+    }
 
-        .roster-card-row:hover {
-            border-color: rgba(100, 243, 229, 0.4);
-            background: linear-gradient(135deg, rgba(15, 30, 50, 0.95) 0%, rgba(12, 22, 38, 0.95) 100%);
-            box-shadow: 0 0 15px rgba(100, 243, 229, 0.2);
-            transform: translateY(-2px);
-        }
+    .search-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      min-width: 230px;
+    }
 
-        .roster-card-row.hidden {
-            display: none !important;
-        }
+    .search-box {
+      width: min(24vw, 220px);
+      min-width: 140px;
+      height: 30px;
+      border-radius: 4px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.02);
+      color: rgba(255,255,255,0.8);
+      padding: 0 10px;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      outline: none;
+    }
 
-        .row-rank-num {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.3);
-            width: 40px;
-            text-align: center;
-            flex-shrink: 0;
-            font-weight: 900;
-        }
+    .search-box::placeholder {
+      color: rgba(255,255,255,0.45);
+    }
 
-        .roster-card-row.visible-rank-1 .row-rank-num {
-            color: #ffd700;
-            text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
-        }
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 12px 0 18px;
+      margin-bottom: 8px;
+      position: relative;
+    }
 
-        .roster-card-row.visible-rank-2 .row-rank-num {
-            color: #c0c0c0;
-            text-shadow: 0 0 6px rgba(192, 192, 192, 0.3);
-        }
+    .kit-btn {
+      appearance: none;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(5, 18, 28, 0.18);
+      color: rgba(255,255,255,0.8);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-width: 112px;
+      height: 38px;
+      padding: 0 12px;
+      border-radius: 5px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, color 0.2s ease;
+    }
 
-        .roster-card-row.visible-rank-3 .row-rank-num {
-            color: #cd7f32;
-            text-shadow: 0 0 6px rgba(205, 127, 50, 0.3);
-        }
+    .kit-btn img {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+      opacity: 0.85;
+    }
 
-        .player-info-container {
-            display: flex;
-            align-items: center;
-            width: 220px;
-            gap: 10px;
-            flex-shrink: 0;
-        }
+    .kit-btn:hover,
+    .kit-btn.active {
+      transform: translateY(-1px);
+      border-color: rgba(255, 214, 10, 0.85);
+      color: #ffe26b;
+      box-shadow: 0 0 12px rgba(255,206,84,0.25);
+    }
 
-        .row-player-name {
-            font-size: 1.05rem;
-            color: #ffffff;
-            text-transform: none;
-            margin: 0;
-        }
+    .content-frame {
+      width: min(100%, 940px);
+      margin: 0 auto;
+      background: rgba(8, 15, 22, 0.78);
+      border: 1px solid rgba(126, 218, 255, 0.18);
+      border-radius: 10px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+      overflow: hidden;
+    }
 
-        .table-pill {
-            font-size: 0.55rem;
-            font-weight: bold;
-            padding: 3px 7px;
-            border-radius: 3px;
-            text-transform: uppercase;
-            display: inline-block;
-            font-family: sans-serif;
-            letter-spacing: 0.5px;
-        }
+    .leaderboard-head {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 18px 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      font-weight: 800;
+    }
 
-        .pill-na { color: #5dade2; border: 1px solid rgba(93, 189, 226, 0.35); background: rgba(93, 189, 226, 0.08); }
-        .pill-eu { color: #f4d03f; border: 1px solid rgba(244, 208, 63, 0.35); background: rgba(244, 208, 63, 0.08); }
-        .pill-pc { color: #af7ac5; border: 1px solid rgba(175, 122, 197, 0.35); background: rgba(175, 122, 197, 0.08); }
-        .pill-mob { color: #52be80; border: 1px solid rgba(82, 190, 128, 0.35); background: rgba(82, 190, 128, 0.08); }
-        .pill-con { color: #e59866; border: 1px solid rgba(229, 152, 102, 0.35); background: rgba(229, 152, 102, 0.08); }
+    .roster-list {
+      padding: 10px 18px 18px;
+      min-height: 480px;
+    }
 
-        .player-kits-display {
-            display: flex;
-            gap: 6px;
-            flex: 1;
-            justify-content: flex-start;
-            align-items: center;
-            min-width: 0;
-            flex-wrap: wrap;
-        }
+    .roster-card-row {
+      display: grid;
+      grid-template-columns: 42px minmax(200px, 1.2fr) minmax(230px, 2.2fr) 120px;
+      align-items: center;
+      column-gap: 12px;
+      min-height: 58px;
+      padding: 7px 8px 7px 10px;
+      border-radius: 8px;
+      background: rgba(6, 14, 22, 0.7);
+      border: 1px solid rgba(90, 135, 180, 0.16);
+      margin-bottom: 10px;
+    }
 
-        .tier-showcase-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 48px;
-            height: 56px;
-            border-radius: 6px;
-            background: rgba(2, 7, 12, 0.6);
-            box-sizing: border-box;
-            padding: 3px;
-            flex-shrink: 0;
-            transition: all 0.2s ease;
-        }
+    .roster-card-row.hidden {
+      display: none !important;
+    }
 
-        .tier-showcase-box:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 10px rgba(100, 243, 229, 0.3);
-        }
+    .row-rank-num {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.52);
+      font-size: 17px;
+      font-weight: 800;
+      padding-left: 4px;
+    }
 
-        .tier-showcase-box.green-border { border: 1.5px solid rgba(82, 190, 128, 0.5); color: #52be80; }
-        .tier-showcase-box.cyan-border { border: 1.5px solid rgba(100, 243, 229, 0.5); color: #64f3e5; }
-        .tier-showcase-box.purple-border { border: 1.5px solid rgba(175, 122, 197, 0.5); color: #af7ac5; }
-        .tier-showcase-box.orange-border { border: 1.5px solid rgba(229, 152, 102, 0.5); color: #e59866; }
+    .visible-rank-1 .row-rank-num { color: #f3d64a; }
+    .visible-rank-2 .row-rank-num { color: #d7dce7; }
+    .visible-rank-3 .row-rank-num { color: #d59b64; }
 
-        .tier-showcase-box img {
-            width: 22px;
-            height: 22px;
-            object-fit: contain;
-            margin-bottom: 2px;
-            background-color: transparent;
-            mix-blend-mode: color-dodge;
-            filter: brightness(1.2) contrast(1.1);
-        }
+    .player-info-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
 
-        .tier-showcase-box span {
-            font-size: 0.58rem;
-            text-transform: uppercase;
-            font-weight: bold;
-        }
+    .player-avatar {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(175, 245, 255, 0.25), rgba(40, 90, 130, 0.7));
+      border: 1px solid rgba(255,255,255,0.18);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      color: rgba(255,255,255,0.92);
+    }
 
-        .row-points-total {
-            font-size: 1.1rem;
-            color: #ffd700;
-            min-width: 95px;
-            text-align: right;
-            flex-shrink: 0;
-            font-weight: 900;
-            text-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
-        }
+    .row-player-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: inline-block;
+      max-width: 100%;
+    }
 
-        .kit-navbar {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 12px;
-            width: 100%;
-            max-width: 1100px;
-            margin-bottom: 25px;
-            padding: 15px;
-            background: rgba(6, 17, 28, 0.5);
-            border-radius: 12px;
-            border: 1px solid rgba(100, 243, 229, 0.15);
-            box-sizing: border-box;
-            backdrop-filter: blur(8px);
-        }
+    .player-kits-display {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      gap: 6px;
+      min-width: 0;
+    }
 
-        .kit-btn {
-            font-size: 0.75rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            background: rgba(8, 18, 30, 0.7);
-            border: 1px solid rgba(100, 243, 229, 0.15);
-            color: rgba(255, 255, 255, 0.5);
-            width: 110px;
-            height: 90px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            box-sizing: border-box;
-            font-weight: bold;
-        }
+    .tier-showcase-box {
+      width: 38px;
+      height: 42px;
+      border-radius: 5px;
+      padding: 3px 2px 2px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(5, 10, 16, 0.8);
+      border: 1px solid rgba(255,255,255,0.1);
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--text);
+      flex-shrink: 0;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+    }
 
-        .kit-btn img {
-            width: 40px;
-            height: 40px;
-            object-fit: contain;
-            opacity: 0.6;
-            mix-blend-mode: color-dodge;
-            filter: brightness(1.2) contrast(1.1);
-        }
+    .tier-showcase-box.green-border { border-color: rgba(88, 226, 146, 0.8); color: #80f0b2; }
+    .tier-showcase-box.cyan-border { border-color: rgba(110, 217, 255, 0.8); color: #9ae7ff; }
+    .tier-showcase-box.purple-border { border-color: rgba(179, 133, 255, 0.8); color: #c9a9ff; }
+    .tier-showcase-box.orange-border { border-color: rgba(255, 174, 92, 0.8); color: #ffcc7f; }
 
-        .kit-btn:hover {
-            color: #64f3e5;
-            border-color: rgba(100, 243, 229, 0.35);
-            background: rgba(100, 243, 229, 0.08);
-            transform: translateY(-2px);
-        }
+    .tier-showcase-box img {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+      margin-bottom: 2px;
+      display: block;
+      filter: drop-shadow(0 0 5px rgba(255,255,255,0.08));
+    }
 
-        .kit-btn.active {
-            color: #64f3e5;
-            border-color: #64f3e5;
-            background: rgba(100, 243, 229, 0.15);
-            box-shadow: 0 0 15px rgba(100, 243, 229, 0.3), inset 0 0 10px rgba(100, 243, 229, 0.1);
-        }
+    .tier-showcase-box span {
+      font-size: 9px;
+      letter-spacing: 0.4px;
+      line-height: 1;
+    }
 
-        .sidebar-panel {
-            background: rgba(10, 20, 35, 0.8);
-            border: 1px solid rgba(100, 243, 229, 0.2);
-            border-radius: 12px;
-            padding: 20px;
-            width: 100%;
-            box-sizing: border-box;
-            backdrop-filter: blur(8px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
-        }
+    .row-points-total {
+      justify-self: end;
+      text-align: right;
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--gold);
+      letter-spacing: 0.8px;
+      min-width: 90px;
+      text-shadow: 0 0 10px rgba(255, 213, 74, 0.25);
+    }
 
-        .sidebar-panel h3 {
-            color: #64f3e5;
-            font-size: 0.95rem;
-            border-bottom: 1px solid rgba(100, 243, 229, 0.2);
-            padding-bottom: 12px;
-            margin: 0 0 15px 0;
-            text-align: center;
-            text-transform: uppercase;
-            text-shadow: 0 0 8px rgba(100, 243, 229, 0.2);
-        }
+    .row-points-total::before {
+      content: "";
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background: var(--gold);
+      border-radius: 50%;
+      margin-right: 8px;
+      box-shadow: 0 0 12px rgba(255, 217, 80, 0.5);
+      vertical-align: middle;
+    }
 
-        .points-legend-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 12px;
-            width: 100%;
-            padding: 0;
-            margin: 0;
-            list-style: none;
-        }
+    @media (max-width: 760px) {
+      .topbar {
+        height: auto;
+        flex-wrap: wrap;
+        padding: 12px 14px;
+        gap: 10px;
+      }
 
-        .points-legend-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background: rgba(8, 15, 28, 0.6);
-            padding: 10px;
-            border-radius: 6px;
-            border: 1px solid rgba(100, 243, 229, 0.2);
-            transition: all 0.2s ease;
-        }
+      .brand, .search-wrap {
+        min-width: 0;
+        width: 100%;
+        justify-content: center;
+      }
 
-        .points-legend-item:hover {
-            border-color: rgba(100, 243, 229, 0.4);
-            background: rgba(10, 20, 35, 0.8);
-        }
+      .main-links {
+        width: 100%;
+        flex-wrap: wrap;
+      }
 
-        .points-legend-item span.tier-id-tag {
-            color: #64f3e5;
-            margin-bottom: 4px;
-            font-weight: bold;
-        }
+      .content-frame {
+        width: 100%;
+      }
 
-        .points-legend-item span.points-weight-tag {
-            color: #ffd700;
-            font-weight: 900;
-        }
+      .roster-card-row {
+        grid-template-columns: 32px minmax(150px, 1fr) 1fr 80px;
+      }
 
-        @media (max-width: 768px) {
-            .player-kits-display {
-                max-width: 200px;
-            }
-
-            .kit-navbar {
-                gap: 8px;
-            }
-
-            .kit-btn {
-                width: 90px;
-                height: 75px;
-                font-size: 0.65rem;
-            }
-        }
-    </style>
+      .player-info-container {
+        gap: 8px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="brand">
+        <img src="logo.png" alt="Multicraft Logo">
+      </div>
 
-    <div class="logo-container">
-        <img src="logo.png" alt="Multicraft Server Banner">
+      <nav class="main-links" aria-label="Main navigation">
+        <a href="#" class="active">Home</a>
+        <a href="#">Rankings</a>
+        <a href="#">Hall of Fame</a>
+        <a href="#">Tier Testers</a>
+      </nav>
+
+      <div class="search-wrap">
+        <input class="search-box" type="text" placeholder="Search Player..." aria-label="Search player">
+      </div>
+    </header>
+
+    <div class="filter-bar" id="filter-bar">
+      <button class="kit-btn active" data-kit="all" type="button">
+        <img src="overall.png" alt="Overall"><span>Overall</span>
+      </button>
+      <button class="kit-btn" data-kit="emerald" type="button">
+        <img src="Emerald.png" alt="Emerald"><span>Emerald</span>
+      </button>
+      <button class="kit-btn" data-kit="emerald-kb" type="button">
+        <img src="Emerald_KB.png" alt="Emerald KB"><span>Emerald KB</span>
+      </button>
+      <button class="kit-btn" data-kit="dragonhide-kb" type="button">
+        <img src="Dragonhide_KB.png" alt="Dragonhide KB"><span>Dragonhide KB</span>
+      </button>
+      <button class="kit-btn" data-kit="dragonhide" type="button">
+        <img src="Dragonhide.png" alt="Dragonhide"><span>Dragonhide</span>
+      </button>
+      <button class="kit-btn" data-kit="diamond" type="button">
+        <img src="Diamond.png" alt="Diamond"><span>Diamond</span>
+      </button>
     </div>
-    
-    <div class="kit-navbar">
-        <button class="kit-btn active" onclick="filterKit('all', this)">
-            <img src="overall.png" alt="Overall" onerror="this.style.visibility='hidden'"> Overall
-        </button>
-        <button class="kit-btn" onclick="filterKit('emerald', this)">
-            <img src="Emerald.png" alt="Emerald"> Emerald
-        </button>
-        <button class="kit-btn" onclick="filterKit('emerald-kb', this)">
-            <img src="Emerald_KB.png" alt="Emerald KB"> Emerald KB
-        </button>
-        <button class="kit-btn" onclick="filterKit('dragonhide-kb', this)">
-            <img src="Dragonhide_KB.png" alt="Dragonhide KB"> Dragonhide KB
-        </button>
-        <button class="kit-btn" onclick="filterKit('dragonhide', this)">
-            <img src="Dragonhide.png" alt="Dragonhide"> Dragonhide
-        </button>
-        <button class="kit-btn" onclick="filterKit('diamond', this)">
-            <img src="Diamond.png" alt="Diamond"> Diamond
-        </button>
-    </div>
-    
-    <div class="dashboard-layout-wrapper">
-        <div class="main-content-panel">
-            <h2 class="menu-title" id="leaderboard-title">Overall Leaderboard</h2>
-            <div id="roster-list-container">
-                <!-- Dynamically populated from players.json -->
+
+    <main class="content-frame">
+      <div class="leaderboard-head" id="leaderboard-title">Overall Leaderboard</div>
+      <div id="roster-list-container" class="roster-list"></div>
+    </main>
+  </div>
+
+  <script>
+    const pointMatrix = {
+      'HT1': 100,
+      'LT1': 85,
+      'HT2': 75,
+      'LT2': 60,
+      'HT3': 40,
+      'LT3': 30,
+      'HT4': 25,
+      'LT4': 15,
+      'HT5': 8,
+      'LT5': 3
+    };
+
+    const tierClassMap = {
+      'HT1': 'green-border',
+      'LT1': 'cyan-border',
+      'HT2': 'green-border',
+      'LT2': 'cyan-border',
+      'HT3': 'purple-border',
+      'LT3': 'purple-border',
+      'HT4': 'green-border',
+      'LT4': 'cyan-border',
+      'HT5': 'green-border',
+      'LT5': 'orange-border'
+    };
+
+    const assetsForKit = {
+      emerald: 'Emerald.png',
+      'emerald-kb': 'Emerald_KB.png',
+      dragonhide: 'Dragonhide.png',
+      'dragonhide-kb': 'Dragonhide_KB.png',
+      diamond: 'Diamond.png'
+    };
+
+    let filteredPlayers = [];
+    let currentKitFilter = 'all';
+
+    function normalizeKitSlug(value) {
+      return String(value || '').trim().toLowerCase().replace(/\s+/g, '-');
+    }
+
+    function getKitAssetName(kitName) {
+      const slug = normalizeKitSlug(kitName);
+      return assetsForKit[slug] || 'logo.png';
+    }
+
+    function findTierFromBox(kitName, player) {
+      const kitSlug = normalizeKitSlug(kitName);
+      const match = (player.achievements || []).find(item => normalizeKitSlug(item.kit) === kitSlug);
+      return match ? match.tier : '';
+    }
+
+    function renderRows(players) {
+      const container = document.getElementById('roster-list-container');
+      container.innerHTML = '';
+
+      const rows = players.map((player, index) => {
+        const kitBoxes = (player.achievements || []).map(item => {
+          const tier = item.tier || 'LT5';
+          const kitName = normalizeKitSlug(item.kit);
+          const asset = getKitAssetName(kitName);
+          return `
+            <div class="tier-showcase-box ${tierClassMap[tier] || 'green-border'}">
+              <img src="${asset}" alt="${item.kit}">
+              <span>${tier}</span>
             </div>
-        </div> 
+          `;
+        }).join('');
 
-        <!-- INTEGRATED FOOTER MODULE: Arranged horizontally -->
-        <div class="sidebar-panel">
-            <h3>Tier Points System</h3>
-            <ul class="points-legend-grid">
-                <li class="points-legend-item"><span class="tier-id-tag">HT1</span><span class="points-weight-tag">100 Pts</span></li>
-                <li class="points-legend-item"><span class="tier-id-tag">LT1</span><span class="points-weight-tag">85 Pts</span></li>
-                <li class="points-legend-item"><span class="tier-id-tag">HT2</span><span class="points-weight-tag">75 Pts</span></li>
-                <li class="points-legend-item"><span class="tier-id-tag">LT2</span><span class="points-weight-tag">60 Pts</span></li>
-                <li class="points-legend-item"><span class="tier-id-tag">HT3</span><span class="points-weight-tag">40 Pts</span></li>
-                <li class="points-legend-item"><span class="tier-id-tag">LT3</span><span class="points-weight-tag">30 Pts</span></li>
-                <li class="points-legend-item"><span class="tier-id-tag">HT4</span><span class="points-weight-tag">25 Pts</span></li>
-                <li class="points-legend-item"><span class="tier-id-tag">LT4</span><span class="points-weight-tag">15 Pts</span></li>
-                <li class="points-legend-item"><span class="tier-id-tag">HT5</span><span class="points-weight-tag">8 Pts</span></li>
-                <li class="points-legend-item"><span class="tier-id-tag">LT5</span><span class="points-weight-tag">3 Pts</span></li>
-            </ul>
-        </div>
-    </div>
+        const displayName = player.name || 'Unknown';
+        const avatarText = displayName.slice(0, 2).toUpperCase();
 
-    <script>
-        let currentKitFilter = 'all';
-        let playersData = [];
+        return `
+          <div class="roster-card-row" data-points="${player.totalPoints || 0}" data-name="${displayName}">
+            <div class="row-rank-num">#${index + 1}</div>
+            <div class="player-info-container">
+              <div class="player-avatar">${avatarText}</div>
+              <span class="row-player-name">${displayName}</span>
+            </div>
+            <div class="player-kits-display">${kitBoxes}</div>
+            <div class="row-points-total">${player.totalPoints || 0} PTS</div>
+          </div>
+        `;
+      }).join('');
 
-        const pointMatrix = {
-            'HT1': 100, 'LT1': 85, 'HT2': 75, 'LT2': 60,
-            'HT3': 40,  'LT3': 30, 'HT4': 25, 'LT4': 15,
-            'HT5': 8,   'LT5': 3
-        };
+      container.innerHTML = rows;
+      attachRowRanks();
+    }
 
-        const pillColorMap = {
-            'NA': 'pill-na',
-            'EU': 'pill-eu',
-            'PC': 'pill-pc',
-            'MOB': 'pill-mob',
-            'CTRL': 'pill-con'
-        };
+    function attachRowRanks() {
+      const rows = [...document.querySelectorAll('.roster-card-row')];
+      rows.forEach((row, index) => {
+        const rank = index + 1;
+        const rankEl = row.querySelector('.row-rank-num');
+        rankEl.textContent = '#' + rank;
 
-        const tierColorMap = {
-            'HT1': 'green-border', 'LT1': 'cyan-border',
-            'HT2': 'green-border', 'LT2': 'cyan-border',
-            'HT3': 'purple-border', 'LT3': 'purple-border',
-            'HT4': 'green-border', 'LT4': 'cyan-border',
-            'HT5': 'green-border', 'LT5': 'orange-border'
-        };
+        row.classList.remove('visible-rank-1', 'visible-rank-2', 'visible-rank-3');
+        if (rank === 1) row.classList.add('visible-rank-1');
+        if (rank === 2) row.classList.add('visible-rank-2');
+        if (rank === 3) row.classList.add('visible-rank-3');
+      });
+    }
 
-        // Load player data from JSON
-        async function loadPlayerData() {
-            try {
-                const response = await fetch('players.json');
-                playersData = await response.json();
-                renderPlayerRows();
-                applyGlobalFilters();
-            } catch (error) {
-                console.error('Error loading player data:', error);
-            }
-        }
+    function applyFilter() {
+      const rows = [...document.querySelectorAll('.roster-card-row')];
+      let players = rows.map(row => ({
+        node: row,
+        name: row.dataset.name,
+        points: Number(row.dataset.points || 0)
+      }));
 
-        // Build player row HTML
-        function buildPlayerRow(player) {
-            const kitsStr = player.kits.join(',');
-            let pillsHTML = '';
-            player.regions.forEach(region => {
-                pillsHTML += `<span class="table-pill ${pillColorMap[region]}">${region}</span>`;
-            });
-            player.platforms.forEach(platform => {
-                pillsHTML += `<span class="table-pill ${pillColorMap[platform]}">${platform}</span>`;
-            });
-
-            let achievementsHTML = '';
-            player.achievements.forEach(achievement => {
-                const kitName = achievement.kit.toUpperCase().replace('-', ' ');
-                const kitImg = achievement.kit === 'emerald-kb' ? 'Emerald_KB.png' : 
-                               achievement.kit === 'dragonhide-kb' ? 'Dragonhide_KB.png' : 
-                               achievement.kit.charAt(0).toUpperCase() + achievement.kit.slice(1) + '.png';
-                const borderClass = tierColorMap[achievement.tier];
-                achievementsHTML += `<div class="tier-showcase-box ${borderClass}"><img src="${kitImg}" alt="${kitName}"><span>${achievement.tier}</span></div>`;
-            });
-
-            return `
-                <div class="roster-card-row" data-kits="${kitsStr}" data-points="${player.totalPoints}">
-                    <div class="row-rank-num">#${player.rank}</div>
-                    <div class="player-info-container">
-                        <span class="row-player-name">${player.name}</span>
-                        ${pillsHTML}
-                    </div>
-                    <div class="player-kits-display">
-                        ${achievementsHTML}
-                    </div>
-                    <div class="row-points-total">${player.totalPoints} PTS</div>
-                </div>
-            `;
-        }
-
-        // Render all player rows
-        function renderPlayerRows() {
-            const container = document.getElementById('roster-list-container');
-            container.innerHTML = playersData.map(player => buildPlayerRow(player)).join('');
-        }
-
-        function filterKit(kitName, btnElement) {
-            document.querySelectorAll('.kit-btn').forEach(btn => btn.classList.remove('active'));
-            btnElement.classList.add('active');
-            currentKitFilter = kitName;
-            applyGlobalFilters();
-        }
-
-        function applyGlobalFilters() {
-            const rows = Array.from(document.querySelectorAll('.roster-card-row'));
-            
-            rows.forEach(row => {
-                const connectedKits = row.getAttribute('data-kits').split(',');
-                const matchesKit = (currentKitFilter === 'all' || connectedKits.includes(currentKitFilter));
-                
-                // DEEP CACHE SANITIZATION: Completely strips out all old rank colors to clear browser memory
-                row.className = 'roster-card-row';
-                
-                if (matchesKit) {
-                    row.classList.remove('hidden');
-                    
-                    if (currentKitFilter === 'all') {
-                        const originalPoints = row.getAttribute('data-points');
-                        row.querySelector('.row-points-total').innerText = originalPoints + " PTS";
-                        row.setAttribute('data-current-sort-score', originalPoints);
-                    } 
-                    else if (currentKitFilter === 'emerald-kb' || currentKitFilter === 'dragonhide-kb') {
-                        row.querySelector('.row-points-total').innerText = "0 PTS";
-                        row.setAttribute('data-current-sort-score', '0');
-                    } 
-                    else {
-                        let specificScore = 0;
-                        const kitBoxes = row.querySelectorAll('.tier-showcase-box');
-                        
-                        kitBoxes.forEach(box => {
-                            const imgAlt = box.querySelector('img').getAttribute('alt').toLowerCase().replace('_', '-');
-                            if (imgAlt === currentKitFilter) {
-                                const tierText = box.querySelector('span').innerText.trim().toUpperCase();
-                                if (pointMatrix[tierText]) {
-                                    specificScore = pointMatrix[tierText];
-                                }
-                            }
-                        });
-                        
-                        row.querySelector('.row-points-total').innerText = specificScore + " PTS";
-                        row.setAttribute('data-current-sort-score', specificScore);
-                    }
-                } else {
-                    row.classList.add('hidden');
-                    row.setAttribute('data-current-sort-score', '-1');
-                }
-            });
-
-            const listContainer = document.getElementById('roster-list-container');
-            
-            // PRIORITY LOOP SORT: Checks active points first, breaks ties via total overall points attribute
-            const sortedRows = rows.filter(r => !r.classList.contains('hidden'))
-                                   .sort((a, b) => {
-                                        const scoreA = parseInt(a.getAttribute('data-current-sort-score'));
-                                        const scoreB = parseInt(b.getAttribute('data-current-sort-score'));
-                                        
-                                        if (scoreB !== scoreA) {
-                                            return scoreB - scoreA;
-                                        }
-                                        
-                                        const overallA = parseInt(a.getAttribute('data-points'));
-                                        const overallB = parseInt(b.getAttribute('data-points'));
-                                        if (overallB !== overallA) {
-                                            return overallB - overallA;
-                                        }
-                                        
-                                        const nameA = a.querySelector('.row-player-name').innerText.toLowerCase();
-                                        const nameB = b.querySelector('.row-player-name').innerText.toLowerCase();
-                                        return nameA.localeCompare(nameB);
-                                   });
-
-            let visibleRankCounter = 1;
-            sortedRows.forEach(row => {
-                // Force-writes the inner text component to completely bypass browser formatting glitches
-                row.querySelector('.row-rank-num').innerText = "#" + visibleRankCounter;
-                
-                if (visibleRankCounter === 1) row.classList.add('visible-rank-1');
-                if (visibleRankCounter === 2) row.classList.add('visible-rank-2');
-                if (visibleRankCounter === 3) row.classList.add('visible-rank-3');
-                
-                listContainer.appendChild(row);
-                visibleRankCounter++;
-            });
-
-            const titleElement = document.getElementById('leaderboard-title');
-            titleElement.innerText = currentKitFilter === 'all' ? 'Overall Leaderboard' : currentKitFilter.replace('-', ' ').toUpperCase() + ' Leaderboard';
-        }
-
-        document.addEventListener("DOMContentLoaded", () => {
-            loadPlayerData();
+      if (currentKitFilter === 'all') {
+        players = players.filter(item => item.points >= 0);
+      } else {
+        players = players.filter(item => {
+          const row = item.node;
+          const kitNames = [...row.querySelectorAll('.tier-showcase-box img')].map(img => normalizeKitSlug(img.getAttribute('alt')));
+          return kitNames.includes(currentKitFilter);
         });
-    </script>
+      }
+
+      players.sort((a, b) => b.points - a.points || a.name.localeCompare(b.name));
+      const visible = players.map(item => item.node);
+
+      rows.forEach(row => row.classList.add('hidden'));
+      visible.forEach((row, index) => {
+        row.classList.remove('hidden');
+        const pointsText = row.querySelector('.row-points-total');
+        const nextValue = row.dataset.points;
+        pointsText.textContent = `${nextValue} PTS`;
+        row.querySelector('.row-rank-num').textContent = '#' + (index + 1);
+      });
+
+      const title = document.getElementById('leaderboard-title');
+      const label = currentKitFilter === 'all' ? 'Overall Leaderboard' : currentKitFilter.replace(/-/g, ' ').toUpperCase() + ' Leaderboard';
+      title.textContent = label;
+    }
+
+    function loadPlayers() {
+      fetch('players.json')
+        .then(res => res.json())
+        .then(data => {
+          filteredPlayers = data.sort((a, b) => Number(b.totalPoints || 0) - Number(a.totalPoints || 0) || String(a.name).localeCompare(String(b.name)));
+          renderRows(filteredPlayers);
+          applyFilter();
+        })
+        .catch(err => {
+          console.error('Failed to load players:', err);
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadPlayers();
+
+      document.querySelectorAll('.kit-btn').forEach(button => {
+        button.addEventListener('click', () => {
+          document.querySelectorAll('.kit-btn').forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+          currentKitFilter = button.dataset.kit;
+          applyFilter();
+        });
+      });
+
+      const searchInput = document.querySelector('.search-box');
+      searchInput.addEventListener('input', (event) => {
+        const query = event.target.value.trim().toLowerCase();
+        const data = filteredPlayers.filter(player => String(player.name || '').toLowerCase().includes(query));
+        renderRows(data);
+        applyFilter();
+      });
+    });
+  </script>
 </body>
 </html>
