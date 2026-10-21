@@ -19,6 +19,9 @@
       --muted: rgba(236, 244, 255, 0.76);
       --shadow: rgba(0, 0, 0, 0.6);
       --nav-bg: rgba(3, 8, 14, 0.78);
+      --dialog-bg: rgba(4, 16, 24, 0.92);
+      --dialog-border: rgba(70, 230, 255, 0.8);
+      --dark-blue: rgba(8, 18, 28, 0.9);
     }
 
     * { box-sizing: border-box; }
@@ -291,6 +294,12 @@
       text-overflow: ellipsis;
       display: inline-block;
       max-width: 100%;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .row-player-name:hover {
+      color: var(--cyan);
     }
 
     .player-kits-display {
@@ -363,6 +372,319 @@
       vertical-align: middle;
     }
 
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.72);
+      z-index: 999;
+      padding: 20px;
+    }
+
+    .modal-backdrop.visible {
+      display: flex;
+    }
+
+    .player-modal {
+      position: relative;
+      width: min(88vw, 760px);
+      min-height: 390px;
+      background: rgba(3, 12, 18, 0.91);
+      border: 2px solid var(--dialog-border);
+      border-radius: 14px;
+      box-shadow: 0 0 0 2px rgba(95, 211, 255, 0.3), 0 0 18px rgba(92, 215, 255, 0.28);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+    }
+
+    .modal-left {
+      padding: 22px 18px 22px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .modal-info-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .rank-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 74px;
+      height: 24px;
+      border-radius: 14px;
+      background: rgba(7, 12, 18, 0.7);
+      border: 1px solid rgba(255, 207, 62, 0.7);
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 0 10px;
+    }
+
+    .player-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 78px;
+      height: 23px;
+      border-radius: 12px;
+      background: rgba(8, 19, 24, 0.9);
+      border: 1px solid rgba(110, 221, 255, 0.55);
+      color: var(--cyan);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 0 8px;
+    }
+
+    .modal-player-name {
+      margin: 18px 0 10px;
+      font-size: clamp(2.2rem, 3vw, 3.8rem);
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: rgba(255,255,255,0.96);
+      text-shadow: 0 0 12px rgba(117, 221, 255, 0.15);
+    }
+
+    .small-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .mini-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 40px;
+      height: 24px;
+      padding: 0 10px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: rgba(10, 24, 30, 0.85);
+      border: 1px solid rgba(111, 221, 255, 0.5);
+      color: var(--cyan);
+    }
+
+    .mini-pill.pill-na { border-color: rgba(96, 203, 255, 0.7); color: #8fe6ff; }
+    .mini-pill.pill-eu { border-color: rgba(255, 220, 99, 0.7); color: #ffe58a; }
+    .mini-pill.pill-pc { border-color: rgba(181, 126, 255, 0.7); color: #d0aeff; }
+    .mini-pill.pill-mob { border-color: rgba(125, 245, 182, 0.7); color: #99f7c9; }
+    .mini-pill.pill-con { border-color: rgba(255, 170, 109, 0.7); color: #ffc68c; }
+
+    .avatar-box {
+      width: 100%;
+      min-height: 170px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 8px;
+      margin-bottom: 12px;
+    }
+
+    .avatar-cube {
+      position: relative;
+      width: 160px;
+      height: 180px;
+      transform: translateY(-6px);
+      filter: drop-shadow(0 0 18px rgba(110, 220, 255, 0.15));
+    }
+
+    .avatar-cube .head {
+      position: absolute;
+      left: 52px;
+      top: 18px;
+      width: 52px;
+      height: 45px;
+      background: linear-gradient(180deg, #d0b382 0%, #8d6a4d 100%);
+      border: 3px solid rgba(33, 25, 21, 0.9);
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    .avatar-cube .face {
+      position: absolute;
+      left: 57px;
+      top: 28px;
+      width: 42px;
+      height: 28px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.15));
+      border-radius: 3px;
+    }
+
+    .avatar-cube .eye {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: rgba(35, 28, 26, 0.95);
+      border-radius: 1px;
+      top: 39px;
+    }
+
+    .avatar-cube .eye.left { left: 68px; }
+    .avatar-cube .eye.right { left: 89px; }
+
+    .avatar-cube .body {
+      position: absolute;
+      left: 38px;
+      top: 60px;
+      width: 80px;
+      height: 72px;
+      background: linear-gradient(180deg, #52d5c3 0%, #2cae8e 100%);
+      border: 3px solid rgba(25, 34, 32, 0.82);
+      border-radius: 8px 8px 12px 12px;
+    }
+
+    .avatar-cube .arm {
+      position: absolute;
+      width: 18px;
+      height: 48px;
+      top: 70px;
+      background: linear-gradient(180deg, #5ed4be 0%, #36ab91 100%);
+      border: 3px solid rgba(25, 34, 32, 0.82);
+      border-radius: 10px;
+    }
+
+    .avatar-cube .arm.left { left: 28px; transform: rotate(18deg); }
+    .avatar-cube .arm.right { right: 28px; transform: rotate(-18deg); }
+
+    .avatar-cube .leg {
+      position: absolute;
+      width: 18px;
+      height: 56px;
+      top: 120px;
+      background: linear-gradient(180deg, #4c6d82 0%, #324d62 100%);
+      border: 3px solid rgba(25, 34, 32, 0.82);
+      border-radius: 10px;
+    }
+
+    .avatar-cube .leg.left { left: 55px; }
+    .avatar-cube .leg.right { left: 90px; }
+
+    .modal-total {
+      color: var(--gold);
+      font-size: clamp(2.2rem, 3vw, 3rem);
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .modal-total::before {
+      content: "";
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 12px rgba(255, 216, 84, 0.8);
+    }
+
+    .modal-right {
+      position: relative;
+      padding: 20px 18px 18px 10px;
+      border-left: 1px solid rgba(255,255,255,0.04);
+      background: rgba(0, 0, 0, 0.12);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .modal-title {
+      color: rgba(255,255,255,0.88);
+      font-size: 11px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    .close-btn {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(15, 25, 32, 0.9);
+      color: rgba(255,255,255,0.85);
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .kit-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(60px, 1fr));
+      gap: 10px 12px;
+      align-items: start;
+      margin-top: 16px;
+    }
+
+    .kit-circle {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      margin: 0 auto;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 214, 43, 0.9);
+      background: rgba(8, 18, 24, 0.9);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04), 0 0 8px rgba(255, 205, 62, 0.13);
+    }
+
+    .kit-circle img {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .kit-circle span {
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--gold);
+      letter-spacing: 0.4px;
+    }
+
+    .modal-footer {
+      position: absolute;
+      right: 18px;
+      bottom: 14px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.16);
+      color: rgba(255,255,255,0.7);
+      background: rgba(10, 18, 20, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+    }
+
     @media (max-width: 760px) {
       .topbar {
         height: auto;
@@ -393,6 +715,16 @@
       .player-info-container {
         gap: 8px;
       }
+
+      .player-modal {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-right {
+        border-left: none;
+        border-top: 1px solid rgba(255,255,255,0.04);
+        padding-top: 16px;
+      }
     }
   </style>
 </head>
@@ -405,9 +737,6 @@
 
       <nav class="main-links" aria-label="Main navigation">
         <a href="#" class="active">Home</a>
-        <a href="#">Rankings</a>
-        <a href="#">Hall of Fame</a>
-        <a href="#">Tier Testers</a>
       </nav>
 
       <div class="search-wrap">
@@ -440,6 +769,48 @@
       <div class="leaderboard-head" id="leaderboard-title">Overall Leaderboard</div>
       <div id="roster-list-container" class="roster-list"></div>
     </main>
+  </div>
+
+  <div id="player-modal" class="modal-backdrop" aria-hidden="true">
+    <div class="player-modal" role="dialog" aria-modal="true" aria-labelledby="modal-player-name">
+      <div class="modal-left">
+        <div class="modal-info-strip">
+          <span id="modal-rank" class="rank-badge">RANK #3</span>
+          <span id="modal-role" class="player-badge">Combat Master</span>
+        </div>
+
+        <div>
+          <div id="modal-player-name" class="modal-player-name">sample</div>
+          <div class="small-pills" id="modal-pills"></div>
+        </div>
+
+        <div class="avatar-box">
+          <div class="avatar-cube" aria-hidden="true">
+            <div class="head"></div>
+            <div class="face"></div>
+            <div class="eye left"></div>
+            <div class="eye right"></div>
+            <div class="body"></div>
+            <div class="arm left"></div>
+            <div class="arm right"></div>
+            <div class="leg left"></div>
+            <div class="leg right"></div>
+          </div>
+        </div>
+
+        <div id="modal-total" class="modal-total">240 PTS</div>
+      </div>
+
+      <div class="modal-right">
+        <div class="modal-header">
+          <div class="modal-title">Kit Rankings</div>
+          <button id="close-modal" class="close-btn" aria-label="Close">×</button>
+        </div>
+
+        <div id="kit-grid" class="kit-grid"></div>
+        <div class="modal-footer">⎈</div>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -489,10 +860,14 @@
       return assetsForKit[slug] || 'logo.png';
     }
 
-    function findTierFromBox(kitName, player) {
-      const kitSlug = normalizeKitSlug(kitName);
-      const match = (player.achievements || []).find(item => normalizeKitSlug(item.kit) === kitSlug);
-      return match ? match.tier : '';
+    function getRegionClass(region) {
+      const key = String(region || '').toUpperCase();
+      if (key === 'NA') return 'pill-na';
+      if (key === 'EU') return 'pill-eu';
+      if (key === 'PC') return 'pill-pc';
+      if (key === 'MOB') return 'pill-mob';
+      if (key === 'CTRL') return 'pill-con';
+      return 'pill-na';
     }
 
     function renderRows(players) {
@@ -514,13 +889,14 @@
 
         const displayName = player.name || 'Unknown';
         const avatarText = displayName.slice(0, 2).toUpperCase();
+        const safeName = displayName.replace(/"/g, '&quot;');
 
         return `
-          <div class="roster-card-row" data-points="${player.totalPoints || 0}" data-name="${displayName}">
+          <div class="roster-card-row" data-points="${player.totalPoints || 0}" data-name="${safeName}" data-rank="${index + 1}">
             <div class="row-rank-num">#${index + 1}</div>
             <div class="player-info-container">
               <div class="player-avatar">${avatarText}</div>
-              <span class="row-player-name">${displayName}</span>
+              <span class="row-player-name" data-player-name="${safeName}">${displayName}</span>
             </div>
             <div class="player-kits-display">${kitBoxes}</div>
             <div class="row-points-total">${player.totalPoints || 0} PTS</div>
@@ -530,6 +906,7 @@
 
       container.innerHTML = rows;
       attachRowRanks();
+      bindPlayerClickHandlers();
     }
 
     function attachRowRanks() {
@@ -546,33 +923,82 @@
       });
     }
 
+    function bindPlayerClickHandlers() {
+      document.querySelectorAll('.row-player-name').forEach(nameEl => {
+        nameEl.addEventListener('click', () => {
+          const row = nameEl.closest('.roster-card-row');
+          const playerName = nameEl.dataset.playerName || row.dataset.name || nameEl.textContent.trim();
+          const player = filteredPlayers.find(p => p.name === playerName) || filteredPlayers.find(p => String(p.name).toLowerCase() === String(playerName).toLowerCase());
+
+          if (!player) return;
+          openPlayerModal(player, Number(row.dataset.rank || 1));
+        });
+      });
+    }
+
+    function openPlayerModal(player, rank) {
+      const modal = document.getElementById('player-modal');
+      const rankNode = document.getElementById('modal-rank');
+      const nameNode = document.getElementById('modal-player-name');
+      const totalNode = document.getElementById('modal-total');
+      const pillsNode = document.getElementById('modal-pills');
+      const kitGrid = document.getElementById('kit-grid');
+
+      rankNode.textContent = 'RANK #' + rank;
+      nameNode.textContent = player.name || 'Unknown';
+      totalNode.textContent = `${player.totalPoints || 0} PTS`;
+
+      pillsNode.innerHTML = '';
+      (player.regions || []).forEach(region => {
+        const pill = document.createElement('span');
+        pill.className = 'mini-pill ' + getRegionClass(region);
+        pill.textContent = region;
+        pillsNode.appendChild(pill);
+      });
+      (player.platforms || []).forEach(platform => {
+        const pill = document.createElement('span');
+        pill.className = 'mini-pill ' + getRegionClass(platform);
+        pill.textContent = platform;
+        pillsNode.appendChild(pill);
+      });
+
+      kitGrid.innerHTML = '';
+      (player.achievements || []).forEach(item => {
+        const circle = document.createElement('div');
+        circle.className = 'kit-circle';
+        circle.innerHTML = `
+          <img src="${getKitAssetName(item.kit)}" alt="${item.kit}">
+          <span>${item.tier}</span>
+        `;
+        kitGrid.appendChild(circle);
+      });
+
+      modal.classList.add('visible');
+      modal.setAttribute('aria-hidden', 'false');
+    }
+
+    function closePlayerModal() {
+      const modal = document.getElementById('player-modal');
+      modal.classList.remove('visible');
+      modal.setAttribute('aria-hidden', 'true');
+    }
+
     function applyFilter() {
       const rows = [...document.querySelectorAll('.roster-card-row')];
-      let players = rows.map(row => ({
-        node: row,
-        name: row.dataset.name,
-        points: Number(row.dataset.points || 0)
-      }));
+      if (!rows.length) return;
 
-      if (currentKitFilter === 'all') {
-        players = players.filter(item => item.points >= 0);
-      } else {
-        players = players.filter(item => {
-          const row = item.node;
-          const kitNames = [...row.querySelectorAll('.tier-showcase-box img')].map(img => normalizeKitSlug(img.getAttribute('alt')));
-          return kitNames.includes(currentKitFilter);
-        });
-      }
+      const visibleRows = rows.filter(row => {
+        if (currentKitFilter === 'all') return true;
+        const kitNames = [...row.querySelectorAll('.tier-showcase-box img')].map(img => normalizeKitSlug(img.getAttribute('alt')));
+        return kitNames.includes(currentKitFilter);
+      });
 
-      players.sort((a, b) => b.points - a.points || a.name.localeCompare(b.name));
-      const visible = players.map(item => item.node);
+      const sortedRows = visibleRows.sort((a, b) => Number(b.dataset.points || 0) - Number(a.dataset.points || 0) || String(a.dataset.name).localeCompare(String(b.dataset.name)));
 
       rows.forEach(row => row.classList.add('hidden'));
-      visible.forEach((row, index) => {
+      sortedRows.forEach((row, index) => {
         row.classList.remove('hidden');
-        const pointsText = row.querySelector('.row-points-total');
-        const nextValue = row.dataset.points;
-        pointsText.textContent = `${nextValue} PTS`;
+        row.dataset.rank = index + 1;
         row.querySelector('.row-rank-num').textContent = '#' + (index + 1);
       });
 
@@ -612,6 +1038,14 @@
         const data = filteredPlayers.filter(player => String(player.name || '').toLowerCase().includes(query));
         renderRows(data);
         applyFilter();
+      });
+
+      document.getElementById('close-modal').addEventListener('click', closePlayerModal);
+      document.getElementById('player-modal').addEventListener('click', (event) => {
+        if (event.target === event.currentTarget) closePlayerModal();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closePlayerModal();
       });
     });
   </script>
