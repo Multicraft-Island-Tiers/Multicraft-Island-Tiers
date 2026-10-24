@@ -114,16 +114,18 @@
     ]
   },
   {
-    "name": "kylaz9",
+    "name": "Kylaz9",
     "rank": 9,
-    "totalPoints": 48,
+    "totalPoints": 41,
     "regions": ["NA"],
     "platforms": ["PC"],
-    "kits": ["all", "diamond", "dragonhide-kb", "emerald"],
+    "kits": ["all", "dragonhide", "dragonhide-kb", "emerald", "emerald-kb", "diamond"],
     "achievements": [
-      {"kit": "diamond", "tier": "HT4"},
+      {"kit": "dragonhide", "tier": "LT4"},
       {"kit": "dragonhide-kb", "tier": "LT4"},
-      {"kit": "emerald", "tier": "HT5"}
+      {"kit": "emerald", "tier": "HT5"},
+      {"kit": "emerald-kb", "tier": "HT5"},
+      {"kit": "diamond", "tier": "HT4"}
     ]
   },
   {
