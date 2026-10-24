@@ -181,13 +181,13 @@ const players = [
     avatar: 'Ky',
     badges: ['Elite Master'],
     kits: {
-      'Dragonhide': 'HT5',
+      'Dragonhide': 'LT4',
+      'Dragonhide KB': 'LT4',
+      'Emerald': 'HT5',
       'Emerald KB': 'HT5',
-      'Emerald': 'LT5',
-      'Dragonhide KB': 'LT5',
-      'Diamond': 'LT5'
+      'Diamond': 'HT4'
     },
-    points: 340
+    points: 41
   },
   {
     rank: 15,
