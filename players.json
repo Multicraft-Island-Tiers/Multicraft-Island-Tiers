@@ -228,5 +228,20 @@
       {"kit": "dragonhide-kb", "tier": "LT5"},
       {"kit": "diamond", "tier": "LT5"}
     ]
+  },
+  {
+    "name": "SOCCERMAN2487",
+    "rank": 17,
+    "totalPoints": 15,
+    "regions": ["NA"],
+    "platforms": ["MOB"],
+    "kits": ["all", "dragonhide", "emerald", "dragonhide-kb", "emerald-kb", "diamond"],
+    "achievements": [
+      {"kit": "dragonhide", "tier": "LT5"},
+      {"kit": "emerald", "tier": "LT5"},
+      {"kit": "dragonhide-kb", "tier": "LT5"},
+      {"kit": "emerald-kb", "tier": "LT5"},
+      {"kit": "diamond", "tier": "LT5"}
+    ]
   }
 ]
