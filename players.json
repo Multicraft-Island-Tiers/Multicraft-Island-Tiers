@@ -116,16 +116,14 @@
   {
     "name": "kylaz9",
     "rank": 9,
-    "totalPoints": 25,
-    "regions": ["EU"],
-    "platforms": ["MOB"],
-    "kits": ["all", "dragonhide", "emerald-kb", "dragonhide-kb", "emerald", "diamond"],
+    "totalPoints": 48,
+    "regions": ["NA"],
+    "platforms": ["PC"],
+    "kits": ["all", "diamond", "dragonhide-kb", "emerald"],
     "achievements": [
-      {"kit": "dragonhide", "tier": "HT5"},
-      {"kit": "emerald-kb", "tier": "HT5"},
-      {"kit": "dragonhide-kb", "tier": "LT5"},
-      {"kit": "emerald", "tier": "LT5"},
-      {"kit": "diamond", "tier": "LT5"}
+      {"kit": "diamond", "tier": "HT4"},
+      {"kit": "dragonhide-kb", "tier": "LT4"},
+      {"kit": "emerald", "tier": "HT5"}
     ]
   },
   {
